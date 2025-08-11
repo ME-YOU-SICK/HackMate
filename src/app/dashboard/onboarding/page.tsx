@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -9,11 +9,16 @@ import { Label } from "@/components/ui/label";
 import { Progress } from '@/components/ui/progress';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, ArrowRight, CheckCircle, PartyPopper, User, Tag, Trophy, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle, PartyPopper, User, Tag, Trophy, X, Loader } from 'lucide-react';
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { auth } from '@/lib/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useRouter } from 'next/navigation';
+import { updateUserProfile } from '@/lib/db';
+import { useToast } from '@/hooks/use-toast';
 
 const steps = [
   { id: 1, title: "Welcome to HackMate!", icon: PartyPopper },
@@ -94,17 +99,59 @@ const skillCategories = [
 ];
 
 export default function OnboardingPage() {
+  const [user, loading, error] = useAuthState(auth);
+  const router = useRouter();
+  const { toast } = useToast();
+  
   const [currentStep, setCurrentStep] = useState(1);
+  const [isSaving, setIsSaving] = useState(false);
+
+  // Form state
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
   const [skills, setSkills] = useState<string[]>([]);
   const [interests, setInterests] = useState<string[]>([]);
   const [currentInterest, setCurrentInterest] = useState('');
   const [pastEvents, setPastEvents] = useState<{name: string, role: string}[]>([]);
   const [currentEventName, setCurrentEventName] = useState('');
   const [currentEventRole, setCurrentEventRole] = useState('');
+  
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push('/login');
+    }
+    if (user) {
+        setFullName(user.displayName || '');
+        setEmail(user.email || '');
+    }
+  }, [user, loading, router]);
+
 
   const progress = ((currentStep - 1) / (steps.length - 1)) * 100;
 
-  const nextStep = () => setCurrentStep(prev => Math.min(prev + 1, steps.length));
+  const saveProfileData = async () => {
+    if (!user) return;
+    setIsSaving(true);
+    const profileData = {
+        fullName,
+        email,
+        skills,
+        interests,
+        pastEvents,
+    };
+    const result = await updateUserProfile(user.uid, profileData);
+    setIsSaving(false);
+    if (result.success) {
+      toast({ title: "Progress Saved!", variant: 'default' });
+    } else {
+      toast({ title: "Error", description: "Could not save progress.", variant: 'destructive' });
+    }
+  }
+
+  const nextStep = async () => {
+    await saveProfileData();
+    setCurrentStep(prev => Math.min(prev + 1, steps.length));
+  }
   const prevStep = () => setCurrentStep(prev => Math.max(prev - 1, 1));
   
   const handleSkillChange = (skill: string, checked: boolean) => {
@@ -140,6 +187,15 @@ export default function OnboardingPage() {
   const removePastEvent = (index: number) => {
     setPastEvents(pastEvents.filter((_, i) => i !== index));
   };
+
+  if (loading || !user) {
+    return (
+        <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-br from-background to-slate-900/50">
+            <Loader className="h-12 w-12 animate-spin text-primary"/>
+            <p className="mt-4 text-muted-foreground">Loading your profile...</p>
+        </div>
+    )
+  }
 
   const CurrentIcon = steps[currentStep - 1].icon;
 
@@ -179,11 +235,11 @@ export default function OnboardingPage() {
               <div className="space-y-4">
                 <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>
-                    <Input id="name" type="text" placeholder="Ada Lovelace" defaultValue="Ada Lovelace" />
+                    <Input id="name" type="text" placeholder="Ada Lovelace" value={fullName} onChange={e => setFullName(e.target.value)} />
                 </div>
                 <div className="space-y-2">
                     <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="you@example.com" defaultValue="ada.lovelace@example.com" />
+                    <Input id="email" type="email" placeholder="you@example.com" value={email} disabled />
                 </div>
               </div>
             )}
@@ -269,7 +325,7 @@ export default function OnboardingPage() {
             )}
             {currentStep === 6 && (
                  <div className="text-center space-y-4 pt-8">
-                    <h3 className="text-xl font-semibold">Congratulations, Ada!</h3>
+                    <h3 className="text-xl font-semibold">Congratulations, {fullName}!</h3>
                     <p className="text-muted-foreground max-w-md mx-auto">Your HackMate profile is complete. You're ready to connect with innovators, join events, and build amazing things.</p>
                      <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
                         <Link href="/dashboard">Go to my Dashboard <ArrowRight className="ml-2 h-5 w-5"/></Link>
@@ -279,17 +335,19 @@ export default function OnboardingPage() {
           </CardContent>
           <CardFooter className="flex justify-between">
             {currentStep > 1 && currentStep < steps.length ? (
-                <Button variant="outline" onClick={prevStep}>
+                <Button variant="outline" onClick={prevStep} disabled={isSaving}>
                     <ArrowLeft className="mr-2 h-4 w-4" /> Previous
                 </Button>
             ) : <div />}
 
             {currentStep < steps.length -1 ? (
-                <Button onClick={nextStep}>
+                <Button onClick={nextStep} disabled={isSaving}>
+                    {isSaving && <Loader className="mr-2 h-4 w-4 animate-spin"/>}
                     Next <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
             ) : currentStep === steps.length - 1 ? (
-                 <Button onClick={nextStep}>
+                 <Button onClick={nextStep} disabled={isSaving}>
+                    {isSaving && <Loader className="mr-2 h-4 w-4 animate-spin"/>}
                     Finish <CheckCircle className="ml-2 h-4 w-4" />
                 </Button>
             ) : <div />}

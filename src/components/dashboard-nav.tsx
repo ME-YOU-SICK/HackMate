@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -17,6 +18,10 @@ import {
 } from "./ui/sidebar";
 import { LayoutDashboard, Users, BrainCircuit, Calendar, User, Settings, LogOut } from "lucide-react";
 import { Logo } from "./logo";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/lib/firebase";
+import { signOutAction } from "@/lib/auth";
+import { useRouter } from "next/navigation";
 
 const navItems = [
   { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
@@ -28,6 +33,19 @@ const navItems = [
 
 export function DashboardNav() {
   const pathname = usePathname();
+  const [user] = useAuthState(auth);
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await signOutAction();
+    router.push('/login');
+  };
+
+  const getInitials = (name: string | null | undefined) => {
+    if (!name) return "U";
+    return name.split(' ').map(n => n[0]).join('');
+  }
+
 
   return (
     <>
@@ -58,17 +76,15 @@ export function DashboardNav() {
         <SidebarSeparator />
         <div className="flex items-center gap-3 p-2">
             <Avatar>
-                <AvatarImage src="https://placehold.co/100x100.png" alt="User" data-ai-hint="profile picture" />
-                <AvatarFallback>AL</AvatarFallback>
+                <AvatarImage src={user?.photoURL || "https://placehold.co/100x100.png"} alt="User" data-ai-hint="profile picture" />
+                <AvatarFallback>{getInitials(user?.displayName)}</AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
-                <span className="text-sm font-semibold">Ada Lovelace</span>
+                <span className="text-sm font-semibold">{user?.displayName || "User"}</span>
                 <span className="text-xs text-muted-foreground">Participant</span>
             </div>
-            <Button variant="ghost" size="icon" className="ml-auto" asChild>
-              <Link href="/">
+            <Button variant="ghost" size="icon" className="ml-auto" onClick={handleSignOut}>
                 <LogOut />
-              </Link>
             </Button>
         </div>
       </SidebarFooter>
