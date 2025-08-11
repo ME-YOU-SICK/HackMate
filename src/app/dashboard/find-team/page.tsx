@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from 'react';
-import { useFormState } from 'react-dom';
+import { useState, useActionState } from 'react';
 import { getTeamSuggestions } from '@/app/actions/suggest-teammates.action.ts';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -19,23 +18,8 @@ const initialState = {
 };
 
 export default function FindTeamPage() {
-  const [state, formAction] = useFormState(getTeamSuggestions, initialState);
+  const [state, formAction, isPending] = useActionState(getTeamSuggestions, initialState);
   const [teamSize, setTeamSize] = useState(3);
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setLoading(true);
-    const formData = new FormData(event.currentTarget);
-    formAction(formData);
-  };
-  
-  if (loading && !state.data && !state.error) {
-     // The form has been submitted, but we don't have a result yet.
-  } else if (loading) {
-    // We have a result, so stop loading
-    setLoading(false);
-  }
 
   return (
     <div className="container mx-auto py-8 px-4">
@@ -46,7 +30,7 @@ export default function FindTeamPage() {
               <CardTitle className="font-headline flex items-center gap-2"><BrainCircuit /> AI Teammate Finder</CardTitle>
               <CardDescription>Fill out the form to get personalized teammate suggestions for your hackathon project.</CardDescription>
             </CardHeader>
-            <form onSubmit={handleSubmit}>
+            <form action={formAction}>
               <CardContent className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="hackathonDescription">Project Description</Label>
@@ -89,15 +73,15 @@ export default function FindTeamPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? <><Loader className="mr-2 h-4 w-4 animate-spin" /> Please wait...</> : 'Generate Suggestions'}
+                <Button type="submit" className="w-full" disabled={isPending}>
+                  {isPending ? <><Loader className="mr-2 h-4 w-4 animate-spin" /> Please wait...</> : 'Generate Suggestions'}
                 </Button>
               </CardFooter>
             </form>
           </Card>
         </div>
         <div className="md:col-span-2">
-            {loading && (
+            {isPending && (
                 <div className="flex flex-col items-center justify-center h-full gap-4 p-8 rounded-lg bg-card/60 backdrop-blur-lg border border-dashed border-border/50">
                     <Loader className="h-12 w-12 text-primary animate-spin" />
                     <h3 className="text-2xl font-headline">Finding your dream team...</h3>
@@ -105,7 +89,7 @@ export default function FindTeamPage() {
                 </div>
             )}
 
-            {!loading && state?.error && (
+            {!isPending && state?.error && (
                 <Alert variant="destructive" className="bg-destructive/20 border-destructive">
                     <AlertTitle>Error</AlertTitle>
                     <AlertDescription>
@@ -119,7 +103,7 @@ export default function FindTeamPage() {
                 </Alert>
             )}
 
-            {!loading && state?.data && (
+            {!isPending && state?.data && (
                 <div className="space-y-6">
                     <Card className="bg-card/60 backdrop-blur-lg border-border/50">
                         <CardHeader>
