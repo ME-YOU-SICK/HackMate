@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -47,7 +48,7 @@ export default function SignupPage() {
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
           <Button className="w-full" asChild>
-            <Link href="/dashboard">Create Account</Link>
+            <Link href="/dashboard/onboarding">Create Account</Link>
           </Button>
           <p className="text-xs text-center text-muted-foreground">
             Already have an account?{' '}
