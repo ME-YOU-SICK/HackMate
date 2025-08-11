@@ -13,6 +13,7 @@ import { ArrowLeft, ArrowRight, CheckCircle, PartyPopper, User, Tag, Trophy, X }
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const steps = [
   { id: 1, title: "Welcome to HackMate!", icon: PartyPopper },
@@ -23,9 +24,73 @@ const steps = [
   { id: 6, title: "You're All Set!", icon: CheckCircle },
 ];
 
-const predefinedSkills = [
-  "React", "Next.js", "TypeScript", "Node.js", "Python", "Go", "UI/UX Design", "Firebase", 
-  "Tailwind CSS", "GraphQL", "Docker", "Kubernetes", "GenAI", "LLMs", "Data Science"
+const skillCategories = [
+  {
+    category: "Programming Languages",
+    skills: [
+      "JavaScript / TypeScript", "Python", "Java", "C++", "C#", "Go", "Ruby", "Rust", "PHP", "Swift", "Kotlin", "Dart", "R Programming", "MATLAB", "Scala"
+    ]
+  },
+  {
+    category: "Frontend Development",
+    skills: [
+      "HTML5 / CSS3", "React.js", "Next.js", "Vue.js", "Svelte", "Tailwind CSS", "Bootstrap", "Web Accessibility (a11y)", "UI/UX Design", "Progressive Web Apps (PWA)", "Responsive Web Design", "Figma to Code Integration"
+    ]
+  },
+  {
+    category: "Backend Development",
+    skills: [
+      "Node.js", "Express.js", "Django", "Flask", "Spring Boot", "GraphQL", "REST API Design", "WebSockets / Real-Time Apps", "Microservices Architecture", "API Security & Authentication (OAuth, JWT)", "Serverless Functions"
+    ]
+  },
+  {
+    category: "Mobile Development",
+    skills: [
+      "React Native", "Flutter", "SwiftUI", "Android (Java/Kotlin)", "Mobile UI/UX Design", "Mobile Performance Optimization"
+    ]
+  },
+  {
+    category: "Databases & Storage",
+    skills: [
+      "PostgreSQL", "MySQL", "MongoDB", "Firebase", "Supabase", "Redis", "Elasticsearch", "Neo4j (Graph Databases)"
+    ]
+  },
+  {
+    category: "Cloud & DevOps",
+    skills: [
+      "AWS", "Google Cloud Platform", "Microsoft Azure", "Docker", "Kubernetes", "CI/CD (GitHub Actions, GitLab CI, CircleCI)", "Infrastructure as Code (Terraform)", "Cloud Security", "API Gateways"
+    ]
+  },
+  {
+    category: "AI / Data Science",
+    skills: [
+      "Machine Learning", "Deep Learning", "Natural Language Processing (NLP)", "Computer Vision", "TensorFlow / PyTorch", "Data Analysis (Pandas, NumPy)", "Data Visualization (Matplotlib, Seaborn, D3.js)", "AI Ethics & Responsible AI"
+    ]
+  },
+  {
+    category: "Cybersecurity",
+    skills: [
+      "Ethical Hacking / Pen Testing", "Network Security", "Cryptography", "Security Auditing", "Cloud Security", "Identity & Access Management (IAM)"
+    ]
+  },
+  {
+    category: "Other Hackathon-Relevant Skills",
+    skills: [
+      "API Integration", "Blockchain / Web3 Development", "Smart Contracts (Solidity)", "AR/VR Development (Unity, Unreal, Three.js)", "IoT Development", "Game Development", "Automation Scripting", "Web Scraping"
+    ]
+  },
+  {
+    category: "Soft Skills & Leadership",
+    skills: [
+      "Project Management", "Pitching & Public Speaking", "Design Thinking", "Technical Writing", "Agile / Scrum Methodologies", "Time Management", "Team Collaboration Tools (Trello, Notion, Jira, Asana)", "Networking & Community Building"
+    ]
+  },
+  {
+    category: "LinkedIn Buzzwords & Trendy Skills",
+    skills: [
+      "Growth Hacking", "Thought Leadership", "Digital Transformation", "Cross-Functional Collaboration", "Data-Driven Decision Making", "Cloud-Native Development", "API-First Design", "Product-Led Growth", "Innovation Strategy", "Full-Stack Development", "DevRel (Developer Relations)", "MVP Development (Minimum Viable Product)"
+    ]
+  }
 ];
 
 export default function OnboardingPage() {
@@ -103,7 +168,7 @@ export default function OnboardingPage() {
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="min-h-[250px]">
+          <CardContent className="min-h-[300px] max-h-[50vh] overflow-y-auto">
             {currentStep === 1 && (
               <div className="text-center space-y-4 pt-8">
                 <h3 className="text-xl">Let's get your profile ready for action!</h3>
@@ -124,19 +189,28 @@ export default function OnboardingPage() {
             )}
              {currentStep === 3 && (
               <div className="space-y-4">
-                 <p className="text-sm text-muted-foreground">Select your top skills from the list below.</p>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-2">
-                  {predefinedSkills.map(skill => (
-                    <div key={skill} className="flex items-center space-x-2">
-                      <Checkbox 
-                        id={`skill-${skill}`} 
-                        onCheckedChange={(checked) => handleSkillChange(skill, !!checked)}
-                        checked={skills.includes(skill)}
-                      />
-                      <Label htmlFor={`skill-${skill}`} className="font-normal">{skill}</Label>
-                    </div>
-                  ))}
-                </div>
+                 <p className="text-sm text-muted-foreground">Select your top skills from the categories below.</p>
+                 <Accordion type="multiple" className="w-full">
+                    {skillCategories.map(category => (
+                      <AccordionItem key={category.category} value={category.category}>
+                        <AccordionTrigger className="font-semibold">{category.category}</AccordionTrigger>
+                        <AccordionContent>
+                          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-2">
+                            {category.skills.map(skill => (
+                              <div key={skill} className="flex items-center space-x-2">
+                                <Checkbox 
+                                  id={`skill-${skill}`} 
+                                  onCheckedChange={(checked) => handleSkillChange(skill, !!checked)}
+                                  checked={skills.includes(skill)}
+                                />
+                                <Label htmlFor={`skill-${skill}`} className="font-normal text-sm">{skill}</Label>
+                              </div>
+                            ))}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                 </Accordion>
               </div>
             )}
             {currentStep === 4 && (
