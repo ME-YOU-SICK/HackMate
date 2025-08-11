@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, ArrowRight, CheckCircle, PartyPopper, User, Tag, Trophy, X } from 'lucide-react';
 import Link from 'next/link';
 import { Logo } from '@/components/logo';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const steps = [
   { id: 1, title: "Welcome to HackMate!", icon: PartyPopper },
@@ -22,10 +23,14 @@ const steps = [
   { id: 6, title: "You're All Set!", icon: CheckCircle },
 ];
 
+const predefinedSkills = [
+  "React", "Next.js", "TypeScript", "Node.js", "Python", "Go", "UI/UX Design", "Firebase", 
+  "Tailwind CSS", "GraphQL", "Docker", "Kubernetes", "GenAI", "LLMs", "Data Science"
+];
+
 export default function OnboardingPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [skills, setSkills] = useState<string[]>([]);
-  const [currentSkill, setCurrentSkill] = useState('');
   const [interests, setInterests] = useState<string[]>([]);
   const [currentInterest, setCurrentInterest] = useState('');
   const [pastEvents, setPastEvents] = useState<{name: string, role: string}[]>([]);
@@ -37,18 +42,12 @@ export default function OnboardingPage() {
   const nextStep = () => setCurrentStep(prev => Math.min(prev + 1, steps.length));
   const prevStep = () => setCurrentStep(prev => Math.max(prev - 1, 1));
   
-  const handleSkillKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' || e.key === ',') {
-      e.preventDefault();
-      if (currentSkill && !skills.includes(currentSkill)) {
-        setSkills([...skills, currentSkill.trim()]);
-      }
-      setCurrentSkill('');
+  const handleSkillChange = (skill: string, checked: boolean) => {
+    if (checked) {
+      setSkills(prev => [...prev, skill]);
+    } else {
+      setSkills(prev => prev.filter(s => s !== skill));
     }
-  };
-
-  const removeSkill = (skillToRemove: string) => {
-    setSkills(skills.filter(skill => skill !== skillToRemove));
   };
   
   const handleInterestKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -125,25 +124,17 @@ export default function OnboardingPage() {
             )}
              {currentStep === 3 && (
               <div className="space-y-4">
-                 <p className="text-sm text-muted-foreground">Enter your top skills. Press Enter or comma to add a skill.</p>
-                <div className="space-y-2">
-                    <Label htmlFor="skills">Skills</Label>
-                    <Input 
-                      id="skills" 
-                      placeholder="e.g., React, UI/UX Design"
-                      value={currentSkill}
-                      onChange={(e) => setCurrentSkill(e.target.value)}
-                      onKeyDown={handleSkillKeyDown}
-                    />
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {skills.map(skill => (
-                    <Badge key={skill} variant="secondary" className="flex items-center gap-1">
-                      {skill}
-                      <button onClick={() => removeSkill(skill)} className="rounded-full hover:bg-destructive/20 p-0.5">
-                        <X className="h-3 w-3" />
-                      </button>
-                    </Badge>
+                 <p className="text-sm text-muted-foreground">Select your top skills from the list below.</p>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-2">
+                  {predefinedSkills.map(skill => (
+                    <div key={skill} className="flex items-center space-x-2">
+                      <Checkbox 
+                        id={`skill-${skill}`} 
+                        onCheckedChange={(checked) => handleSkillChange(skill, !!checked)}
+                        checked={skills.includes(skill)}
+                      />
+                      <Label htmlFor={`skill-${skill}`} className="font-normal">{skill}</Label>
+                    </div>
                   ))}
                 </div>
               </div>
