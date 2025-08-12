@@ -45,11 +45,11 @@ export default function Home() {
                     style={{ top: '40%', left: '60%', animation: 'blob-move-3 18s ease-in-out infinite alternate' }}>
                 </div>
             </div>
-           <div className="absolute inset-0 z-[1] bg-[url(/glitter.png)] bg-repeat opacity-[0.08] dark:opacity-[0.06]"></div>
+           <div className="absolute inset-0 z-[1] bg-[url(/glitter.png)] bg-repeat opacity-[0.1] dark:opacity-[0.08]"></div>
 
           <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedLogo />
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight -mt-8">
              <span className="mix-blend-difference text-white">Where Great Teams Assemble.</span>
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
