@@ -11,28 +11,33 @@ import { Textarea } from '@/components/ui/textarea';
 import { teamify } from '@/ai/flows/teamify-flow';
 import { Loader2 } from 'lucide-react';
 import { TeamifyOutput } from '@/ai/flows/teamify-flow';
+import { Separator } from '@/components/ui/separator';
 
-const availableTech = ['React', 'Node.js', 'Python', 'GenAI', 'Firebase', 'Next.js', 'TypeScript', 'Go', 'Rust'];
-const availableSkills = ['Frontend', 'Backend', 'Full-stack', 'UI/UX Design', 'Project Management', 'DevOps', 'Data Science'];
+const skillCategories = {
+  "Programming Languages": ["JavaScript / TypeScript", "Python", "Java", "C++", "C#", "Go", "Ruby", "Rust", "PHP", "Swift", "Kotlin", "Dart", "R Programming", "MATLAB", "Scala"],
+  "Frontend Development": ["HTML5 / CSS3", "React.js", "Next.js", "Vue.js", "Svelte", "Tailwind CSS", "Bootstrap", "Web Accessibility (a11y)", "UI/UX Design", "Progressive Web Apps (PWA)", "Responsive Web Design", "Figma to Code Integration"],
+  "Backend Development": ["Node.js", "Express.js", "Django", "Flask", "Spring Boot", "GraphQL", "REST API Design", "WebSockets / Real-Time Apps", "Microservices Architecture", "API Security & Authentication (OAuth, JWT)", "Serverless Functions"],
+  "Mobile Development": ["React Native", "Flutter", "SwiftUI", "Android (Java/Kotlin)", "Mobile UI/UX Design", "Mobile Performance Optimization"],
+  "Databases & Storage": ["PostgreSQL", "MySQL", "MongoDB", "Firebase", "Supabase", "Redis", "Elasticsearch", "Neo4j (Graph Databases)"],
+  "Cloud & DevOps": ["AWS", "Google Cloud Platform", "Microsoft Azure", "Docker", "Kubernetes", "CI/CD (GitHub Actions, GitLab CI, CircleCI)", "Infrastructure as Code (Terraform)", "Cloud Security", "API Gateways"],
+  "AI / Data Science": ["Machine Learning", "Deep Learning", "Natural Language Processing (NLP)", "Computer Vision", "TensorFlow / PyTorch", "Data Analysis (Pandas, NumPy)", "Data Visualization (Matplotlib, Seaborn, D3.js)", "AI Ethics & Responsible AI"],
+  "Cybersecurity": ["Ethical Hacking / Pen Testing", "Network Security", "Cryptography", "Security Auditing", "Cloud Security", "Identity & Access Management (IAM)"],
+  "Other Hackathon Skills": ["API Integration", "Blockchain / Web3 Development", "Smart Contracts (Solidity)", "AR/VR Development (Unity, Unreal, Three.js)", "IoT Development", "Game Development", "Automation Scripting", "Web Scraping"],
+  "Soft Skills & Leadership": ["Project Management", "Pitching & Public Speaking", "Design Thinking", "Technical Writing", "Agile / Scrum Methodologies", "Time Management", "Team Collaboration Tools (Trello, Notion, Jira, Asana)", "Networking & Community Building"],
+  "Trendy Skills": ["Growth Hacking", "Thought Leadership", "Digital Transformation", "Cross-Functional Collaboration", "Data-Driven Decision Making", "Cloud-Native Development", "API-First Design", "Product-Led Growth", "Innovation Strategy", "Full-Stack Development", "DevRel (Developer Relations)", "MVP Development (Minimum Viable Product)"],
+};
 
 export default function TeamifyPage() {
   const [teamSize, setTeamSize] = useState(3);
-  const [techStack, setTechStack] = useState<string[]>([]);
-  const [skills, setSkills] = useState<string[]>([]);
+  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [projectIdea, setProjectIdea] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<TeamifyOutput | null>(null);
   const [error, setError] = useState<string | null>(null);
 
 
-  const handleTechChange = (tech: string) => {
-    setTechStack((prev) =>
-      prev.includes(tech) ? prev.filter((t) => t !== tech) : [...prev, tech]
-    );
-  };
-
   const handleSkillChange = (skill: string) => {
-    setSkills((prev) =>
+    setSelectedSkills((prev) =>
       prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill]
     );
   };
@@ -43,10 +48,18 @@ export default function TeamifyPage() {
     setResult(null);
     setError(null);
     try {
+      // For the AI, we can send all selected items as 'skills' and a subset as 'techStack'
+      const techStack = selectedSkills.filter(skill => 
+        skillCategories["Programming Languages"].includes(skill) || 
+        skillCategories["Frontend Development"].includes(skill) ||
+        skillCategories["Backend Development"].includes(skill) ||
+        skillCategories["Databases & Storage"].includes(skill)
+      );
+
       const response = await teamify({
         teamSize,
-        techStack,
-        skills,
+        techStack: techStack,
+        skills: selectedSkills,
         projectIdea,
       });
       setResult(response);
@@ -58,7 +71,7 @@ export default function TeamifyPage() {
   };
 
   return (
-    <div className="container mx-auto max-w-3xl py-10">
+    <div className="container mx-auto max-w-4xl py-10">
       <Card className="border-slate-800 bg-slate-900/50">
         <CardHeader>
           <CardTitle className="font-sora text-3xl">Teamify ✨</CardTitle>
@@ -83,36 +96,25 @@ export default function TeamifyPage() {
               </div>
 
               <div className="space-y-4">
-                <Label>What tech stack are you planning to use?</Label>
-                <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
-                  {availableTech.map((tech) => (
-                    <div key={tech} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={`tech-${tech}`}
-                        checked={techStack.includes(tech)}
-                        onCheckedChange={() => handleTechChange(tech)}
-                      />
-                      <Label htmlFor={`tech-${tech}`} className="font-normal">
-                        {tech}
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <Label>What skills are you looking for in team members?</Label>
-                 <div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
-                  {availableSkills.map((skill) => (
-                    <div key={skill} className="flex items-center space-x-2">
-                      <Checkbox
-                        id={`skill-${skill}`}
-                        checked={skills.includes(skill)}
-                        onCheckedChange={() => handleSkillChange(skill)}
-                      />
-                      <Label htmlFor={`skill-${skill}`} className="font-normal">
-                        {skill}
-                      </Label>
+                <Label>What skills and technologies are you looking for?</Label>
+                <div className="space-y-6 rounded-lg border border-slate-700 p-4">
+                  {Object.entries(skillCategories).map(([category, skills]) => (
+                    <div key={category}>
+                      <h4 className="mb-3 font-semibold text-orange-400">{category}</h4>
+                      <div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3 md:grid-cols-4">
+                        {skills.map((skill) => (
+                          <div key={skill} className="flex items-center space-x-2">
+                            <Checkbox
+                              id={`skill-${skill.replace(/\s+/g, '-')}`}
+                              checked={selectedSkills.includes(skill)}
+                              onCheckedChange={() => handleSkillChange(skill)}
+                            />
+                            <Label htmlFor={`skill-${skill.replace(/\s+/g, '-')}`} className="text-sm font-normal text-slate-300">
+                              {skill}
+                            </Label>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   ))}
                 </div>

@@ -14,7 +14,7 @@ const mockUsers: UserProfile[] = [
     {
         id: 'alex-turing',
         name: 'Alex Turing',
-        skills: ['React', 'Node.js', 'Python', 'GenAI', 'Firebase', 'Next.js', 'TypeScript', 'Frontend', 'Backend', 'Full-stack'],
+        skills: ['JavaScript / TypeScript', 'Python', 'React.js', 'Next.js', 'Node.js', 'Firebase', 'Natural Language Processing (NLP)', 'Machine Learning', 'Full-Stack Development', 'API-First Design'],
         pastProjects: [
             { title: 'AI-Powered Code Assistant', description: 'An intelligent code completion tool that learns from your coding style.' },
             { title: 'Decentralized Social Network', description: 'A social media platform built on blockchain technology.' },
@@ -27,38 +27,44 @@ const mockUsers: UserProfile[] = [
     {
         id: 'breanna-jensen',
         name: 'Breanna Jensen',
-        skills: ['UI/UX Design', 'Figma', 'Prototyping', 'Frontend'],
+        skills: ['UI/UX Design', 'Figma to Code Integration', 'Web Accessibility (a11y)', 'Responsive Web Design', 'Design Thinking', 'Team Collaboration Tools (Trello, Notion, Jira, Asana)'],
         pastProjects: [
             { title: 'Mobile Banking App Redesign', description: 'A complete overhaul of a major bank\'s mobile application.' },
+            { title: 'Design System for a Startup', description: 'Created a component library from scratch.' },
         ],
         pastHackathons: [
             { name: 'Fintech Challenge 2023', award: 'Top 5 Finalist' },
+            { name: 'Design for Good Hackathon', award: 'Most Impactful Design' },
         ],
     },
     {
         id: 'casey-newton',
         name: 'Casey Newton',
-        skills: ['Project Management', 'Agile', 'Scrum'],
-        pastProjects: [],
+        skills: ['Project Management', 'Agile / Scrum Methodologies', 'Pitching & Public Speaking', 'DevRel (Developer Relations)', 'Time Management', 'Digital Transformation'],
+        pastProjects: [
+            { title: 'Community Growth Initiative', description: 'Led a team to grow developer community engagement by 150%.'}
+        ],
         pastHackathons: [],
     },
     {
         id: 'devon-rex',
         name: 'Devon Rex',
-        skills: ['Python', 'Data Science', 'Machine Learning', 'GenAI'],
+        skills: ['Python', 'Data Science', 'Machine Learning', 'TensorFlow / PyTorch', 'Data Analysis (Pandas, NumPy)', 'Data Visualization (Matplotlib, Seaborn, D3.js)', 'Computer Vision'],
         pastProjects: [
             { title: 'Sentiment Analysis Engine', description: 'A tool for analyzing customer feedback from text.' },
         ],
         pastHackathons: [
              { name: 'DataFest 2024', award: 'Best Visualization' },
+             { name: 'AI for Social Good', award: '1st Place Winner' },
         ],
     },
     {
         id: 'eliot-ness',
         name: 'Eliot Ness',
-        skills: ['Go', 'Rust', 'Backend', 'DevOps', 'Kubernetes'],
+        skills: ['Go', 'Rust', 'Docker', 'Kubernetes', 'Microservices Architecture', 'CI/CD (GitHub Actions, GitLab CI, CircleCI)', 'AWS', 'Cloud-Native Development', 'API Security & Authentication (OAuth, JWT)'],
         pastProjects: [
              { title: 'High-Performance API Gateway', description: 'A cloud-native gateway for microservices.' },
+             { title: 'CI/CD Pipeline Automation', description: 'Built a fully automated deployment pipeline for a fleet of microservices.' },
         ],
         pastHackathons: [
              { name: 'Cloud Native Hacks', award: 'Most Scalable Solution' },
@@ -67,7 +73,7 @@ const mockUsers: UserProfile[] = [
      {
         id: 'fiona-gallagher',
         name: 'Fiona Gallagher',
-        skills: ['React', 'TypeScript', 'Frontend', 'UI/UX Design'],
+        skills: ['React.js', 'TypeScript', 'HTML5 / CSS3', 'Tailwind CSS', 'GraphQL', 'Progressive Web Apps (PWA)', 'Full-Stack Development'],
         pastProjects: [
              { title: 'E-commerce Storefront', description: 'A responsive and accessible online shop.' },
         ],
