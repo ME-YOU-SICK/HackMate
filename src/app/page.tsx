@@ -20,7 +20,7 @@ import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 const chartData = [
   { name: '2020', total: 120 },
@@ -207,7 +207,14 @@ export default function Home() {
             </div>
             <div className="h-[400px] w-full">
                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={chartData}>
+                  <AreaChart data={chartData} margin={{ top: 5, right: 20, left: 20, bottom: 5 }}>
+                     <defs>
+                      <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#f97316" stopOpacity={0.8}/>
+                        <stop offset="95%" stopColor="#f97316" stopOpacity={0}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                     <XAxis
                       dataKey="name"
                       stroke="#888888"
@@ -222,8 +229,15 @@ export default function Home() {
                       axisLine={false}
                       tickFormatter={(value) => `${value}`}
                     />
-                    <Bar dataKey="total" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} className="fill-orange-400" />
-                  </BarChart>
+                     <Tooltip
+                      contentStyle={{
+                        backgroundColor: 'hsl(var(--background))',
+                        borderColor: 'hsl(var(--border))',
+                        color: 'hsl(var(--foreground))'
+                      }}
+                    />
+                    <Area type="monotone" dataKey="total" stroke="#ea580c" fill="url(#colorTotal)" strokeWidth={2} />
+                  </AreaChart>
                 </ResponsiveContainer>
             </div>
           </div>
