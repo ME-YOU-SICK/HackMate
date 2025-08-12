@@ -4,11 +4,12 @@
 import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import EventCard from '@/components/event-card';
 import PopularFeed from '@/components/popular-feed';
 import Link from 'next/link';
+import { Input } from '@/components/ui/input';
 
 export default function DashboardPage() {
   const [feedType, setFeedType] = useState('events');
@@ -102,6 +103,21 @@ export default function DashboardPage() {
                   </div>
                 ))}
               </div>
+            </CardContent>
+          </Card>
+
+          <Card className="mt-6 border-slate-800 bg-slate-900/50">
+            <CardHeader>
+              <CardTitle className="text-base">Join with Code</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <p className="mb-4 text-sm text-slate-400">
+                    Enter the 6-character event code to join an event instantly.
+                </p>
+                <div className="flex space-x-2">
+                    <Input placeholder="e.g. HCKMTE" />
+                    <Button className="bg-orange-500 hover:bg-orange-600">Join</Button>
+                </div>
             </CardContent>
           </Card>
         </div>
