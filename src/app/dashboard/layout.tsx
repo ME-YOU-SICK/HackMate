@@ -18,10 +18,10 @@ export default function DashboardLayout({
   const router = useRouter();
 
   useEffect(() => {
-    if (error) {
-      console.error("Authentication error:", error);
+    if (!loading && !user) {
+      router.push('/login');
     }
-  }, [error, router]);
+  }, [user, loading, router]);
 
   if (loading) {
     return (
@@ -31,11 +31,17 @@ export default function DashboardLayout({
     );
   }
 
-  // We will now render the layout regardless of the user state,
-  // and remove the redirect logic to prevent the loop.
-  // Child pages or components will need to handle the case where the user is not logged in.
+  if (!user) {
+    // This can show briefly before the redirect happens, or if the redirect fails.
+    return (
+       <div className="flex h-screen items-center justify-center">
+        <p>Redirecting to login...</p>
+      </div>
+    )
+  }
+  
   return (
-    <div className="flex">
+    <>
         <SidebarProvider>
             <Sidebar>
               <DashboardNav />
@@ -44,6 +50,6 @@ export default function DashboardLayout({
               {children}
             </SidebarInset>
         </SidebarProvider>
-    </div>
+    </>
   );
 }

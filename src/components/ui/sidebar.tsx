@@ -69,7 +69,7 @@ export function SidebarProvider({ children }: SidebarProviderProps) {
 }
 
 const sidebarVariants = cva(
-  "h-screen shrink-0 -translate-x-full transition-[width,transform] duration-300 ease-in-out md:translate-x-0",
+  "h-full shrink-0 -translate-x-full transition-[width,transform] duration-300 ease-in-out md:translate-x-0 md:fixed md:inset-y-0 md:left-0 md:z-50 md:border-r",
   {
     variants: {
       isCollapsed: {
