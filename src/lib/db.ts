@@ -2,18 +2,19 @@
 'use server';
 
 import { db } from '@/lib/firebase';
-import { doc, setDoc, collection, addDoc } from 'firebase/firestore';
-import type { DateRange } from 'react-day-picker';
+import { doc, setDoc, collection, addDoc, Timestamp } from 'firebase/firestore';
 
 export interface UserProfile {
   uid: string;
   fullName: string;
   email: string;
+  photoURL?: string | null;
   role: 'participant' | 'organizer';
   title?: string;
   bio?: string;
+  city?: string;
   skills?: string[];
-  interests?: string[];
+  tech?: string[];
   pastEvents?: { name: string; role: string }[];
   pastProjects?: { name: string; description: string; url?: string }[];
   connections?: string[]; // Array of user UIDs
@@ -33,7 +34,7 @@ export interface Event {
     imageUrl?: string;
     organizerId: string;
     participants: string[]; // Array of user UIDs
-    createdAt: Date;
+    createdAt: Timestamp;
 }
 
 

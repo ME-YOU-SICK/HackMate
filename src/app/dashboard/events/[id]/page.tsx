@@ -1,91 +1,76 @@
 
 "use client";
 
+import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Calendar, Clock, DoorOpen, MapPin, Trophy, Users, Share2, Search } from "lucide-react";
+import { ArrowLeft, Calendar, DoorOpen, MapPin, Trophy, Users, Share2, Search, Loader } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-
-// Mock data - in a real app, you would fetch this based on the `params.id`
-const allEvents = [
-    { 
-        id: "ai-global-hackathon-2024", 
-        name: "AI Global Hackathon 2024", 
-        date: "October 26-27, 2024", 
-        participants: 1500, 
-        description: "Join developers, innovators, and creators from around the world in a 48-hour marathon to solve real-world problems using the power of Artificial Intelligence. This is more than a competition; it's a chance to learn, network, and build the future.", 
-        image: "https://placehold.co/1200x400.png",
-        location: "Virtual / San Francisco, CA",
-        status: "Upcoming"
-    },
-    { 
-        id: "future-of-web3-summit", 
-        name: "Future of Web3 Summit", 
-        date: "November 12, 2024", 
-        participants: 800, 
-        description: "A premier summit for blockchain enthusiasts, developers, and investors to explore the evolving landscape of decentralized applications, DeFi, and the metaverse.", 
-        image: "https://placehold.co/1200x400.png",
-        location: "Virtual",
-        status: "Upcoming"
-    },
-     { 
-        id: "innovate-create-hack-day", 
-        name: "Innovate & Create Hack Day", 
-        date: "June 15, 2024", 
-        participants: 500, 
-        description: "A 24-hour hackathon focused on building innovative solutions for social good.", 
-        image: "https://placehold.co/1200x400.png",
-        location: "New York, NY",
-        status: "Past"
-    },
-    { 
-        id: "design-a-thon-ui-ux-challenge", 
-        name: "Design-a-thon: UI/UX Challenge", 
-        date: "May 20, 2024", 
-        participants: 350, 
-        description: "A creative challenge for designers to showcase their UI/UX skills.", 
-        image: "https://placehold.co/1200x400.png",
-        location: "Virtual",
-        status: "Past"
-    },
-];
-
-const mockParticipants = [
-    { name: 'Elena Rodriguez', avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026704d', skills: ['React', 'Node.js', 'Figma'] },
-    { name: 'Ben Carter', avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026704e', skills: ['Python', 'TensorFlow', 'Data Analysis'] },
-    { name: 'Aisha Khan', avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026704f', skills: ['UX Research', 'Prototyping'] },
-    { name: 'Marcus Chen', avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026704a', skills: ['Next.js', 'GraphQL', 'Vercel'] },
-    { name: 'Olivia Martinez', avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026704b', skills: ['AWS', 'Docker', 'Terraform'] },
-    { name: 'Leo Gupta', avatar: 'https://i.pravatar.cc/150?u=a042581f4e29026704c', skills: ['Solidity', 'Web3.js'] },
-];
-
-const mockSchedule = [
-    { time: "9:00 AM", title: "Opening Ceremony & Keynote" },
-    { time: "10:00 AM", title: "Hacking Begins!" },
-    { time: "1:00 PM", title: "Lunch & Networking" },
-    { time: "3:00 PM", title: "Workshop: Intro to GenAI" },
-    { time: "7:00 PM", title: "Dinner" },
-    { time: "10:00 PM", title: "Midnight Snack & Surprise Challenge" },
-];
+import { notFound, useParams } from "next/navigation";
+import { db } from "@/lib/firebase";
+import { doc, getDoc, collection, getDocs, query, where } from "firebase/firestore";
+import type { Event, UserProfile } from "@/lib/db";
+import { format } from "date-fns";
 
 
-export default function EventDetailsPage({ params: { id } }: { params: { id: string } }) {
-    const event = allEvents.find(e => e.id === id);
+export default function EventDetailsPage() {
+    const params = useParams();
+    const id = params.id as string;
+    const [event, setEvent] = useState<Event | null>(null);
+    const [participants, setParticipants] = useState<UserProfile[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (!id) return;
+
+        const fetchEventAndParticipants = async () => {
+            setLoading(true);
+            const eventRef = doc(db, 'events', id);
+            const eventSnap = await getDoc(eventRef);
+
+            if (!eventSnap.exists()) {
+                setLoading(false);
+                notFound();
+                return;
+            }
+            
+            const eventData = eventSnap.data() as Event;
+            setEvent(eventData);
+
+            if (eventData.participants && eventData.participants.length > 0) {
+                 const participantsQuery = query(collection(db, 'users'), where('uid', 'in', eventData.participants));
+                 const participantsSnap = await getDocs(participantsQuery);
+                 const participantsData = participantsSnap.docs.map(doc => doc.data() as UserProfile);
+                 setParticipants(participantsData);
+            }
+            
+            setLoading(false);
+        };
+
+        fetchEventAndParticipants();
+    }, [id]);
+
+    if (loading) {
+        return <div className="flex h-screen items-center justify-center"><Loader className="h-12 w-12 animate-spin" /></div>;
+    }
 
     if (!event) {
-        notFound();
+        return notFound();
+    }
+
+    const handleShare = () => {
+        navigator.clipboard.writeText(event.id);
+        // Maybe show a toast notification here
     }
 
     return (
         <div className="flex-1">
             <div className="relative w-full h-48 md:h-64">
-                <Image src={event.image} alt={event.name} layout="fill" objectFit="cover" className="opacity-50" data-ai-hint="event banner" />
+                <Image src={event.imageUrl!} alt={event.name} layout="fill" objectFit="cover" className="opacity-50" data-ai-hint="event banner" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8">
                      <Button asChild variant="outline" className="mb-4">
@@ -93,9 +78,9 @@ export default function EventDetailsPage({ params: { id } }: { params: { id: str
                     </Button>
                     <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{event.name}</h1>
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2 text-muted-foreground">
-                        <div className="flex items-center gap-2"><Calendar className="h-4 w-4"/> {event.date}</div>
+                        <div className="flex items-center gap-2"><Calendar className="h-4 w-4"/> {format(new Date(event.dateRange.from), 'PPP')} - {format(new Date(event.dateRange.to), 'PPP')}</div>
                         <div className="flex items-center gap-2"><MapPin className="h-4 w-4"/> {event.location}</div>
-                        <div className="flex items-center gap-2"><Users className="h-4 w-4"/> {event.participants.toLocaleString()} participants</div>
+                        <div className="flex items-center gap-2"><Users className="h-4 w-4"/> {event.participants.length} participants</div>
                     </div>
                 </div>
             </div>
@@ -111,32 +96,11 @@ export default function EventDetailsPage({ params: { id } }: { params: { id: str
                         </CardContent>
                     </Card>
 
-                    <Tabs defaultValue="schedule">
+                    <Tabs defaultValue="participants">
                         <TabsList>
-                            <TabsTrigger value="schedule">Schedule</TabsTrigger>
-                            <TabsTrigger value="participants">Participants</TabsTrigger>
+                            <TabsTrigger value="participants">Participants ({participants.length})</TabsTrigger>
                             <TabsTrigger value="prizes">Prizes</TabsTrigger>
                         </TabsList>
-                        <TabsContent value="schedule" className="mt-4">
-                             <Card>
-                                <CardContent className="pt-6">
-                                    <div className="space-y-6">
-                                    {mockSchedule.map((item, index) => (
-                                        <div key={index} className="flex items-start gap-4">
-                                            <div className="flex flex-col items-center">
-                                                <div className="font-semibold">{item.time}</div>
-                                            </div>
-                                             <div className="relative w-full">
-                                                <div className="absolute -left-6 top-1 h-full w-px bg-border" />
-                                                <div className="absolute -left-[29px] top-0 h-3 w-3 rounded-full bg-primary" />
-                                                <p className="font-medium ml-4">{item.title}</p>
-                                             </div>
-                                        </div>
-                                    ))}
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </TabsContent>
                         <TabsContent value="participants" className="mt-4">
                              <Card>
                                 <CardHeader>
@@ -145,15 +109,15 @@ export default function EventDetailsPage({ params: { id } }: { params: { id: str
                                 </CardHeader>
                                 <CardContent>
                                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                                        {mockParticipants.map((p, i) => (
+                                        {participants.map((p, i) => (
                                             <Card key={i} className="p-4 text-center">
                                                 <Avatar className="mx-auto h-16 w-16 mb-2">
-                                                    <AvatarImage src={p.avatar} />
-                                                    <AvatarFallback>{p.name.charAt(0)}</AvatarFallback>
+                                                    <AvatarImage src={p.photoURL ?? undefined} />
+                                                    <AvatarFallback>{p.fullName.charAt(0)}</AvatarFallback>
                                                 </Avatar>
-                                                <p className="font-semibold">{p.name}</p>
-                                                <div className="flex flex-wrap gap-1 justify-center mt-2">
-                                                    {p.skills.map(s => <Badge key={s} variant="secondary">{s}</Badge>)}
+                                                <p className="font-semibold">{p.fullName}</p>
+                                                <div className="flex flex-wrap gap-1 justify-center mt-2 h-12 overflow-hidden">
+                                                    {p.skills?.slice(0, 3).map(s => <Badge key={s} variant="secondary">{s}</Badge>)}
                                                 </div>
                                                  <Button variant="outline" size="sm" className="mt-3 w-full">View Profile</Button>
                                             </Card>
@@ -201,8 +165,8 @@ export default function EventDetailsPage({ params: { id } }: { params: { id: str
                            <Button size="lg" className="w-full">
                                 <DoorOpen className="mr-2 h-5 w-5"/> Join Event
                             </Button>
-                             <Button variant="outline" className="w-full">
-                                <Share2 className="mr-2 h-4 w-4"/> Share Event
+                             <Button variant="outline" className="w-full" onClick={handleShare}>
+                                <Share2 className="mr-2 h-4 w-4"/> Share Event Code
                             </Button>
                         </CardContent>
                     </Card>

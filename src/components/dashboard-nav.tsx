@@ -35,8 +35,7 @@ export function DashboardNav() {
   const pathname = usePathname();
   const [user, loading] = useAuthState(auth);
   const router = useRouter();
-  const { state: sidebarState } = useSidebar();
-  const isCollapsed = sidebarState === 'collapsed';
+  const { isCollapsed } = useSidebar();
 
   const handleSignOut = async () => {
     await signOutAction();
@@ -48,24 +47,6 @@ export function DashboardNav() {
     return name.split(' ').map(n => n[0]).join('').toUpperCase();
   }
 
-  const NavLink = ({ href, icon, label }: { href: string, icon: React.ReactNode, label: string }) => (
-      <SidebarMenuItem>
-          <Link href={href} passHref>
-              <SidebarMenuButton
-                  isActive={pathname === href}
-                  isCollapsed={isCollapsed}
-                  tooltip={label}
-                  asChild
-              >
-                  <span>
-                      {icon}
-                      <span>{label}</span>
-                  </span>
-              </SidebarMenuButton>
-          </Link>
-      </SidebarMenuItem>
-  );
-
   return (
     <>
       <SidebarHeader isCollapsed={isCollapsed}>
@@ -75,7 +56,18 @@ export function DashboardNav() {
       <SidebarContent>
         <SidebarMenu>
           {navItems.map((item) => (
-            <NavLink key={item.href} {...item} />
+            <SidebarMenuItem key={item.href}>
+                <Link href={item.href} passHref legacyBehavior>
+                    <SidebarMenuButton
+                        isActive={pathname === item.href}
+                        isCollapsed={isCollapsed}
+                        tooltip={item.label}
+                    >
+                        {item.icon}
+                        <span className="flex-1">{item.label}</span>
+                    </SidebarMenuButton>
+                </Link>
+            </SidebarMenuItem>
           ))}
         </SidebarMenu>
       </SidebarContent>
