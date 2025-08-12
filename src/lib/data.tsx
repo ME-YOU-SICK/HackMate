@@ -32,9 +32,9 @@ import {
   PenTool,
   Network
 } from 'lucide-react';
-import { SiJavascript, SiTypescript, SiJava, SiCplusplus, SiCsharp, SiGo, SiRust, SiKotlin, SiSwift, SiPhp, SiRuby, SiDart, SiR, SiElixir, SiHaskell, SiGnubash } from 'react-icons/si';
+import { SiJavascript, SiTypescript, SiJava, SiCplusplus, SiGo, SiRust, SiKotlin, SiSwift, SiPhp, SiRuby, SiDart, SiR, SiElixir, SiHaskell, SiGnubash } from 'react-icons/si';
 import { FaReact, FaVuejs, FaAngular, FaBootstrap, FaNodeJs, FaPython, FaJava, FaDocker, FaAws, FaDigitalOcean, FaStripe, FaTwilio } from 'react-icons/fa';
-import { SiNextdotjs, SiNuxtdotjs, SiSvelte, SiSolid, SiAstro, SiJquery, SiThreedotjs, SiTailwindcss, SiChakraui, SiMui, SiExpress, SiFastify, SiNestjs, SiDjango, SiFlask, SiSpringboot, SiDotnet, SiLaravel, SiRubyonrails, SiAdonisjs, SiPostgresql, SiMysql, SiSqlite, SiMongodb, SiRedis, SiCassandra, SiMariadb, SiSupabase, SiPlanetscale, SiVercel, SiNetlify, SiRailway, SiKubernetes, SiTerraform, SiCloudflare, SiTensorflow, SiPytorch, SiScikitlearn, SiHuggingface, SiOpencv, SiLangchain, SiKeras, SiEthereum, SiSolana, SiAvalanche, SiBinance, SiHardhat, SiTruffle, SiIonic, SiCapacitor, SiXamarin, SiPrisma, SiGraphql, SiGrpc, SiMqtt, SiStripe, SiTwilio, SiSendgrid, SiZapier } from 'react-icons/si';
+import { SiNextdotjs, SiNuxtdotjs, SiSvelte, SiSolid, SiAstro, SiJquery, SiThreedotjs, SiTailwindcss, SiChakraui, SiMui, SiExpress, SiFastify, SiNestjs, SiDjango, SiFlask, SiSpringboot, SiDotnet, SiLaravel, SiRubyonrails, SiAdonisjs, SiPostgresql, SiMysql, SiSqlite, SiMongodb, SiRedis, SiMariadb, SiSupabase, SiPlanetscale, SiVercel, SiNetlify, SiRailway, SiKubernetes, SiTerraform, SiCloudflare, SiTensorflow, SiPytorch, SiScikitlearn, SiHuggingface, SiOpencv, SiLangchain, SiKeras, SiEthereum, SiSolana, SiBinance, SiHardhat, SiTruffle, SiIonic, SiCapacitor, SiXamarin, SiPrisma, SiGraphql, SiMqtt, SiStripe, SiTwilio, SiSendgrid, SiZapier } from 'react-icons/si';
 
 
 export const roles = [
@@ -77,7 +77,7 @@ export const technologies = [
   { id: 'java', label: 'Java', icon: <FaJava {...iconProps} /> },
   { id: 'c', label: 'C', icon: <span className="font-bold text-muted-foreground">C</span> },
   { id: 'c++', label: 'C++', icon: <SiCplusplus {...iconProps} /> },
-  { id: 'c#', label: 'C#', icon: <SiCsharp {...iconProps} /> },
+  { id: 'c#', label: 'C#', icon: <span className="font-bold text-muted-foreground">C#</span> },
   { id: 'go', label: 'Go', icon: <SiGo {...iconProps} /> },
   { id: 'rust', label: 'Rust', icon: <SiRust {...iconProps} /> },
   { id: 'kotlin', label: 'Kotlin', icon: <SiKotlin {...iconProps} /> },
@@ -132,7 +132,7 @@ export const technologies = [
   { id: 'firebase-realtime-db', label: 'Firebase Realtime DB', icon: <Atom {...iconProps} /> },
   { id: 'firestore', label: 'Firestore', icon: <Atom {...iconProps} /> },
   { id: 'redis', label: 'Redis', icon: <SiRedis {...iconProps} /> },
-  { id: 'cassandra', label: 'Cassandra', icon: <SiCassandra {...iconProps} /> },
+  { id: 'cassandra', label: 'Cassandra', icon: <Database {...iconProps} /> },
   { id: 'neo4j', label: 'Neo4j', icon: <SiMongodb {...iconProps} /> },
   { id: 'mariadb', label: 'MariaDB', icon: <SiMariadb {...iconProps} /> },
   { id: 'supabase', label: 'Supabase', icon: <SiSupabase {...iconProps} /> },
@@ -164,7 +164,7 @@ export const technologies = [
   { id: 'ethereum', label: 'Ethereum', icon: <SiEthereum {...iconProps} /> },
   { id: 'polygon', label: 'Polygon', icon: <SiEthereum {...iconProps} /> },
   { id: 'solana', label: 'Solana', icon: <SiSolana {...iconProps} /> },
-  { id: 'avalanche', label: 'Avalanche', icon: <SiAvalanche {...iconProps} /> },
+  { id: 'avalanche', label: 'Avalanche', icon: <Bitcoin {...iconProps} /> },
   { id: 'binance-smart-chain', label: 'Binance Smart Chain', icon: <SiBinance {...iconProps} /> },
   { id: 'hardhat', label: 'Hardhat', icon: <SiHardhat {...iconProps} /> },
   { id: 'truffle', label: 'Truffle', icon: <SiTruffle {...iconProps} /> },
@@ -183,8 +183,8 @@ export const technologies = [
   // Other
   { id: 'prisma', label: 'Prisma', icon: <SiPrisma {...iconProps} /> },
   { id: 'graphql', label: 'GraphQL', icon: <SiGraphql {...iconProps} /> },
-  { id: 'rest-apis', label: 'REST APIs', icon: <Api size={18} /> },
-  { id: 'grpc', label: 'gRPC', icon: <SiGrpc {...iconProps} /> },
+  { id: 'rest-apis', label: 'REST APIs', icon: <Plug {...iconProps} /> },
+  { id: 'grpc', label: 'gRPC', icon: <Server {...iconProps} /> },
   { id: 'mqtt', label: 'MQTT', icon: <SiMqtt {...iconProps} /> },
   { id: 'websockets', label: 'WebSockets', icon: <GitBranch {...iconProps} /> },
   { id: 'stripe-api', label: 'Stripe API', icon: <SiStripe {...iconProps} /> },
