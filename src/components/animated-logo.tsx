@@ -12,62 +12,51 @@ const symbolMap: { [key: string]: string[] } = {
   'M': ['ʍ'],
   'T': ['†'],
 };
-const allSymbols = Object.values(symbolMap).flat();
 
-const fonts = ['font-sora', 'font-space-mono', 'font-sans', 'font-vt323'];
+// All possible symbols, to check if a character is a symbol
+const allSymbols = Object.values(symbolMap).flat();
 
 export function AnimatedLogo() {
   const [letters, setLetters] = useState(originalText.split(''));
-  const [fontIndex, setFontIndex] = useState(0);
 
   useEffect(() => {
-    const fontInterval = setInterval(() => {
-      setFontIndex(prevIndex => (prevIndex + 1) % fonts.length);
-    }, 2500); // Cycle font every 2.5 seconds
+    const interval = setInterval(() => {
+      // Pick a random letter to change
+      const randomIndex = Math.floor(Math.random() * originalText.length);
+      const originalChar = originalText[randomIndex];
+      const currentLetters = [...letters];
 
-    const letterInterval = setInterval(() => {
-        const randomIndex = Math.floor(Math.random() * originalText.length);
-        const originalChar = originalText[randomIndex];
-
-        if (symbolMap[originalChar]) {
-             setLetters(currentLetters => {
-                const newLetters = [...currentLetters];
-                // Check if it's already a symbol, if so revert to original
-                if (allSymbols.includes(newLetters[randomIndex])) {
-                    newLetters[randomIndex] = originalChar;
-                } else {
-                    const symbols = symbolMap[originalChar];
-                    newLetters[randomIndex] = symbols[Math.floor(Math.random() * symbols.length)];
-                }
-                return newLetters;
-            });
+      // If the character has symbol replacements defined
+      if (symbolMap[originalChar]) {
+        // If it's already a symbol, revert it. Otherwise, pick a new symbol.
+        if (allSymbols.includes(currentLetters[randomIndex])) {
+          currentLetters[randomIndex] = originalChar;
+        } else {
+          const symbols = symbolMap[originalChar];
+          currentLetters[randomIndex] = symbols[Math.floor(Math.random() * symbols.length)];
         }
-        
-         // Add a short delay then revert the character back
-         setTimeout(() => {
-             setLetters(currentLetters => {
-                const newLetters = [...currentLetters];
-                if (newLetters[randomIndex] !== originalText[randomIndex]) {
-                    newLetters[randomIndex] = originalText[randomIndex];
-                }
-                return newLetters;
-            });
-        }, 1000);
+        setLetters(currentLetters);
 
+        // After a short delay, revert the character back to the original
+        setTimeout(() => {
+          setLetters(prev => {
+            const newLetters = [...prev];
+            if (newLetters[randomIndex] !== originalChar) {
+              newLetters[randomIndex] = originalChar;
+            }
+            return newLetters;
+          });
+        }, 1000); 
+      }
+    }, 2000); // Attempt a change every 2 seconds
 
-    }, 1500); // Attempt a change every 1.5 seconds
-
-    return () => {
-      clearInterval(fontInterval);
-      clearInterval(letterInterval);
-    };
-  }, []);
+    return () => clearInterval(interval);
+  }, [letters]);
 
   return (
     <div
       className={cn(
-        "relative flex h-28 md:h-40 items-center justify-center transition-all duration-1000 ease-in-out",
-        fonts[fontIndex]
+        "relative flex h-28 md:h-40 items-center justify-center font-sora"
       )}
       aria-label="HackMate"
     >
@@ -76,7 +65,7 @@ export function AnimatedLogo() {
           <span
             key={index}
             className="relative inline-block transition-all duration-500 ease-in-out"
-            style={{ minWidth: '0.6em', textAlign: 'center' }}
+            style={{ minWidth: '0.8em', textAlign: 'center' }} 
           >
               {letter}
           </span>
