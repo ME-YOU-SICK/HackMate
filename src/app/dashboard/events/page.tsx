@@ -28,8 +28,8 @@ export default function EventsPage() {
             <div className="flex-1 space-y-8 p-4 md:p-8 pt-6">
                 <div className="flex items-center justify-between space-y-2">
                     <h2 className="text-3xl font-bold tracking-tight">Events</h2>
-                    <Button>
-                        <PlusCircle className="mr-2 h-4 w-4" /> Create Event
+                    <Button asChild>
+                        <Link href="/dashboard/events/create"><PlusCircle className="mr-2 h-4 w-4" /> Create Event</Link>
                     </Button>
                 </div>
                 <Tabs defaultValue="upcoming">
