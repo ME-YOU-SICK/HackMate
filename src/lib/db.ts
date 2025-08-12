@@ -23,6 +23,10 @@ export interface UserProfile {
     linkedin?: string;
     github?: string;
   };
+  // Settings fields
+  visibility?: 'public' | 'event-only' | 'private';
+  showPastProjects?: boolean;
+  showSocialLinks?: boolean;
 }
 
 export interface Event {
