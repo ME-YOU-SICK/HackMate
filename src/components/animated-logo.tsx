@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -59,7 +60,7 @@ export function AnimatedLogo() {
   return (
     <div
       className={cn(
-        "text-6xl md:text-8xl font-bold tracking-widest mb-8 transition-all duration-500 ease-in-out text-center flex items-center justify-center h-28 md:h-40",
+        "text-6xl md:text-8xl font-bold mb-8 transition-all duration-500 ease-in-out text-center flex items-center justify-center h-28 md:h-40",
         fonts[fontIndex]
       )}
       aria-label="HackMate"
@@ -68,7 +69,7 @@ export function AnimatedLogo() {
         <span
           key={index}
           className="inline-block transition-all duration-300 ease-in-out text-center"
-          style={{ width: '1ch' }} // Prevent layout shift
+          style={{ width: '0.75em' }} // Prevent layout shift by giving a fixed width based on em
         >
           {char}
         </span>
