@@ -8,28 +8,33 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import EventCard from '@/components/event-card';
 import PopularFeed from '@/components/popular-feed';
+import Link from 'next/link';
 
 export default function DashboardPage() {
   const [feedType, setFeedType] = useState('events');
 
   const suggestedUsers = [
     {
+      id: 'alex-turing',
       name: 'Alex Turing',
       handle: 'alexturing',
       avatar: 'https://github.com/shadcn.png',
     },
     {
+      id: 'breanna-jensen',
       name: 'Breanna Jensen',
       handle: 'breannajensen',
       avatar: 'https://github.com/vercel.png',
     },
     {
+      id: 'casey-newton',
       name: 'Casey Newton',
       handle: 'caseynewton',
       avatar: 'https://github.com/nextjs.png',
     },
-    { name: 'Devon Rex', handle: 'devonrex', avatar: '/placeholder.svg' },
+    { id: 'devon-rex', name: 'Devon Rex', handle: 'devonrex', avatar: '/placeholder.svg' },
     {
+      id: 'eliot-ness',
       name: 'Eliot Ness',
       handle: 'eliotness',
       avatar: '/placeholder.svg',
@@ -78,12 +83,16 @@ export default function DashboardPage() {
                 {suggestedUsers.map((user) => (
                   <div key={user.handle} className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <Avatar className="h-10 w-10">
-                        <AvatarImage src={user.avatar} alt={user.name} />
-                        <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-                      </Avatar>
+                      <Link href={`/profile/${user.id}`}>
+                        <Avatar className="h-10 w-10">
+                          <AvatarImage src={user.avatar} alt={user.name} />
+                          <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                        </Avatar>
+                      </Link>
                       <div>
-                        <p className="text-sm font-bold">{user.name}</p>
+                        <Link href={`/profile/${user.id}`} className="hover:underline">
+                          <p className="text-sm font-bold">{user.name}</p>
+                        </Link>
                         <p className="text-xs text-slate-400">@{user.handle}</p>
                       </div>
                     </div>

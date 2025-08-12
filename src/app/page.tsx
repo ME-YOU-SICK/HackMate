@@ -160,12 +160,16 @@ export default function Home() {
               <Card className="border-slate-800 bg-slate-900/50">
                 <CardContent className="pt-6">
                   <div className="flex items-center space-x-4">
-                    <Avatar>
-                      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                      <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
+                    <Link href="/profile/sarah-d">
+                      <Avatar>
+                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                        <AvatarFallback>SD</AvatarFallback>
+                      </Avatar>
+                    </Link>
                     <div>
-                      <p className="font-bold">Sarah D.</p>
+                      <Link href="/profile/sarah-d" className="hover:underline">
+                        <p className="font-bold">Sarah D.</p>
+                      </Link>
                       <p className="text-sm text-slate-400">Frontend Developer</p>
                     </div>
                   </div>
@@ -178,12 +182,16 @@ export default function Home() {
               <Card className="border-slate-800 bg-slate-900/50">
                 <CardContent className="pt-6">
                   <div className="flex items-center space-x-4">
-                    <Avatar>
-                      <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
-                      <AvatarFallback>VC</AvatarFallback>
-                    </Avatar>
+                    <Link href="/profile/mike-r">
+                      <Avatar>
+                        <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+                        <AvatarFallback>MR</AvatarFallback>
+                      </Avatar>
+                    </Link>
                     <div>
-                      <p className="font-bold">Mike R.</p>
+                      <Link href="/profile/mike-r" className="hover:underline">
+                        <p className="font-bold">Mike R.</p>
+                      </Link>
                       <p className="text-sm text-slate-400">Backend Engineer</p>
                     </div>
                   </div>
@@ -196,12 +204,16 @@ export default function Home() {
               <Card className="border-slate-800 bg-slate-900/50">
                 <CardContent className="pt-6">
                   <div className="flex items-center space-x-4">
-                    <Avatar>
-                      <AvatarImage src="https://github.com/nextjs.png" alt="@nextjs" />
-                      <AvatarFallback>NJ</AvatarFallback>
-                    </Avatar>
+                    <Link href="/profile/jessica-l">
+                      <Avatar>
+                        <AvatarImage src="https://github.com/nextjs.png" alt="@nextjs" />
+                        <AvatarFallback>JL</AvatarFallback>
+                      </Avatar>
+                    </Link>
                     <div>
-                      <p className="font-bold">Jessica L.</p>
+                      <Link href="/profile/jessica-l" className="hover:underline">
+                        <p className="font-bold">Jessica L.</p>
+                      </Link>
                       <p className="text-sm text-slate-400">UI/UX Designer</p>
                     </div>
                   </div>

@@ -8,18 +8,19 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Bookmark, Share2, Users, Code, Calendar, Lock } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 const techStacks = ['React', 'Node.js', 'Python', 'GenAI', 'Firebase'];
 
 const participants = [
-  { name: 'Alex Turing', avatar: 'https://github.com/shadcn.png' },
-  { name: 'Breanna Jensen', avatar: 'https://github.com/vercel.png' },
-  { name: 'Casey Newton', avatar: 'https://github.com/nextjs.png' },
-  { name: 'Devon Rex', avatar: '/placeholder.svg' },
-  { name: 'Eliot Ness', avatar: '/placeholder.svg' },
-  { name: 'Fiona Gallagher', avatar: '/placeholder.svg' },
-  { name: 'George Costanza', avatar: '/placeholder.svg' },
-  { name: 'Hank Hill', avatar: '/placeholder.svg' },
+  { id: 'alex-turing', name: 'Alex Turing', avatar: 'https://github.com/shadcn.png' },
+  { id: 'breanna-jensen', name: 'Breanna Jensen', avatar: 'https://github.com/vercel.png' },
+  { id: 'casey-newton', name: 'Casey Newton', avatar: 'https://github.com/nextjs.png' },
+  { id: 'devon-rex', name: 'Devon Rex', avatar: '/placeholder.svg' },
+  { id: 'eliot-ness', name: 'Eliot Ness', avatar: '/placeholder.svg' },
+  { id: 'fiona-gallagher', name: 'Fiona Gallagher', avatar: '/placeholder.svg' },
+  { id: 'george-costanza', name: 'George Costanza', avatar: '/placeholder.svg' },
+  { id: 'hank-hill', name: 'Hank Hill', avatar: '/placeholder.svg' },
 ];
 
 export default function EventDetailPage({ params }: { params: { id: string } }) {
@@ -51,13 +52,13 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
             <div className="relative">
               <div className={cn('grid grid-cols-2 gap-4 transition-all sm:grid-cols-3 md:grid-cols-4', { 'blur-md': !hasJoined })}>
                 {participants.map((p) => (
-                  <div key={p.name} className="flex flex-col items-center text-center">
+                  <Link href={`/profile/${p.id}`} key={p.id} className="flex flex-col items-center text-center">
                     <Avatar className="h-20 w-20">
                       <AvatarImage src={p.avatar} alt={p.name} />
                       <AvatarFallback>{p.name.charAt(0)}</AvatarFallback>
                     </Avatar>
-                    <p className="mt-2 text-sm font-medium">{p.name}</p>
-                  </div>
+                    <p className="mt-2 text-sm font-medium hover:underline">{p.name}</p>
+                  </Link>
                 ))}
               </div>
               {!hasJoined && (
