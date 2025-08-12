@@ -20,6 +20,9 @@ export default {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        sora: ["var(--font-sora)", ...fontFamily.sans],
+        'space-mono': ["var(--font-space-mono)", ...fontFamily.mono],
+        'vt323': ["var(--font-vt323)", ...fontFamily.mono],
       },
       colors: {
         border: 'hsl(var(--border))',

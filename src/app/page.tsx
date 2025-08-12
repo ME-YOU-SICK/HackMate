@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, CheckCircle, Code, Handshake, Lightbulb, Rocket, Users, Target, Shield, Award } from 'lucide-react';
 import { Logo } from '@/components/logo';
+import { AnimatedLogo } from '@/components/animated-logo';
 
 export default function Home() {
   return (
@@ -44,10 +45,11 @@ export default function Home() {
                     style={{ top: '40%', left: '60%', animation: 'blob-move-3 18s ease-in-out infinite alternate' }}>
                 </div>
             </div>
-           <div className="absolute inset-0 z-[1] bg-[url(/glitter.png)] bg-repeat opacity-[0.1] dark:opacity-[0.08]"></div>
+           <div className="absolute inset-0 z-[1] bg-[url(/glitter.png)] bg-repeat opacity-[0.08] dark:opacity-[0.06]"></div>
 
           <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight bg-gradient-to-br from-gray-900 to-gray-600 bg-clip-text text-transparent dark:from-white dark:to-gray-300">
+            <AnimatedLogo />
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mix-blend-difference">
               Where Great Teams Assemble.
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
@@ -224,5 +226,3 @@ function MiniFeature({ icon, title }: { icon: React.ReactNode; title: string; })
         </div>
     )
 }
-
-    
