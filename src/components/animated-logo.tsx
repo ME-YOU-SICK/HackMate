@@ -11,7 +11,7 @@ export function AnimatedLogo() {
       )}
       aria-label="HackMate"
     >
-      <div className="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-orange-400 animated-gradient">
+      <div className="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-blue-400 to-white animated-gradient">
         HACKMATE
       </div>
     </div>
