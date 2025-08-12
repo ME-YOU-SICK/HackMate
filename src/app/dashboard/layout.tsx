@@ -33,7 +33,9 @@ export default function DashboardLayout({
   }
 
   if (!user) {
-    return null;
+    // Return null or a loader while the redirect is happening
+    // to prevent flashing the login page briefly if already logged in.
+    return null; 
   }
 
   return (
