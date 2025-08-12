@@ -22,7 +22,11 @@ export default function DashboardLayout({
     if (!loading && !user) {
       router.push('/login');
     }
-  }, [user, loading, router]);
+     if (error) {
+      console.error("Authentication error:", error);
+      router.push('/login');
+    }
+  }, [user, loading, error, router]);
 
   if (loading) {
     return (
@@ -32,24 +36,17 @@ export default function DashboardLayout({
     );
   }
 
-  if (error) {
-    // Optional: Show an error message to the user before redirecting.
-    console.error("Authentication error:", error);
-    router.push('/login');
-    return null;
-  }
-  
   if (!user) {
-    // While loading is false, if there's no user, it's appropriate to show nothing or a loader
-    // before the useEffect redirects. This prevents a flash of the dashboard content.
-    return (
+    // This state will be brief before the useEffect redirects.
+    // Showing a loader here prevents a flash of content.
+     return (
        <div className="flex h-screen items-center justify-center">
         <Loader className="h-12 w-12 animate-spin" />
       </div>
     );
   }
 
-  // If loading is false and user exists, render the dashboard.
+  // If loading is false and a user exists, render the dashboard.
   return (
     <div className="flex">
         <SidebarProvider>
