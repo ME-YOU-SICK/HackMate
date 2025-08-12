@@ -33,27 +33,33 @@ export default function DashboardLayout({
   }
 
   if (error) {
-    // You might want to show an error message before redirecting
+    // Optional: Show an error message to the user before redirecting.
+    console.error("Authentication error:", error);
     router.push('/login');
     return null;
   }
   
   if (!user) {
-    // This is a fallback in case the useEffect doesn't run fast enough
-    return null;
+    // While loading is false, if there's no user, it's appropriate to show nothing or a loader
+    // before the useEffect redirects. This prevents a flash of the dashboard content.
+    return (
+       <div className="flex h-screen items-center justify-center">
+        <Loader className="h-12 w-12 animate-spin" />
+      </div>
+    );
   }
 
+  // If loading is false and user exists, render the dashboard.
   return (
-    <SidebarProvider>
-        <Sidebar>
-          <DashboardNav />
-        </Sidebar>
-        <SidebarInset>
-           <MobileHeader>
-                <Logo isCollapsed={true} />
-            </MobileHeader>
-          {children}
-        </SidebarInset>
-    </SidebarProvider>
+    <div className="flex">
+        <SidebarProvider>
+            <Sidebar>
+              <DashboardNav />
+            </Sidebar>
+            <SidebarInset>
+              {children}
+            </SidebarInset>
+        </SidebarProvider>
+    </div>
   );
 }

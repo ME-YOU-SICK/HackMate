@@ -87,16 +87,17 @@ export default function OnboardingPage() {
   }
 
   const nextStep = async () => {
-    if (currentStep < steps.length -1) {
-        await saveProfileData();
+    if (currentStep < steps.length) {
+        if(currentStep !== 1 && currentStep !== steps.length -1) await saveProfileData();
+        setCurrentStep(prev => Math.min(prev + 1, steps.length));
     }
-     if (currentStep === steps.length -1) {
-        await saveProfileData();
-        router.push('/dashboard');
-        return;
-    }
-    setCurrentStep(prev => Math.min(prev + 1, steps.length));
   }
+
+  const completeOnboarding = async () => {
+     await saveProfileData();
+     router.push('/dashboard');
+  }
+
   const prevStep = () => setCurrentStep(prev => Math.max(prev - 1, 1));
   
   const handleSkillChange = (skill: string, checked: boolean) => {
@@ -199,17 +200,11 @@ export default function OnboardingPage() {
                  <div className="text-center space-y-4 pt-8">
                     <h3 className="text-xl font-semibold">Congratulations, {formData.fullName}!</h3>
                     <p className="text-muted-foreground max-w-md mx-auto">Your HackMate profile is complete. You're ready to connect with innovators, join events, and build amazing things.</p>
-                     <Button asChild size="lg" onClick={nextStep} disabled={isSaving}>
-                        <span>
-                         {isSaving ? <Loader className="mr-2 h-4 w-4 animate-spin"/> : 'Go to my Dashboard'}
-                         <ArrowRight className="ml-2 h-5 w-5"/>
-                        </span>
-                    </Button>
                 </div>
             )}
           </CardContent>
           <CardFooter className="flex justify-between">
-            {currentStep > 1 && currentStep < steps.length ? (
+            {currentStep > 1 && currentStep <= steps.length ? (
                 <Button variant="outline" onClick={prevStep} disabled={isSaving}>
                     <ArrowLeft className="mr-2 h-4 w-4" /> Previous
                 </Button>
@@ -222,9 +217,17 @@ export default function OnboardingPage() {
                     <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
             ) : <div /> }
-
-             {currentStep === steps.length - 1 && (
+            
+             {currentStep === steps.length -1 && (
                 <Button onClick={nextStep} disabled={isSaving}>
+                    {isSaving && <Loader className="mr-2 h-4 w-4 animate-spin"/>}
+                    Next
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+            )}
+
+             {currentStep === steps.length && (
+                <Button onClick={completeOnboarding} disabled={isSaving}>
                     {isSaving && <Loader className="mr-2 h-4 w-4 animate-spin"/>}
                     Finish & Go to Dashboard
                     <CheckCircle className="ml-2 h-4 w-4" />
