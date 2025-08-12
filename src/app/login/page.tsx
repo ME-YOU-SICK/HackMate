@@ -39,10 +39,12 @@ export default function LoginPage() {
   const [user, authLoading] = useAuthState(auth);
 
   useEffect(() => {
-    if (user) {
+    // This effect can still be useful for users who land on the login page
+    // while already having an active session.
+    if (!authLoading && user) {
       router.push('/dashboard');
     }
-  }, [user, router]);
+  }, [user, authLoading, router]);
 
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -59,7 +61,7 @@ export default function LoginPage() {
         title: "Success",
         description: "Logged in successfully!",
       });
-      // The useEffect will handle the redirect
+      router.push('/dashboard');
     } else {
       setError(result.error || "An unexpected error occurred.");
     }
@@ -82,9 +84,10 @@ export default function LoginPage() {
                 title: "Success",
                 description: "Logged in successfully!",
             });
-            // The useEffect will handle the redirect to dashboard, or onboarding if needed
             if (serverResult.isNewUser) {
                 router.push('/dashboard/onboarding');
+            } else {
+                router.push('/dashboard');
             }
         } else {
             setError(serverResult.error || "An unexpected error occurred during profile processing.");
