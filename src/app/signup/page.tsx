@@ -58,16 +58,16 @@ export default function SignupPage() {
     setError(null);
 
     const result = await signUpWithEmailAndPassword(email, password, fullName, role);
+    
+    setIsLoading(false);
 
     if (result.success && result.userId) {
       toast({
         title: "Account Created!",
         description: "Welcome to HackMate! Let's get your profile set up.",
       });
-      setIsLoading(false);
       router.push('/dashboard/onboarding');
     } else {
-      setIsLoading(false);
       setError(result.error || "An unexpected error occurred.");
     }
   };
@@ -88,12 +88,13 @@ export default function SignupPage() {
 
         const serverResult = await processProviderSignIn(user.uid, user.email, user.displayName, user.photoURL, role);
 
+        setIsProviderLoading(null);
+
         if (serverResult.success) {
              toast({
                 title: "Account Created!",
                 description: "Welcome to HackMate!",
             });
-            setIsProviderLoading(null);
             if (serverResult.isNewUser) {
                 router.push('/dashboard/onboarding');
             } else {
@@ -101,16 +102,15 @@ export default function SignupPage() {
             }
         } else {
             setError(serverResult.error || "An unexpected error occurred during profile processing.");
-            setIsProviderLoading(null);
         }
 
     } catch (error: any) {
+        setIsProviderLoading(null);
         if (error.code === 'auth/account-exists-with-different-credential') {
             setError("An account already exists with the same email address but different sign-in credentials. Please sign in using the original method.");
         } else {
             setError(error.message || "An unexpected error occurred.");
         }
-        setIsProviderLoading(null);
     }
   };
 
@@ -225,4 +225,3 @@ export default function SignupPage() {
     </div>
   );
 }
-
