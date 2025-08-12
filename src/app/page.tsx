@@ -31,10 +31,10 @@ export default function Home() {
         <section className="relative w-full py-24 md:py-32 lg:py-40 overflow-hidden">
            <div className="absolute inset-0 z-0 overflow-hidden">
                 <div className="absolute inset-0 bg-background opacity-50 z-[-1]"></div>
-                <div className="absolute w-[50vw] h-[50vw] rounded-full bg-gradient-to-tr from-orange-400 to-pink-500 opacity-60 dark:opacity-30 top-1/2 left-1/2 blur-3xl"
-                    style={{ animation: 'blob-move-1 15s ease-in-out infinite alternate, blob-spin 25s linear infinite' }}>
+                <div className="absolute w-[50vw] h-[50vw] rounded-full bg-gradient-to-tr from-orange-400 to-pink-500 opacity-60 dark:opacity-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-3xl"
+                    style={{ animation: 'blob-move-1 15s ease-in-out infinite alternate' }}>
                 </div>
-                <div className="absolute w-[45vw] h-[45vw] rounded-full bg-gradient-to-tr from-purple-500 to-cyan-400 opacity-60 dark:opacity-30 top-1/2 left-1/2 blur-3xl"
+                <div className="absolute w-[45vw] h-[45vw] rounded-full bg-gradient-to-tr from-purple-500 to-cyan-400 opacity-60 dark:opacity-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 blur-3xl"
                     style={{ animation: 'blob-move-2 18s ease-in-out infinite alternate, blob-spin 30s linear infinite reverse' }}>
                 </div>
             </div>
