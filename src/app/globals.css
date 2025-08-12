@@ -1,3 +1,112 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 341 95% 68%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 341 95% 68%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.warm-gradient {
+  background: linear-gradient(300deg, #29abe2, #6a5acd, #ff8c00);
+  background-size: 180% 180%;
+  animation: gradient-animation 12s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.glitter-texture {
+  position: relative;
+  overflow: hidden;
+}
+
+.glitter-texture::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml,\
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">\
+      <circle cx="10" cy="10" r="0.5" fill="%23fff" fill-opacity="0.4"/>\
+      <circle cx="30" cy="40" r="0.7" fill="%23fff" fill-opacity="0.3"/>\
+      <circle cx="50" cy="20" r="0.5" fill="%23fff" fill-opacity="0.5"/>\
+      <circle cx="70" cy="80" r="0.6" fill="%23fff" fill-opacity="0.4"/>\
+      <circle cx="90" cy="50" r="0.8" fill="%23fff" fill-opacity="0.2"/>\
+      <circle cx="20" cy="70" r="0.5" fill="%23fff" fill-opacity="0.6"/>\
+      <circle cx="45" cy="90" r="0.7" fill="%23fff" fill-opacity="0.3"/>\
+      <circle cx="80" cy="15" r="0.5" fill="%23fff" fill-opacity="0.5"/>\
+    </svg>');
+  background-size: 100px 100px;
+  animation: glitter-move 20s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes glitter-move {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-100px, 100px);
+  }
+}
+
+@keyframes blob-spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
