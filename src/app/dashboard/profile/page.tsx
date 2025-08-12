@@ -38,6 +38,17 @@ export default function ProfilePage() {
             const docSnap = await getDoc(userRef);
             if (docSnap.exists()) {
                 setProfile(docSnap.data() as UserProfile);
+            } else {
+                // If profile doesn't exist, create a basic one.
+                const newProfile: UserProfile = {
+                    uid: user.uid,
+                    fullName: user.displayName || 'New User',
+                    email: user.email || '',
+                    role: 'participant', // default role
+                    photoURL: user.photoURL,
+                };
+                await setDoc(userRef, newProfile);
+                setProfile(newProfile);
             }
             setLoading(false);
         };
@@ -95,7 +106,7 @@ export default function ProfilePage() {
                         <Card>
                             <CardHeader className="items-center text-center">
                                 <Avatar className="h-24 w-24 mb-4">
-                                    <AvatarImage src={user?.photoURL ?? undefined} alt={profile.fullName} data-ai-hint="profile picture" />
+                                    <AvatarImage src={profile.photoURL ?? undefined} alt={profile.fullName} data-ai-hint="profile picture" />
                                     <AvatarFallback>{profile.fullName.charAt(0)}</AvatarFallback>
                                 </Avatar>
                                 <CardTitle className="text-2xl">{profile.fullName}</CardTitle>
