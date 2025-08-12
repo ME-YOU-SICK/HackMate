@@ -24,7 +24,7 @@ const initialState = {
   success: false,
   data: null,
   error: null,
-  issues: [],
+  issues: {},
 };
 
 const IconCheckboxGrid = ({ title, items, selectedItems, onSelectionChange }: { title: string, items: { id: string, label: string, icon: React.ReactNode }[], selectedItems: string[], onSelectionChange: (id: string, checked: boolean) => void }) => (
@@ -96,7 +96,8 @@ export default function FindTeamPage() {
       if (result.success) {
         setState({ ...initialState, success: true, data: result.data });
       } else {
-        setState({ ...initialState, error: result.error, issues: result.issues || [] });
+        const fieldIssues = result.issues ? Object.values(result.issues).flat() : [];
+        setState({ ...initialState, error: result.error, issues: fieldIssues });
       }
       
       setIsPending(false);
@@ -179,12 +180,12 @@ export default function FindTeamPage() {
                   </div>
               )}
 
-              {!isPending && state?.error && (
+              {!isPending && (state?.error || state?.issues?.length > 0) && (
                   <Alert variant="destructive">
                       <AlertTitle>Error</AlertTitle>
                       <AlertDescription>
                           {state.error}
-                          {state.issues && (
+                          {state.issues && state.issues.length > 0 && (
                               <ul className="list-disc pl-5 mt-2">
                                   {state.issues.map((issue: string, i: number) => <li key={i}>{issue}</li>)}
                               </ul>
