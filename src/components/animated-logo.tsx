@@ -4,7 +4,6 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
-// A curated list of modern, legible fonts for the animation
 const fonts = ['font-sora', 'font-space-mono', 'font-sans', 'font-vt323'];
 const originalText = "HACKMATE";
 
@@ -13,7 +12,7 @@ export function AnimatedLogo() {
 
   useEffect(() => {
     const fontInterval = setInterval(() => {
-        setFontIndex(prevIndex => (prevIndex + 1) % fonts.length);
+      setFontIndex(prevIndex => (prevIndex + 1) % fonts.length);
     }, 2500); // Cycle font every 2.5 seconds
 
     return () => {
