@@ -1,7 +1,17 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Code, GitBranch, PartyPopper, Search, Users } from 'lucide-react';
+import {
+  Code,
+  Users,
+  Network,
+  CalendarCheck,
+  Cpu,
+  UserCheck,
+  Trophy,
+  Rocket,
+  Heart,
+  Mail,
+} from 'lucide-react';
 import Link from 'next/link';
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
@@ -12,30 +22,32 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-background text-white">
       <Header variant="landing" />
       <main className="flex-grow">
-        <section className="relative min-h-[calc(100vh-4rem)] w-full overflow-hidden">
-          <div className="absolute inset-0 z-0 h-full w-full bg-background">
-            <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+        {/* Hero Section */}
+        <section className="relative min-h-screen w-full overflow-hidden">
+          <div className="absolute inset-0 z-0 h-full w-full bg-slate-950">
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,0.15),rgba(255,255,255,0))]"></div>
+              <div
+                className="animate-blob-spin h-[80vw] w-[80vw] bg-gradient-to-br from-orange-500/20 via-pink-500/20 to-purple-500/20"
+                style={{ borderRadius: '47% 53% 70% 30% / 30% 62% 38% 70%' }}
+              />
             </div>
+            <div className="glitter-texture" />
           </div>
 
-          <div className="container relative z-10 mx-auto flex h-full flex-col items-center justify-center px-4">
-            <div className="text-center">
-              <h1 className="font-sora text-6xl font-bold tracking-tight text-white md:text-8xl">
-                <span className="bg-gradient-to-br from-slate-200 via-slate-300 to-slate-400 bg-clip-text text-transparent">
-                  HackMate
-                </span>
+          <div className="container relative z-10 mx-auto flex h-full min-h-screen flex-col items-center justify-center px-4">
+            <div className="animate-[fade-in-up_1s_ease-out] text-center">
+              <h1 className="font-sora text-5xl font-bold tracking-tight text-white md:text-7xl lg:text-8xl">
+                Connect. Build. Conquer.
               </h1>
-              <p className="mt-4 max-w-2xl text-lg text-slate-300 md:text-xl">
-                The ultimate platform to discover hackathons, connect with innovators, and build winning teams.
+              <p className="mt-4 max-w-3xl text-lg text-slate-300 md:text-xl">
+                Pre, during, and post-hackathon — we make connections that build the future.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Button asChild size="lg" className={cn('warm-gradient text-white')}>
-                  <Link href="/signup">Get Started</Link>
+                  <Link href="/dashboard">Join Event</Link>
                 </Button>
                 <Button asChild size="lg" variant="outline">
-                  <Link href="/login">Log In</Link>
+                  <Link href="#features">Learn More</Link>
                 </Button>
               </div>
             </div>
@@ -43,183 +55,153 @@ export default function Home() {
         </section>
 
         {/* For Participants Section */}
-        <section id="participants" className="py-20">
-          <div className="container mx-auto px-4">
+        <section id="participants" className="bg-background py-20 sm:py-32">
+          <div className="container mx-auto max-w-7xl px-4">
             <div className="text-center">
               <h2 className="font-sora text-4xl font-bold">For Participants</h2>
-              <p className="mt-2 text-lg text-slate-400">Find your dream team and bring your ideas to life.</p>
             </div>
             <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
-              <Card className="border-border bg-card">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-500/10 text-orange-400">
-                    <Users className="h-6 w-6" />
-                  </div>
-                  <CardTitle className="font-sora text-2xl">Find Your Perfect Match</CardTitle>
+                  <Users className="h-8 w-8 text-orange-400" />
+                  <CardTitle className="pt-2 font-sora text-xl">
+                    Meet Your Teammates Before the Hackathon
+                  </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-slate-400">
-                    Connect with like-minded developers, designers, and innovators based on skills and interests.
-                  </p>
-                </CardContent>
               </Card>
-              <Card className="border-border bg-card">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-500/10 text-orange-400">
-                    <Code className="h-6 w-6" />
-                  </div>
-                  <CardTitle className="font-sora text-2xl">Showcase Your Skills</CardTitle>
+                  <Code className="h-8 w-8 text-orange-400" />
+                  <CardTitle className="pt-2 font-sora text-xl">
+                    Find the Right Skills for Your Project
+                  </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-slate-400">
-                    Build a developer profile that highlights your projects, tech stack, and hackathon experience.
-                  </p>
-                </CardContent>
               </Card>
-              <Card className="border-border bg-card">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-500/10 text-orange-400">
-                    <PartyPopper className="h-6 w-6" />
-                  </div>
-                  <CardTitle className="font-sora text-2xl">Win Big</CardTitle>
+                  <Network className="h-8 w-8 text-orange-400" />
+                  <CardTitle className="pt-2 font-sora text-xl">Grow Your Professional Network</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-slate-400">
-                    Join winning teams, create amazing projects, and take home the top prizes.
-                  </p>
-                </CardContent>
               </Card>
             </div>
           </div>
         </section>
 
         {/* For Organizers Section */}
-        <section id="organizers" className="bg-secondary/20 py-20">
-          <div className="container mx-auto px-4">
+        <section id="organizers" className="bg-secondary/20 py-20 sm:py-32">
+          <div className="container mx-auto max-w-7xl px-4">
             <div className="text-center">
               <h2 className="font-sora text-4xl font-bold">For Organizers</h2>
-              <p className="mt-2 text-lg text-slate-400">Host successful hackathons and discover top talent.</p>
             </div>
             <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
-              <Card className="border-border bg-card">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-green-500/10 text-green-400">
-                    <Search className="h-6 w-6" />
-                  </div>
-                  <CardTitle className="font-sora text-2xl">Discover Talent</CardTitle>
+                  <CalendarCheck className="h-8 w-8 text-green-400" />
+                  <CardTitle className="pt-2 font-sora text-xl">Seamless Event Onboarding</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-slate-400">
-                    Find the brightest minds and most promising innovators for your company or community.
-                  </p>
-                </CardContent>
               </Card>
-              <Card className="border-border bg-card">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-green-500/10 text-green-400">
-                    <GitBranch className="h-6 w-6" />
-                  </div>
-                  <CardTitle className="font-sora text-2xl">Streamline Team Formation</CardTitle>
+                  <Cpu className="h-8 w-8 text-green-400" />
+                  <CardTitle className="pt-2 font-sora text-xl">AI-Assisted Team Formation</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-slate-400">
-                    Facilitate team building and ensure all your participants can contribute effectively.
-                  </p>
-                </CardContent>
               </Card>
-              <Card className="border-border bg-card">
+              <Card className="border-border bg-card/50">
                 <CardHeader>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-green-500/10 text-green-400">
-                    <PartyPopper className="h-6 w-6" />
-                  </div>
-                  <CardTitle className="font-sora text-2xl">Boost Engagement</CardTitle>
+                  <UserCheck className="h-8 w-8 text-green-400" />
+                  <CardTitle className="pt-2 font-sora text-xl">Better Participant Engagement</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-slate-400">
-                    Create a vibrant and collaborative environment that keeps participants excited and involved.
-                  </p>
-                </CardContent>
               </Card>
             </div>
           </div>
         </section>
 
-        {/* Testimonials Section */}
-        <section id="testimonials" className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="text-center">
-              <h2 className="font-sora text-4xl font-bold">Loved by Hackers Everywhere</h2>
-              <p className="mt-2 text-lg text-slate-400">
-                Don't just take our word for it. Here's what our users are saying.
+        {/* Pricing Section */}
+        <section id="pricing" className="bg-background py-20 sm:py-32">
+          <div className="container mx-auto max-w-4xl px-4">
+            <Card className="warm-gradient p-8 text-center text-white">
+              <CardTitle className="font-sora text-3xl">
+                We are here for change — just not the kind you get from a shopping mall.
+              </CardTitle>
+              <p className="mt-4 font-sora text-7xl font-bold">Free</p>
+              <CardContent>
+                <p className="mt-2 text-lg">We believe in opportunity, not paywalls.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section id="features" className="bg-secondary/20 py-20 sm:py-32">
+          <div className="container mx-auto max-w-7xl px-4">
+            <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-3">
+              <div className="flex flex-col items-center">
+                <Cpu className="h-10 w-10 text-orange-400" />
+                <p className="mt-2 font-semibold">AI-powered Team Matching</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Users className="h-10 w-10 text-orange-400" />
+                <p className="mt-2 font-semibold">Dynamic Profiles</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Code className="h-10 w-10 text-orange-400" />
+                <p className="mt-2 font-semibold">Event Code Join System</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Rocket className="h-10 w-10 text-orange-400" />
+                <p className="mt-2 font-semibold">Organizer Tools</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Network className="h-10 w-10 text-orange-400" />
+                <p className="mt-2 font-semibold">Post-event Networking</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Trophy className="h-10 w-10 text-orange-400" />
+                <p className="mt-2 font-semibold">Participant Achievements</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why This Matters Section */}
+        <section id="why" className="bg-background py-20 sm:py-32">
+          <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 md:grid-cols-2 md:items-center">
+            <div>
+              <Heart className="h-10 w-10 text-pink-400" />
+              <h2 className="mt-4 font-sora text-4xl font-bold">Why This Matters</h2>
+              <p className="mt-4 text-lg text-slate-400">
+                For many students and aspiring developers, a hackathon is more than just a competition. It's a
+                launchpad. It's the first taste of real-world collaboration, a chance to build something tangible, and a
+                critical opportunity to get noticed by future employers. We built HackMate to break down the barriers
+                to entry, ensuring that every participant, regardless of their background, can find a team where they
+                can shine, innovate, and take the next step in their career.
               </p>
             </div>
-            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <Card className="border-border bg-card">
-                <CardContent className="pt-6">
-                  <div className="flex items-center space-x-4">
-                    <Link href="/profile/sarah-d">
-                      <Avatar>
-                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                        <AvatarFallback>SD</AvatarFallback>
-                      </Avatar>
-                    </Link>
-                    <div>
-                      <Link href="/profile/sarah-d" className="hover:underline">
-                        <p className="font-bold">Sarah D.</p>
-                      </Link>
-                      <p className="text-sm text-slate-400">Frontend Developer</p>
-                    </div>
-                  </div>
-                  <p className="mt-4 text-slate-300">
-                    "HackMate is a game-changer. I found my team for the AI Hackathon in minutes and we ended up
-                    winning first place!"
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="border-border bg-card">
-                <CardContent className="pt-6">
-                  <div className="flex items-center space-x-4">
-                    <Link href="/profile/mike-r">
-                      <Avatar>
-                        <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
-                        <AvatarFallback>MR</AvatarFallback>
-                      </Avatar>
-                    </Link>
-                    <div>
-                      <Link href="/profile/mike-r" className="hover:underline">
-                        <p className="font-bold">Mike R.</p>
-                      </Link>
-                      <p className="text-sm text-slate-400">Backend Engineer</p>
-                    </div>
-                  </div>
-                  <p className="mt-4 text-slate-300">
-                    "As a hackathon organizer, this platform is invaluable. It helps our participants connect and form
-                    balanced teams."
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="border-border bg-card">
-                <CardContent className="pt-6">
-                  <div className="flex items-center space-x-4">
-                    <Link href="/profile/jessica-l">
-                      <Avatar>
-                        <AvatarImage src="https://github.com/nextjs.png" alt="@nextjs" />
-                        <AvatarFallback>JL</AvatarFallback>
-                      </Avatar>
-                    </Link>
-                    <div>
-                      <Link href="/profile/jessica-l" className="hover:underline">
-                        <p className="font-bold">Jessica L.</p>
-                      </Link>
-                      <p className="text-sm text-slate-400">UI/UX Designer</p>
-                    </div>
-                  </div>
-                  <p className="mt-4 text-slate-300">
-                    "I love being able to see people's past projects. It makes finding a team with the right creative
-                    and technical fit so much easier."
-                  </p>
-                </CardContent>
-              </Card>
+            <div>
+              <img
+                src="https://placehold.co/600x400.png"
+                alt="Students collaborating"
+                className="w-full rounded-lg"
+                data-ai-hint="students collaborating"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA Section */}
+        <section id="cta" className="bg-secondary/20 py-20 sm:py-32">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="font-sora text-4xl font-bold">Ready to Build the Future?</h2>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <Button asChild size="lg" className={cn('warm-gradient text-white')}>
+                <Link href="/signup">Join Now</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link href="mailto:contact@hackmate.app">
+                  <Mail className="mr-2 h-4 w-4" />
+                  Contact Us
+                </Link>
+              </Button>
             </div>
           </div>
         </section>
