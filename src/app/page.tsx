@@ -1,4 +1,6 @@
 
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -17,8 +19,20 @@ import Link from 'next/link';
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+
+const chartData = [
+  { name: '2020', total: 120 },
+  { name: '2021', total: 180 },
+  { name: '2022', total: 250 },
+  { name: '2023', total: 320 },
+  { name: '2024', total: 450 },
+];
 
 export default function Home() {
+  const [heartFilled, setHeartFilled] = useState(false);
+
   return (
     <div className="flex min-h-screen flex-col bg-background text-white">
       <Header variant="landing" />
@@ -176,7 +190,12 @@ export default function Home() {
         <section id="why" className="bg-background py-20 sm:py-32">
           <div className="container mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 md:grid-cols-2 md:items-center">
             <div>
-              <Heart className="h-10 w-10 text-pink-400" />
+              <Heart
+                className={cn('h-10 w-10 text-orange-400 cursor-pointer transition-all', {
+                  'fill-orange-400': heartFilled,
+                })}
+                onClick={() => setHeartFilled(!heartFilled)}
+              />
               <h2 className="mt-4 font-sora text-4xl font-bold">Why This Matters</h2>
               <p className="mt-4 text-lg text-slate-400">
                 For many students and aspiring developers, a hackathon is more than just a competition. It's a
@@ -186,13 +205,26 @@ export default function Home() {
                 can shine, innovate, and take the next step in their career.
               </p>
             </div>
-            <div>
-              <img
-                src="https://placehold.co/600x400.png"
-                alt="Students collaborating"
-                className="w-full rounded-lg"
-                data-ai-hint="students collaborating"
-              />
+            <div className="h-[400px] w-full">
+               <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={chartData}>
+                    <XAxis
+                      dataKey="name"
+                      stroke="#888888"
+                      fontSize={12}
+                      tickLine={false}
+                      axisLine={false}
+                    />
+                    <YAxis
+                      stroke="#888888"
+                      fontSize={12}
+                      tickLine={false}
+                      axisLine={false}
+                      tickFormatter={(value) => `${value}`}
+                    />
+                    <Bar dataKey="total" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} className="fill-orange-400" />
+                  </BarChart>
+                </ResponsiveContainer>
             </div>
           </div>
         </section>
