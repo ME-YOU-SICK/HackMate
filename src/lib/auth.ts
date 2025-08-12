@@ -7,9 +7,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
-  signInWithPopup,
-  GoogleAuthProvider,
-  GithubAuthProvider,
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 
@@ -40,47 +37,27 @@ export async function signInWithEmailAndPasswordAction(email: string, password: 
   }
 }
 
-async function signInWithProvider(provider: GoogleAuthProvider | GithubAuthProvider) {
+export async function processProviderSignIn(uid: string, email: string | null, displayName: string | null, photoURL: string | null) {
   try {
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-
-    // Check if user is new
-    const userRef = doc(db, 'users', user.uid);
+    const userRef = doc(db, 'users', uid);
     const docSnap = await getDoc(userRef);
 
     let isNewUser = false;
     if (!docSnap.exists()) {
       isNewUser = true;
-      // Create profile for new user
       await setDoc(userRef, {
-        uid: user.uid,
-        email: user.email,
-        fullName: user.displayName,
-        photoURL: user.photoURL,
+        uid: uid,
+        email: email,
+        fullName: displayName,
+        photoURL: photoURL,
       }, { merge: true });
     }
 
-    return { success: true, userId: user.uid, isNewUser };
+    return { success: true, userId: uid, isNewUser };
   } catch (error: any) {
-    // Handle specific errors like account-exists-with-different-credential
-    if (error.code === 'auth/account-exists-with-different-credential') {
-      return { success: false, error: "An account already exists with the same email address but different sign-in credentials. Please sign in using the original method." };
-    }
-    return { success: false, error: error.message };
+    return { success: false, error: "An error occurred while processing your profile." };
   }
 }
-
-export async function signInWithGoogle() {
-  const provider = new GoogleAuthProvider();
-  return await signInWithProvider(provider);
-}
-
-export async function signInWithGithub() {
-  const provider = new GithubAuthProvider();
-  return await signInWithProvider(provider);
-}
-
 
 export async function signOutAction() {
   try {

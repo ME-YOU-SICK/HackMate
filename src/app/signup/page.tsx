@@ -8,11 +8,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
-import { signUpWithEmailAndPassword, signInWithGoogle, signInWithGithub } from "@/lib/auth";
+import { signUpWithEmailAndPassword, processProviderSignIn } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { Loader, Github } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { auth } from "@/lib/firebase";
+import { signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+
 
 const GoogleIcon = () => (
     <svg className="mr-2 h-4 w-4" viewBox="0 0 48 48">
@@ -53,21 +56,36 @@ export default function SignupPage() {
     }
   };
 
-  const handleProviderSignup = async (provider: 'google' | 'github') => {
-    setIsProviderLoading(provider);
+  const handleProviderSignup = async (providerName: 'google' | 'github') => {
+    setIsProviderLoading(providerName);
     setError(null);
-    const signupFn = provider === 'google' ? signInWithGoogle : signInWithGithub;
-    const result = await signupFn();
-    setIsProviderLoading(null);
 
-    if (result.success) {
-      toast({
-        title: "Account Created!",
-        description: "Welcome to HackMate!",
-      });
-      router.push(result.isNewUser ? '/dashboard/onboarding' : '/dashboard');
-    } else {
-      setError(result.error || "An unexpected error occurred.");
+    const provider = providerName === 'google' ? new GoogleAuthProvider() : new GithubAuthProvider();
+
+    try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        const serverResult = await processProviderSignIn(user.uid, user.email, user.displayName, user.photoURL);
+
+        if (serverResult.success) {
+             toast({
+                title: "Account Created!",
+                description: "Welcome to HackMate!",
+            });
+            router.push(serverResult.isNewUser ? '/dashboard/onboarding' : '/dashboard');
+        } else {
+            setError(serverResult.error || "An unexpected error occurred during profile processing.");
+        }
+
+    } catch (error: any) {
+        if (error.code === 'auth/account-exists-with-different-credential') {
+            setError("An account already exists with the same email address but different sign-in credentials. Please sign in using the original method.");
+        } else {
+            setError(error.message || "An unexpected error occurred.");
+        }
+    } finally {
+        setIsProviderLoading(null);
     }
   };
 
