@@ -9,6 +9,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
+import type { User } from 'firebase/auth';
 
 export async function signUpWithEmailAndPassword(email: string, password: string, fullName: string, role: 'participant' | 'organizer') {
   try {
@@ -76,6 +77,7 @@ export async function signOutAction() {
     return { success: false, error: error.message };
   }
 }
+
 
 export async function deleteUserAccountAction(userId: string) {
     try {

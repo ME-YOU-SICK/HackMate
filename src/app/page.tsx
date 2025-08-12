@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, CheckCircle, Code, Handshake, Lightbulb, Rocket, Users, Target, Shield, Award } from 'lucide-react';
+import { ArrowRight, Users, Target, Rocket, Lightbulb, Award, Handshake } from 'lucide-react';
 import { Logo } from '@/components/logo';
-import { AnimatedLogo } from '@/components/animated-logo';
 
 export default function Home() {
   return (
@@ -48,26 +47,22 @@ export default function Home() {
            <div className="absolute inset-0 z-[1] bg-[url(/glitter.png)] bg-repeat opacity-[0.15] dark:opacity-[0.12]"></div>
 
           <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <AnimatedLogo />
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight -mt-8">
-             <span className="mix-blend-difference text-white">Where Great Teams Assemble.</span>
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+             Where Great Teams Assemble
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
-              Pre, during, and post-hackathon — we make connections that build the future. Find your team, join events, and launch your next big idea with HackMate.
+              From ideation to launch, HackMate is the ultimate platform for hackathon participants and organizers to connect, build, and succeed.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
               <Button size="lg" asChild>
-                <Link href="/signup">Join an Event <ArrowRight className="ml-2 h-5 w-5" /></Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="#features">Learn More</Link>
+                <Link href="/signup">Find Your Team <ArrowRight className="ml-2 h-5 w-5" /></Link>
               </Button>
             </div>
           </div>
         </section>
 
         {/* For Participants Section */}
-        <section className="py-20 bg-background/80">
+        <section className="py-20 bg-muted/50">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center">
                     <h2 className="text-3xl font-bold tracking-tight">For Participants</h2>
@@ -94,7 +89,7 @@ export default function Home() {
         </section>
 
         {/* For Organizers Section */}
-        <section className="py-20 bg-background/80">
+        <section className="py-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center">
                     <h2 className="text-3xl font-bold tracking-tight">For Organizers</h2>
@@ -108,7 +103,7 @@ export default function Home() {
                     />
                     <FeatureCard
                         icon={<Lightbulb className="h-8 w-8 text-primary" />}
-                        title="AI-Assisted Team Formation"
+                        title="Assisted Team Formation"
                         description="Empower your participants to form balanced, effective teams with our powerful matchmaking tools."
                     />
                     <FeatureCard
@@ -120,65 +115,8 @@ export default function Home() {
             </div>
         </section>
 
-         {/* Features Section */}
-        <section id="features" className="py-20 bg-background/80">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight">Everything You Need to Succeed</h2>
-              <p className="mt-4 text-muted-foreground max-w-xl mx-auto">HackMate provides the tools for innovation and collaboration.</p>
-            </div>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <MiniFeature title="Intelligent Team Matching" icon={<Lightbulb className="h-6 w-6 text-primary" />} />
-                <MiniFeature title="Dynamic User Profiles" icon={<Users className="h-6 w-6 text-primary" />} />
-                <MiniFeature title="Event Code Join System" icon={<Code className="h-6 w-6 text-primary" />} />
-                <MiniFeature title="Powerful Organizer Tools" icon={<Shield className="h-6 w-6 text-primary" />} />
-                <MiniFeature title="Post-event Networking" icon={<Handshake className="h-6 w-6 text-primary" />} />
-                <MiniFeature title="Participant Achievements" icon={<Award className="h-6 w-6 text-primary" />} />
-            </div>
-          </div>
-        </section>
-
-        {/* Pricing Section */}
-        <section className="py-20">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-2xl mx-auto">
-                    <Card className="text-center bg-gradient-to-br from-background to-muted/50 dark:from-card dark:to-muted/20 border-2 border-primary/20 shadow-xl">
-                        <CardHeader>
-                            <CardTitle className="text-2xl md:text-3xl font-bold">We are here for change — just not the kind you get from a shopping mall.</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            <p className="text-6xl md:text-8xl font-extrabold text-primary">Free</p>
-                            <p className="text-muted-foreground text-lg">We believe in opportunity, not paywalls.</p>
-                        </CardContent>
-                    </Card>
-                </div>
-            </div>
-        </section>
-
-
-        {/* Why This Matters Section */}
-        <section className="py-20 bg-background/80">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="space-y-4">
-                        <h2 className="text-3xl font-bold tracking-tight">Why This Matters</h2>
-                        <p className="text-lg text-muted-foreground">
-                            Hackathons are more than just-coding competitions. They are launchpads for careers, breeding grounds for innovation, and catalysts for lifelong friendships. By breaking down the barrier of finding the right team, we empower more students and professionals to participate, innovate, and ultimately, get hired for their dream jobs.
-                        </p>
-                         <p className="text-lg text-muted-foreground">
-                            We're building a world where a great idea is all you need to get started.
-                        </p>
-                    </div>
-                    <div>
-                        <img src="https://placehold.co/600x400.png" alt="Team collaborating" className="rounded-lg shadow-md" data-ai-hint="team collaboration" />
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
         {/* Final CTA */}
-        <section className="py-24">
+        <section className="py-24 bg-muted/50">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                  <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Ready to Build Something Amazing?</h2>
                  <p className="mt-4 max-w-xl mx-auto text-lg text-muted-foreground">
@@ -188,16 +126,13 @@ export default function Home() {
                      <Button size="lg" asChild>
                         <Link href="/signup">Join Now <ArrowRight className="ml-2 h-5 w-5" /></Link>
                     </Button>
-                    <Button size="lg" variant="outline" asChild>
-                        <Link href="#">Contact Us</Link>
-                    </Button>
                  </div>
             </div>
         </section>
 
       </main>
 
-      <footer className="bg-background/80 border-t">
+      <footer className="bg-background border-t">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-muted-foreground">
             <p>&copy; {new Date().getFullYear()} HackMate. All rights reserved.</p>
         </div>
@@ -208,7 +143,7 @@ export default function Home() {
 
 function FeatureCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string; }) {
   return (
-    <Card className="p-8 text-center bg-card/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+    <Card className="p-8 text-center bg-card transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
       <div className="inline-block p-4 bg-primary/10 rounded-full mb-4">
         {icon}
       </div>
@@ -216,13 +151,4 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode; titl
       <p className="mt-2 text-muted-foreground">{description}</p>
     </Card>
   );
-}
-
-function MiniFeature({ icon, title }: { icon: React.ReactNode; title: string; }) {
-    return (
-        <div className="flex items-center gap-4 p-4 rounded-lg bg-card/50">
-            {icon}
-            <h4 className="text-md font-semibold">{title}</h4>
-        </div>
-    )
 }

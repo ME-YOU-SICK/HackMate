@@ -2,7 +2,6 @@
 'use server';
 
 import { z } from 'zod';
-import { auth } from '@/lib/firebase';
 import { db } from '@/lib/firebase';
 import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import type { UserProfile } from '@/lib/db';

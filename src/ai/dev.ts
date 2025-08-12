@@ -1,4 +1,4 @@
 import { config } from 'dotenv';
 config();
 
-import '@/ai/flows/suggest-teammates.ts';
+// This file is intentionally left blank as AI features have been replaced by deterministic logic.

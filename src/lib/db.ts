@@ -13,6 +13,8 @@ export interface UserProfile {
   title?: string;
   bio?: string;
   city?: string;
+  graduationYear?: number;
+  age?: number;
   skills?: string[];
   tech?: string[];
   pastEvents?: { name: string; role: string }[];
@@ -38,6 +40,8 @@ export interface Event {
     imageUrl?: string;
     organizerId: string;
     participants: string[]; // Array of user UIDs
+    allowedTech?: string[];
+    maxTeamMembers?: number;
     createdAt: Timestamp;
 }
 

@@ -255,7 +255,7 @@ export const SidebarMenuItem = React.forwardRef<
 SidebarMenuItem.displayName = "SidebarMenuItem"
 
 
-const buttonVariants = cva(
+const menuButtonVariants = cva(
   "flex w-full items-center gap-3 overflow-hidden rounded-md px-3 py-2 text-left text-sm outline-none ring-ring transition-all hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 active:bg-accent active:text-accent-foreground disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
@@ -283,7 +283,7 @@ export const SidebarMenuButton = React.forwardRef<HTMLButtonElement, SidebarMenu
         const Comp = props.asChild ? Slot : "button";
 
         const button = (
-             <Comp ref={ref} className={cn(buttonVariants({isActive, isCollapsed}), className)} {...props}>
+             <Comp ref={ref} className={cn(menuButtonVariants({isActive, isCollapsed}), className)} {...props}>
                 {children}
              </Comp>
         )
@@ -408,6 +408,6 @@ export interface SidebarInsetProps extends React.ComponentProps<"main"> {}
 export function SidebarInset({className, ...props}: SidebarInsetProps) {
     const { isCollapsed } = useSidebar();
     return (
-        <main className={cn("flex-1 transition-[margin-left] duration-300 ease-in-out", !isCollapsed ? "md:ml-64" : "md:ml-16", className)} {...props}/>
+        <main className={cn("transition-[margin-left] duration-300 ease-in-out", !isCollapsed ? "md:ml-64" : "md:ml-16", className)} {...props}/>
     )
 }

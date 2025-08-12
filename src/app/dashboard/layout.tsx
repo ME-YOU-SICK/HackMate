@@ -34,14 +34,14 @@ export default function DashboardLayout({
   if (error) {
      return (
        <div className="flex h-screen items-center justify-center">
-        <p>An error occurred. Please try again later.</p>
+        <p>An error occurred: {error.message}. Please try again later.</p>
       </div>
     )
   }
 
   if (!user) {
-    // This can show briefly before the redirect happens, or if the redirect fails.
-    // Or it can be a loader itself while redirecting.
+    // This state can be shown briefly before the redirect in useEffect completes.
+    // It's a good practice to show a loading state here as well.
     return (
        <div className="flex h-screen items-center justify-center">
         <Loader className="h-12 w-12 animate-spin" />
@@ -50,6 +50,7 @@ export default function DashboardLayout({
     )
   }
   
+  // User is authenticated, render the dashboard layout
   return (
     <>
         <SidebarProvider>
