@@ -214,7 +214,7 @@ export default function Home() {
                         <stop offset="95%" stopColor="#f97316" stopOpacity={0}/>
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                    <CartesianGrid strokeDasharray="1 1" stroke="hsl(var(--border))" />
                     <XAxis
                       dataKey="name"
                       stroke="#888888"
