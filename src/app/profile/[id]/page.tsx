@@ -51,7 +51,27 @@ const userProfile = {
 };
 
 export default function ProfilePage({ params }: { params: { id: string } }) {
-  const [isFollowing, setIsFollowing] = useState(false);
+  const [connectionStatus, setConnectionStatus] = useState<'none' | 'pending' | 'connected'>('none');
+
+  const handleConnect = () => {
+    if (connectionStatus === 'none') {
+      setConnectionStatus('pending');
+      // In a real app, you'd send a connection request here.
+      // To simulate acceptance for this demo, we can set it to 'connected' after a delay.
+      // setTimeout(() => setConnectionStatus('connected'), 2000);
+    }
+  };
+
+  const getButtonText = () => {
+    switch (connectionStatus) {
+      case 'none':
+        return 'Connect';
+      case 'pending':
+        return 'Request Sent';
+      case 'connected':
+        return 'Connected';
+    }
+  };
 
   return (
     <div className="container mx-auto py-10">
@@ -79,14 +99,15 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
                   </Link>
                 </div>
                 <Button
-                  className="w-full bg-blue-500 text-white hover:bg-blue-600"
-                  onClick={() => setIsFollowing(!isFollowing)}
+                  className="w-full bg-blue-500 text-white hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-blue-500/50"
+                  onClick={handleConnect}
+                  disabled={connectionStatus === 'pending' || connectionStatus === 'connected'}
                 >
-                  {isFollowing ? 'Connected' : 'Connect'}
+                  {getButtonText()}
                 </Button>
                 <div className="mt-4 text-left">
                   <p className="text-sm font-bold">Connections</p>
-                  <p className="text-blue-400">{isFollowing ? userProfile.connections + 1 : userProfile.connections}</p>
+                  <p className="text-blue-400">{connectionStatus === 'connected' ? userProfile.connections + 1 : userProfile.connections}</p>
                 </div>
               </CardContent>
             </Card>
