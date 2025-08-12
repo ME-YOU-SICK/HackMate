@@ -93,33 +93,32 @@
     }
   }
 
-  @keyframes blob-spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  .warm-gradient {
+    background: linear-gradient(135deg, #ff8c00, #ff0080, #8a2be2);
+    background-size: 400% 400%;
+    animation: gradient-move 15s ease infinite;
   }
 
-  @keyframes blob-move-1 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(15%, 10%) scale(1.1); }
-    50% { transform: translate(0, 20%) scale(0.9); }
-    75% { transform: translate(-10%, -10%) scale(1.05); }
+  .dark .warm-gradient {
+    background: linear-gradient(135deg, #4a2100, #630031, #3a0d63);
+    background-size: 400% 400%;
+    animation: gradient-move 15s ease infinite;
   }
 
-  @keyframes blob-move-2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(-15%, -10%) scale(1.1); }
-    50% { transform: translate(0, -20%) scale(1.2); }
-    75% { transform: translate(10%, 10%) scale(0.9); }
+  @keyframes gradient-move {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
-  @keyframes blob-move-3 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(15%, -15%) scale(1.1); }
-    50% { transform: translate(-10%, 0) scale(0.8); }
-    75% { transform: translate(5%, 15%) scale(1.1); }
+  .glitter-texture::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0zMC41IDY5LjVMMCA1MEwyNS41IDMwLjVMMjAuNSAwTDM1LjUgMjUuNUw1MCAwTDY0LjUgMjUuNUw3OS41IDBMODQuNSAzMC41TDEwMCA1MEw2OS41IDY5LjVMODQuNSA5NC41TDc5LjUgMTIwTDY0LjUgOTQuNUw1MCAxMjBMMzUuNSA5NC41TDIwLjUgMTIwTDI1LjUgOTQuNUwzMC41IDY5LjV6IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4xNSIvPjwvc3ZnPg==');
+    background-size: 200px 200px;
+    opacity: 0.1;
+    z-index: 1;
   }
+
 }
