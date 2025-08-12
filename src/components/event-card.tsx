@@ -2,6 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Bookmark, Share2 } from 'lucide-react';
+import Link from 'next/link';
 
 export default function EventCard() {
   return (
@@ -12,7 +13,9 @@ export default function EventCard() {
           <AvatarFallback>EH</AvatarFallback>
         </Avatar>
         <div>
-          <CardTitle className="text-base font-bold">Hackathon 2024</CardTitle>
+          <Link href="/events/1">
+            <CardTitle className="text-base font-bold hover:underline">Hackathon 2024</CardTitle>
+          </Link>
           <p className="text-sm text-slate-400">Hosted by AI Innovators</p>
         </div>
       </CardHeader>
@@ -37,7 +40,9 @@ export default function EventCard() {
           </Button>
         </div>
         <p className="mt-4 text-sm">
-          <span className="font-bold">Hackathon 2024:</span> Join us for a weekend of innovation, collaboration, and coding. Build amazing projects, learn new skills, and connect with fellow developers.
+          <Link href="/events/1" className="hover:underline">
+            <span className="font-bold">Hackathon 2024:</span> Join us for a weekend of innovation, collaboration, and coding. Build amazing projects, learn new skills, and connect with fellow developers.
+          </Link>
         </p>
         <p className="mt-2 text-xs text-slate-500">2 DAYS AGO</p>
       </CardFooter>
