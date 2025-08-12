@@ -19,15 +19,18 @@ export default function DashboardLayout({
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !user) {
+    // If there's an error with auth, redirect to login.
+    if (error) {
+      console.error("Authentication error:", error);
       router.push('/login');
     }
-     if (error) {
-      console.error("Authentication error:", error);
+    // After loading, if there's no user, redirect to login.
+    if (!loading && !user) {
       router.push('/login');
     }
   }, [user, loading, error, router]);
 
+  // While loading the user state, show a spinner.
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center">
@@ -36,27 +39,26 @@ export default function DashboardLayout({
     );
   }
 
-  if (!user) {
-    // This state will be brief before the useEffect redirects.
-    // Showing a loader here prevents a flash of content.
-     return (
-       <div className="flex h-screen items-center justify-center">
-        <Loader className="h-12 w-12 animate-spin" />
+  // If a user is logged in, render the dashboard.
+  if (user) {
+    return (
+      <div className="flex">
+          <SidebarProvider>
+              <Sidebar>
+                <DashboardNav />
+              </Sidebar>
+              <SidebarInset>
+                {children}
+              </SidebarInset>
+          </SidebarProvider>
       </div>
     );
   }
-
-  // If loading is false and a user exists, render the dashboard.
+  
+  // If no user and not loading (i.e., redirect is imminent), show a loader to prevent flashing content.
   return (
-    <div className="flex">
-        <SidebarProvider>
-            <Sidebar>
-              <DashboardNav />
-            </Sidebar>
-            <SidebarInset>
-              {children}
-            </SidebarInset>
-        </SidebarProvider>
+    <div className="flex h-screen items-center justify-center">
+      <Loader className="h-12 w-12 animate-spin" />
     </div>
   );
 }
