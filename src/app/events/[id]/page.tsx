@@ -1,8 +1,13 @@
+
+'use client';
+
+import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Bookmark, Share2, Users, Code, Calendar } from 'lucide-react';
+import { Bookmark, Share2, Users, Code, Calendar, Lock } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const techStacks = ['React', 'Node.js', 'Python', 'GenAI', 'Firebase'];
 
@@ -18,6 +23,8 @@ const participants = [
 ];
 
 export default function EventDetailPage({ params }: { params: { id: string } }) {
+  const [hasJoined, setHasJoined] = useState(false);
+
   return (
     <div className="container mx-auto py-10">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
@@ -41,16 +48,25 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
           </div>
           <div className="mt-8">
             <h3 className="mb-4 font-sora text-2xl font-bold">Participants ({participants.length})</h3>
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-              {participants.map((p) => (
-                <div key={p.name} className="flex flex-col items-center text-center">
-                  <Avatar className="h-20 w-20">
-                    <AvatarImage src={p.avatar} alt={p.name} />
-                    <AvatarFallback>{p.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <p className="mt-2 text-sm font-medium">{p.name}</p>
+            <div className="relative">
+              <div className={cn('grid grid-cols-2 gap-4 transition-all sm:grid-cols-3 md:grid-cols-4', { 'blur-md': !hasJoined })}>
+                {participants.map((p) => (
+                  <div key={p.name} className="flex flex-col items-center text-center">
+                    <Avatar className="h-20 w-20">
+                      <AvatarImage src={p.avatar} alt={p.name} />
+                      <AvatarFallback>{p.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <p className="mt-2 text-sm font-medium">{p.name}</p>
+                  </div>
+                ))}
+              </div>
+              {!hasJoined && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-slate-900/80">
+                  <Lock className="h-10 w-10 text-orange-400" />
+                  <p className="mt-4 text-center font-semibold">Join the event to see participants</p>
+                  <Button className="mt-4 bg-orange-500 text-white hover:bg-orange-600" onClick={() => setHasJoined(true)}>Join Event</Button>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
@@ -63,7 +79,9 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
               <p className="mt-2 text-slate-400">Hosted by AI Innovators</p>
               
               <div className="my-6 flex items-center space-x-2">
-                <Button className="flex-1 bg-orange-500 text-white hover:bg-orange-600">Join Event</Button>
+                <Button className="flex-1 bg-orange-500 text-white hover:bg-orange-600" onClick={() => setHasJoined(true)} disabled={hasJoined}>
+                  {hasJoined ? 'Joined' : 'Join Event'}
+                </Button>
                 <Button variant="outline" size="icon">
                   <Share2 className="h-5 w-5" />
                 </Button>
