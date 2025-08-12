@@ -3,6 +3,7 @@
 
 import { db } from '@/lib/firebase';
 import { doc, setDoc, collection, addDoc } from 'firebase/firestore';
+import type { DateRange } from 'react-day-picker';
 
 export interface UserProfile {
   uid: string;
@@ -21,6 +22,19 @@ export interface UserProfile {
     github?: string;
   };
 }
+
+export interface Event {
+    id: string; // Unique 6-character code
+    name: string;
+    description: string;
+    dateRange: { from: string; to: string };
+    location: string;
+    imageUrl?: string;
+    organizerId: string;
+    participants: string[]; // Array of user UIDs
+    createdAt: Date;
+}
+
 
 export interface Notification {
   recipientId: string;

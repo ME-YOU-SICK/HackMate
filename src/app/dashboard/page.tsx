@@ -1,11 +1,43 @@
+
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Activity, Search, Users, Wrench } from "lucide-react";
+import { Activity, Loader, Search, Users, Wrench } from "lucide-react";
 import Link from 'next/link';
 import { MobileHeader } from "@/components/ui/sidebar";
+import { joinEventAction } from "@/app/actions/join-event.action";
+import { useToast } from "@/hooks/use-toast";
+import React from "react";
 
 export default function DashboardPage() {
+  const { toast } = useToast();
+  const [isJoining, setIsJoining] = React.useState(false);
+
+  const handleJoinEvent = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsJoining(true);
+    const formData = new FormData(event.currentTarget);
+    const result = await joinEventAction(formData);
+    setIsJoining(false);
+    
+    if (result.success) {
+      toast({
+        title: "Success!",
+        description: `You have successfully joined the event.`,
+      });
+      event.currentTarget.reset();
+    } else {
+      toast({
+        title: "Error",
+        description: result.error,
+        variant: "destructive",
+      });
+    }
+  };
+
+
   return (
     <>
       <MobileHeader>
@@ -75,10 +107,13 @@ export default function DashboardPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form>
+                <form onSubmit={handleJoinEvent}>
                   <div className="flex w-full max-w-sm items-center space-x-2">
-                    <Input type="text" placeholder="e.g., HCK24X" className="uppercase" maxLength={6} />
-                    <Button type="submit">Join Event</Button>
+                    <Input name="eventCode" type="text" placeholder="e.g., HCK24X" className="uppercase" maxLength={6} required disabled={isJoining}/>
+                    <Button type="submit" disabled={isJoining}>
+                      {isJoining && <Loader className="mr-2 h-4 w-4 animate-spin"/>}
+                      Join Event
+                    </Button>
                   </div>
                 </form>
               </CardContent>

@@ -8,37 +8,50 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { MobileHeader } from "@/components/ui/sidebar";
-import { ArrowLeft, Calendar as CalendarIcon, Clipboard, ClipboardCheck, PartyPopper } from "lucide-react";
+import { ArrowLeft, Calendar as CalendarIcon, Clipboard, ClipboardCheck, Loader, PartyPopper } from "lucide-react";
 import Link from 'next/link';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { Calendar } from '@/components/ui/calendar';
 import type { DateRange } from 'react-day-picker';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-
-function generateEventCode() {
-    return Math.random().toString(36).substring(2, 8).toUpperCase();
-}
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { createEventAction } from '@/app/actions/create-event.action';
+import { useToast } from '@/hooks/use-toast';
 
 export default function CreateEventPage() {
-    const [eventName, setEventName] = useState('');
-    const [eventDescription, setEventDescription] = useState('');
+    const { toast } = useToast();
     const [date, setDate] = useState<DateRange | undefined>();
-    const [location, setLocation] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
     const [eventCode, setEventCode] = useState('');
     const [isCopied, setIsCopied] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const code = generateEventCode();
-        setEventCode(code);
-        setIsDialogOpen(true);
+        setIsSubmitting(true);
+
+        const formData = new FormData(e.currentTarget);
+        formData.append('dateRange', JSON.stringify(date || {}));
+
+        const result = await createEventAction(formData);
+
+        setIsSubmitting(false);
+
+        if (result.success && result.eventCode) {
+            setEventCode(result.eventCode);
+            setIsDialogOpen(true);
+        } else {
+            toast({
+                title: "Error Creating Event",
+                description: result.error || "An unexpected error occurred.",
+                variant: "destructive"
+            });
+        }
     };
 
     const copyToClipboard = () => {
+        if (!eventCode) return;
         navigator.clipboard.writeText(eventCode);
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 2000);
@@ -66,11 +79,11 @@ export default function CreateEventPage() {
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="space-y-2">
                                 <Label htmlFor="eventName">Event Name</Label>
-                                <Input id="eventName" value={eventName} onChange={(e) => setEventName(e.target.value)} placeholder="e.g., AI Global Hackathon 2024" required />
+                                <Input name="eventName" id="eventName" placeholder="e.g., AI Global Hackathon 2024" required />
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="eventDescription">Event Description</Label>
-                                <Textarea id="eventDescription" value={eventDescription} onChange={(e) => setEventDescription(e.target.value)} placeholder="Describe your event..." rows={5} required />
+                                <Textarea name="eventDescription" id="eventDescription" placeholder="Describe your event..." rows={5} required />
                             </div>
                              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
@@ -114,47 +127,51 @@ export default function CreateEventPage() {
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="location">Location</Label>
-                                    <Input id="location" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="e.g., Virtual or San Francisco, CA" required />
+                                    <Input name="location" id="location" placeholder="e.g., Virtual or San Francisco, CA" required />
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="imageUrl">Event Banner Image URL</Label>
-                                <Input id="imageUrl" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="https://placehold.co/1200x400.png" />
+                                <Label htmlFor="imageUrl">Event Banner Image URL (Optional)</Label>
+                                <Input name="imageUrl" id="imageUrl" placeholder="https://placehold.co/1200x400.png" />
                             </div>
-                            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                                <DialogTrigger asChild>
-                                    <Button type="submit" size="lg">Create Event</Button>
-                                </DialogTrigger>
-                                <DialogContent className="sm:max-w-md text-center">
-                                    <DialogHeader className="items-center">
-                                        <PartyPopper className="h-12 w-12 text-primary mb-4" />
-                                        <DialogTitle className="text-2xl">Event Created Successfully!</DialogTitle>
-                                        <DialogDescription>
-                                            Share this unique code with your participants to let them join the event.
-                                        </DialogDescription>
-                                    </DialogHeader>
-                                    <div className="flex items-center space-x-2 justify-center">
-                                        <div className="grid flex-1 gap-2">
-                                            <Label htmlFor="link" className="sr-only">
-                                                Event Code
-                                            </Label>
-                                            <Input
-                                                id="link"
-                                                defaultValue={eventCode}
-                                                readOnly
-                                                className="text-2xl font-mono tracking-widest text-center h-12"
-                                            />
-                                        </div>
-                                        <Button type="button" size="icon" className="h-12 w-12" onClick={copyToClipboard}>
-                                            {isCopied ? <ClipboardCheck className="h-6 w-6" /> : <Clipboard className="h-6 w-6" />}
-                                        </Button>
-                                    </div>
-                                    
-                                </DialogContent>
-                             </Dialog>
+                            <Button type="submit" size="lg" disabled={isSubmitting}>
+                                {isSubmitting ? (
+                                    <><Loader className="mr-2 h-4 w-4 animate-spin" /> Creating...</>
+                                ) : (
+                                    "Create Event"
+                                )}
+                            </Button>
                         </form>
                     </CardContent>
                 </Card>
+
+                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                    <DialogContent className="sm:max-w-md text-center">
+                        <DialogHeader className="items-center">
+                            <PartyPopper className="h-12 w-12 text-primary mb-4" />
+                            <DialogTitle className="text-2xl">Event Created Successfully!</DialogTitle>
+                            <DialogDescription>
+                                Share this unique code with your participants to let them join the event.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex items-center space-x-2 justify-center">
+                            <div className="grid flex-1 gap-2">
+                                <Label htmlFor="link" className="sr-only">
+                                    Event Code
+                                </Label>
+                                <Input
+                                    id="link"
+                                    defaultValue={eventCode}
+                                    readOnly
+                                    className="text-2xl font-mono tracking-widest text-center h-12"
+                                />
+                            </div>
+                            <Button type="button" size="icon" className="h-12 w-12" onClick={copyToClipboard}>
+                                {isCopied ? <ClipboardCheck className="h-6 w-6" /> : <Clipboard className="h-6 w-6" />}
+                            </Button>
+                        </div>
+                    </DialogContent>
+                 </Dialog>
             </div>
         </>
     );
