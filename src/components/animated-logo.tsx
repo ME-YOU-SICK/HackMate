@@ -61,7 +61,7 @@ export function AnimatedLogo() {
   return (
     <h1
       className={cn(
-        "text-6xl md:text-8xl font-bold tracking-widest mb-8 transition-all duration-500 ease-in-out text-center",
+        "text-6xl md:text-8xl font-bold tracking-widest mb-8 transition-all duration-500 ease-in-out text-center flex items-center justify-center h-28 md:h-40",
         fonts[fontIndex],
         isAnimating ? "opacity-80" : "opacity-100"
       )}

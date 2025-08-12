@@ -49,8 +49,8 @@ export default function Home() {
 
           <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedLogo />
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mix-blend-difference">
-              Where Great Teams Assemble.
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+             <span className="mix-blend-difference text-white">Where Great Teams Assemble.</span>
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
               Pre, during, and post-hackathon — we make connections that build the future. Find your team, join events, and launch your next big idea with HackMate.
