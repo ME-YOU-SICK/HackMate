@@ -23,6 +23,9 @@ import { z } from "zod";
 import { technologies, skills } from '@/lib/data';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { createEventAction } from '@/app/actions/create-event.action';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/lib/firebase';
 
 const createEventSchema = z.object({
   eventName: z.string().min(3, "Event name must be at least 3 characters."),
@@ -30,7 +33,7 @@ const createEventSchema = z.object({
   techStack: z.array(z.string()).min(1, "Please select at least one technology."),
   requiredSkills: z.array(z.string()).min(1, "Please select at least one skill."),
   maxTeamSize: z.coerce.number().min(1, "Max team size must be at least 1.").max(10, "Max team size cannot exceed 10."),
-  dateRange: z.any().refine(val => val?.from, "Please select a date range."),
+  dateRange: z.custom<DateRange>().refine(val => val?.from, "Please select a date range."),
 });
 
 
@@ -66,6 +69,7 @@ const MultiSelectGrid = ({ title, items, field }: { title: string, items: { id: 
 
 export default function CreateEventPage() {
     const { toast } = useToast();
+    const [user] = useAuthState(auth);
     const [eventCode, setEventCode] = useState('');
     const [isCopied, setIsCopied] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -79,18 +83,36 @@ export default function CreateEventPage() {
             techStack: [],
             requiredSkills: [],
             maxTeamSize: 4,
-            dateRange: undefined,
         }
     });
 
-    const onSubmit = async (data: any) => {
+    const onSubmit = async (data: z.infer<typeof createEventSchema>) => {
+        if (!user) {
+            toast({ title: "Authentication Error", description: "You must be logged in.", variant: "destructive" });
+            return;
+        }
+
         setIsSubmitting(true);
-        // UI only
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        const formData = new FormData();
+        formData.append('eventName', data.eventName);
+        formData.append('eventDescription', data.eventDescription);
+        formData.append('maxTeamSize', String(data.maxTeamSize));
+        formData.append('techStack', JSON.stringify(data.techStack));
+        formData.append('requiredSkills', JSON.stringify(data.requiredSkills));
+        formData.append('dateRange', JSON.stringify({ from: data.dateRange?.from?.toISOString(), to: data.dateRange?.to?.toISOString() }));
+        formData.append('organizerId', user.uid);
+        
+        const result = await createEventAction(formData);
+        
         setIsSubmitting(false);
-        setEventCode("DUMMY1");
-        setIsDialogOpen(true);
-        toast({ title: "Event Created (UI Only)", description: "Your event has been created successfully." });
+
+        if (result.success && result.eventCode) {
+            setEventCode(result.eventCode);
+            setIsDialogOpen(true);
+            toast({ title: "Event Created!", description: "Your event has been created successfully." });
+        } else {
+            toast({ title: "Error Creating Event", description: result.error, variant: "destructive" });
+        }
     };
 
     const copyToClipboard = () => {
@@ -175,7 +197,7 @@ export default function CreateEventPage() {
                                             </Popover>
                                         )}
                                     />
-                                    {errors.dateRange && <p className="text-sm text-destructive">A date range is required.</p>}
+                                    {errors.dateRange && <p className="text-sm text-destructive">{errors.dateRange.message as string}</p>}
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="maxTeamSize">Max Team Size</Label>

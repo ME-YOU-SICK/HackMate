@@ -11,42 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import type { Event } from "@/lib/db";
-
-const dummyEvents: Event[] = [
-    {
-        id: 'aigh2024',
-        name: 'AI Global Hackathon 2024',
-        description: 'A global hackathon focused on pushing the boundaries of Artificial Intelligence.',
-        dateRange: { from: '2024-10-26T09:00:00Z', to: '2024-10-27T17:00:00Z' },
-        techStack: ['Python', 'TensorFlow', 'PyTorch', 'Next.js'],
-        requiredSkills: ['Machine Learning', 'Frontend Development', 'UI/UX Design'],
-        maxTeamSize: 5,
-        participants: Array(42).fill({ fullName: "Dummy User" } as any),
-        imageUrl: 'https://placehold.co/600x400.png',
-    },
-    {
-        id: 'web3con',
-        name: 'Web3 Con & Hackathon',
-        description: 'Build the future of the decentralized web. Workshops, talks, and a massive hackathon.',
-        dateRange: { from: '2024-11-15T10:00:00Z', to: '2024-11-17T18:00:00Z' },
-        techStack: ['Solidity', 'React', 'ethers.js', 'IPFS'],
-        requiredSkills: ['Blockchain', 'Smart Contracts', 'dApp Development'],
-        maxTeamSize: 4,
-        participants: Array(128).fill({ fullName: "Dummy User" } as any),
-        imageUrl: 'https://placehold.co/600x400.png',
-    },
-    {
-        id: 'gamejam24',
-        name: 'Global Game Jam 2024',
-        description: 'Create a video game from scratch in 48 hours. Join thousands of developers worldwide.',
-        dateRange: { from: '2025-01-24T17:00:00Z', to: '2025-01-26T17:00:00Z' },
-        techStack: ['Unity', 'C#', 'Blender', 'Godot'],
-        requiredSkills: ['Game Design', '3D Modeling', 'C# Programming'],
-        maxTeamSize: 6,
-        participants: Array(88).fill({ fullName: "Dummy User" } as any),
-        imageUrl: 'https://placehold.co/600x400.png',
-    },
-];
+import { dummyEvents } from "@/lib/dummy-data";
 
 export default function EventsPage() {
     const [searchTerm, setSearchTerm] = useState("");

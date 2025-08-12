@@ -2,7 +2,7 @@
 'use server';
 
 import { db } from '@/lib/firebase';
-import { doc, setDoc, collection, addDoc, Timestamp } from 'firebase/firestore';
+import { doc, setDoc, collection, addDoc, Timestamp, updateDoc, arrayUnion, getDoc } from 'firebase/firestore';
 
 export interface UserProfile {
   uid: string;
@@ -22,6 +22,11 @@ export interface UserProfile {
   };
   followers?: number;
   following?: number;
+  connections?: string[]; // Array of user UIDs
+  events?: string[]; // Array of event IDs
+  visibility?: 'public' | 'event-only' | 'private';
+  showPastProjects?: boolean;
+  showSocialLinks?: boolean;
 }
 
 export interface Event {
@@ -32,7 +37,8 @@ export interface Event {
     techStack: string[];
     requiredSkills: string[];
     maxTeamSize: number;
-    participants: UserProfile[];
+    organizerId: string;
+    participants: string[]; // Array of user UIDs
     imageUrl?: string;
 }
 
@@ -41,9 +47,9 @@ export interface Notification {
   recipientId: string;
   senderId: string;
   senderName: string;
-  type: 'TEAM_INVITE';
+  type: 'TEAM_INVITE' | 'CONNECTION_REQUEST';
   message: string;
-  role: string;
+  role?: string;
   projectIdea?: string;
   status: 'PENDING' | 'ACCEPTED' | 'DECLINED';
   createdAt: Date;
@@ -60,6 +66,54 @@ export async function updateUserProfile(userId: string, data: Partial<UserProfil
   }
 }
 
+export async function createEvent(eventData: Omit<Event, 'participants'>) {
+    try {
+        const eventRef = doc(db, 'events', eventData.id);
+        await setDoc(eventRef, {
+            ...eventData,
+            participants: [eventData.organizerId]
+        });
+        return { success: true, eventCode: eventData.id };
+    } catch (error: any) {
+        console.error("Error creating event:", error);
+        return { success: false, error: "Failed to create event in database." };
+    }
+}
+
+
+export async function joinEvent(userId: string, eventId: string) {
+    try {
+        const eventRef = doc(db, 'events', eventId);
+        const userRef = doc(db, 'users', userId);
+
+        await updateDoc(eventRef, {
+            participants: arrayUnion(userId)
+        });
+        await updateDoc(userRef, {
+            events: arrayUnion(eventId)
+        });
+
+        return { success: true };
+    } catch (error: any) {
+        console.error("Error joining event:", error);
+        return { success: false, error: "Failed to join event." };
+    }
+}
+
+export async function addConnection(currentUserId: string, targetUserId: string) {
+    try {
+        const currentUserRef = doc(db, 'users', currentUserId);
+        await updateDoc(currentUserRef, {
+            connections: arrayUnion(targetUserId)
+        });
+        return { success: true };
+    } catch (error: any) {
+        console.error("Error adding connection:", error);
+        return { success: false, error: "Failed to add connection." };
+    }
+}
+
+
 export async function createNotification(notification: Omit<Notification, 'createdAt' | 'status'>) {
   try {
     const newNotification: Notification = {
@@ -73,4 +127,18 @@ export async function createNotification(notification: Omit<Notification, 'creat
     console.error("Error creating notification:", error);
     return { success: false, error: error.message };
   }
+}
+
+export async function getUserProfile(userId: string): Promise<UserProfile | null> {
+    try {
+        const userRef = doc(db, 'users', userId);
+        const docSnap = await getDoc(userRef);
+        if (docSnap.exists()) {
+            return docSnap.data() as UserProfile;
+        }
+        return null;
+    } catch (error) {
+        console.error("Error fetching user profile:", error);
+        return null;
+    }
 }

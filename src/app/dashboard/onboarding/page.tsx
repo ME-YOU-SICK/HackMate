@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,9 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { technologies, skills as allSkills } from '@/lib/data';
 import { Textarea } from '@/components/ui/textarea';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/lib/firebase';
+import { updateUserProfile } from '@/lib/db';
 
 const steps = [
   { id: 1, title: "Welcome!", icon: PartyPopper },
@@ -52,13 +55,14 @@ const MultiSelectGrid = ({ title, items, selectedItems, onSelectionChange }: { t
 export default function OnboardingPage() {
   const router = useRouter();
   const { toast } = useToast();
+  const [user] = useAuthState(auth);
   
   const [currentStep, setCurrentStep] = useState(1);
   const [isSaving, setIsSaving] = useState(false);
 
   // Form state
   const [formData, setFormData] = useState({
-    fullName: '',
+    fullName: user?.displayName || '',
     age: '',
     city: '',
     githubUrl: '',
@@ -90,19 +94,48 @@ export default function OnboardingPage() {
     }));
   };
 
-  const nextStep = async () => {
+  const nextStep = () => {
     if (currentStep < steps.length) {
       setCurrentStep(prev => Math.min(prev + 1, steps.length));
     }
   }
 
   const completeOnboarding = async () => {
-     // UI only, no backend connection for now
+     if (!user) {
+        toast({ title: "Error", description: "You are not logged in.", variant: "destructive" });
+        return;
+     }
+
      setIsSaving(true);
-     await new Promise(resolve => setTimeout(resolve, 1500));
+     
+     const profileData = {
+        fullName: formData.fullName,
+        age: Number(formData.age) || undefined,
+        city: formData.city,
+        techStack: formData.techStack,
+        skills: formData.skills,
+        pastHackathons: formData.pastHackathons,
+        pastProjects: formData.pastProjects,
+        socials: {
+            github: formData.githubUrl,
+            linkedin: formData.linkedinUrl,
+        },
+        connections: [],
+        events: [],
+        followers: 0,
+        following: 0,
+     };
+
+     const result = await updateUserProfile(user.uid, profileData);
+
      setIsSaving(false);
-     toast({ title: "Profile Created!", description: "Welcome to HackMate!"});
-     router.push('/dashboard/events');
+     
+     if (result.success) {
+        toast({ title: "Profile Created!", description: "Welcome to HackMate!"});
+        router.push('/dashboard/events');
+     } else {
+        toast({ title: "Error", description: "Could not save your profile.", variant: "destructive" });
+     }
   }
 
   const prevStep = () => setCurrentStep(prev => Math.max(prev - 1, 1));
@@ -190,17 +223,25 @@ export default function OnboardingPage() {
             )}
           </CardContent>
           <CardFooter className="flex justify-between">
-            {currentStep > 1 && currentStep <= steps.length ? (
+            {currentStep > 1 && currentStep < steps.length && (
                 <Button variant="outline" onClick={prevStep} disabled={isSaving}>
                     <ArrowLeft className="mr-2 h-4 w-4" /> Previous
                 </Button>
-            ) : <div />}
+            )}
+             {currentStep === 1 && <div />}
 
-            {currentStep < steps.length ? (
-                <Button onClick={nextStep} disabled={isSaving}>
+
+            {currentStep < steps.length -1 && (
+                <Button onClick={nextStep}>
                     Next <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-            ) : <div /> }
+            )}
+
+            {currentStep === steps.length -1 && (
+                 <Button onClick={nextStep}>
+                    Finish <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+            )}
             
              {currentStep === steps.length && (
                 <Button onClick={completeOnboarding} disabled={isSaving}>

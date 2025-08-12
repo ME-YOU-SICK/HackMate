@@ -7,60 +7,84 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MobileHeader } from "@/components/ui/sidebar";
-import { Github, Linkedin, Loader, UserPlus, Edit, Check, UserCheck } from "lucide-react";
+import { Github, Linkedin, Loader, UserPlus, Check, UserCheck } from "lucide-react";
 import Link from 'next/link';
 import { useToast } from "@/hooks/use-toast";
 import type { UserProfile } from "@/lib/db";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { Textarea } from "@/components/ui/textarea";
+import { notFound, useParams } from "next/navigation";
 import { dummyUsers } from "@/lib/dummy-data";
-import { addConnection } from "@/lib/db";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/lib/firebase";
+import { addConnection, getUserProfile } from "@/lib/db";
+
 
 export default function ProfilePage() {
     const { toast } = useToast();
-    const [user, authLoading] = useAuthState(auth);
+    const params = useParams();
+    const id = params.id as string;
+    const [currentUser] = useAuthState(auth);
+
     const [profile, setProfile] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
+    const [isFollowing, setIsFollowing] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
-        const fetchProfile = async () => {
-            if (!user) {
-                setLoading(false);
-                return;
-            }
-            setLoading(true);
-            const userRef = doc(db, 'users', user.uid);
-            const docSnap = await getDoc(userRef);
-            if (docSnap.exists()) {
-                setProfile(docSnap.data() as UserProfile);
-            } else {
-                // For demo, fall back to a dummy user if not in DB
-                setProfile(dummyUsers[0]);
-            }
-            setLoading(false);
-        };
-
-        if (!authLoading) {
-            fetchProfile();
+        setLoading(true);
+        // Find profile in dummy data
+        const dummyProfile = dummyUsers.find(u => u.uid === id);
+        if (dummyProfile) {
+            setProfile(dummyProfile);
         }
-    }, [user, authLoading]);
-    
+        setLoading(false);
+    }, [id]);
 
-    if (loading || authLoading) {
+    useEffect(() => {
+        const checkIfFollowing = async () => {
+            if (!currentUser || !profile) return;
+            const currentUserProfile = await getUserProfile(currentUser.uid);
+            if (currentUserProfile?.connections?.includes(profile.uid)) {
+                setIsFollowing(true);
+            }
+        };
+        checkIfFollowing();
+    }, [currentUser, profile]);
+    
+    const handleFollow = async () => {
+        if (!currentUser || !profile) {
+            toast({ title: "Please log in to connect.", variant: "destructive"});
+            return;
+        };
+        if (currentUser.uid === profile.uid) {
+            toast({ title: "You cannot follow yourself.", variant: "destructive"});
+            return;
+        }
+
+        setIsSubmitting(true);
+        const result = await addConnection(currentUser.uid, profile.uid);
+        setIsSubmitting(false);
+
+        if (result.success) {
+            setIsFollowing(true);
+            toast({ title: "Connected!", description: `You are now connected with ${profile?.fullName}.`})
+        } else {
+            toast({ title: "Error", description: result.error, variant: "destructive"})
+        }
+    }
+
+    if (loading) {
         return <div className="flex h-screen items-center justify-center"><Loader className="h-12 w-12 animate-spin" /></div>;
     }
 
     if (!profile) {
-        return <div className="p-8">Could not load profile. Please try again later.</div>;
+        return notFound();
     }
-    
-    const connections = profile.connections ? dummyUsers.filter(u => profile.connections?.includes(u.uid)) : [];
 
     return (
         <>
             <MobileHeader>
-                <h2 className="text-xl font-bold">Your Profile</h2>
+                <h2 className="text-xl font-bold">Profile</h2>
             </MobileHeader>
             <div className="flex-1 space-y-8 p-4 md:p-8 pt-6">
                 <div className="grid gap-8 lg:grid-cols-3">
@@ -84,10 +108,9 @@ export default function ProfilePage() {
                                     </div>
                                 </div>
                                  <div className="flex flex-col sm:flex-row gap-2 pt-4 w-full">
-                                    <Button className="flex-1" asChild>
-                                        <Link href="/dashboard/settings">
-                                            <Edit className="mr-2 h-4 w-4"/> Edit Profile
-                                        </Link>
+                                    <Button className="flex-1" onClick={handleFollow} disabled={isFollowing || isSubmitting}>
+                                        {isSubmitting ? <Loader className="mr-2 h-4 w-4 animate-spin"/> : (isFollowing ? <UserCheck className="mr-2 h-4 w-4"/> : <UserPlus className="mr-2 h-4 w-4"/>)}
+                                        {isFollowing ? 'Connected' : 'Connect'}
                                     </Button>
                                     {profile.socials?.github && <Button asChild variant="outline" size="icon"><Link href={profile.socials.github} target="_blank"><Github className="h-4 w-4"/></Link></Button>}
                                     {profile.socials?.linkedin && <Button asChild variant="outline" size="icon"><Link href={profile.socials.linkedin} target="_blank"><Linkedin className="h-4 w-4"/></Link></Button>}
@@ -133,21 +156,26 @@ export default function ProfilePage() {
                         </Card>
                          <Card>
                             <CardHeader>
-                                <CardTitle>My Connections</CardTitle>
+                                <CardTitle>Connections</CardTitle>
+                                <CardDescription>Users connected with {profile.fullName}</CardDescription>
                             </CardHeader>
-                             <CardContent>
+                            <CardContent>
                                 <div className="flex flex-wrap gap-4">
-                                {connections.map(conn => (
-                                    <Link href={`/dashboard/profile/${conn.uid}`} key={conn.uid} className="flex flex-col items-center gap-2 text-center group">
-                                        <Avatar>
-                                            <AvatarImage src={conn.photoURL ?? undefined} />
-                                            <AvatarFallback>{conn.fullName.charAt(0)}</AvatarFallback>
-                                        </Avatar>
-                                        <span className="text-xs w-20 truncate group-hover:text-primary">{conn.fullName}</span>
-                                    </Link>
-                                ))}
-                                {connections.length === 0 && (
-                                    <p className="text-sm text-muted-foreground">You haven't made any connections yet.</p>
+                                {profile.connections?.map(connId => {
+                                    const connProfile = dummyUsers.find(u => u.uid === connId);
+                                    if (!connProfile) return null;
+                                    return (
+                                        <Link href={`/dashboard/profile/${connProfile.uid}`} key={connId} className="flex flex-col items-center gap-2 text-center group">
+                                            <Avatar>
+                                                <AvatarImage src={connProfile.photoURL ?? undefined} />
+                                                <AvatarFallback>{connProfile.fullName.charAt(0)}</AvatarFallback>
+                                            </Avatar>
+                                            <span className="text-xs w-20 truncate group-hover:text-primary">{connProfile.fullName}</span>
+                                        </Link>
+                                    )
+                                })}
+                                {(!profile.connections || profile.connections.length === 0) && (
+                                    <p className="text-sm text-muted-foreground">No connections yet.</p>
                                 )}
                                 </div>
                             </CardContent>

@@ -6,52 +6,61 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, Calendar, DoorOpen, MapPin, Trophy, Users, Share2, Search, Loader, Code, Shield, Users2, Tag } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
-import type { Event, UserProfile } from "@/lib/db";
+import type { Event } from "@/lib/db";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
+import { dummyEvents, dummyUsers } from "@/lib/dummy-data";
+import { joinEventAction } from "@/app/actions/join-event.action";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/lib/firebase";
 
-
-const dummyEvents: Record<string, Event> = {
-    'aigh2024': {
-        id: 'aigh2024',
-        name: 'AI Global Hackathon 2024',
-        description: 'A global hackathon focused on pushing the boundaries of Artificial Intelligence. Participants will work in teams to develop innovative AI-powered solutions to real-world problems. The event will feature workshops from industry experts, mentorship sessions, and a final presentation to a panel of judges.',
-        dateRange: { from: '2024-10-26T09:00:00Z', to: '2024-10-27T17:00:00Z' },
-        techStack: ['Python', 'TensorFlow', 'PyTorch', 'Next.js', 'LangChain', 'Docker', 'GCP'],
-        requiredSkills: ['Machine Learning', 'Frontend Development', 'UI/UX Design', 'Backend Development', 'Data Science'],
-        maxTeamSize: 5,
-        participants: Array.from({ length: 42 }, (_, i) => ({
-            uid: `user${i}`,
-            fullName: `User ${i + 1}`,
-            photoURL: `https://i.pravatar.cc/150?u=user${i+1}`,
-        }) as UserProfile),
-        imageUrl: 'https://placehold.co/1200x400.png',
-    },
-};
 
 export default function EventDetailsPage() {
     const params = useParams();
     const { toast } = useToast();
+    const [user] = useAuthState(auth);
     const id = params.id as string;
     const [event, setEvent] = useState<Event | null>(null);
     const [loading, setLoading] = useState(true);
+    const [isJoining, setIsJoining] = useState(false);
 
     useEffect(() => {
         setLoading(true);
-        // Simulate fetching data
-        setTimeout(() => {
-            const foundEvent = dummyEvents[id];
-            if (foundEvent) {
-                setEvent(foundEvent);
-            }
-            setLoading(false);
-        }, 500);
+        // Simulate fetching data by finding the event in dummy data
+        const foundEvent = dummyEvents.find(e => e.id === id);
+        if (foundEvent) {
+            setEvent(foundEvent);
+        }
+        setLoading(false);
     }, [id]);
+
+    const handleShare = () => {
+        if (!event) return;
+        navigator.clipboard.writeText(event.id);
+        toast({ title: "Copied to clipboard!", description: `Event code "${event.id}" has been copied.`})
+    }
+
+    const handleJoin = async () => {
+        if (!user || !event) return;
+        setIsJoining(true);
+        const formData = new FormData();
+        formData.append('eventCode', event.id);
+        formData.append('userId', user.uid);
+        const result = await joinEventAction(formData);
+        setIsJoining(false);
+
+        if (result.success) {
+            toast({ title: "Joined Event!", description: `You have successfully joined "${event.name}".`});
+        } else {
+            toast({ title: "Error", description: result.error, variant: "destructive" });
+        }
+    }
+    
+    const participants = event ? dummyUsers.filter(u => event.participants.includes(u.uid)) : [];
 
     if (loading) {
         return <div className="flex h-screen items-center justify-center"><Loader className="h-12 w-12 animate-spin" /></div>;
@@ -61,15 +70,6 @@ export default function EventDetailsPage() {
         return notFound();
     }
 
-    const handleShare = () => {
-        navigator.clipboard.writeText(event.id);
-        toast({ title: "Copied to clipboard!", description: `Event code "${event.id}" has been copied.`})
-    }
-
-    const handleJoin = () => {
-        // UI only
-        toast({ title: "Joined Event (UI Only)", description: `You have joined "${event.name}".`})
-    }
 
     return (
         <div className="flex-1">
@@ -122,13 +122,13 @@ export default function EventDetailsPage() {
 
                     <Card>
                         <CardHeader>
-                            <CardTitle>Participants ({event.participants.length})</CardTitle>
+                            <CardTitle>Participants ({participants.length})</CardTitle>
                             <CardDescription>Browse participants and find potential teammates.</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                                {event.participants.map((p, i) => (
-                                    <Card key={i} className="p-4 text-center">
+                                {participants.map((p) => (
+                                    <Card key={p.uid} className="p-4 text-center">
                                         <Avatar className="mx-auto h-16 w-16 mb-2">
                                             <AvatarImage src={p.photoURL ?? undefined} />
                                             <AvatarFallback>{p.fullName.charAt(0)}</AvatarFallback>
@@ -147,8 +147,9 @@ export default function EventDetailsPage() {
                 <div className="lg:col-span-1 space-y-6 sticky top-24">
                      <Card>
                         <CardContent className="p-6 flex flex-col gap-4">
-                           <Button size="lg" className="w-full" onClick={handleJoin}>
-                                <DoorOpen className="mr-2 h-5 w-5"/> Join Event
+                           <Button size="lg" className="w-full" onClick={handleJoin} disabled={isJoining}>
+                                {isJoining ? <Loader className="mr-2 h-4 w-4 animate-spin"/> : <DoorOpen className="mr-2 h-5 w-5"/>}
+                                Join Event
                             </Button>
                              <Button variant="outline" className="w-full" onClick={handleShare}>
                                 <Share2 className="mr-2 h-4 w-4"/> Share Event Code
