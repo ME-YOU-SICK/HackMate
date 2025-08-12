@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,6 +16,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { auth } from "@/lib/firebase";
 import { signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 
 const GoogleIcon = () => (
@@ -37,6 +38,14 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isProviderLoading, setIsProviderLoading] = useState<null | 'google' | 'github'>(null);
+
+  const [user, authLoading] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      router.push('/dashboard');
+    }
+  }, [user, router]);
 
 
   const handleSignup = async (e: React.FormEvent) => {
@@ -83,7 +92,11 @@ export default function SignupPage() {
                 title: "Account Created!",
                 description: "Welcome to HackMate!",
             });
-            router.push(serverResult.isNewUser ? '/dashboard/onboarding' : '/dashboard');
+            if (serverResult.isNewUser) {
+                router.push('/dashboard/onboarding');
+            } else {
+                router.push('/dashboard');
+            }
         } else {
             setError(serverResult.error || "An unexpected error occurred during profile processing.");
         }
@@ -98,6 +111,14 @@ export default function SignupPage() {
         setIsProviderLoading(null);
     }
   };
+
+  if (authLoading || user) {
+      return (
+          <div className="flex h-screen items-center justify-center">
+              <Loader className="h-12 w-12 animate-spin" />
+          </div>
+      )
+  }
 
 
   return (
@@ -128,7 +149,7 @@ export default function SignupPage() {
                         <RadioGroupItem value="participant" id="participant" className="peer sr-only" />
                         <Label
                             htmlFor="participant"
-                            className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                            className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
                         >
                             Participant
                         </Label>
@@ -137,7 +158,7 @@ export default function SignupPage() {
                          <RadioGroupItem value="organizer" id="organizer" className="peer sr-only" />
                         <Label
                              htmlFor="organizer"
-                            className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                            className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary cursor-pointer"
                         >
                             Organizer
                         </Label>

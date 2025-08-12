@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -15,6 +15,7 @@ import { Loader, Github } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { auth } from "@/lib/firebase";
 import { signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 
 const GoogleIcon = () => (
@@ -35,6 +36,15 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isProviderLoading, setIsProviderLoading] = useState<null | 'google' | 'github'>(null);
 
+  const [user, authLoading] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      router.push('/dashboard');
+    }
+  }, [user, router]);
+
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -49,7 +59,7 @@ export default function LoginPage() {
         title: "Success",
         description: "Logged in successfully!",
       });
-      router.push('/dashboard');
+      // The useEffect will handle the redirect
     } else {
       setError(result.error || "An unexpected error occurred.");
     }
@@ -72,7 +82,10 @@ export default function LoginPage() {
                 title: "Success",
                 description: "Logged in successfully!",
             });
-            router.push(serverResult.isNewUser ? '/dashboard/onboarding' : '/dashboard');
+            // The useEffect will handle the redirect to dashboard, or onboarding if needed
+            if (serverResult.isNewUser) {
+                router.push('/dashboard/onboarding');
+            }
         } else {
             setError(serverResult.error || "An unexpected error occurred during profile processing.");
         }
@@ -88,6 +101,13 @@ export default function LoginPage() {
     }
   };
 
+  if (authLoading || user) {
+      return (
+          <div className="flex h-screen items-center justify-center">
+              <Loader className="h-12 w-12 animate-spin" />
+          </div>
+      )
+  }
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4 bg-secondary/50">

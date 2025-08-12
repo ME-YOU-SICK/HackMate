@@ -7,7 +7,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
-  deleteUser,
 } from "firebase/auth";
 import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
 
@@ -21,6 +20,7 @@ export async function signUpWithEmailAndPassword(email: string, password: string
         uid: userCredential.user.uid,
         email: userCredential.user.email,
         fullName: fullName,
+        photoURL: userCredential.user.photoURL,
         role: role,
         visibility: 'public',
         showPastProjects: true,
@@ -55,7 +55,7 @@ export async function processProviderSignIn(uid: string, email: string | null, d
         email: email,
         fullName: displayName,
         photoURL: photoURL,
-        role: role,
+        role: role, // Role is required for new users
         visibility: 'public',
         showPastProjects: true,
         showSocialLinks: true,
@@ -81,8 +81,8 @@ export async function deleteUserAccountAction(userId: string) {
     try {
         const userRef = doc(db, 'users', userId);
         await deleteDoc(userRef);
-        // Deleting from Firebase Auth should be handled on the client-side
-        // after reauthentication for security reasons. We just delete the DB record here.
+        // Deleting from Firebase Auth is now handled on the client-side
+        // after reauthentication for security reasons.
         return { success: true };
     } catch (error: any) {
         return { success: false, error: "Failed to delete user data from database." };

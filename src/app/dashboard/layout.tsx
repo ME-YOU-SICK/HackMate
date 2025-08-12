@@ -31,11 +31,21 @@ export default function DashboardLayout({
     );
   }
 
+  if (error) {
+     return (
+       <div className="flex h-screen items-center justify-center">
+        <p>An error occurred. Please try again later.</p>
+      </div>
+    )
+  }
+
   if (!user) {
     // This can show briefly before the redirect happens, or if the redirect fails.
+    // Or it can be a loader itself while redirecting.
     return (
        <div className="flex h-screen items-center justify-center">
-        <p>Redirecting to login...</p>
+        <Loader className="h-12 w-12 animate-spin" />
+        <p className="ml-4">Redirecting to login...</p>
       </div>
     )
   }
