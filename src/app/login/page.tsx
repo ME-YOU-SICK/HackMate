@@ -110,8 +110,13 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4 bg-secondary/50">
-      <Card className="w-full max-w-md">
+    <div className="relative flex items-center justify-center min-h-screen p-4 overflow-hidden">
+        <div aria-hidden="true" className="absolute inset-0 z-0 grid place-items-center">
+            <div className="absolute h-[500px] w-[500px] -translate-x-[50%] -translate-y-[50%] rounded-full bg-purple-500/30 opacity-50 blur-[150px] animate-blob-1"></div>
+            <div className="absolute h-[300px] w-[600px] translate-x-[20%] translate-y-[30%] rounded-full bg-purple-700/30 opacity-40 blur-[120px] animate-blob-2"></div>
+            <div className="absolute h-[400px] w-[400px] -translate-x-[25%] translate-y-[50%] rounded-full bg-blue-500/30 opacity-50 blur-[150px] animate-blob-3"></div>
+        </div>
+      <Card className="w-full max-w-md z-10">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
             <Logo />
