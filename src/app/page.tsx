@@ -32,16 +32,16 @@ export default function Home() {
            <div className="absolute inset-0 z-0 overflow-hidden">
                 <div className="absolute inset-0 bg-background opacity-50 z-[-1]"></div>
                  <div 
-                    className="absolute w-[40vw] h-[40vw] rounded-full bg-gradient-to-tr from-rose-400 to-orange-300 opacity-60 dark:opacity-30 blur-3xl"
-                    style={{ top: '10%', left: '15%', animation: 'blob-move-1 18s ease-in-out infinite alternate' }}>
+                    className="absolute w-[35vw] h-[35vw] rounded-full bg-gradient-to-tr from-rose-400 to-orange-300 opacity-60 dark:opacity-30 blur-3xl"
+                    style={{ top: '50%', left: '5%', animation: 'blob-move-1 20s ease-in-out infinite alternate' }}>
                 </div>
                 <div 
-                    className="absolute w-[45vw] h-[45vw] rounded-full bg-gradient-to-tr from-purple-500 to-cyan-400 opacity-60 dark:opacity-30 blur-3xl"
-                    style={{ top: '30%', left: '50%', animation: 'blob-move-2 22s ease-in-out infinite alternate' }}>
+                    className="absolute w-[40vw] h-[40vw] rounded-full bg-gradient-to-tr from-purple-500 to-cyan-400 opacity-60 dark:opacity-30 blur-3xl"
+                    style={{ top: '10%', left: '30%', animation: 'blob-move-2 24s ease-in-out infinite alternate' }}>
                 </div>
                  <div 
                     className="absolute w-[35vw] h-[35vw] rounded-full bg-gradient-to-tr from-pink-500 to-yellow-400 opacity-50 dark:opacity-20 blur-3xl"
-                    style={{ top: '50%', left: '20%', animation: 'blob-move-3 20s ease-in-out infinite alternate' }}>
+                    style={{ top: '40%', left: '60%', animation: 'blob-move-3 18s ease-in-out infinite alternate' }}>
                 </div>
             </div>
            <div className="absolute inset-0 z-[1] bg-[url(/glitter.png)] bg-repeat opacity-[0.08] dark:opacity-[0.07]"></div>
