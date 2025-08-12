@@ -50,17 +50,17 @@ export function DashboardNav() {
 
   const NavLink = ({ href, icon, label }: { href: string, icon: React.ReactNode, label: string }) => (
       <SidebarMenuItem>
-          <Link href={href} passHref legacyBehavior>
+          <Link href={href} passHref>
               <SidebarMenuButton
                   isActive={pathname === href}
                   isCollapsed={isCollapsed}
                   tooltip={label}
                   asChild
               >
-                  <a>
+                  <span>
                       {icon}
                       <span>{label}</span>
-                  </a>
+                  </span>
               </SidebarMenuButton>
           </Link>
       </SidebarMenuItem>
