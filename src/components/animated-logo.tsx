@@ -24,58 +24,55 @@ const getRandomChar = (char: string) => {
 };
 
 export function AnimatedLogo() {
-  const [fontIndex, setFontIndex] = useState(0);
   const [displayText, setDisplayText] = useState(originalText);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [fontIndex, setFontIndex] = useState(0);
 
   useEffect(() => {
-    const fontInterval = setInterval(() => {
-      setIsAnimating(true);
-      
-      // Scramble text
-      let scrambleCount = 0;
-      const scrambleInterval = setInterval(() => {
-        setDisplayText(
-          originalText
-            .split('')
-            .map(char => (Math.random() > 0.3 ? getRandomChar(char) : char))
-            .join('')
-        );
-        scrambleCount++;
-        if (scrambleCount > 5) {
-          clearInterval(scrambleInterval);
-          // Restore text and change font
-          setDisplayText(originalText);
-          setFontIndex(prevIndex => (prevIndex + 1) % fonts.length);
-          setIsAnimating(false);
-        }
-      }, 80);
+    const interval = setInterval(() => {
+        // Cycle through fonts
+        setFontIndex(prevIndex => (prevIndex + 1) % fonts.length);
+        
+        // Scramble letters with a staggered effect
+        originalText.split('').forEach((char, index) => {
+            setTimeout(() => {
+                setDisplayText(prev => {
+                    const newText = prev.split('');
+                    newText[index] = getRandomChar(char);
+                    return newText.join('');
+                });
+                // After a short delay, revert back to original character
+                setTimeout(() => {
+                    setDisplayText(prev => {
+                         const newText = prev.split('');
+                         newText[index] = originalText[index];
+                         return newText.join('');
+                    });
+                }, 200);
+            }, index * 100); 
+        });
 
     }, 3000);
 
-    return () => {
-      clearInterval(fontInterval);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <h1
+    <div
       className={cn(
         "text-6xl md:text-8xl font-bold tracking-widest mb-8 transition-all duration-500 ease-in-out text-center flex items-center justify-center h-28 md:h-40",
-        fonts[fontIndex],
-        isAnimating ? "opacity-80" : "opacity-100"
+        fonts[fontIndex]
       )}
       aria-label="HackMate"
     >
       {displayText.split('').map((char, index) => (
         <span
           key={index}
-          className="inline-block transition-all duration-200 ease-in-out"
-          style={{ animationDelay: `${index * 50}ms` }}
+          className="inline-block transition-all duration-300 ease-in-out text-center"
+          style={{ width: '1ch' }} // Prevent layout shift
         >
           {char}
         </span>
       ))}
-    </h1>
+    </div>
   );
 }
