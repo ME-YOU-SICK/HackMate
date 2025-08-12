@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -25,10 +26,18 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative min-h-screen w-full overflow-hidden">
           <div className="absolute inset-0 z-0 h-full w-full bg-slate-950">
+            {/* Top-Center Blob */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               <div
                 className="animate-blob-spin h-[80vw] w-[80vw] bg-gradient-to-br from-orange-500/20 via-pink-500/20 to-purple-500/20"
                 style={{ borderRadius: '47% 53% 70% 30% / 30% 62% 38% 70%' }}
+              />
+            </div>
+             {/* Bottom-Right Blob */}
+            <div className="absolute bottom-0 right-0 -translate-x-1/4 translate-y-1/4">
+               <div
+                className="h-[50vw] w-[50vw] animate-blob-spin bg-gradient-to-tl from-green-500/10 via-teal-500/10 to-blue-500/20 [animation-delay:-5s]"
+                style={{ borderRadius: '70% 30% 47% 53% / 62% 38% 70% 30%' }}
               />
             </div>
             <div className="glitter-texture" />
