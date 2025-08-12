@@ -1,10 +1,17 @@
+
+'use client';
+
+import { useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import EventCard from '@/components/event-card';
+import PopularFeed from '@/components/popular-feed';
 
 export default function DashboardPage() {
+  const [feedType, setFeedType] = useState('events');
+
   const suggestedUsers = [
     {
       name: 'Alex Turing',
@@ -34,7 +41,14 @@ export default function DashboardPage() {
       {/* Main Content */}
       <div className="lg:col-span-2">
         <div className="mb-6 flex items-center justify-between">
-          <ToggleGroup type="single" defaultValue="events" className="justify-start">
+          <ToggleGroup
+            type="single"
+            defaultValue="events"
+            className="justify-start"
+            onValueChange={(value) => {
+              if (value) setFeedType(value);
+            }}
+          >
             <ToggleGroupItem value="events" aria-label="Toggle events">
               Events
             </ToggleGroupItem>
@@ -43,11 +57,15 @@ export default function DashboardPage() {
             </ToggleGroupItem>
           </ToggleGroup>
         </div>
-        <div className="space-y-6">
-          <EventCard />
-          <EventCard />
-          <EventCard />
-        </div>
+        {feedType === 'events' ? (
+          <div className="space-y-6">
+            <EventCard />
+            <EventCard />
+            <EventCard />
+          </div>
+        ) : (
+          <PopularFeed />
+        )}
       </div>
 
       {/* Right Sidebar */}
