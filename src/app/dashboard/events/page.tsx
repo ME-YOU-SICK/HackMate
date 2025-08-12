@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -6,15 +7,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MobileHeader } from "@/components/ui/sidebar";
 import { Calendar, PlusCircle, Users } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const upcomingEvents = [
-    { name: "AI Global Hackathon 2024", date: "October 26-27, 2024", participants: 1500, description: "Join developers from around the world to solve real-world problems using AI.", image: "https://placehold.co/600x400.png" },
-    { name: "Future of Web3 Summit", date: "November 12, 2024", participants: 800, description: "A summit for blockchain enthusiasts and developers to explore the future of decentralized applications.", image: "https://placehold.co/600x400.png" },
+    { id: "ai-global-hackathon-2024", name: "AI Global Hackathon 2024", date: "October 26-27, 2024", participants: 1500, description: "Join developers from around the world to solve real-world problems using AI.", image: "https://placehold.co/600x400.png" },
+    { id: "future-of-web3-summit", name: "Future of Web3 Summit", date: "November 12, 2024", participants: 800, description: "A summit for blockchain enthusiasts and developers to explore the future of decentralized applications.", image: "https://placehold.co/600x400.png" },
 ];
 
 const pastEvents = [
-    { name: "Innovate & Create Hack Day", date: "June 15, 2024", participants: 500, description: "A 24-hour hackathon focused on building innovative solutions for social good.", image: "https://placehold.co/600x400.png" },
-    { name: "Design-a-thon: UI/UX Challenge", date: "May 20, 2024", participants: 350, description: "A creative challenge for designers to showcase their UI/UX skills.", image: "https://placehold.co/600x400.png" },
+    { id: "innovate-create-hack-day", name: "Innovate & Create Hack Day", date: "June 15, 2024", participants: 500, description: "A 24-hour hackathon focused on building innovative solutions for social good.", image: "https://placehold.co/600x400.png" },
+    { id: "design-a-thon-ui-ux-challenge", name: "Design-a-thon: UI/UX Challenge", date: "May 20, 2024", participants: 350, description: "A creative challenge for designers to showcase their UI/UX skills.", image: "https://placehold.co/600x400.png" },
 ];
 
 export default function EventsPage() {
@@ -55,7 +57,9 @@ export default function EventsPage() {
                                         </div>
                                     </CardContent>
                                     <CardFooter className="p-4">
-                                        <Button className="w-full">View Details</Button>
+                                        <Button className="w-full" asChild>
+                                            <Link href={`/dashboard/events/${event.id}`}>View Details</Link>
+                                        </Button>
                                     </CardFooter>
                                 </Card>
                             ))}
@@ -81,7 +85,9 @@ export default function EventsPage() {
                                         </div>
                                     </CardContent>
                                     <CardFooter className="p-4">
-                                        <Button className="w-full" variant="outline" disabled>View Details</Button>
+                                        <Button className="w-full" variant="outline" asChild disabled>
+                                             <Link href={`/dashboard/events/${event.id}`}>View Details</Link>
+                                        </Button>
                                     </CardFooter>
                                 </Card>
                             ))}
