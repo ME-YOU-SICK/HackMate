@@ -1,3 +1,4 @@
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,7 +17,12 @@ export default function EventCard() {
           <Link href="/events/1">
             <CardTitle className="text-base font-bold hover:underline">Hackathon 2024</CardTitle>
           </Link>
-          <p className="text-sm text-slate-400">Hosted by AI Innovators</p>
+          <p className="text-sm text-slate-400">
+            Hosted by{' '}
+            <Link href="/organizer/1" className="font-semibold hover:underline">
+              AI Innovators
+            </Link>
+          </p>
         </div>
       </CardHeader>
       <CardContent className="p-0">
