@@ -36,7 +36,7 @@ export default function Home() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative w-full py-24 md:py-32 lg:py-40 overflow-hidden">
+        <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
           <div aria-hidden="true" className="absolute inset-0 z-0 grid place-items-center">
               <div className="absolute h-[500px] w-[500px] -translate-x-[50%] -translate-y-[50%] rounded-full bg-purple-500/30 opacity-50 blur-[150px] animate-blob-1"></div>
               <div className="absolute h-[300px] w-[600px] translate-x-[20%] translate-y-[30%] rounded-full bg-purple-700/30 opacity-40 blur-[120px] animate-blob-2"></div>
