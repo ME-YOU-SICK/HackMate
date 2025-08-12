@@ -1,13 +1,12 @@
 
 "use client";
 
-import { SidebarProvider, Sidebar, SidebarInset, MobileHeader } from "@/components/ui/sidebar";
+import { SidebarProvider, Sidebar, SidebarInset } from "@/components/ui/sidebar";
 import { DashboardNav } from "@/components/dashboard-nav";
-import { Logo } from "@/components/logo";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Loader } from "lucide-react";
 
 export default function DashboardLayout({
@@ -17,27 +16,18 @@ export default function DashboardLayout({
 }) {
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
-  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-        setInitialLoad(false);
-    }, 1500); // A buffer to ensure Firebase auth state is synced
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (!loading && !user && !initialLoad) {
+    if (!loading && !user) {
       router.push('/login');
     }
     if (error) {
       console.error("Authentication error:", error);
       router.push('/login');
     }
-  }, [user, loading, error, router, initialLoad]);
+  }, [user, loading, error, router]);
 
-  if (loading || initialLoad) {
+  if (loading) {
     return (
       <div className="flex h-screen items-center justify-center">
         <Loader className="h-12 w-12 animate-spin" />
@@ -60,6 +50,7 @@ export default function DashboardLayout({
     );
   }
   
+  // This will be shown briefly before the redirect logic in useEffect kicks in.
   return (
     <div className="flex h-screen items-center justify-center">
       <Loader className="h-12 w-12 animate-spin" />
