@@ -37,8 +37,10 @@ export default function Header({ variant = 'dashboard' }: HeaderProps) {
                <Button asChild variant="ghost" size="sm">
                   <Link href="/teamify"><Users className="mr-2 h-4 w-4" />Teamify</Link>
               </Button>
-              <Button variant="ghost" size="icon">
-                <PlusCircle className="h-5 w-5" />
+              <Button asChild variant="ghost" size="icon">
+                <Link href="/events/create">
+                  <PlusCircle className="h-5 w-5" />
+                </Link>
               </Button>
               <Popover>
                 <PopoverTrigger asChild>
