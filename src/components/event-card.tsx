@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bookmark, MessageCircle, Heart, Send } from 'lucide-react';
+import { Bookmark, Share2 } from 'lucide-react';
 
 export default function EventCard() {
   return (
@@ -24,29 +24,21 @@ export default function EventCard() {
           data-ai-hint="hackathon event"
         />
       </CardContent>
-      <CardFooter className="flex flex-col items-start p-4">
+      <CardFooter className="flex-col items-start p-4">
         <div className="flex w-full items-center justify-between">
-          <div className="flex space-x-4">
-            <Button variant="ghost" size="icon">
-              <Heart className="h-6 w-6" />
-            </Button>
-            <Button variant="ghost" size="icon">
-              <MessageCircle className="h-6 w-6" />
-            </Button>
-            <Button variant="ghost" size="icon">
-              <Send className="h-6 w-6" />
+          <div className="flex space-x-2">
+            <Button className="bg-orange-500 text-white hover:bg-orange-600">Join Event</Button>
+            <Button variant="outline" size="icon">
+              <Share2 className="h-5 w-5" />
             </Button>
           </div>
-          <Button variant="ghost" size="icon">
-            <Bookmark className="h-6 w-6" />
+          <Button variant="outline" size="icon">
+            <Bookmark className="h-5 w-5" />
           </Button>
         </div>
-        <p className="mt-2 text-sm font-semibold">1,234 likes</p>
-        <p className="mt-2 text-sm">
-          <span className="font-bold">Hackathon 2024</span> Join us for a weekend of innovation...{' '}
-          <span className="cursor-pointer text-slate-400">more</span>
+        <p className="mt-4 text-sm">
+          <span className="font-bold">Hackathon 2024:</span> Join us for a weekend of innovation, collaboration, and coding. Build amazing projects, learn new skills, and connect with fellow developers.
         </p>
-        <p className="mt-2 cursor-pointer text-sm text-slate-400">View all 42 comments</p>
         <p className="mt-2 text-xs text-slate-500">2 DAYS AGO</p>
       </CardFooter>
     </Card>
