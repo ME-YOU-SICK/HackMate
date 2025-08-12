@@ -5,8 +5,6 @@ import { SidebarProvider, Sidebar, SidebarInset } from "@/components/ui/sidebar"
 import { DashboardNav } from "@/components/dashboard-nav";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/lib/firebase";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { Loader } from "lucide-react";
 
 export default function DashboardLayout({
@@ -15,13 +13,6 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [user, loading, error] = useAuthState(auth);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push('/login');
-    }
-  }, [user, loading, router]);
 
   if (loading) {
     return (
@@ -40,12 +31,15 @@ export default function DashboardLayout({
   }
 
   if (!user) {
-    // This state can be shown briefly before the redirect in useEffect completes.
-    // It's a good practice to show a loading state here as well.
-    return (
+    // We can't redirect from here as it causes loops.
+    // The page components themselves should handle auth checks if needed,
+    // or a middleware approach should be used. For now, we prevent the redirect.
+    // A user seeing this page without being logged in should be an edge case
+    // if entry points (login, signup) work correctly.
+     return (
        <div className="flex h-screen items-center justify-center">
         <Loader className="h-12 w-12 animate-spin" />
-        <p className="ml-4">Redirecting to login...</p>
+        <p className="ml-4">Authenticating...</p>
       </div>
     )
   }
