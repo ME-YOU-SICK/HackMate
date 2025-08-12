@@ -10,25 +10,18 @@ export interface UserProfile {
   email: string;
   photoURL?: string | null;
   role: 'participant' | 'organizer';
-  title?: string;
-  bio?: string;
-  city?: string;
-  graduationYear?: number;
   age?: number;
+  city?: string;
+  techStack?: string[];
   skills?: string[];
-  tech?: string[];
-  pastEvents?: { name: string; role: string }[];
-  pastProjects?: { name: string; description: string; url?: string }[];
-  connections?: string[]; // Array of user UIDs
+  pastHackathons?: string;
+  pastProjects?: string;
   socials?: {
-    twitter?: string;
-    linkedin?: string;
     github?: string;
+    linkedin?: string;
   };
-  // Settings fields
-  visibility?: 'public' | 'event-only' | 'private';
-  showPastProjects?: boolean;
-  showSocialLinks?: boolean;
+  followers?: number;
+  following?: number;
 }
 
 export interface Event {
@@ -36,13 +29,11 @@ export interface Event {
     name: string;
     description: string;
     dateRange: { from: string; to: string };
-    location: string;
+    techStack: string[];
+    requiredSkills: string[];
+    maxTeamSize: number;
+    participants: UserProfile[];
     imageUrl?: string;
-    organizerId: string;
-    participants: string[]; // Array of user UIDs
-    allowedTech?: string[];
-    maxTeamMembers?: number;
-    createdAt: Timestamp;
 }
 
 

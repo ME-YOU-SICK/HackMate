@@ -25,7 +25,7 @@ import {
   ToyBrick,
   Lightbulb,
   FileText,
-  Python,
+  Python as PythonIcon,
   GitBranch,
   Rocket,
   Atom,
@@ -33,7 +33,7 @@ import {
   Network
 } from 'lucide-react';
 import { SiJavascript, SiTypescript, SiJava, SiCplusplus, SiGo, SiRust, SiKotlin, SiSwift, SiPhp, SiRuby, SiDart, SiR, SiElixir, SiHaskell, SiGnubash } from 'react-icons/si';
-import { FaReact, FaVuejs, FaAngular, FaBootstrap, FaNodeJs, FaPython, FaJava, FaDocker, FaAws, FaDigitalOcean, FaStripe, FaTwilio } from 'react-icons/fa';
+import { FaReact, FaVuejs, FaAngular, FaBootstrap, FaNodeJs, FaPython, FaDocker, FaAws, FaDigitalOcean } from 'react-icons/fa';
 import { SiNextdotjs, SiNuxtdotjs, SiSvelte, SiSolid, SiAstro, SiJquery, SiThreedotjs, SiTailwindcss, SiChakraui, SiMui, SiExpress, SiFastify, SiNestjs, SiDjango, SiFlask, SiSpringboot, SiDotnet, SiLaravel, SiRubyonrails, SiAdonisjs, SiPostgresql, SiMysql, SiSqlite, SiMongodb, SiRedis, SiMariadb, SiSupabase, SiPlanetscale, SiVercel, SiNetlify, SiRailway, SiKubernetes, SiTerraform, SiCloudflare, SiTensorflow, SiPytorch, SiScikitlearn, SiHuggingface, SiOpencv, SiLangchain, SiKeras, SiEthereum, SiSolana, SiBinance, SiIonic, SiCapacitor, SiPrisma, SiGraphql, SiMqtt, SiStripe, SiTwilio, SiSendgrid, SiZapier } from 'react-icons/si';
 
 
@@ -191,4 +191,9 @@ export const technologies = [
   { id: 'twilio-api', label: 'Twilio API', icon: <SiTwilio {...iconProps} /> },
   { id: 'sendgrid', label: 'SendGrid', icon: <SiSendgrid {...iconProps} /> },
   { id: 'zapier', label: 'Zapier', icon: <SiZapier {...iconProps} /> },
+];
+
+export const skills = [
+  ...roles.map(r => ({id: r.id, label: r.label})),
+  ...technologies.map(t => ({id: t.id, label: t.label})),
 ];

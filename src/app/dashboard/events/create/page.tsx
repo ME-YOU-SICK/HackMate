@@ -16,51 +16,81 @@ import { format } from 'date-fns';
 import { Calendar } from '@/components/ui/calendar';
 import type { DateRange } from 'react-day-picker';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { createEventAction } from '@/app/actions/create-event.action';
 import { useToast } from '@/hooks/use-toast';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '@/lib/firebase';
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { technologies, skills } from '@/lib/data';
+import { Checkbox } from '@/components/ui/checkbox';
+import { ScrollArea } from '@/components/ui/scroll-area';
+
+const createEventSchema = z.object({
+  eventName: z.string().min(3, "Event name must be at least 3 characters."),
+  eventDescription: z.string().min(10, "Description must be at least 10 characters."),
+  techStack: z.array(z.string()).min(1, "Please select at least one technology."),
+  requiredSkills: z.array(z.string()).min(1, "Please select at least one skill."),
+  maxTeamSize: z.coerce.number().min(1, "Max team size must be at least 1.").max(10, "Max team size cannot exceed 10."),
+  dateRange: z.any().refine(val => val?.from, "Please select a date range."),
+});
+
+
+const MultiSelectGrid = ({ title, items, field }: { title: string, items: { id: string, label: string }[], field: any }) => (
+    <div>
+        <h3 className="text-lg font-medium mb-2">{title}</h3>
+        <ScrollArea className="h-48 border rounded-md">
+            <div className="p-4 grid grid-cols-2 md:grid-cols-3 gap-4">
+                {items.map((item) => (
+                    <div key={item.id} className="flex items-center space-x-2">
+                        <Checkbox 
+                            id={item.id}
+                            checked={field.value?.includes(item.id)}
+                            onCheckedChange={(checked) => {
+                                return checked
+                                    ? field.onChange([...(field.value || []), item.id])
+                                    : field.onChange(field.value?.filter((value: string) => value !== item.id))
+                            }}
+                        />
+                        <label
+                            htmlFor={item.id}
+                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                            {item.label}
+                        </label>
+                    </div>
+                ))}
+            </div>
+        </ScrollArea>
+    </div>
+);
+
 
 export default function CreateEventPage() {
     const { toast } = useToast();
-    const [user] = useAuthState(auth);
-    const [date, setDate] = useState<DateRange | undefined>();
     const [eventCode, setEventCode] = useState('');
     const [isCopied, setIsCopied] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (!user) {
-             toast({
-                title: "Authentication Error",
-                description: "You must be logged in to create an event.",
-                variant: "destructive"
-            });
-            return;
+    const { register, handleSubmit, control, formState: { errors } } = useForm({
+        resolver: zodResolver(createEventSchema),
+        defaultValues: {
+            eventName: "",
+            eventDescription: "",
+            techStack: [],
+            requiredSkills: [],
+            maxTeamSize: 4,
+            dateRange: undefined,
         }
+    });
 
+    const onSubmit = async (data: any) => {
         setIsSubmitting(true);
-
-        const formData = new FormData(e.currentTarget);
-        formData.append('dateRange', JSON.stringify(date || {}));
-        formData.append('organizerId', user.uid);
-
-        const result = await createEventAction(formData);
-
+        // UI only
+        await new Promise(resolve => setTimeout(resolve, 1500));
         setIsSubmitting(false);
-
-        if (result.success && result.eventCode) {
-            setEventCode(result.eventCode);
-            setIsDialogOpen(true);
-        } else {
-            toast({
-                title: "Error Creating Event",
-                description: result.error || "An unexpected error occurred.",
-                variant: "destructive"
-            });
-        }
+        setEventCode("DUMMY1");
+        setIsDialogOpen(true);
+        toast({ title: "Event Created (UI Only)", description: "Your event has been created successfully." });
     };
 
     const copyToClipboard = () => {
@@ -89,64 +119,85 @@ export default function CreateEventPage() {
                         <CardDescription>Fill out the form below to create your event.</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <form onSubmit={handleSubmit} className="space-y-6">
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                             <div className="space-y-2">
                                 <Label htmlFor="eventName">Event Name</Label>
-                                <Input name="eventName" id="eventName" placeholder="e.g., AI Global Hackathon 2024" required />
+                                <Input id="eventName" placeholder="e.g., AI Global Hackathon 2024" {...register("eventName")} />
+                                {errors.eventName && <p className="text-sm text-destructive">{errors.eventName.message}</p>}
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="eventDescription">Event Description</Label>
-                                <Textarea name="eventDescription" id="eventDescription" placeholder="Describe your event..." rows={5} required />
+                                <Textarea id="eventDescription" placeholder="Describe your event..." rows={5} {...register("eventDescription")} />
+                                {errors.eventDescription && <p className="text-sm text-destructive">{errors.eventDescription.message}</p>}
                             </div>
                              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <Label>Event Dates</Label>
-                                     <Popover>
-                                        <PopoverTrigger asChild>
-                                        <Button
-                                            id="date"
-                                            variant={"outline"}
-                                            className={cn(
-                                            "w-full justify-start text-left font-normal",
-                                            !date && "text-muted-foreground"
-                                            )}
-                                        >
-                                            <CalendarIcon className="mr-2 h-4 w-4" />
-                                            {date?.from ? (
-                                            date.to ? (
-                                                <>
-                                                {format(date.from, "LLL dd, y")} -{" "}
-                                                {format(date.to, "LLL dd, y")}
-                                                </>
-                                            ) : (
-                                                format(date.from, "LLL dd, y")
-                                            )
-                                            ) : (
-                                            <span>Pick a date range</span>
-                                            )}
-                                        </Button>
-                                        </PopoverTrigger>
-                                        <PopoverContent className="w-auto p-0" align="start">
-                                        <Calendar
-                                            initialFocus
-                                            mode="range"
-                                            defaultMonth={date?.from}
-                                            selected={date}
-                                            onSelect={setDate}
-                                            numberOfMonths={2}
-                                        />
-                                        </PopoverContent>
-                                    </Popover>
+                                    <Controller
+                                        name="dateRange"
+                                        control={control}
+                                        render={({ field }) => (
+                                            <Popover>
+                                                <PopoverTrigger asChild>
+                                                <Button
+                                                    id="date"
+                                                    variant={"outline"}
+                                                    className={cn(
+                                                    "w-full justify-start text-left font-normal",
+                                                    !field.value && "text-muted-foreground"
+                                                    )}
+                                                >
+                                                    <CalendarIcon className="mr-2 h-4 w-4" />
+                                                    {field.value?.from ? (
+                                                    field.value.to ? (
+                                                        <>
+                                                        {format(field.value.from, "LLL dd, y")} -{" "}
+                                                        {format(field.value.to, "LLL dd, y")}
+                                                        </>
+                                                    ) : (
+                                                        format(field.value.from, "LLL dd, y")
+                                                    )
+                                                    ) : (
+                                                    <span>Pick a date range</span>
+                                                    )}
+                                                </Button>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-auto p-0" align="start">
+                                                <Calendar
+                                                    initialFocus
+                                                    mode="range"
+                                                    defaultMonth={field.value?.from}
+                                                    selected={field.value}
+                                                    onSelect={field.onChange}
+                                                    numberOfMonths={2}
+                                                />
+                                                </PopoverContent>
+                                            </Popover>
+                                        )}
+                                    />
+                                    {errors.dateRange && <p className="text-sm text-destructive">A date range is required.</p>}
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor="location">Location</Label>
-                                    <Input name="location" id="location" placeholder="e.g., Virtual or San Francisco, CA" required />
+                                    <Label htmlFor="maxTeamSize">Max Team Size</Label>
+                                    <Input id="maxTeamSize" type="number" {...register("maxTeamSize")} />
+                                    {errors.maxTeamSize && <p className="text-sm text-destructive">{errors.maxTeamSize.message}</p>}
                                 </div>
                             </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="imageUrl">Event Banner Image URL (Optional)</Label>
-                                <Input name="imageUrl" id="imageUrl" placeholder="https://placehold.co/1200x400.png" />
-                            </div>
+
+                             <Controller
+                                name="techStack"
+                                control={control}
+                                render={({ field }) => <MultiSelectGrid title="Allowed Tech Stack" items={technologies} field={field} />}
+                            />
+                            {errors.techStack && <p className="text-sm text-destructive">{errors.techStack.message}</p>}
+                            
+                            <Controller
+                                name="requiredSkills"
+                                control={control}
+                                render={({ field }) => <MultiSelectGrid title="Required Skills" items={skills} field={field} />}
+                            />
+                            {errors.requiredSkills && <p className="text-sm text-destructive">{errors.requiredSkills.message}</p>}
+                            
                             <Button type="submit" size="lg" disabled={isSubmitting}>
                                 {isSubmitting ? (
                                     <><Loader className="mr-2 h-4 w-4 animate-spin" /> Creating...</>

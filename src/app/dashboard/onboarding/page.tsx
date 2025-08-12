@@ -7,19 +7,13 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, ArrowRight, CheckCircle, PartyPopper, User, Tag, Trophy, X, Loader, Upload, Github } from 'lucide-react';
-import Link from 'next/link';
-import { Logo } from '@/components/logo';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { auth } from '@/lib/firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { ArrowLeft, ArrowRight, CheckCircle, PartyPopper, User, Tag, Trophy, Loader, Github, Linkedin } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { updateUserProfile } from '@/lib/db';
 import { useToast } from '@/hooks/use-toast';
-import { technologies } from '@/lib/data';
+import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { technologies, skills as allSkills } from '@/lib/data';
+import { Textarea } from '@/components/ui/textarea';
 
 const steps = [
   { id: 1, title: "Welcome!", icon: PartyPopper },
@@ -29,8 +23,33 @@ const steps = [
   { id: 5, title: "All Set!", icon: CheckCircle },
 ];
 
+const MultiSelectGrid = ({ title, items, selectedItems, onSelectionChange }: { title: string, items: { id: string, label: string }[], selectedItems: string[], onSelectionChange: (id: string, checked: boolean) => void }) => (
+    <div>
+        <h3 className="text-lg font-medium mb-2">{title}</h3>
+        <ScrollArea className="h-72 border rounded-md">
+            <div className="p-4 grid grid-cols-2 md:grid-cols-3 gap-4">
+                {items.map((item) => (
+                    <div key={item.id} className="flex items-center space-x-2">
+                        <Checkbox 
+                            id={item.id}
+                            checked={selectedItems.includes(item.id)}
+                            onCheckedChange={(checked) => onSelectionChange(item.id, !!checked)}
+                        />
+                        <label
+                            htmlFor={item.id}
+                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                            {item.label}
+                        </label>
+                    </div>
+                ))}
+            </div>
+        </ScrollArea>
+    </div>
+);
+
+
 export default function OnboardingPage() {
-  const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
   const { toast } = useToast();
   
@@ -40,65 +59,29 @@ export default function OnboardingPage() {
   // Form state
   const [formData, setFormData] = useState({
     fullName: '',
-    email: '',
+    age: '',
     city: '',
     githubUrl: '',
+    linkedinUrl: '',
+    techStack: [] as string[],
     skills: [] as string[],
-    tech: [] as string[],
+    pastHackathons: '',
+    pastProjects: '',
   });
-
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push('/login');
-    }
-    if (user) {
-        setFormData(prev => ({
-            ...prev,
-            fullName: user.displayName || '',
-            email: user.email || '',
-        }));
-    }
-  }, [user, loading, router]);
-
 
   const progress = ((currentStep - 1) / (steps.length - 1)) * 100;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const saveProfileData = async () => {
-    if (!user) return;
-    setIsSaving(true);
-    const profileData = {
-        fullName: formData.fullName,
-        city: formData.city,
-        skills: formData.skills,
-        socials: { github: formData.githubUrl },
-    };
-    const result = await updateUserProfile(user.uid, profileData);
-    setIsSaving(false);
-    if (result.success) {
-      toast({ title: "Progress Saved!", variant: 'default' });
-    } else {
-      toast({ title: "Error", description: result.error || "Could not save progress.", variant: 'destructive' });
-    }
-  }
-
-  const nextStep = async () => {
-    if (currentStep < steps.length) {
-        if(currentStep !== 1 && currentStep !== steps.length -1) await saveProfileData();
-        setCurrentStep(prev => Math.min(prev + 1, steps.length));
-    }
-  }
-
-  const completeOnboarding = async () => {
-     await saveProfileData();
-     router.push('/dashboard');
-  }
-
-  const prevStep = () => setCurrentStep(prev => Math.max(prev - 1, 1));
+  const handleTechChange = (id: string, checked: boolean) => {
+    setFormData(prev => ({
+      ...prev,
+      techStack: checked ? [...prev.techStack, id] : prev.techStack.filter(t => t !== id)
+    }));
+  };
   
   const handleSkillChange = (skill: string, checked: boolean) => {
     setFormData(prev => ({
@@ -106,24 +89,29 @@ export default function OnboardingPage() {
       skills: checked ? [...prev.skills, skill] : prev.skills.filter(s => s !== skill)
     }));
   };
-  
-  if (loading || !user) {
-    return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-secondary/50">
-            <Loader className="h-12 w-12 animate-spin text-primary"/>
-            <p className="mt-4 text-muted-foreground">Loading your profile...</p>
-        </div>
-    )
+
+  const nextStep = async () => {
+    if (currentStep < steps.length) {
+      setCurrentStep(prev => Math.min(prev + 1, steps.length));
+    }
   }
 
+  const completeOnboarding = async () => {
+     // UI only, no backend connection for now
+     setIsSaving(true);
+     await new Promise(resolve => setTimeout(resolve, 1500));
+     setIsSaving(false);
+     toast({ title: "Profile Created!", description: "Welcome to HackMate!"});
+     router.push('/dashboard/events');
+  }
+
+  const prevStep = () => setCurrentStep(prev => Math.max(prev - 1, 1));
+  
   const CurrentIcon = steps[currentStep - 1].icon;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-secondary/50">
-      <div className="w-full max-w-2xl">
-        <div className="flex justify-center mb-6">
-            <Logo />
-        </div>
+      <div className="w-full max-w-3xl">
         <Card>
           <CardHeader>
              <div className="w-full mb-4">
@@ -135,70 +123,68 @@ export default function OnboardingPage() {
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="min-h-[350px] max-h-[50vh] overflow-y-auto p-6">
+          <CardContent className="min-h-[450px] max-h-[60vh] overflow-y-auto p-6">
             {currentStep === 1 && (
               <div className="text-center space-y-4 pt-8">
                 <h3 className="text-xl font-semibold">Let's get your profile ready for action!</h3>
-                <p className="text-muted-foreground">A complete profile helps our AI find you the best teammates and helps others discover you. This will only take a few minutes.</p>
+                <p className="text-muted-foreground">A complete profile helps find you the best teammates and helps others discover you. This will only take a few minutes.</p>
               </div>
             )}
             {currentStep === 2 && (
-              <div className="space-y-4 max-w-md mx-auto">
-                <div className="space-y-2">
-                    <Label htmlFor="fullName">Full Name</Label>
-                    <Input id="fullName" name="fullName" type="text" placeholder="Ada Lovelace" value={formData.fullName} onChange={handleInputChange} />
+              <div className="space-y-4 max-w-lg mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                        <Label htmlFor="fullName">Full Name</Label>
+                        <Input id="fullName" name="fullName" type="text" placeholder="Ada Lovelace" value={formData.fullName} onChange={handleInputChange} />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="age">Age</Label>
+                        <Input id="age" name="age" type="number" placeholder="28" value={formData.age} onChange={handleInputChange} />
+                    </div>
                 </div>
                  <div className="space-y-2">
                     <Label htmlFor="city">City</Label>
                     <Input id="city" name="city" type="text" placeholder="London, UK" value={formData.city} onChange={handleInputChange} />
                 </div>
                 <div className="space-y-2">
-                    <Label htmlFor="githubUrl">GitHub Profile URL (Optional)</Label>
-                    <Input id="githubUrl" name="githubUrl" type="url" placeholder="https://github.com/adalovelace" value={formData.githubUrl} onChange={handleInputChange} />
+                    <Label htmlFor="githubUrl">GitHub Profile URL</Label>
+                     <div className="relative">
+                        <Github className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input id="githubUrl" name="githubUrl" type="url" placeholder="https://github.com/adalovelace" value={formData.githubUrl} onChange={handleInputChange} className="pl-10" />
+                     </div>
                 </div>
-                <div className="space-y-2">
-                    <Label>Avatar</Label>
-                    <div className="flex items-center gap-4">
-                        <Button variant="outline"><Upload className="mr-2"/> Upload Image</Button>
-                        <p className="text-xs text-muted-foreground">Or we'll use your Google/GitHub avatar.</p>
-                    </div>
+                 <div className="space-y-2">
+                    <Label htmlFor="linkedinUrl">LinkedIn Profile URL</Label>
+                     <div className="relative">
+                        <Linkedin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input id="linkedinUrl" name="linkedinUrl" type="url" placeholder="https://linkedin.com/in/adalovelace" value={formData.linkedinUrl} onChange={handleInputChange} className="pl-10" />
+                     </div>
                 </div>
               </div>
             )}
             {currentStep === 3 && (
-              <div className="space-y-4">
+              <div className="space-y-6">
                  <p className="text-sm text-muted-foreground text-center">Select your top skills and technologies.</p>
-                 <ScrollArea className="h-80">
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-2">
-                        {technologies.map(tech => (
-                        <div key={tech.id} className="flex items-center space-x-2">
-                            <Checkbox 
-                                id={`skill-${tech.id}`} 
-                                onCheckedChange={(checked) => handleSkillChange(tech.label, !!checked)}
-                                checked={formData.skills.includes(tech.label)}
-                            />
-                            <Label htmlFor={`skill-${tech.id}`} className="font-normal text-sm flex items-center gap-2">
-                                {tech.icon} {tech.label}
-                            </Label>
-                        </div>
-                        ))}
-                    </div>
-                 </ScrollArea>
+                 <MultiSelectGrid title="Tech Stack" items={technologies} selectedItems={formData.techStack} onSelectionChange={handleTechChange} />
+                 <MultiSelectGrid title="General Skills" items={allSkills} selectedItems={formData.skills} onSelectionChange={handleSkillChange} />
               </div>
             )}
             {currentStep === 4 && (
-              <div className="space-y-4 max-w-md mx-auto">
-                 <p className="text-sm text-muted-foreground text-center">Optionally, add past projects or hackathons you're proud of.</p>
-                 {/* This can be implemented later */}
-                 <div className="text-center p-8 border-dashed border-2 rounded-md mt-4">
-                    <Trophy className="mx-auto h-12 w-12 text-muted-foreground"/>
-                    <p className="mt-4 text-muted-foreground">You can add past projects and events from your profile page later.</p>
+              <div className="space-y-6 max-w-lg mx-auto">
+                 <p className="text-sm text-muted-foreground text-center">Optionally, tell us about your experience.</p>
+                 <div>
+                    <Label htmlFor="pastHackathons">Past Hackathons</Label>
+                    <Textarea id="pastHackathons" name="pastHackathons" placeholder="e.g., Won 'Best AI Hack' at AI Global 2023..." value={formData.pastHackathons} onChange={handleInputChange} />
+                 </div>
+                  <div>
+                    <Label htmlFor="pastProjects">Proudest Projects</Label>
+                    <Textarea id="pastProjects" name="pastProjects" placeholder="e.g., Built a real-time chat application with WebSockets..." value={formData.pastProjects} onChange={handleInputChange} />
                  </div>
               </div>
             )}
             {currentStep === 5 && (
                  <div className="text-center space-y-4 pt-8">
-                    <h3 className="text-xl font-semibold">Congratulations, {formData.fullName}!</h3>
+                    <h3 className="text-xl font-semibold">Congratulations!</h3>
                     <p className="text-muted-foreground max-w-md mx-auto">Your HackMate profile is complete. You're ready to connect with innovators, join events, and build amazing things.</p>
                 </div>
             )}
@@ -210,27 +196,16 @@ export default function OnboardingPage() {
                 </Button>
             ) : <div />}
 
-            {currentStep < steps.length - 1 ? (
+            {currentStep < steps.length ? (
                 <Button onClick={nextStep} disabled={isSaving}>
-                    {isSaving && <Loader className="mr-2 h-4 w-4 animate-spin"/>}
-                    Next
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    Next <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
             ) : <div /> }
             
-             {currentStep === steps.length -1 && (
-                <Button onClick={nextStep} disabled={isSaving}>
-                    {isSaving && <Loader className="mr-2 h-4 w-4 animate-spin"/>}
-                    Next
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-            )}
-
              {currentStep === steps.length && (
                 <Button onClick={completeOnboarding} disabled={isSaving}>
-                    {isSaving && <Loader className="mr-2 h-4 w-4 animate-spin"/>}
+                    {isSaving ? <Loader className="mr-2 h-4 w-4 animate-spin"/> : <CheckCircle className="mr-2 h-4 w-4" />}
                     Finish & Go to Dashboard
-                    <CheckCircle className="ml-2 h-4 w-4" />
                 </Button>
             )}
           </CardFooter>

@@ -7,51 +7,50 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Calendar, DoorOpen, MapPin, Trophy, Users, Share2, Search, Loader } from "lucide-react";
+import { ArrowLeft, Calendar, DoorOpen, MapPin, Trophy, Users, Share2, Search, Loader, Code, Shield, Users2, Tag } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
-import { db } from "@/lib/firebase";
-import { doc, getDoc, collection, getDocs, query, where } from "firebase/firestore";
 import type { Event, UserProfile } from "@/lib/db";
 import { format } from "date-fns";
+import { useToast } from "@/hooks/use-toast";
 
+
+const dummyEvents: Record<string, Event> = {
+    'aigh2024': {
+        id: 'aigh2024',
+        name: 'AI Global Hackathon 2024',
+        description: 'A global hackathon focused on pushing the boundaries of Artificial Intelligence. Participants will work in teams to develop innovative AI-powered solutions to real-world problems. The event will feature workshops from industry experts, mentorship sessions, and a final presentation to a panel of judges.',
+        dateRange: { from: '2024-10-26T09:00:00Z', to: '2024-10-27T17:00:00Z' },
+        techStack: ['Python', 'TensorFlow', 'PyTorch', 'Next.js', 'LangChain', 'Docker', 'GCP'],
+        requiredSkills: ['Machine Learning', 'Frontend Development', 'UI/UX Design', 'Backend Development', 'Data Science'],
+        maxTeamSize: 5,
+        participants: Array.from({ length: 42 }, (_, i) => ({
+            uid: `user${i}`,
+            fullName: `User ${i + 1}`,
+            photoURL: `https://i.pravatar.cc/150?u=user${i+1}`,
+        }) as UserProfile),
+        imageUrl: 'https://placehold.co/1200x400.png',
+    },
+};
 
 export default function EventDetailsPage() {
     const params = useParams();
+    const { toast } = useToast();
     const id = params.id as string;
     const [event, setEvent] = useState<Event | null>(null);
-    const [participants, setParticipants] = useState<UserProfile[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (!id) return;
-
-        const fetchEventAndParticipants = async () => {
-            setLoading(true);
-            const eventRef = doc(db, 'events', id);
-            const eventSnap = await getDoc(eventRef);
-
-            if (!eventSnap.exists()) {
-                setLoading(false);
-                notFound();
-                return;
+        setLoading(true);
+        // Simulate fetching data
+        setTimeout(() => {
+            const foundEvent = dummyEvents[id];
+            if (foundEvent) {
+                setEvent(foundEvent);
             }
-            
-            const eventData = eventSnap.data() as Event;
-            setEvent(eventData);
-
-            if (eventData.participants && eventData.participants.length > 0) {
-                 const participantsQuery = query(collection(db, 'users'), where('uid', 'in', eventData.participants));
-                 const participantsSnap = await getDocs(participantsQuery);
-                 const participantsData = participantsSnap.docs.map(doc => doc.data() as UserProfile);
-                 setParticipants(participantsData);
-            }
-            
             setLoading(false);
-        };
-
-        fetchEventAndParticipants();
+        }, 500);
     }, [id]);
 
     if (loading) {
@@ -64,7 +63,12 @@ export default function EventDetailsPage() {
 
     const handleShare = () => {
         navigator.clipboard.writeText(event.id);
-        // Maybe show a toast notification here
+        toast({ title: "Copied to clipboard!", description: `Event code "${event.id}" has been copied.`})
+    }
+
+    const handleJoin = () => {
+        // UI only
+        toast({ title: "Joined Event (UI Only)", description: `You have joined "${event.name}".`})
     }
 
     return (
@@ -79,8 +83,8 @@ export default function EventDetailsPage() {
                     <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{event.name}</h1>
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2 text-muted-foreground">
                         <div className="flex items-center gap-2"><Calendar className="h-4 w-4"/> {format(new Date(event.dateRange.from), 'PPP')} - {format(new Date(event.dateRange.to), 'PPP')}</div>
-                        <div className="flex items-center gap-2"><MapPin className="h-4 w-4"/> {event.location}</div>
                         <div className="flex items-center gap-2"><Users className="h-4 w-4"/> {event.participants.length} participants</div>
+                        <div className="flex items-center gap-2"><Users2 className="h-4 w-4"/> Max team size: {event.maxTeamSize}</div>
                     </div>
                 </div>
             </div>
@@ -95,74 +99,55 @@ export default function EventDetailsPage() {
                             <p className="text-muted-foreground">{event.description}</p>
                         </CardContent>
                     </Card>
+                    
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-2"><Code className="h-5 w-5"/>Allowed Tech Stack</CardTitle>
+                            </CardHeader>
+                            <CardContent className="flex flex-wrap gap-2">
+                                {event.techStack.map(tech => <Badge key={tech} variant="secondary">{tech}</Badge>)}
+                            </CardContent>
+                        </Card>
+                         <Card>
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-2"><Shield className="h-5 w-5"/>Required Skills</CardTitle>
+                            </CardHeader>
+                            <CardContent className="flex flex-wrap gap-2">
+                                {event.requiredSkills.map(skill => <Badge key={skill} variant="outline">{skill}</Badge>)}
+                            </CardContent>
+                        </Card>
+                    </div>
 
-                    <Tabs defaultValue="participants">
-                        <TabsList>
-                            <TabsTrigger value="participants">Participants ({participants.length})</TabsTrigger>
-                            <TabsTrigger value="prizes">Prizes</TabsTrigger>
-                        </TabsList>
-                        <TabsContent value="participants" className="mt-4">
-                             <Card>
-                                <CardHeader>
-                                    <CardTitle>Meet the Hackers</CardTitle>
-                                    <CardDescription>Browse participants and find potential teammates.</CardDescription>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                                        {participants.map((p, i) => (
-                                            <Card key={i} className="p-4 text-center">
-                                                <Avatar className="mx-auto h-16 w-16 mb-2">
-                                                    <AvatarImage src={p.photoURL ?? undefined} />
-                                                    <AvatarFallback>{p.fullName.charAt(0)}</AvatarFallback>
-                                                </Avatar>
-                                                <p className="font-semibold">{p.fullName}</p>
-                                                <div className="flex flex-wrap gap-1 justify-center mt-2 h-12 overflow-hidden">
-                                                    {p.skills?.slice(0, 3).map(s => <Badge key={s} variant="secondary">{s}</Badge>)}
-                                                </div>
-                                                 <Button variant="outline" size="sm" className="mt-3 w-full">View Profile</Button>
-                                            </Card>
-                                        ))}
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </TabsContent>
-                        <TabsContent value="prizes" className="mt-4">
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle>Prizes & Awards</CardTitle>
-                                </CardHeader>
-                                <CardContent className="space-y-4">
-                                    <div className="flex items-center gap-4 p-3 rounded-md bg-muted">
-                                        <Trophy className="h-8 w-8 text-yellow-500"/>
-                                        <div>
-                                            <p className="font-semibold">Grand Prize</p>
-                                            <p className="text-sm text-muted-foreground">$10,000 Cash + Mentorship</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-4 p-3 rounded-md bg-muted/50">
-                                        <Trophy className="h-8 w-8 text-gray-400"/>
-                                        <div>
-                                            <p className="font-semibold">Runner Up</p>
-                                            <p className="text-sm text-muted-foreground">$5,000 + Premium SWAG</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-4 p-3 rounded-md bg-muted/50">
-                                        <Trophy className="h-8 w-8 text-orange-400"/>
-                                        <div>
-                                            <p className="font-semibold">Best Social Impact</p>
-                                            <p className="text-sm text-muted-foreground">$2,500 + Sponsored API Credits</p>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </TabsContent>
-                    </Tabs>
+
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Participants ({event.participants.length})</CardTitle>
+                            <CardDescription>Browse participants and find potential teammates.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                                {event.participants.map((p, i) => (
+                                    <Card key={i} className="p-4 text-center">
+                                        <Avatar className="mx-auto h-16 w-16 mb-2">
+                                            <AvatarImage src={p.photoURL ?? undefined} />
+                                            <AvatarFallback>{p.fullName.charAt(0)}</AvatarFallback>
+                                        </Avatar>
+                                        <p className="font-semibold">{p.fullName}</p>
+                                            <Button variant="outline" size="sm" className="mt-3 w-full" asChild>
+                                                <Link href={`/dashboard/profile/${p.uid}`}>View Profile</Link>
+                                            </Button>
+                                    </Card>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
                 </div>
                 
                 <div className="lg:col-span-1 space-y-6 sticky top-24">
                      <Card>
                         <CardContent className="p-6 flex flex-col gap-4">
-                           <Button size="lg" className="w-full">
+                           <Button size="lg" className="w-full" onClick={handleJoin}>
                                 <DoorOpen className="mr-2 h-5 w-5"/> Join Event
                             </Button>
                              <Button variant="outline" className="w-full" onClick={handleShare}>

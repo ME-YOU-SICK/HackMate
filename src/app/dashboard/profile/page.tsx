@@ -5,81 +5,53 @@ import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { MobileHeader } from "@/components/ui/sidebar";
-import { Github, Linkedin, Save, Twitter, Loader } from "lucide-react";
+import { Github, Linkedin, Loader, UserPlus } from "lucide-react";
 import Link from 'next/link';
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db } from "@/lib/firebase";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { UserProfile, updateUserProfile } from "@/lib/db";
 import { useToast } from "@/hooks/use-toast";
+import type { UserProfile } from "@/lib/db";
+import { Textarea } from "@/components/ui/textarea";
+
+const dummyProfile: UserProfile = {
+    uid: 'dummyuser',
+    fullName: 'Alex Doe',
+    email: 'alex.doe@example.com',
+    photoURL: 'https://i.pravatar.cc/150?u=alexdoe',
+    age: 24,
+    city: 'San Francisco, CA',
+    techStack: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS', 'Firebase'],
+    skills: ['Frontend Development', 'UI/UX Design', 'Full Stack Developer', 'Product Management'],
+    pastHackathons: 'Won "Best Social Impact" at Hack The Bay 2023. Participated in 5 other hackathons.',
+    pastProjects: 'Developed a real-time collaborative code editor. Created a mobile app for local event discovery.',
+    socials: {
+        github: 'https://github.com/alexdoe',
+        linkedin: 'https://linkedin.com/in/alexdoe',
+    },
+    followers: 125,
+    following: 78,
+};
 
 export default function ProfilePage() {
     const { toast } = useToast();
-    const [user, authLoading] = useAuthState(auth);
     const [profile, setProfile] = useState<UserProfile | null>(null);
     const [loading, setLoading] = useState(true);
-    const [isSaving, setIsSaving] = useState(false);
 
     useEffect(() => {
-        if (authLoading) return;
-        if (!user) {
+        setLoading(true);
+        // Simulate fetching data
+        setTimeout(() => {
+            setProfile(dummyProfile);
             setLoading(false);
-            return;
-        }
-
-        const fetchProfile = async () => {
-            setLoading(true);
-            const userRef = doc(db, 'users', user.uid);
-            const docSnap = await getDoc(userRef);
-            if (docSnap.exists()) {
-                setProfile(docSnap.data() as UserProfile);
-            } else {
-                // If profile doesn't exist, create a basic one.
-                const newProfile: UserProfile = {
-                    uid: user.uid,
-                    fullName: user.displayName || 'New User',
-                    email: user.email || '',
-                    role: 'participant', // default role
-                    photoURL: user.photoURL,
-                };
-                await setDoc(userRef, newProfile);
-                setProfile(newProfile);
-            }
-            setLoading(false);
-        };
-
-        fetchProfile();
-    }, [user, authLoading]);
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setProfile(p => p ? { ...p, [name]: value } : null);
-    };
+        }, 500);
+    }, []);
     
-    const handleSocialChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setProfile(p => p ? { ...p, socials: { ...p.socials, [name]: value } } : null);
+    const handleFollow = () => {
+        // UI only
+        toast({ title: "Followed (UI Only)", description: `You are now following ${profile?.fullName}.`})
     }
 
-    const handleSaveChanges = async () => {
-        if (!user || !profile) return;
-        setIsSaving(true);
-        const result = await updateUserProfile(user.uid, profile);
-        setIsSaving(false);
-        if (result.success) {
-            toast({ title: "Profile Updated", description: "Your changes have been saved." });
-        } else {
-            toast({ title: "Error", description: result.error, variant: "destructive" });
-        }
-    };
-
-
-    if (loading || authLoading) {
+    if (loading) {
         return <div className="flex h-screen items-center justify-center"><Loader className="h-12 w-12 animate-spin" /></div>;
     }
 
@@ -90,17 +62,9 @@ export default function ProfilePage() {
     return (
         <>
             <MobileHeader>
-                <h2 className="text-xl font-bold">My Profile</h2>
+                <h2 className="text-xl font-bold">Profile</h2>
             </MobileHeader>
             <div className="flex-1 space-y-8 p-4 md:p-8 pt-6">
-                <div className="flex items-center justify-between space-y-2">
-                    <h2 className="text-3xl font-bold tracking-tight">My Profile</h2>
-                    <Button onClick={handleSaveChanges} disabled={isSaving}>
-                        {isSaving ? <Loader className="mr-2 h-4 w-4 animate-spin"/> : <Save className="mr-2 h-4 w-4" />}
-                        Save Changes
-                    </Button>
-                </div>
-                
                 <div className="grid gap-8 lg:grid-cols-3">
                     <div className="lg:col-span-1 space-y-8">
                         <Card>
@@ -110,76 +74,61 @@ export default function ProfilePage() {
                                     <AvatarFallback>{profile.fullName.charAt(0)}</AvatarFallback>
                                 </Avatar>
                                 <CardTitle className="text-2xl">{profile.fullName}</CardTitle>
-                                <CardDescription>{profile.title || 'Hackathon Enthusiast'}</CardDescription>
-                                <div className="flex gap-2 pt-4">
-                                    {profile.socials?.twitter && <Button asChild variant="outline" size="icon"><Link href={profile.socials.twitter} target="_blank"><Twitter className="h-4 w-4"/></Link></Button>}
-                                    {profile.socials?.linkedin && <Button asChild variant="outline" size="icon"><Link href={profile.socials.linkedin} target="_blank"><Linkedin className="h-4 w-4"/></Link></Button>}
+                                <CardDescription>{profile.age} years old from {profile.city}</CardDescription>
+                                <div className="flex justify-center space-x-4 pt-2">
+                                    <div className="text-center">
+                                        <p className="font-bold text-lg">{profile.followers}</p>
+                                        <p className="text-sm text-muted-foreground">Followers</p>
+                                    </div>
+                                    <div className="text-center">
+                                        <p className="font-bold text-lg">{profile.following}</p>
+                                        <p className="text-sm text-muted-foreground">Following</p>
+                                    </div>
+                                </div>
+                                 <div className="flex flex-col sm:flex-row gap-2 pt-4 w-full">
+                                    <Button className="flex-1" onClick={handleFollow}>
+                                        <UserPlus className="mr-2 h-4 w-4"/> Follow
+                                    </Button>
                                     {profile.socials?.github && <Button asChild variant="outline" size="icon"><Link href={profile.socials.github} target="_blank"><Github className="h-4 w-4"/></Link></Button>}
+                                    {profile.socials?.linkedin && <Button asChild variant="outline" size="icon"><Link href={profile.socials.linkedin} target="_blank"><Linkedin className="h-4 w-4"/></Link></Button>}
                                 </div>
                             </CardHeader>
                         </Card>
 
                         <Card>
                             <CardHeader>
-                                <CardTitle>Skills & Tech</CardTitle>
+                                <CardTitle>Tech Stack</CardTitle>
                             </CardHeader>
                             <CardContent className="flex flex-wrap gap-2">
-                            {profile.skills?.map(skill => <Badge key={skill} variant="secondary">{skill}</Badge>)}
+                                {profile.techStack?.map(tech => <Badge key={tech} variant="secondary">{tech}</Badge>)}
                             </CardContent>
                         </Card>
                         
-                        <Card>
-                             <CardHeader>
-                                <CardTitle>Past Events</CardTitle>
+                         <Card>
+                            <CardHeader>
+                                <CardTitle>Skills</CardTitle>
                             </CardHeader>
                             <CardContent className="flex flex-wrap gap-2">
-                                {profile.pastEvents && profile.pastEvents.length > 0 ? 
-                                    profile.pastEvents.map(event => <Badge key={event.name} variant="outline">{event.name}</Badge>) :
-                                    <p className="text-sm text-muted-foreground">No past events yet.</p>
-                                }
+                                {profile.skills?.map(skill => <Badge key={skill} variant="outline">{skill}</Badge>)}
                             </CardContent>
                         </Card>
-
                     </div>
-                    <div className="lg:col-span-2">
+
+                    <div className="lg:col-span-2 space-y-8">
                         <Card>
                             <CardHeader>
-                                <CardTitle>Account Information</CardTitle>
-                                <CardDescription>Update your personal and contact information.</CardDescription>
+                                <CardTitle>Past Hackathons</CardTitle>
                             </CardHeader>
-                            <CardContent className="space-y-6">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="fullName">Full Name</Label>
-                                        <Input id="fullName" name="fullName" value={profile.fullName} onChange={handleInputChange} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="title">Professional Title</Label>
-                                        <Input id="title" name="title" value={profile.title || ''} onChange={handleInputChange} />
-                                    </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="email">Email Address</Label>
-                                    <Input id="email" type="email" value={profile.email} disabled />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="bio">Biography</Label>
-                                    <Textarea id="bio" name="bio" rows={5} value={profile.bio || ''} onChange={handleInputChange} />
-                                </div>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="twitter">Twitter URL</Label>
-                                        <Input id="twitter" name="twitter" value={profile.socials?.twitter || ''} onChange={handleSocialChange}/>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="linkedin">LinkedIn URL</Label>
-                                        <Input id="linkedin" name="linkedin" value={profile.socials?.linkedin || ''} onChange={handleSocialChange}/>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="github">GitHub URL</Label>
-                                        <Input id="github" name="github" value={profile.socials?.github || ''} onChange={handleSocialChange}/>
-                                    </div>
-                                </div>
+                            <CardContent>
+                                <p className="text-muted-foreground">{profile.pastHackathons}</p>
+                            </CardContent>
+                        </Card>
+                         <Card>
+                            <CardHeader>
+                                <CardTitle>Past Projects</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground">{profile.pastProjects}</p>
                             </CardContent>
                         </Card>
                     </div>
