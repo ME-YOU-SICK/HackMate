@@ -34,7 +34,7 @@ import {
 } from 'lucide-react';
 import { SiJavascript, SiTypescript, SiJava, SiCplusplus, SiGo, SiRust, SiKotlin, SiSwift, SiPhp, SiRuby, SiDart, SiR, SiElixir, SiHaskell, SiGnubash } from 'react-icons/si';
 import { FaReact, FaVuejs, FaAngular, FaBootstrap, FaNodeJs, FaPython, FaJava, FaDocker, FaAws, FaDigitalOcean, FaStripe, FaTwilio } from 'react-icons/fa';
-import { SiNextdotjs, SiNuxtdotjs, SiSvelte, SiSolid, SiAstro, SiJquery, SiThreedotjs, SiTailwindcss, SiChakraui, SiMui, SiExpress, SiFastify, SiNestjs, SiDjango, SiFlask, SiSpringboot, SiDotnet, SiLaravel, SiRubyonrails, SiAdonisjs, SiPostgresql, SiMysql, SiSqlite, SiMongodb, SiRedis, SiMariadb, SiSupabase, SiPlanetscale, SiVercel, SiNetlify, SiRailway, SiKubernetes, SiTerraform, SiCloudflare, SiTensorflow, SiPytorch, SiScikitlearn, SiHuggingface, SiOpencv, SiLangchain, SiKeras, SiEthereum, SiSolana, SiBinance, SiHardhat, SiTruffle, SiIonic, SiCapacitor, SiXamarin, SiPrisma, SiGraphql, SiMqtt, SiStripe, SiTwilio, SiSendgrid, SiZapier } from 'react-icons/si';
+import { SiNextdotjs, SiNuxtdotjs, SiSvelte, SiSolid, SiAstro, SiJquery, SiThreedotjs, SiTailwindcss, SiChakraui, SiMui, SiExpress, SiFastify, SiNestjs, SiDjango, SiFlask, SiSpringboot, SiDotnet, SiLaravel, SiRubyonrails, SiAdonisjs, SiPostgresql, SiMysql, SiSqlite, SiMongodb, SiRedis, SiMariadb, SiSupabase, SiPlanetscale, SiVercel, SiNetlify, SiRailway, SiKubernetes, SiTerraform, SiCloudflare, SiTensorflow, SiPytorch, SiScikitlearn, SiHuggingface, SiOpencv, SiLangchain, SiKeras, SiEthereum, SiSolana, SiBinance, SiIonic, SiCapacitor, SiPrisma, SiGraphql, SiMqtt, SiStripe, SiTwilio, SiSendgrid, SiZapier } from 'react-icons/si';
 
 
 export const roles = [
@@ -166,8 +166,8 @@ export const technologies = [
   { id: 'solana', label: 'Solana', icon: <SiSolana {...iconProps} /> },
   { id: 'avalanche', label: 'Avalanche', icon: <Bitcoin {...iconProps} /> },
   { id: 'binance-smart-chain', label: 'Binance Smart Chain', icon: <SiBinance {...iconProps} /> },
-  { id: 'hardhat', label: 'Hardhat', icon: <SiHardhat {...iconProps} /> },
-  { id: 'truffle', label: 'Truffle', icon: <SiTruffle {...iconProps} /> },
+  { id: 'hardhat', label: 'Hardhat', icon: <Bitcoin {...iconProps} /> },
+  { id: 'truffle', label: 'Truffle', icon: <Bitcoin {...iconProps} /> },
   { id: 'web3.js', label: 'Web3.js', icon: <SiJavascript {...iconProps} /> },
   { id: 'ethers.js', label: 'Ethers.js', icon: <SiJavascript {...iconProps} /> },
 
@@ -178,7 +178,7 @@ export const technologies = [
   { id: 'kotlin-(android)', label: 'Kotlin (Android)', icon: <SiKotlin {...iconProps} /> },
   { id: 'ionic', label: 'Ionic', icon: <SiIonic {...iconProps} /> },
   { id: 'capacitor', label: 'Capacitor', icon: <SiCapacitor {...iconProps} /> },
-  { id: 'xamarin', label: 'Xamarin', icon: <SiXamarin {...iconProps} /> },
+  { id: 'xamarin', label: 'Xamarin', icon: <Smartphone {...iconProps} /> },
 
   // Other
   { id: 'prisma', label: 'Prisma', icon: <SiPrisma {...iconProps} /> },
