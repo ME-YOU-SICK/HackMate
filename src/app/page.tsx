@@ -9,7 +9,7 @@ import Header from '@/components/layout/header';
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-slate-950 text-white">
-      <Header />
+      <Header variant="landing" />
       <main className="flex-grow">
         <section className="relative min-h-screen w-full overflow-hidden">
           <div className="absolute inset-0 -z-10 h-full w-full bg-slate-950">
