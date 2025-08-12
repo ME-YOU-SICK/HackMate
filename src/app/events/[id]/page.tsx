@@ -31,7 +31,7 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
         {/* Main Content */}
         <div className="lg:col-span-2">
-          <Card className="overflow-hidden border-slate-800 bg-slate-900/50">
+          <Card className="overflow-hidden bg-card">
             <CardContent className="p-0">
               <img
                 src="https://placehold.co/800x400.png"
@@ -43,7 +43,7 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
           </Card>
           <div className="mt-8">
             <h2 className="mb-4 font-sora text-3xl font-bold">About the Hackathon</h2>
-            <p className="text-slate-300">
+            <p className="text-muted-foreground">
               Join us for a weekend of innovation, collaboration, and coding. Build amazing projects, learn new skills, and connect with fellow developers. This hackathon is focused on pushing the boundaries of what's possible with modern technology. Whether you're a seasoned pro or a first-time hacker, there's a place for you here. We'll have workshops, mentors, and plenty of coffee to keep you going.
             </p>
           </div>
@@ -62,10 +62,10 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
                 ))}
               </div>
               {!hasJoined && (
-                <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-slate-900/80">
-                  <Lock className="h-10 w-10 text-orange-400" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center rounded-lg bg-background/80 backdrop-blur-sm">
+                  <Lock className="h-10 w-10 text-orange-500" />
                   <p className="mt-4 text-center font-semibold">Join the event to see participants</p>
-                  <Button className="mt-4 bg-orange-500 text-white hover:bg-orange-600" onClick={() => setHasJoined(true)}>Join Event</Button>
+                  <Button className={cn('mt-4 warm-gradient text-white')} onClick={() => setHasJoined(true)}>Join Event</Button>
                 </div>
               )}
             </div>
@@ -75,12 +75,12 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
         {/* Right Sidebar */}
         <aside>
           <div className="sticky top-24">
-            <Card className="border-slate-800 bg-slate-900/50 p-6">
+            <Card className="bg-card p-6">
               <h1 className="font-sora text-4xl font-bold">Hackathon 2024</h1>
-              <p className="mt-2 text-slate-400">Hosted by AI Innovators</p>
+              <p className="mt-2 text-muted-foreground">Hosted by AI Innovators</p>
               
               <div className="my-6 flex items-center space-x-2">
-                <Button className="flex-1 bg-orange-500 text-white hover:bg-orange-600" onClick={() => setHasJoined(true)} disabled={hasJoined}>
+                <Button className={cn("flex-1 warm-gradient text-white", { 'opacity-50 cursor-not-allowed': hasJoined })} onClick={() => setHasJoined(true)} disabled={hasJoined}>
                   {hasJoined ? 'Joined' : 'Join Event'}
                 </Button>
                 <Button variant="outline" size="icon">
@@ -93,22 +93,22 @@ export default function EventDetailPage({ params }: { params: { id: string } }) 
 
               <div className="space-y-4 text-sm">
                 <div className="flex items-center">
-                  <Users className="mr-3 h-5 w-5 text-slate-400" />
+                  <Users className="mr-3 h-5 w-5 text-muted-foreground" />
                   <span>
                     <span className="font-bold">{participants.length}</span> participants
                   </span>
                 </div>
                 <div className="flex items-center">
-                  <Users className="mr-3 h-5 w-5 text-slate-400" />
+                  <Users className="mr-3 h-5 w-5 text-muted-foreground" />
                   <span>Max team size: <span className="font-bold">4</span></span>
                 </div>
                 <div className="flex items-center">
-                  <Calendar className="mr-3 h-5 w-5 text-slate-400" />
+                  <Calendar className="mr-3 h-5 w-5 text-muted-foreground" />
                   <span>Starts: <span className="font-bold">October 26, 2024</span></span>
                 </div>
                 <div>
                   <div className="flex items-center">
-                    <Code className="mr-3 h-5 w-5 text-slate-400" />
+                    <Code className="mr-3 h-5 w-5 text-muted-foreground" />
                     <span className="font-bold">Allowed Tech Stacks</span>
                   </div>
                   <div className="mt-2 flex flex-wrap gap-2">

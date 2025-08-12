@@ -11,9 +11,9 @@ interface PopularCardProps {
 
 export default function PopularCard({ item, color }: PopularCardProps) {
   const colorClasses = {
-    green: 'bg-green-500/20 text-green-400 border-green-500/30',
-    blue: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-    red: 'bg-red-500/20 text-red-400 border-red-500/30',
+    green: 'bg-green-500/10 text-green-400 border-green-500/20',
+    blue: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+    red: 'bg-red-500/10 text-red-400 border-red-500/20',
   };
 
   return (

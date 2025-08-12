@@ -10,6 +10,7 @@ import EventCard from '@/components/event-card';
 import PopularFeed from '@/components/popular-feed';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 
 export default function DashboardPage() {
   const [feedType, setFeedType] = useState('events');
@@ -77,9 +78,9 @@ export default function DashboardPage() {
       {/* Right Sidebar */}
       <aside className="hidden lg:block">
         <div className="sticky top-24">
-          <Card className="border-slate-800 bg-slate-900/50">
+          <Card className="bg-card">
             <CardContent className="p-4">
-              <h3 className="mb-4 text-sm font-semibold text-slate-400">Suggested for you</h3>
+              <h3 className="mb-4 text-sm font-semibold text-muted-foreground">Suggested for you</h3>
               <div className="space-y-4">
                 {suggestedUsers.map((user) => (
                   <div key={user.handle} className="flex items-center justify-between">
@@ -94,10 +95,10 @@ export default function DashboardPage() {
                         <Link href={`/profile/${user.id}`} className="hover:underline">
                           <p className="text-sm font-bold">{user.name}</p>
                         </Link>
-                        <p className="text-xs text-slate-400">@{user.handle}</p>
+                        <p className="text-xs text-muted-foreground">@{user.handle}</p>
                       </div>
                     </div>
-                    <Button variant="ghost" size="sm" className="text-sm text-blue-400">
+                    <Button variant="ghost" size="sm" className="text-sm text-orange-500 hover:text-orange-400">
                       Follow
                     </Button>
                   </div>
@@ -106,17 +107,17 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
 
-          <Card className="mt-6 border-slate-800 bg-slate-900/50">
+          <Card className="mt-6 bg-card">
             <CardHeader>
               <CardTitle className="text-base">Join with Code</CardTitle>
             </CardHeader>
             <CardContent>
-                <p className="mb-4 text-sm text-slate-400">
+                <p className="mb-4 text-sm text-muted-foreground">
                     Enter the 6-character event code to join an event instantly.
                 </p>
                 <div className="flex space-x-2">
                     <Input placeholder="e.g. HCKMTE" />
-                    <Button className="bg-orange-500 hover:bg-orange-600">Join</Button>
+                    <Button className={cn('warm-gradient text-white')}>Join</Button>
                 </div>
             </CardContent>
           </Card>

@@ -1,13 +1,13 @@
-import { Mountain, Twitter, Github, Linkedin } from 'lucide-react';
+import { Twitter, Github, Linkedin, Wind } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-800 bg-slate-900/80 py-8">
+    <footer className="border-t bg-background py-8">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           <div className="flex items-center space-x-2">
-            <Mountain className="h-6 w-6 text-orange-500" />
+            <Wind className="h-6 w-6 text-orange-500" />
             <span className="text-lg font-bold">HackMate</span>
           </div>
           <nav className="flex gap-4 text-sm text-slate-400">

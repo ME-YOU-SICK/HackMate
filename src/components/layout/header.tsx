@@ -11,7 +11,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import { Bell, Home, LogOut, MessageSquare, PlusCircle, Settings, User, Users } from 'lucide-react';
+import { Bell, Home, LogOut, MessageSquare, PlusCircle, Settings, User, Users, Wind } from 'lucide-react';
 import Link from 'next/link';
 
 interface HeaderProps {
@@ -22,12 +22,12 @@ export default function Header({ variant = 'dashboard' }: HeaderProps) {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'
+        'sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'
       )}
     >
       <div className="container flex h-16 max-w-screen-2xl items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
-          <Home className="h-6 w-6" />
+          <Wind className="h-6 w-6 text-orange-500" />
           <span className="font-sora text-xl font-bold sm:inline-block">HackMate</span>
         </Link>
         
@@ -48,31 +48,31 @@ export default function Header({ variant = 'dashboard' }: HeaderProps) {
                     <Bell className="h-5 w-5" />
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-80 border-slate-800 bg-slate-900/80 p-0 text-white backdrop-blur">
+                <PopoverContent className="w-80 border-border bg-popover p-0 text-white backdrop-blur">
                   <div className="p-4">
                     <h3 className="text-lg font-medium">Notifications</h3>
-                    <p className="text-sm text-slate-400">You have 2 new messages.</p>
+                    <p className="text-sm text-muted-foreground">You have 2 new messages.</p>
                   </div>
                   <Separator />
                   <div className="p-2">
-                      <div className="flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-slate-800">
+                      <div className="flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent">
                         <Avatar className="mt-1 h-8 w-8">
                           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                           <AvatarFallback>CN</AvatarFallback>
                         </Avatar>
                         <div className="space-y-1">
                           <p className="text-sm font-medium leading-none">Team Invite</p>
-                          <p className="text-sm text-slate-400">Team "CodeCrafters" has invited you to join.</p>
+                          <p className="text-sm text-muted-foreground">Team "CodeCrafters" has invited you to join.</p>
                         </div>
                       </div>
-                      <div className="flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-slate-800">
+                      <div className="flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent">
                         <Avatar className="mt-1 h-8 w-8">
                           <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
                           <AvatarFallback>VC</AvatarFallback>
                         </Avatar>
                         <div className="space-y-1">
                           <p className="text-sm font-medium leading-none">New Follower</p>
-                          <p className="text-sm text-slate-400">@janedoe started following you.</p>
+                          <p className="text-sm text-muted-foreground">@janedoe started following you.</p>
                         </div>
                       </div>
                   </div>
@@ -91,7 +91,7 @@ export default function Header({ variant = 'dashboard' }: HeaderProps) {
                     </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56 border-slate-800 bg-slate-900/80 text-white backdrop-blur" align="end" forceMount>
+                <DropdownMenuContent className="w-56 border-border bg-popover text-white backdrop-blur" align="end" forceMount>
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
                       <p className="text-sm font-medium leading-none">My Account</p>
@@ -126,7 +126,7 @@ export default function Header({ variant = 'dashboard' }: HeaderProps) {
               <Button asChild variant="ghost">
                   <Link href="/login">Log In</Link>
               </Button>
-              <Button asChild className="bg-orange-500 text-white hover:bg-orange-600">
+              <Button asChild className={cn('warm-gradient text-white')}>
                   <Link href="/signup">Sign Up</Link>
               </Button>
             </>

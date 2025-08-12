@@ -2,12 +2,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 import { Bookmark, Share2 } from 'lucide-react';
 import Link from 'next/link';
 
 export default function EventCard() {
   return (
-    <Card className="overflow-hidden border-slate-800 bg-slate-900/50">
+    <Card className="overflow-hidden bg-card">
       <CardHeader className="flex-row items-center space-x-4 p-4">
         <Avatar>
           <AvatarImage src="https://github.com/nextjs.png" alt="Event Host" />
@@ -17,7 +18,7 @@ export default function EventCard() {
           <Link href="/events/1">
             <CardTitle className="text-base font-bold hover:underline">Hackathon 2024</CardTitle>
           </Link>
-          <p className="text-sm text-slate-400">
+          <p className="text-sm text-muted-foreground">
             Hosted by{' '}
             <Link href="/organizer/1" className="font-semibold hover:underline">
               AI Innovators
@@ -36,7 +37,7 @@ export default function EventCard() {
       <CardFooter className="flex-col items-start p-4">
         <div className="flex w-full items-center justify-between">
           <div className="flex space-x-2">
-            <Button className="bg-orange-500 text-white hover:bg-orange-600">Join Event</Button>
+            <Button className={cn('warm-gradient text-white')}>Join Event</Button>
             <Button variant="outline" size="icon">
               <Share2 className="h-5 w-5" />
             </Button>

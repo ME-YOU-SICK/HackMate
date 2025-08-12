@@ -10,7 +10,7 @@ export default function OrganizerPage({ params }: { params: { id: string } }) {
     <div className="container mx-auto py-10">
       <div className="mb-8">
         <h1 className="font-sora text-4xl font-bold">{organizerName}</h1>
-        <p className="mt-2 text-lg text-slate-400">Events hosted by {organizerName}</p>
+        <p className="mt-2 text-lg text-muted-foreground">Events hosted by {organizerName}</p>
       </div>
 
       {/* In a real app, you would map over events fetched for this organizer */}

@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Github, Twitter, Linkedin, Link as LinkIcon, Trophy, Code, Users } from 'lucide-react';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 // This is a simplified static page. In a real application,
 // you would fetch the user's data based on the `params.id`.
@@ -79,27 +80,31 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
         {/* Left Sidebar - Profile Summary */}
         <aside className="lg:col-span-1">
           <div className="sticky top-24">
-            <Card className="border-slate-800 bg-slate-900/50">
+            <Card className="bg-card">
               <CardContent className="p-6 text-center">
                 <Avatar className="mx-auto mb-4 h-32 w-32 border-4 border-orange-500">
                   <AvatarImage src={userProfile.avatar} alt={userProfile.name} />
                   <AvatarFallback>{userProfile.name.charAt(0)}</AvatarFallback>
                 </Avatar>
                 <h1 className="font-sora text-2xl font-bold">{userProfile.name}</h1>
-                <p className="text-slate-400">@{userProfile.handle}</p>
+                <p className="text-muted-foreground">@{userProfile.handle}</p>
                 <div className="my-4 flex justify-center space-x-4">
                   <Link href={userProfile.socials.github} target="_blank">
-                    <Github className="h-6 w-6 text-slate-400 hover:text-white" />
+                    <Github className="h-6 w-6 text-muted-foreground hover:text-white" />
                   </Link>
                   <Link href={userProfile.socials.twitter} target="_blank">
-                    <Twitter className="h-6 w-6 text-slate-400 hover:text-white" />
+                    <Twitter className="h-6 w-6 text-muted-foreground hover:text-white" />
                   </Link>
                   <Link href={userProfile.socials.linkedin} target="_blank">
-                    <Linkedin className="h-6 w-6 text-slate-400 hover:text-white" />
+                    <Linkedin className="h-6 w-6 text-muted-foreground hover:text-white" />
                   </Link>
                 </div>
                 <Button
-                  className="w-full bg-blue-500 text-white hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-blue-500/50"
+                  className={cn(
+                    'w-full text-white',
+                    connectionStatus === 'none' && 'warm-gradient',
+                    connectionStatus !== 'none' && 'bg-secondary'
+                  )}
                   onClick={handleConnect}
                   disabled={connectionStatus === 'pending' || connectionStatus === 'connected'}
                 >
@@ -107,7 +112,7 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
                 </Button>
                 <div className="mt-4 text-left">
                   <p className="text-sm font-bold">Connections</p>
-                  <p className="text-blue-400">{connectionStatus === 'connected' ? userProfile.connections + 1 : userProfile.connections}</p>
+                  <p className="text-orange-500">{connectionStatus === 'connected' ? userProfile.connections + 1 : userProfile.connections}</p>
                 </div>
               </CardContent>
             </Card>
@@ -116,9 +121,9 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
 
         {/* Main Content */}
         <div className="lg:col-span-3">
-          <Card className="border-slate-800 bg-slate-900/50 p-6">
+          <Card className="bg-card p-6">
             <h2 className="font-sora text-2xl font-bold">About Me</h2>
-            <p className="mt-2 text-slate-300">{userProfile.bio}</p>
+            <p className="mt-2 text-muted-foreground">{userProfile.bio}</p>
 
             <div className="mt-6">
               <h3 className="mb-3 font-sora text-xl font-bold">Skills</h3>
@@ -141,17 +146,17 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
               <TabsContent value="projects" className="mt-6">
                 <div className="space-y-6">
                   {userProfile.pastProjects.map((project) => (
-                    <Card key={project.title} className="border-slate-800 bg-slate-900/50">
+                    <Card key={project.title} className="bg-card">
                       <CardHeader>
                         <CardTitle className="flex items-center justify-between font-sora text-xl">
                           {project.title}
                           <Link href={project.link} target="_blank">
-                            <LinkIcon className="h-5 w-5 text-slate-400 hover:text-white" />
+                            <LinkIcon className="h-5 w-5 text-muted-foreground hover:text-white" />
                           </Link>
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-slate-300">{project.description}</p>
+                        <p className="text-muted-foreground">{project.description}</p>
                       </CardContent>
                     </Card>
                   ))}
@@ -160,7 +165,7 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
               <TabsContent value="hackathons" className="mt-6">
                 <div className="space-y-6">
                   {userProfile.pastHackathons.map((hackathon) => (
-                    <Card key={hackathon.name} className="border-slate-800 bg-slate-900/50">
+                    <Card key={hackathon.name} className="bg-card">
                        <CardHeader>
                         <CardTitle className="font-sora text-xl">{hackathon.name}</CardTitle>
                       </CardHeader>
@@ -169,7 +174,7 @@ export default function ProfilePage({ params }: { params: { id: string } }) {
                           <Trophy className="mr-2 h-5 w-5" />
                           <span className="font-semibold">{hackathon.award}</span>
                         </div>
-                        <div className="flex items-center text-slate-300">
+                        <div className="flex items-center text-muted-foreground">
                            <Users className="mr-2 h-5 w-5" />
                            <span className="font-semibold">Team: {hackathon.team.join(', ')}</span>
                         </div>

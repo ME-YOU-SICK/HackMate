@@ -12,6 +12,7 @@ import { teamify } from '@/ai/flows/teamify-flow';
 import { Loader2 } from 'lucide-react';
 import { TeamifyOutput } from '@/ai/flows/teamify-flow';
 import { Separator } from '@/components/ui/separator';
+import { cn } from '@/lib/utils';
 
 const skillCategories = {
   "Programming Languages": ["JavaScript / TypeScript", "Python", "Java", "C++", "C#", "Go", "Ruby", "Rust", "PHP", "Swift", "Kotlin", "Dart", "R Programming", "MATLAB", "Scala"],
@@ -72,7 +73,7 @@ export default function TeamifyPage() {
 
   return (
     <div className="container mx-auto max-w-4xl py-10">
-      <Card className="border-slate-800 bg-slate-900/50">
+      <Card className="bg-card">
         <CardHeader>
           <CardTitle className="font-sora text-3xl">Teamify ✨</CardTitle>
           <CardDescription>
@@ -97,7 +98,7 @@ export default function TeamifyPage() {
 
               <div className="space-y-4">
                 <Label>What skills and technologies are you looking for?</Label>
-                <div className="space-y-6 rounded-lg border border-slate-700 p-4">
+                <div className="space-y-6 rounded-lg border p-4">
                   {Object.entries(skillCategories).map(([category, skills]) => (
                     <div key={category}>
                       <h4 className="mb-3 font-semibold text-orange-400">{category}</h4>
@@ -109,7 +110,7 @@ export default function TeamifyPage() {
                               checked={selectedSkills.includes(skill)}
                               onCheckedChange={() => handleSkillChange(skill)}
                             />
-                            <Label htmlFor={`skill-${skill.replace(/\s+/g, '-')}`} className="text-sm font-normal text-slate-300">
+                            <Label htmlFor={`skill-${skill.replace(/\s+/g, '-')}`} className="text-sm font-normal text-muted-foreground">
                               {skill}
                             </Label>
                           </div>
@@ -131,7 +132,7 @@ export default function TeamifyPage() {
                 />
               </div>
 
-              <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600" disabled={isLoading}>
+              <Button type="submit" className={cn("w-full warm-gradient text-white")} disabled={isLoading}>
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -144,20 +145,20 @@ export default function TeamifyPage() {
              <div className="space-y-6">
               <div>
                 <h3 className="font-sora text-2xl font-bold text-green-400">Team Assembled!</h3>
-                <p className="text-slate-300">We've found the best candidates from your connections. An invitation has been sent to them.</p>
+                <p className="text-muted-foreground">We've found the best candidates from your connections. An invitation has been sent to them.</p>
               </div>
               <div className="space-y-4">
                 {result.team.map((member) => (
-                   <Card key={member.name} className="border-slate-700 bg-slate-800/50 p-4">
+                   <Card key={member.name} className="bg-secondary/30 p-4">
                      <CardTitle className="text-lg">{member.name}</CardTitle>
                      <p className="text-sm font-bold text-orange-400">{member.assignedRole}</p>
-                     <p className="mt-2 text-xs text-slate-400">{member.reasoning}</p>
+                     <p className="mt-2 text-xs text-muted-foreground">{member.reasoning}</p>
                    </Card>
                 ))}
               </div>
-               <Card className="border-slate-700 bg-slate-800/50 p-4">
+               <Card className="bg-secondary/30 p-4">
                   <h4 className="font-bold">Invitation Message Sent:</h4>
-                  <p className="mt-2 text-sm text-slate-300 italic">"{result.invitationMessage}"</p>
+                  <p className="mt-2 text-sm italic text-muted-foreground">"{result.invitationMessage}"</p>
                </Card>
                <Button onClick={() => setResult(null)} variant="outline">Start Over</Button>
              </div>

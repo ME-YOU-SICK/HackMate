@@ -33,7 +33,7 @@ const leastDemandedSkills = [
 
 export default function PopularFeed() {
   return (
-    <Card className="border-slate-800 bg-slate-900/50">
+    <Card className="bg-card">
       <CardHeader>
         <CardTitle className="font-sora text-2xl">Popular Trends</CardTitle>
       </CardHeader>
@@ -46,7 +46,7 @@ export default function PopularFeed() {
           <TabsContent value="tech" className="mt-6">
             <div className="space-y-6">
               <div>
-                <h3 className="mb-4 flex items-center text-lg font-semibold text-slate-200">
+                <h3 className="mb-4 flex items-center text-lg font-semibold text-foreground">
                   <TrendingUp className="mr-2 h-5 w-5 text-green-400" />
                   Most Demanded Tech Stack
                 </h3>
@@ -57,7 +57,7 @@ export default function PopularFeed() {
                 </div>
               </div>
               <div>
-                <h3 className="mb-4 flex items-center text-lg font-semibold text-slate-200">
+                <h3 className="mb-4 flex items-center text-lg font-semibold text-foreground">
                   <Lightbulb className="mr-2 h-5 w-5 text-blue-400" />
                   Most Demanded Skills
                 </h3>
@@ -72,7 +72,7 @@ export default function PopularFeed() {
           <TabsContent value="users" className="mt-6">
           <div className="space-y-6">
               <div>
-                <h3 className="mb-4 flex items-center text-lg font-semibold text-slate-200">
+                <h3 className="mb-4 flex items-center text-lg font-semibold text-foreground">
                   <TrendingUp className="mr-2 h-5 w-5 text-red-400" />
                   Most Listed Skills by Users
                 </h3>
@@ -83,7 +83,7 @@ export default function PopularFeed() {
                 </div>
               </div>
               <div>
-                <h3 className="mb-4 flex items-center text-lg font-semibold text-slate-200">
+                <h3 className="mb-4 flex items-center text-lg font-semibold text-foreground">
                   <TrendingDown className="mr-2 h-5 w-5 text-red-400" />
                   Least Demanded Skills
                 </h3>

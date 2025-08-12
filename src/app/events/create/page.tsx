@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { DatePicker } from '@/components/ui/date-picker';
 import { Upload } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const skillCategories = {
   "Programming Languages": ["JavaScript / TypeScript", "Python", "Java", "C++", "C#", "Go", "Ruby", "Rust", "PHP", "Swift", "Kotlin", "Dart", "R Programming", "MATLAB", "Scala"],
@@ -27,7 +28,7 @@ const skillCategories = {
 export default function CreateEventPage() {
   return (
     <div className="container mx-auto max-w-4xl py-10">
-      <Card className="border-slate-800 bg-slate-900/50">
+      <Card className="bg-card">
         <CardHeader>
           <CardTitle className="font-sora text-3xl">Create a New Event</CardTitle>
           <CardDescription>
@@ -78,7 +79,7 @@ export default function CreateEventPage() {
 
             <div className="space-y-4">
               <Label>Allowed Tech Stacks & Skills</Label>
-              <div className="space-y-6 rounded-lg border border-slate-700 p-4" style={{ maxHeight: '400px', overflowY: 'auto' }}>
+              <div className="space-y-6 rounded-lg border p-4" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                 {Object.entries(skillCategories).map(([category, skills]) => (
                   <div key={category}>
                     <h4 className="mb-3 font-semibold text-orange-400">{category}</h4>
@@ -86,7 +87,7 @@ export default function CreateEventPage() {
                       {skills.map((skill) => (
                         <div key={skill} className="flex items-center space-x-2">
                           <Checkbox id={`skill-${skill.replace(/\s+/g, '-')}`} />
-                          <Label htmlFor={`skill-${skill.replace(/\s+/g, '-')}`} className="text-sm font-normal text-slate-300">
+                          <Label htmlFor={`skill-${skill.replace(/\s+/g, '-')}`} className="text-sm font-normal text-muted-foreground">
                             {skill}
                           </Label>
                         </div>
@@ -99,10 +100,10 @@ export default function CreateEventPage() {
             
             <div className="space-y-2">
               <Label>Event Banner</Label>
-              <div className="flex h-32 w-full cursor-pointer items-center justify-center rounded-md border-2 border-dashed border-slate-700 hover:border-orange-500">
+              <div className="flex h-32 w-full cursor-pointer items-center justify-center rounded-md border-2 border-dashed hover:border-orange-500">
                 <div className="text-center">
-                  <Upload className="mx-auto h-8 w-8 text-slate-500" />
-                  <p className="mt-2 text-sm text-slate-400">Click or drag file to upload</p>
+                  <Upload className="mx-auto h-8 w-8 text-muted-foreground" />
+                  <p className="mt-2 text-sm text-muted-foreground">Click or drag file to upload</p>
                   <p className="text-xs text-slate-500">PNG, JPG, GIF up to 10MB</p>
                 </div>
               </div>
@@ -113,7 +114,7 @@ export default function CreateEventPage() {
               <Input id="registration-link" type="url" placeholder="https://your-event-registration.com" />
             </div>
 
-            <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600">
+            <Button type="submit" className={cn("w-full warm-gradient text-white")}>
               Create Event
             </Button>
           </form>
