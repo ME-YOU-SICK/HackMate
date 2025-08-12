@@ -45,7 +45,7 @@ export default function Home() {
                     style={{ top: '40%', left: '60%', animation: 'blob-move-3 18s ease-in-out infinite alternate' }}>
                 </div>
             </div>
-           <div className="absolute inset-0 z-[1] bg-[url(/glitter.png)] bg-repeat opacity-[0.1] dark:opacity-[0.08]"></div>
+           <div className="absolute inset-0 z-[1] bg-[url(/glitter.png)] bg-repeat opacity-[0.15] dark:opacity-[0.12]"></div>
 
           <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <AnimatedLogo />
