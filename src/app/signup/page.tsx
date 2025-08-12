@@ -3,7 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
-import { Github } from 'lucide-react';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { Github, User, Briefcase } from 'lucide-react';
 import Link from 'next/link';
 
 export default function SignupPage() {
@@ -16,7 +17,20 @@ export default function SignupPage() {
         </CardHeader>
         <CardContent>
           <form className="space-y-4">
-             <div className="space-y-2">
+            <div className="space-y-2">
+              <Label>I am a...</Label>
+              <ToggleGroup type="single" defaultValue="participant" className="grid grid-cols-2">
+                <ToggleGroupItem value="participant" aria-label="Toggle participant">
+                  <User className="mr-2 h-4 w-4" />
+                  Participant
+                </ToggleGroupItem>
+                <ToggleGroupItem value="organizer" aria-label="Toggle organizer">
+                  <Briefcase className="mr-2 h-4 w-4" />
+                  Organizer
+                </ToggleGroupItem>
+              </ToggleGroup>
+            </div>
+            <div className="space-y-2">
               <Label htmlFor="name">Full Name</Label>
               <Input id="name" type="text" placeholder="Ada Lovelace" />
             </div>
