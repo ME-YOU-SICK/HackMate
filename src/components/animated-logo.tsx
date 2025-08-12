@@ -12,6 +12,7 @@ const symbolMap: { [key: string]: string[] } = {
   'C': ['C', '(', '['],
   'K': ['K', 'Ҝ', 'Ʞ'],
   'M': ['M', '₥', 'ʍ'],
+  'A': ['A', 'Λ', '4'],
   'T': ['T', '⊤', '†'],
   'E': ['E', 'Σ', '3'],
 };
@@ -69,7 +70,7 @@ export function AnimatedLogo() {
         <span
           key={index}
           className="inline-block transition-all duration-300 ease-in-out text-center"
-          style={{ width: '0.75em' }} // Prevent layout shift by giving a fixed width based on em
+          style={{ width: '0.8em' }} // Prevent layout shift by giving a fixed width based on em
         >
           {char}
         </span>
