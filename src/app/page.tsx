@@ -36,7 +36,7 @@ export default function Home() {
              {/* Bottom-Right Blob */}
             <div className="absolute bottom-0 right-0 translate-x-2/3 translate-y-2/3">
                <div
-                className="h-[50vw] w-[50vw] animate-blob-spin bg-gradient-to-tl from-green-500/10 via-teal-500/10 to-blue-500/20 [animation-delay:-5s]"
+                className="h-[50vw] w-[50vw] animate-blob-spin bg-gradient-to-tl from-orange-500/20 via-pink-500/20 to-purple-500/20 [animation-delay:-5s]"
                 style={{ borderRadius: '70% 30% 47% 53% / 62% 38% 70% 30%' }}
               />
             </div>
