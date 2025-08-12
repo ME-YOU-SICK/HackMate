@@ -11,7 +11,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
-import { Bell, Home, LogOut, MessageSquare, PlusCircle, Settings, User } from 'lucide-react';
+import { Bell, Home, LogOut, MessageSquare, PlusCircle, Settings, User, Users } from 'lucide-react';
 import Link from 'next/link';
 
 interface HeaderProps {
@@ -34,6 +34,9 @@ export default function Header({ variant = 'dashboard' }: HeaderProps) {
         <div className="flex flex-1 items-center justify-end space-x-2 sm:space-x-4">
           {variant === 'dashboard' ? (
             <>
+               <Button asChild variant="ghost" size="sm">
+                  <Link href="/teamify"><Users className="mr-2 h-4 w-4" />Teamify</Link>
+              </Button>
               <Button variant="ghost" size="icon">
                 <PlusCircle className="h-5 w-5" />
               </Button>
