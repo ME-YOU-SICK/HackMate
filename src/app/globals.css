@@ -93,32 +93,60 @@
     }
   }
 
-  .warm-gradient {
-    background: linear-gradient(135deg, #ff8c00, #ff0080, #8a2be2);
-    background-size: 400% 400%;
-    animation: gradient-move 15s ease infinite;
+  .animate-blob-2 {
+    animation-delay: 2s;
+  }
+  
+  .animate-blob-3 {
+      animation-delay: 4s;
   }
 
-  .dark .warm-gradient {
-    background: linear-gradient(135deg, #4a2100, #630031, #3a0d63);
-    background-size: 400% 400%;
-    animation: gradient-move 15s ease infinite;
+  @keyframes blob-1 {
+      0%,
+      100% {
+          transform: translate(-50%, -50%) scale(1);
+      }
+      25% {
+          transform: translate(-50%, -70%) scale(1.1);
+      }
+      50% {
+          transform: translate(-30%, -40%) scale(1);
+      }
+      75% {
+          transform: translate(-60%, -60%) scale(0.9);
+      }
   }
 
-  @keyframes gradient-move {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  @keyframes blob-2 {
+      0%,
+      100% {
+          transform: translate(20%, 30%) scale(1);
+      }
+      25% {
+          transform: translate(30%, 40%) scale(1.1);
+      }
+      50% {
+          transform: translate(10%, 20%) scale(1);
+      }
+      75% {
+          transform: translate(25%, 35%) scale(0.9);
+      }
   }
 
-  .glitter-texture::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0zMC41IDY5LjVMMCA1MEwyNS41IDMwLjVMMjAuNSAwTDM1LjUgMjUuNUw1MCAwTDY0LjUgMjUuNUw3OS41IDBMODQuNSAzMC41TDEwMCA1MEw2OS41IDY5LjVMODQuNSA5NC41TDc5LjUgMTIwTDY0LjUgOTQuNUw1MCAxMjBMMzUuNSA5NC41TDIwLjUgMTIwTDI1LjUgOTQuNUwzMC41IDY5LjV6IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4xNSIvPjwvc3ZnPg==');
-    background-size: 200px 200px;
-    opacity: 0.1;
-    z-index: 1;
+  @keyframes blob-3 {
+      0%,
+      100% {
+          transform: translate(-25%, 50%) scale(1);
+      }
+      25% {
+          transform: translate(-15%, 40%) scale(1.1);
+      }
+      50% {
+          transform: translate(-35%, 60%) scale(1);
+      }
+      75% {
+          transform: translate(-20%, 45%) scale(0.9);
+      }
   }
 
 }
