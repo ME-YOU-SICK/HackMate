@@ -75,8 +75,8 @@ const mockSchedule = [
 ];
 
 
-export default function EventDetailsPage({ params }: { params: { id: string } }) {
-    const event = allEvents.find(e => e.id === params.id);
+export default function EventDetailsPage({ params: { id } }: { params: { id: string } }) {
+    const event = allEvents.find(e => e.id === id);
 
     if (!event) {
         notFound();
