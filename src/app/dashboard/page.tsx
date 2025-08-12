@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Activity, Search, Users, Wrench } from "lucide-react";
 import Link from 'next/link';
-import { MobileHeader } from "@/components/sidebar";
+import { MobileHeader } from "@/components/ui/sidebar";
 
 export default function DashboardPage() {
   return (

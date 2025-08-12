@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import { MobileHeader } from "@/components/sidebar";
+import { MobileHeader } from "@/components/ui/sidebar";
 import { Bell, Database, KeyRound, LogOut, Palette, PowerOff, Save, Share2, Shield, SlidersHorizontal, User } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";

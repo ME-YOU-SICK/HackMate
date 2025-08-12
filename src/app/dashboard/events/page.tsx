@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MobileHeader } from "@/components/sidebar";
+import { MobileHeader } from "@/components/ui/sidebar";
 import { Calendar, PlusCircle, Users } from "lucide-react";
 import Image from "next/image";
 

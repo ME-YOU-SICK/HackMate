@@ -1,5 +1,6 @@
-import { SidebarProvider, Sidebar } from "@/components/sidebar";
+import { SidebarProvider, Sidebar, SidebarInset, MobileHeader } from "@/components/ui/sidebar";
 import { DashboardNav } from "@/components/dashboard-nav";
+import { Logo } from "@/components/logo";
 
 export default function DashboardLayout({
   children,
@@ -8,14 +9,15 @@ export default function DashboardLayout({
 }) {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen">
         <Sidebar>
           <DashboardNav />
         </Sidebar>
-        <main className="flex-1">
+        <SidebarInset>
+           <MobileHeader>
+                <Logo isCollapsed={true} />
+            </MobileHeader>
           {children}
-        </main>
-      </div>
+        </SidebarInset>
     </SidebarProvider>
   );
 }

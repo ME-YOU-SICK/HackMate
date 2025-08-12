@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import {
-  Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
@@ -23,7 +22,6 @@ import { auth } from "@/lib/firebase";
 import { signOutAction } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
-import { SheetClose } from "./ui/sheet";
 
 const navItems = [
   { href: "/dashboard", icon: <LayoutDashboard />, label: "Dashboard" },

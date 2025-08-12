@@ -322,7 +322,7 @@ const SidebarInset = React.forwardRef<
     <main
       ref={ref}
       className={cn(
-        "relative flex min-h-svh flex-1 flex-col bg-muted/30",
+        "relative flex min-h-svh flex-1 flex-col bg-background",
         "peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-[calc(var(--sidebar-width-icon)_+_theme(spacing.8))] md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm",
         className
       )}
@@ -752,7 +752,10 @@ const SidebarMenuSubButton = React.forwardRef<
 SidebarMenuSubButton.displayName = "SidebarMenuSubButton"
 
 export function MobileHeader({ className, children, ...props }: React.ComponentProps<"div">) {
-  const { setOpenMobile } = useSidebar();
+  const { isMobile, setOpenMobile } = useSidebar();
+  
+  if (!isMobile) return null;
+
   return (
     <div
       className={cn(
@@ -761,17 +764,11 @@ export function MobileHeader({ className, children, ...props }: React.ComponentP
       )}
       {...props}
     >
-      
-      {children}
-       <Button
-        variant="ghost"
-        size="icon"
-        className="ml-auto"
-        onClick={() => setOpenMobile(false)}
-      >
-        <X />
-        <span className="sr-only">Close</span>
-      </Button>
+      <SidebarTrigger />
+      <div className="flex-1 flex justify-center">
+        {children}
+      </div>
+      <div className="w-8"></div>
     </div>
   )
 }

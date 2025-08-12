@@ -3,7 +3,7 @@
 import { useState, useActionState } from 'react';
 import { getTeamSuggestions } from '@/app/actions/suggest-teammates.action';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Card as ShadcnCard } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -12,7 +12,9 @@ import { Textarea } from '@/components/ui/textarea';
 import type { SuggestTeammatesOutput } from '@/ai/flows/suggest-teammates';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { BrainCircuit, Loader, ThumbsUp, User, Users } from 'lucide-react';
-import { MobileHeader } from '@/components/sidebar';
+import { MobileHeader } from '@/components/ui/sidebar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 
 const initialState = {
   success: false,
@@ -122,7 +124,7 @@ export default function FindTeamPage() {
                     <h3 className="text-2xl font-bold tracking-tight flex items-center gap-2"><Users />Suggested Teammates</h3>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         {state.data.suggestedTeammates.map((teammate, index) => (
-                            <Card key={index}>
+                            <ShadcnCard key={index}>
                                 <CardHeader>
                                     <CardTitle className="flex items-center gap-3">
                                         <Avatar className="h-8 w-8">
@@ -142,7 +144,7 @@ export default function FindTeamPage() {
                                 <CardFooter>
                                     <Button variant="outline" className="w-full">View Profile</Button>
                                 </CardFooter>
-                            </Card>
+                            </ShadcnCard>
                         ))}
                     </div>
                 </div>
