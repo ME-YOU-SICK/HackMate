@@ -33,7 +33,7 @@ const navItems = [
 
 export function DashboardNav() {
   const pathname = usePathname();
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -43,7 +43,7 @@ export function DashboardNav() {
 
   const getInitials = (name: string | null | undefined) => {
     if (!name) return "U";
-    return name.split(' ').map(n => n[0]).join('');
+    return name.split(' ').map(n => n[0]).join('').toUpperCase();
   }
 
 
@@ -76,11 +76,11 @@ export function DashboardNav() {
         <SidebarSeparator />
         <div className="flex items-center gap-3 p-2">
             <Avatar>
-                <AvatarImage src={user?.photoURL || "https://placehold.co/100x100.png"} alt="User" data-ai-hint="profile picture" />
+                <AvatarImage src={user?.photoURL || undefined} alt={user?.displayName || "User"} data-ai-hint="profile picture" />
                 <AvatarFallback>{getInitials(user?.displayName)}</AvatarFallback>
             </Avatar>
-            <div className="flex flex-col">
-                <span className="text-sm font-semibold">{user?.displayName || "User"}</span>
+            <div className="flex flex-col truncate">
+                <span className="text-sm font-semibold truncate">{user?.displayName || "Anonymous User"}</span>
                 <span className="text-xs text-muted-foreground">Participant</span>
             </div>
             <Button variant="ghost" size="icon" className="ml-auto" onClick={handleSignOut}>
