@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useActionState } from 'react';
-import { getTeamSuggestions } from '@/app/actions/suggest-teammates.action.ts';
+import { getTeamSuggestions } from '@/app/actions/suggest-teammates.action';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -12,6 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import type { SuggestTeammatesOutput } from '@/ai/flows/suggest-teammates';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { BrainCircuit, Loader, ThumbsUp, User, Users } from 'lucide-react';
+import { MobileHeader } from '@/components/sidebar';
 
 const initialState = {
   success: false,
@@ -22,16 +23,20 @@ export default function FindTeamPage() {
   const [teamSize, setTeamSize] = useState(3);
 
   return (
+    <>
+    <MobileHeader>
+      <h2 className="text-xl font-bold">Find a Team</h2>
+    </MobileHeader>
     <div className="container mx-auto py-8 px-4">
+        <div className="mb-8">
+            <h2 className="text-3xl font-bold tracking-tight">AI Teammate Finder</h2>
+            <p className="text-muted-foreground">Fill out the form to get personalized teammate suggestions for your hackathon project.</p>
+        </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-1">
-          <Card className="bg-card/60 backdrop-blur-lg border-border/50">
-            <CardHeader>
-              <CardTitle className="font-headline flex items-center gap-2"><BrainCircuit /> AI Teammate Finder</CardTitle>
-              <CardDescription>Fill out the form to get personalized teammate suggestions for your hackathon project.</CardDescription>
-            </CardHeader>
+          <Card>
             <form action={formAction}>
-              <CardContent className="space-y-6">
+              <CardContent className="space-y-6 pt-6">
                 <div className="space-y-2">
                   <Label htmlFor="hackathonDescription">Project Description</Label>
                   <Textarea id="hackathonDescription" name="hackathonDescription" placeholder="Describe your project idea, goals, and what you want to build." required />
@@ -74,7 +79,7 @@ export default function FindTeamPage() {
               </CardContent>
               <CardFooter>
                 <Button type="submit" className="w-full" disabled={isPending}>
-                  {isPending ? <><Loader className="mr-2 h-4 w-4 animate-spin" /> Please wait...</> : 'Generate Suggestions'}
+                  {isPending ? <><Loader className="mr-2 h-4 w-4 animate-spin" /> Please wait...</> : <><BrainCircuit className="mr-2 h-4 w-4" />Generate Suggestions</>}
                 </Button>
               </CardFooter>
             </form>
@@ -82,15 +87,15 @@ export default function FindTeamPage() {
         </div>
         <div className="md:col-span-2">
             {isPending && (
-                <div className="flex flex-col items-center justify-center h-full gap-4 p-8 rounded-lg bg-card/60 backdrop-blur-lg border border-dashed border-border/50">
+                <div className="flex flex-col items-center justify-center h-full gap-4 p-8 rounded-lg border border-dashed">
                     <Loader className="h-12 w-12 text-primary animate-spin" />
-                    <h3 className="text-2xl font-headline">Finding your dream team...</h3>
+                    <h3 className="text-2xl font-bold tracking-tight">Finding your dream team...</h3>
                     <p className="text-muted-foreground">Our AI is analyzing your profile to find the best matches.</p>
                 </div>
             )}
 
             {!isPending && state?.error && (
-                <Alert variant="destructive" className="bg-destructive/20 border-destructive">
+                <Alert variant="destructive">
                     <AlertTitle>Error</AlertTitle>
                     <AlertDescription>
                         {state.error}
@@ -105,30 +110,33 @@ export default function FindTeamPage() {
 
             {!isPending && state?.data && (
                 <div className="space-y-6">
-                    <Card className="bg-card/60 backdrop-blur-lg border-border/50">
+                    <Card>
                         <CardHeader>
-                            <CardTitle className="font-headline flex items-center gap-2"><ThumbsUp />AI's Reasoning</CardTitle>
+                            <CardTitle className="flex items-center gap-2"><ThumbsUp />AI's Reasoning</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <p className="text-muted-foreground">{state.data.reasoning}</p>
                         </CardContent>
                     </Card>
 
-                    <h3 className="text-2xl font-headline flex items-center gap-2"><Users />Suggested Teammates</h3>
+                    <h3 className="text-2xl font-bold tracking-tight flex items-center gap-2"><Users />Suggested Teammates</h3>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                         {state.data.suggestedTeammates.map((teammate, index) => (
-                            <Card key={index} className="bg-card/60 backdrop-blur-lg border-border/50">
+                            <Card key={index}>
                                 <CardHeader>
                                     <CardTitle className="flex items-center gap-3">
-                                        <User /> {teammate}
+                                        <Avatar className="h-8 w-8">
+                                            <AvatarFallback>{teammate.charAt(0)}</AvatarFallback>
+                                        </Avatar>
+                                        {teammate}
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent>
                                     <p className="text-sm text-muted-foreground mb-4">A brief description of why this person is a good match would go here, including their skills and experience.</p>
                                     <div className="flex flex-wrap gap-2">
-                                        <span className="text-xs bg-primary/20 text-primary px-2 py-1 rounded-full">React</span>
-                                        <span className="text-xs bg-secondary/20 text-secondary px-2 py-1 rounded-full">Node.js</span>
-                                        <span className="text-xs bg-accent/20 text-accent-foreground px-2 py-1 rounded-full">UX Design</span>
+                                        <Badge variant="secondary">React</Badge>
+                                        <Badge variant="secondary">Node.js</Badge>
+                                        <Badge variant="secondary">UX Design</Badge>
                                     </div>
                                 </CardContent>
                                 <CardFooter>
@@ -142,5 +150,6 @@ export default function FindTeamPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

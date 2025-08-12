@@ -21,12 +21,12 @@ import { updateUserProfile } from '@/lib/db';
 import { useToast } from '@/hooks/use-toast';
 
 const steps = [
-  { id: 1, title: "Welcome to HackMate!", icon: PartyPopper },
-  { id: 2, title: "Basic Information", icon: User },
+  { id: 1, title: "Welcome!", icon: PartyPopper },
+  { id: 2, title: "Your Profile", icon: User },
   { id: 3, title: "Your Skills", icon: Tag },
   { id: 4, title: "Your Interests", icon: Tag },
-  { id: 5, title: "Past Hackathons", icon: Trophy },
-  { id: 6, title: "You're All Set!", icon: CheckCircle },
+  { id: 5, title: "Past Events", icon: Trophy },
+  { id: 6, title: "All Set!", icon: CheckCircle },
 ];
 
 const skillCategories = [
@@ -149,7 +149,9 @@ export default function OnboardingPage() {
   }
 
   const nextStep = async () => {
-    await saveProfileData();
+    if (currentStep < steps.length -1) {
+        await saveProfileData();
+    }
     setCurrentStep(prev => Math.min(prev + 1, steps.length));
   }
   const prevStep = () => setCurrentStep(prev => Math.max(prev - 1, 1));
@@ -190,7 +192,7 @@ export default function OnboardingPage() {
 
   if (loading || !user) {
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-br from-background to-slate-900/50">
+        <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-secondary/50">
             <Loader className="h-12 w-12 animate-spin text-primary"/>
             <p className="mt-4 text-muted-foreground">Loading your profile...</p>
         </div>
@@ -200,39 +202,31 @@ export default function OnboardingPage() {
   const CurrentIcon = steps[currentStep - 1].icon;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-br from-background to-slate-900/50">
-       <div className="absolute inset-0 -z-10 h-full w-full bg-transparent bg-[radial-gradient(#29ABE2_1px,transparent_1px)] [background-size:32px_32px]"></div>
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-secondary/50">
       <div className="w-full max-w-2xl">
         <div className="flex justify-center mb-6">
             <Logo />
         </div>
-        <Card className="bg-card/70 backdrop-blur-lg border-border/50">
+        <Card>
           <CardHeader>
-            <div className="w-full mb-4">
+             <div className="w-full mb-4">
+                <p className="text-sm text-center text-muted-foreground mb-2">Step {currentStep} of {steps.length}</p>
                 <Progress value={progress} className="h-2" />
-                <div className="flex justify-between mt-2 text-xs text-muted-foreground">
-                    {steps.map(step => (
-                        <div key={step.id} className={`flex flex-col items-center w-24 ${currentStep >= step.id ? 'text-primary' : ''}`}>
-                             <step.icon className={`h-5 w-5 mb-1 ${currentStep >= step.id ? 'text-primary' : 'text-muted-foreground'}`} />
-                             <span className="text-center">{step.title}</span>
-                        </div>
-                    ))}
-                </div>
             </div>
-            <CardTitle className="flex items-center gap-3 text-2xl font-headline pt-4">
-              <CurrentIcon className="h-7 w-7" /> {steps[currentStep-1].title}
+            <CardTitle className="flex items-center justify-center gap-3 text-2xl font-bold tracking-tight pt-4">
+              <CurrentIcon className="h-7 w-7 text-primary" /> {steps[currentStep-1].title}
             </CardTitle>
           </CardHeader>
 
-          <CardContent className="min-h-[300px] max-h-[50vh] overflow-y-auto">
+          <CardContent className="min-h-[350px] max-h-[50vh] overflow-y-auto p-6">
             {currentStep === 1 && (
               <div className="text-center space-y-4 pt-8">
-                <h3 className="text-xl">Let's get your profile ready for action!</h3>
+                <h3 className="text-xl font-semibold">Let's get your profile ready for action!</h3>
                 <p className="text-muted-foreground">A complete profile helps our AI find you the best teammates and helps others discover you. This will only take a few minutes.</p>
               </div>
             )}
             {currentStep === 2 && (
-              <div className="space-y-4">
+              <div className="space-y-4 max-w-md mx-auto">
                 <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>
                     <Input id="name" type="text" placeholder="Ada Lovelace" value={fullName} onChange={e => setFullName(e.target.value)} />
@@ -245,7 +239,7 @@ export default function OnboardingPage() {
             )}
              {currentStep === 3 && (
               <div className="space-y-4">
-                 <p className="text-sm text-muted-foreground">Select your top skills from the categories below.</p>
+                 <p className="text-sm text-muted-foreground text-center">Select your top skills from the categories below.</p>
                  <Accordion type="multiple" className="w-full">
                     {skillCategories.map(category => (
                       <AccordionItem key={category.category} value={category.category}>
@@ -270,8 +264,8 @@ export default function OnboardingPage() {
               </div>
             )}
             {currentStep === 4 && (
-              <div className="space-y-4">
-                 <p className="text-sm text-muted-foreground">What topics are you passionate about? Press Enter or comma to add an interest.</p>
+              <div className="space-y-4 max-w-md mx-auto">
+                 <p className="text-sm text-muted-foreground text-center">What topics are you passionate about? Press Enter or comma to add an interest.</p>
                 <div className="space-y-2">
                     <Label htmlFor="interests">Interests</Label>
                     <Input 
@@ -284,7 +278,7 @@ export default function OnboardingPage() {
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {interests.map(interest => (
-                    <Badge key={interest} variant="outline" className="flex items-center gap-1">
+                    <Badge key={interest} variant="secondary" className="flex items-center gap-1">
                       {interest}
                       <button onClick={() => removeInterest(interest)} className="rounded-full hover:bg-destructive/20 p-0.5">
                         <X className="h-3 w-3" />
@@ -295,8 +289,8 @@ export default function OnboardingPage() {
               </div>
             )}
              {currentStep === 5 && (
-              <div className="space-y-4">
-                 <p className="text-sm text-muted-foreground">List some hackathons or tech events you've participated in.</p>
+              <div className="space-y-4 max-w-md mx-auto">
+                 <p className="text-sm text-muted-foreground text-center">List some hackathons or tech events you've participated in.</p>
                 <div className="flex gap-4 items-end">
                     <div className="space-y-2 flex-grow">
                         <Label htmlFor="eventName">Event Name</Label>
@@ -327,31 +321,27 @@ export default function OnboardingPage() {
                  <div className="text-center space-y-4 pt-8">
                     <h3 className="text-xl font-semibold">Congratulations, {fullName}!</h3>
                     <p className="text-muted-foreground max-w-md mx-auto">Your HackMate profile is complete. You're ready to connect with innovators, join events, and build amazing things.</p>
-                     <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
+                     <Button asChild size="lg">
                         <Link href="/dashboard">Go to my Dashboard <ArrowRight className="ml-2 h-5 w-5"/></Link>
                     </Button>
                 </div>
             )}
           </CardContent>
           <CardFooter className="flex justify-between">
-            {currentStep > 1 && currentStep < steps.length ? (
+            {currentStep > 1 ? (
                 <Button variant="outline" onClick={prevStep} disabled={isSaving}>
                     <ArrowLeft className="mr-2 h-4 w-4" /> Previous
                 </Button>
             ) : <div />}
 
-            {currentStep < steps.length -1 ? (
+            {currentStep < steps.length ? (
                 <Button onClick={nextStep} disabled={isSaving}>
                     {isSaving && <Loader className="mr-2 h-4 w-4 animate-spin"/>}
-                    Next <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-            ) : currentStep === steps.length - 1 ? (
-                 <Button onClick={nextStep} disabled={isSaving}>
-                    {isSaving && <Loader className="mr-2 h-4 w-4 animate-spin"/>}
-                    Finish <CheckCircle className="ml-2 h-4 w-4" />
+                    {currentStep === steps.length - 1 ? 'Finish' : 'Next'}
+                    {currentStep < steps.length - 1 && <ArrowRight className="ml-2 h-4 w-4" />}
+                    {currentStep === steps.length - 1 && <CheckCircle className="ml-2 h-4 w-4" />}
                 </Button>
             ) : <div />}
-
           </CardFooter>
         </Card>
       </div>

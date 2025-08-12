@@ -1,4 +1,4 @@
-import { SidebarProvider, Sidebar, SidebarInset } from "@/components/ui/sidebar";
+import { SidebarProvider, Sidebar } from "@/components/sidebar";
 import { DashboardNav } from "@/components/dashboard-nav";
 
 export default function DashboardLayout({
@@ -8,12 +8,14 @@ export default function DashboardLayout({
 }) {
   return (
     <SidebarProvider>
-      <Sidebar>
-        <DashboardNav />
-      </Sidebar>
-      <SidebarInset>
-        {children}
-      </SidebarInset>
+      <div className="flex min-h-screen">
+        <Sidebar>
+          <DashboardNav />
+        </Sidebar>
+        <main className="flex-1">
+          {children}
+        </main>
+      </div>
     </SidebarProvider>
   );
 }
