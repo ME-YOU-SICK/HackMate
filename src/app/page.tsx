@@ -163,7 +163,7 @@ export default function Home() {
                     <div className="space-y-4">
                         <h2 className="text-3xl font-bold tracking-tight">Why This Matters</h2>
                         <p className="text-lg text-muted-foreground">
-                            Hackathons are more than just coding competitions. They are launchpads for careers, breeding grounds for innovation, and catalysts for lifelong friendships. By breaking down the barrier of finding the right team, we empower more students and professionals to participate, innovate, and ultimately, get hired for their dream jobs.
+                            Hackathons are more than just-coding competitions. They are launchpads for careers, breeding grounds for innovation, and catalysts for lifelong friendships. By breaking down the barrier of finding the right team, we empower more students and professionals to participate, innovate, and ultimately, get hired for their dream jobs.
                         </p>
                          <p className="text-lg text-muted-foreground">
                             We're building a world where a great idea is all you need to get started.
