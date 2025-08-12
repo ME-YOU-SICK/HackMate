@@ -9,6 +9,7 @@ export interface UserProfile {
   uid: string;
   fullName: string;
   email: string;
+  role: 'participant' | 'organizer';
   title?: string;
   bio?: string;
   skills?: string[];

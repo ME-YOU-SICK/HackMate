@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 
-export async function signUpWithEmailAndPassword(email: string, password: string, fullName: string) {
+export async function signUpWithEmailAndPassword(email: string, password: string, fullName: string, role: 'participant' | 'organizer') {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     await updateProfile(userCredential.user, { displayName: fullName });
@@ -20,6 +20,7 @@ export async function signUpWithEmailAndPassword(email: string, password: string
         uid: userCredential.user.uid,
         email: userCredential.user.email,
         fullName: fullName,
+        role: role,
     }, { merge: true });
 
     return { success: true, userId: userCredential.user.uid };
@@ -37,7 +38,7 @@ export async function signInWithEmailAndPasswordAction(email: string, password: 
   }
 }
 
-export async function processProviderSignIn(uid: string, email: string | null, displayName: string | null, photoURL: string | null) {
+export async function processProviderSignIn(uid: string, email: string | null, displayName: string | null, photoURL: string | null, role?: 'participant' | 'organizer') {
   try {
     const userRef = doc(db, 'users', uid);
     const docSnap = await getDoc(userRef);
@@ -50,6 +51,7 @@ export async function processProviderSignIn(uid: string, email: string | null, d
         email: email,
         fullName: displayName,
         photoURL: photoURL,
+        role: role,
       }, { merge: true });
     }
 

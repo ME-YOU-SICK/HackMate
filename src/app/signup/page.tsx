@@ -15,6 +15,7 @@ import { Loader, Github } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { auth } from "@/lib/firebase";
 import { signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 
 const GoogleIcon = () => (
@@ -32,6 +33,7 @@ export default function SignupPage() {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState<'participant' | 'organizer'>();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isProviderLoading, setIsProviderLoading] = useState<null | 'google' | 'github'>(null);
@@ -39,10 +41,14 @@ export default function SignupPage() {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!role) {
+        setError("Please select a role.");
+        return;
+    }
     setIsLoading(true);
     setError(null);
 
-    const result = await signUpWithEmailAndPassword(email, password, fullName);
+    const result = await signUpWithEmailAndPassword(email, password, fullName, role);
 
     if (result.success && result.userId) {
       toast({
@@ -57,6 +63,10 @@ export default function SignupPage() {
   };
 
   const handleProviderSignup = async (providerName: 'google' | 'github') => {
+    if (!role) {
+        setError("Please select a role before signing up with a provider.");
+        return;
+    }
     setIsProviderLoading(providerName);
     setError(null);
 
@@ -66,7 +76,7 @@ export default function SignupPage() {
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
 
-        const serverResult = await processProviderSignIn(user.uid, user.email, user.displayName, user.photoURL);
+        const serverResult = await processProviderSignIn(user.uid, user.email, user.displayName, user.photoURL, role);
 
         if (serverResult.success) {
              toast({
@@ -107,6 +117,33 @@ export default function SignupPage() {
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
+             <div className="space-y-2">
+                <Label>I am a...</Label>
+                <RadioGroup 
+                    value={role} 
+                    onValueChange={(value: 'participant' | 'organizer') => setRole(value)}
+                    className="grid grid-cols-2 gap-4"
+                >
+                    <div>
+                        <RadioGroupItem value="participant" id="participant" className="peer sr-only" />
+                        <Label
+                            htmlFor="participant"
+                            className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                        >
+                            Participant
+                        </Label>
+                    </div>
+                    <div>
+                         <RadioGroupItem value="organizer" id="organizer" className="peer sr-only" />
+                        <Label
+                             htmlFor="organizer"
+                            className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+                        >
+                            Organizer
+                        </Label>
+                    </div>
+                </RadioGroup>
+            </div>
              <div className="grid grid-cols-2 gap-4">
                 <Button variant="outline" onClick={() => handleProviderSignup('google')} disabled={!!isProviderLoading}>
                     {isProviderLoading === 'google' ? <Loader className="mr-2 h-4 w-4 animate-spin"/> : <GoogleIcon />}
