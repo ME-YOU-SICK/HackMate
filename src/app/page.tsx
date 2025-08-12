@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { ArrowRight, Users, Target, Rocket, Lightbulb, Award, Handshake, BrainCircuit, UserCheck, Code, Settings, MessageSquare, Trophy, CheckCircle } from 'lucide-react';
 import { Logo } from '@/components/logo';
 import Image from 'next/image';
+import { AnimatedLogo } from '@/components/animated-logo';
 
 export default function Home() {
   return (
@@ -37,15 +38,13 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative w-full py-24 md:py-32 lg:py-40 overflow-hidden">
           <div aria-hidden="true" className="absolute inset-0 z-0 grid place-items-center">
-              <div className="absolute h-[500px] w-[500px] -translate-x-[50%] -translate-y-[50%] rounded-full bg-purple-500/30 opacity-50 blur-[150px]"></div>
-              <div className="absolute h-[300px] w-[600px] translate-x-[20%] translate-y-[30%] rounded-full bg-orange-500/30 opacity-40 blur-[120px] animate-blob-2"></div>
-              <div className="absolute h-[400px] w-[400px] -translate-x-[25%] translate-y-[50%] rounded-full bg-pink-500/30 opacity-50 blur-[150px] animate-blob-3"></div>
+              <div className="absolute h-[500px] w-[500px] -translate-x-[50%] -translate-y-[50%] rounded-full bg-purple-500/30 opacity-50 blur-[150px] animate-blob-1"></div>
+              <div className="absolute h-[300px] w-[600px] translate-x-[20%] translate-y-[30%] rounded-full bg-purple-700/30 opacity-40 blur-[120px] animate-blob-2"></div>
+              <div className="absolute h-[400px] w-[400px] -translate-x-[25%] translate-y-[50%] rounded-full bg-blue-500/30 opacity-50 blur-[150px] animate-blob-3"></div>
           </div>
 
           <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground drop-shadow-md">
-              The Nexus for Hackathon Innovators
-            </h1>
+            <AnimatedLogo />
             <p className="mt-6 max-w-3xl mx-auto text-lg text-foreground/80 drop-shadow-sm">
               Pre, during, and post-hackathon — we make connections that build the future. Find your team, build your project, and launch your career.
             </p>
