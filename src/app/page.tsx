@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, Users, Target, Rocket, Lightbulb, Award, Handshake } from 'lucide-react';
 import { Logo } from '@/components/logo';
+import { AnimatedLogo } from '@/components/animated-logo';
 
 export default function Home() {
   return (
@@ -47,7 +48,8 @@ export default function Home() {
            <div className="absolute inset-0 z-[1] bg-[url(/glitter.png)] bg-repeat opacity-[0.15] dark:opacity-[0.12]"></div>
 
           <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+            <AnimatedLogo />
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight -mt-8">
              Where Great Teams Assemble
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground">
