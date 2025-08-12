@@ -10,15 +10,29 @@ import { MobileHeader } from "@/components/ui/sidebar";
 import { joinEventAction } from "@/app/actions/join-event.action";
 import { useToast } from "@/hooks/use-toast";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/lib/firebase";
 
 export default function DashboardPage() {
   const { toast } = useToast();
+  const [user] = useAuthState(auth);
   const [isJoining, setIsJoining] = React.useState(false);
 
   const handleJoinEvent = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!user) {
+      toast({
+        title: "Error",
+        description: "You must be logged in to join an event.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsJoining(true);
     const formData = new FormData(event.currentTarget);
+    formData.append('userId', user.uid);
     const result = await joinEventAction(formData);
     setIsJoining(false);
     

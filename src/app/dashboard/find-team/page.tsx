@@ -15,6 +15,10 @@ import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { roles, technologies } from '@/lib/data';
+import { findTeamAction } from '@/app/actions/find-team.action';
+import { useToast } from '@/hooks/use-toast';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/lib/firebase';
 
 const initialState = {
   success: false,
@@ -53,6 +57,8 @@ const IconCheckboxGrid = ({ title, items, selectedItems, onSelectionChange }: { 
 );
 
 export default function FindTeamPage() {
+  const { toast } = useToast();
+  const [user] = useAuthState(auth);
   const [isPending, setIsPending] = useState(false);
   const [state, setState] = useState<any>(initialState);
   
@@ -71,22 +77,29 @@ export default function FindTeamPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
+      if (!user) {
+        toast({ title: "Authentication Error", description: "You must be logged in to find a team.", variant: "destructive" });
+        return;
+      }
       setIsPending(true);
       setState(initialState);
-      // NOTE: In a real app, you would call a server action here with the form data.
-      // For now, we'll simulate a delay and a response.
-      setTimeout(() => {
-        const mockData = {
-          reasoning: "Based on your requirements, I've found a balanced team from your connections. 'InnovatorX' is a strong backend match with extensive hackathon experience. 'DesignGuru' fills the UI/UX role perfectly, and their tech preferences align with yours.",
-          suggestedTeammates: [
-            { name: "InnovatorX", role: "Backend Developer", skills: ["Node.js", "Python", "AWS"] },
-            { name: "DesignGuru", role: "UI/UX Designer", skills: ["Figma", "React", "Web Accessibility"] },
-            { name: "CodeWizard", role: "Frontend Developer", skills: ["Next.js", "TypeScript", "Vercel"] },
-          ]
-        };
-        setState({ success: true, data: mockData, error: null, issues: [] });
-        setIsPending(false);
-      }, 2000);
+      
+      const formData = new FormData();
+      formData.append('teamSize', String(teamSize));
+      formData.append('projectIdea', projectIdea);
+      formData.append('neededRoles', JSON.stringify(neededRoles));
+      formData.append('preferredTech', JSON.stringify(preferredTech));
+      formData.append('userId', user.uid);
+
+      const result = await findTeamAction(formData);
+
+      if (result.success) {
+        setState({ ...initialState, success: true, data: result.data });
+      } else {
+        setState({ ...initialState, error: result.error, issues: result.issues || [] });
+      }
+      
+      setIsPending(false);
   }
 
   // Mock match count

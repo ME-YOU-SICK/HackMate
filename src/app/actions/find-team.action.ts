@@ -13,6 +13,7 @@ const findTeamSchema = z.object({
   projectIdea: z.string().optional(),
   neededRoles: z.array(z.string()).min(1, "Please select at least one role."),
   preferredTech: z.array(z.string()).min(1, "Please select at least one technology."),
+  userId: z.string(),
 });
 
 // A simplified mapping of roles to potential skills/tech
@@ -25,16 +26,12 @@ const roleSkillMapping: Record<string, string[]> = {
 };
 
 export async function findTeamAction(formData: FormData) {
-  const currentUser = auth.currentUser;
-  if (!currentUser) {
-    return { success: false, error: "You must be logged in to find a team." };
-  }
-
   const rawData = {
     teamSize: formData.get('teamSize'),
     projectIdea: formData.get('projectIdea')?.toString(),
     neededRoles: JSON.parse(formData.get('neededRoles') as string || '[]'),
     preferredTech: JSON.parse(formData.get('preferredTech') as string || '[]'),
+    userId: formData.get('userId'),
   };
 
   const parsed = findTeamSchema.safeParse(rawData);
@@ -43,11 +40,11 @@ export async function findTeamAction(formData: FormData) {
     return { success: false, error: "Invalid input.", issues: parsed.error.flatten().fieldErrors };
   }
 
-  const { teamSize, projectIdea, neededRoles, preferredTech } = parsed.data;
+  const { teamSize, projectIdea, neededRoles, preferredTech, userId } = parsed.data;
 
   try {
     // 1. Get current user's profile and connections
-    const userDocRef = doc(db, 'users', currentUser.uid);
+    const userDocRef = doc(db, 'users', userId);
     const userDoc = await getDoc(userDocRef);
     if (!userDoc.exists()) {
       return { success: false, error: "Your user profile could not be found." };
@@ -119,7 +116,7 @@ export async function findTeamAction(formData: FormData) {
     for (const member of finalTeam) {
       await createNotification({
         recipientId: member.user.uid,
-        senderId: currentUser.uid,
+        senderId: userId,
         senderName: userProfile.fullName,
         type: 'TEAM_INVITE',
         message: `${userProfile.fullName} has invited you to join their team!`,

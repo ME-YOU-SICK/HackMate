@@ -16,6 +16,7 @@ const eventSchema = z.object({
     }),
     location: z.string().min(2, "Location is required."),
     imageUrl: z.string().url().optional().or(z.literal('')),
+    organizerId: z.string()
 });
 
 function generateEventCode() {
@@ -23,11 +24,6 @@ function generateEventCode() {
 }
 
 export async function createEventAction(formData: FormData) {
-    const currentUser = auth.currentUser;
-    if (!currentUser) {
-        return { success: false, error: "You must be logged in to create an event." };
-    }
-    
     const dateRangeRaw = JSON.parse(formData.get('dateRange') as string);
     const rawData = {
         eventName: formData.get('eventName'),
@@ -38,6 +34,7 @@ export async function createEventAction(formData: FormData) {
         },
         location: formData.get('location'),
         imageUrl: formData.get('imageUrl'),
+        organizerId: formData.get('organizerId'),
     };
 
     const parsed = eventSchema.safeParse(rawData);
@@ -46,7 +43,7 @@ export async function createEventAction(formData: FormData) {
         return { success: false, error: "Invalid input.", issues: parsed.error.flatten().fieldErrors };
     }
 
-    const { eventName, eventDescription, dateRange, location, imageUrl } = parsed.data;
+    const { eventName, eventDescription, dateRange, location, imageUrl, organizerId } = parsed.data;
 
     const eventCode = generateEventCode();
     const eventRef = doc(db, 'events', eventCode);
@@ -61,8 +58,8 @@ export async function createEventAction(formData: FormData) {
         },
         location,
         imageUrl: imageUrl || `https://placehold.co/1200x400.png?text=${encodeURIComponent(eventName)}`,
-        organizerId: currentUser.uid,
-        participants: [currentUser.uid],
+        organizerId: organizerId,
+        participants: [organizerId],
         createdAt: new Date(),
     };
 

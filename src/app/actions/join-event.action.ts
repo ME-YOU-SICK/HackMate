@@ -9,16 +9,13 @@ import { revalidatePath } from 'next/cache';
 
 const joinEventSchema = z.object({
   eventCode: z.string().length(6, "Event code must be 6 characters long.").regex(/^[A-Z0-9]+$/, "Invalid event code format."),
+  userId: z.string(),
 });
 
 export async function joinEventAction(formData: FormData) {
-  const currentUser = auth.currentUser;
-  if (!currentUser) {
-    return { success: false, error: "You must be logged in to join an event." };
-  }
-  
   const rawData = {
     eventCode: formData.get('eventCode')?.toString().toUpperCase(),
+    userId: formData.get('userId'),
   };
 
   const parsed = joinEventSchema.safeParse(rawData);
@@ -27,7 +24,7 @@ export async function joinEventAction(formData: FormData) {
     return { success: false, error: parsed.error.flatten().fieldErrors.eventCode?.[0] || "Invalid input." };
   }
 
-  const { eventCode } = parsed.data;
+  const { eventCode, userId } = parsed.data;
   const eventRef = doc(db, 'events', eventCode);
 
   try {
@@ -38,12 +35,12 @@ export async function joinEventAction(formData: FormData) {
 
     const eventData = eventDoc.data() as Event;
 
-    if (eventData.participants.includes(currentUser.uid)) {
+    if (eventData.participants.includes(userId)) {
       return { success: false, error: "You are already a participant in this event." };
     }
 
     await updateDoc(eventRef, {
-      participants: arrayUnion(currentUser.uid),
+      participants: arrayUnion(userId),
     });
 
     revalidatePath('/dashboard/events');

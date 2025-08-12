@@ -18,9 +18,12 @@ import type { DateRange } from 'react-day-picker';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { createEventAction } from '@/app/actions/create-event.action';
 import { useToast } from '@/hooks/use-toast';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/lib/firebase';
 
 export default function CreateEventPage() {
     const { toast } = useToast();
+    const [user] = useAuthState(auth);
     const [date, setDate] = useState<DateRange | undefined>();
     const [eventCode, setEventCode] = useState('');
     const [isCopied, setIsCopied] = useState(false);
@@ -29,10 +32,20 @@ export default function CreateEventPage() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!user) {
+             toast({
+                title: "Authentication Error",
+                description: "You must be logged in to create an event.",
+                variant: "destructive"
+            });
+            return;
+        }
+
         setIsSubmitting(true);
 
         const formData = new FormData(e.currentTarget);
         formData.append('dateRange', JSON.stringify(date || {}));
+        formData.append('organizerId', user.uid);
 
         const result = await createEventAction(formData);
 
