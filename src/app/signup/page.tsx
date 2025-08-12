@@ -64,6 +64,7 @@ export default function SignupPage() {
         title: "Account Created!",
         description: "Welcome to HackMate! Let's get your profile set up.",
       });
+      setIsLoading(false);
       router.push('/dashboard/onboarding');
     } else {
       setIsLoading(false);
@@ -92,6 +93,7 @@ export default function SignupPage() {
                 title: "Account Created!",
                 description: "Welcome to HackMate!",
             });
+            setIsProviderLoading(null);
             if (serverResult.isNewUser) {
                 router.push('/dashboard/onboarding');
             } else {
@@ -99,6 +101,7 @@ export default function SignupPage() {
             }
         } else {
             setError(serverResult.error || "An unexpected error occurred during profile processing.");
+            setIsProviderLoading(null);
         }
 
     } catch (error: any) {
@@ -107,7 +110,6 @@ export default function SignupPage() {
         } else {
             setError(error.message || "An unexpected error occurred.");
         }
-    } finally {
         setIsProviderLoading(null);
     }
   };
@@ -223,3 +225,4 @@ export default function SignupPage() {
     </div>
   );
 }
+
