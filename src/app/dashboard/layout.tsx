@@ -50,7 +50,8 @@ export default function DashboardLayout({
     );
   }
   
-  // This will be shown briefly before the redirect logic in useEffect kicks in.
+  // This will be shown briefly before the redirect logic in useEffect kicks in,
+  // or if there's an error and the user is not available.
   return (
     <div className="flex h-screen items-center justify-center">
       <Loader className="h-12 w-12 animate-spin" />
