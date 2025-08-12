@@ -19,18 +19,17 @@ export default function DashboardLayout({
   const router = useRouter();
 
   useEffect(() => {
-    // If there's an error with auth, redirect to login.
+    if (!loading && !user) {
+      router.push('/login');
+    }
     if (error) {
       console.error("Authentication error:", error);
       router.push('/login');
     }
-    // After loading, if there's no user, redirect to login.
-    if (!loading && !user) {
-      router.push('/login');
-    }
   }, [user, loading, error, router]);
 
-  // While loading the user state, show a spinner.
+  // While loading the user state, show a spinner. This prevents a flash of content
+  // or a premature redirect before the auth state is resolved.
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center">
@@ -56,6 +55,7 @@ export default function DashboardLayout({
   }
   
   // If no user and not loading (i.e., redirect is imminent), show a loader to prevent flashing content.
+  // This state is hit just before the useEffect hook triggers the redirect.
   return (
     <div className="flex h-screen items-center justify-center">
       <Loader className="h-12 w-12 animate-spin" />
