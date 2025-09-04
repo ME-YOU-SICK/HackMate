@@ -51,7 +51,7 @@ const WhoToFundGuide = () => {
         "Less polished organization than corporate-led events",
         "Short-term measurable ROI (hiring/partnerships) may be lower"
       ],
-      color: "bg-blue-500"
+      color: "bg-[#FFA100]"
     },
     {
       id: "community",
@@ -72,7 +72,7 @@ const WhoToFundGuide = () => {
         "Highly variable in size, professionalism, and impact",
         "Requires careful vetting of organizer credibility"
       ],
-      color: "bg-blue-600"
+      color: "bg-[#FF9000]"
     },
     {
       id: "corporate",
@@ -93,7 +93,7 @@ const WhoToFundGuide = () => {
         "Attendee pool may be narrower (less grassroots, more industry-focused)",
         "Higher sponsorship costs"
       ],
-      color: "bg-blue-700"
+      color: "bg-[#FFA100]"
     },
     {
       id: "accelerator",
@@ -114,7 +114,7 @@ const WhoToFundGuide = () => {
         "Smaller scale compared to university/community hackathons",
         "Sponsorship often requires deeper financial or mentorship commitments"
       ],
-      color: "bg-blue-800"
+      color: "bg-[#FF9000]"
     },
     {
       id: "government",
@@ -135,7 +135,7 @@ const WhoToFundGuide = () => {
         "Less focus on commercial ROI or product adoption",
         "Outcomes often policy or research-oriented, not market-ready"
       ],
-      color: "bg-blue-900"
+      color: "bg-[#FF9000]"
     }
   ];
 
@@ -191,7 +191,7 @@ const WhoToFundGuide = () => {
       sponsorType: "Consultancies / Corporates",
       suitableOrganizers: "Corporate, Accelerator, Government",
       roiPotential: "Medium–High",
-      roiColor: "text-blue-600 dark:text-blue-400",
+      roiColor: "text-[#FF9000] dark:text-[#FAF000]",
       description: "innovation + partnerships"
     },
     {
@@ -235,7 +235,7 @@ const WhoToFundGuide = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-neutral-900 dark:text-white flex items-center gap-2">
-                <BookOpen className="h-6 w-6 text-blue-600" />
+                <BookOpen className="h-6 w-6 text-[#FF9000]" />
                 WhoToFund Guide
               </h1>
               <p className="text-neutral-600 dark:text-neutral-400 mt-1">
@@ -245,7 +245,7 @@ const WhoToFundGuide = () => {
             <div className="flex items-center gap-2">
               <Link
                 href="/sponsor/dashboard"
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
               >
                 Back to Dashboard
               </Link>
@@ -263,7 +263,7 @@ const WhoToFundGuide = () => {
                   onClick={() => setActiveSection(section.id)}
                   className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors ${
                     activeSection === section.id
-                      ? "bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300"
+                      ? "bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FFA100] dark:text-[#FFDD00]"
                       : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                   }`}
                 >
@@ -302,16 +302,16 @@ const WhoToFundGuide = () => {
                     </div>
                   </div>
 
-                  <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
+                  <div className="bg-[#FAF000]/5 dark:bg-[#FAF000]/10 border border-[#FAF000] dark:border-[#FF9000] rounded-lg p-6">
                     <div className="flex items-start gap-3">
-                      <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                        <Lightbulb className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                      <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                        <Lightbulb className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                        <h3 className="font-semibold text-[#FF9000] dark:text-[#FFDD00] mb-2">
                           Key Insight
                         </h3>
-                        <p className="text-blue-800 dark:text-blue-200 text-sm">
+                        <p className="text-[#FF9000] dark:text-[#FAF000] text-sm">
                           Think of hackathons not as one-off events, but as ecosystem-building opportunities. 
                           Choose wisely, and the ROI will extend far beyond the weekend.
                         </p>
@@ -337,8 +337,8 @@ const WhoToFundGuide = () => {
                           )}
                           className={`p-4 rounded-lg border transition-all text-left ${
                             selectedOrganizerType === type.id
-                              ? "border-blue-500 bg-blue-50 dark:bg-blue-900/10"
-                              : "border-neutral-200 dark:border-neutral-700 hover:border-blue-300 dark:hover:border-blue-600"
+                              ? "border-[#FFA100] bg-[#FAF000]/5 dark:bg-[#FAF000]/10"
+                              : "border-neutral-200 dark:border-neutral-700 hover:border-[#FFDD00] dark:hover:border-[#FF9000]"
                           }`}
                         >
                           <div className="flex items-center gap-3">
@@ -391,13 +391,13 @@ const WhoToFundGuide = () => {
 
                               <div>
                                 <h4 className="font-semibold text-neutral-900 dark:text-white mb-3 flex items-center gap-2">
-                                  <Target className="h-4 w-4 text-blue-500" />
+                                  <Target className="h-4 w-4 text-[#FFA100]" />
                                   Best For Sponsors Who Want To
                                 </h4>
                                 <ul className="space-y-2">
                                   {type.bestFor.map((item, index) => (
                                     <li key={index} className="flex items-start gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-                                      <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                                      <div className="w-1.5 h-1.5 bg-[#FFA100] rounded-full mt-2 flex-shrink-0" />
                                       {item}
                                     </li>
                                   ))}
@@ -441,8 +441,8 @@ const WhoToFundGuide = () => {
                       {evaluationCriteria.map((criteria, index) => (
                         <div key={index} className="p-4 bg-neutral-50 dark:bg-neutral-700 rounded-lg">
                           <div className="flex items-start gap-3">
-                            <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                              <div className="text-blue-600 dark:text-blue-400">
+                            <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                              <div className="text-[#FF9000] dark:text-[#FAF000]">
                                 {criteria.icon}
                               </div>
                             </div>
@@ -532,21 +532,21 @@ const WhoToFundGuide = () => {
                     </div>
                   </div>
 
-                  <div className="bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
+                  <div className="bg-[#FAF000]/5 dark:bg-[#FAF000]/10 border border-[#FAF000] dark:border-[#FF9000] rounded-lg p-6">
                     <div className="flex items-start gap-3">
-                      <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                        <Star className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                      <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                        <Star className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                        <h3 className="font-semibold text-[#FF9000] dark:text-[#FFDD00] mb-2">
                           Ready to Find Your Perfect Match?
                         </h3>
-                        <p className="text-blue-800 dark:text-blue-200 text-sm mb-4">
+                        <p className="text-[#FF9000] dark:text-[#FAF000] text-sm mb-4">
                           Use this guide to identify the right hackathon organizers for your sponsorship goals.
                         </p>
                         <Link
                           href="/sponsor/dashboard/invitations"
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm"
                         >
                           Discover Organizers
                           <ArrowRight className="h-4 w-4" />

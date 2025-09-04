@@ -71,7 +71,7 @@ export default function SignupPage() {
           {/* Header */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#FAF000] to-[#FFDD00] rounded-xl flex items-center justify-center">
                 <span className="text-white font-bold text-xl">H</span>
               </div>
               <span className="text-white font-semibold text-2xl">HackMate</span>
@@ -94,7 +94,7 @@ export default function SignupPage() {
                   type="text"
                   value={formData.firstName}
                   onChange={handleInputChange}
-                  className="bg-white/5 border-white/20 text-white placeholder:text-white/50 focus:border-blue-400"
+                  className="bg-white/5 border-white/20 text-white placeholder:text-white/50 focus:border-[#FAF000]"
                   placeholder="John"
                   required
                 />
@@ -109,7 +109,7 @@ export default function SignupPage() {
                   type="text"
                   value={formData.lastName}
                   onChange={handleInputChange}
-                  className="bg-white/5 border-white/20 text-white placeholder:text-white/50 focus:border-blue-400"
+                  className="bg-white/5 border-white/20 text-white placeholder:text-white/50 focus:border-[#FAF000]"
                   placeholder="Doe"
                   required
                 />
@@ -127,7 +127,7 @@ export default function SignupPage() {
                 type="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="bg-white/5 border-white/20 text-white placeholder:text-white/50 focus:border-blue-400"
+                className="bg-white/5 border-white/20 text-white placeholder:text-white/50 focus:border-[#FAF000]"
                 placeholder="john@example.com"
                 required
               />
@@ -144,7 +144,7 @@ export default function SignupPage() {
                 type="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                className="bg-white/5 border-white/20 text-white placeholder:text-white/50 focus:border-blue-400"
+                className="bg-white/5 border-white/20 text-white placeholder:text-white/50 focus:border-[#FAF000]"
                 placeholder="••••••••"
                 required
               />
@@ -161,7 +161,7 @@ export default function SignupPage() {
                 type="password"
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
-                className="bg-white/5 border-white/20 text-white placeholder:text-white/50 focus:border-blue-400"
+                className="bg-white/5 border-white/20 text-white placeholder:text-white/50 focus:border-[#FAF000]"
                 placeholder="••••••••"
                 required
               />
@@ -181,7 +181,7 @@ export default function SignupPage() {
                     key={role.value}
                     className={`relative flex items-center space-x-3 p-4 rounded-lg border cursor-pointer transition-all ${
                       formData.role === role.value
-                        ? "border-blue-400 bg-blue-400/10"
+                        ? "border-[#FAF000] bg-[#FAF000]/10"
                         : "border-white/20 bg-white/5 hover:bg-white/10"
                     }`}
                   >
@@ -203,7 +203,7 @@ export default function SignupPage() {
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white py-3 text-lg font-semibold rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+              className="w-full bg-gradient-to-r from-[#FFA100] to-[#FFA100] hover:from-[#FF9000] hover:to-[#FFDD00] text-white py-3 text-lg font-semibold rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
             >
               Create Account
             </Button>
@@ -213,7 +213,7 @@ export default function SignupPage() {
           <div className="mt-8 text-center">
             <p className="text-white/70">
               Already have an account?{" "}
-              <Link href="/signin" className="text-blue-400 hover:text-blue-300 transition-colors font-medium">
+              <Link href="/signin" className="text-[#FAF000] hover:text-[#FFDD00] transition-colors font-medium">
                 Sign in
               </Link>
             </p>

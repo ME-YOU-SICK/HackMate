@@ -570,7 +570,7 @@ export default function OrganizerManagerPage() {
     switch (status) {
       case 'active': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
       case 'eliminated': return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
-      case 'promoted': return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+      case 'promoted': return 'bg-[#FAF000]/10 text-[#FF9000] dark:bg-[#FAF000] dark:text-[#FAF000]';
       default: return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
     }
   };
@@ -632,7 +632,7 @@ export default function OrganizerManagerPage() {
                       title={event.name}
                       description={`${event.panels} panels • ${event.totalTeams} teams • Round ${event.currentRound}/${event.maxRounds}`}
                       className={`cursor-pointer transition-all duration-200 hover:scale-[1.02] ${
-                        selectedEvent === event.id ? 'ring-2 ring-blue-500' : ''
+                        selectedEvent === event.id ? 'ring-2 ring-[#FF9000]' : ''
                       }`}
                       onClick={() => setSelectedEvent(event.id)}
                     >
@@ -640,7 +640,7 @@ export default function OrganizerManagerPage() {
                         <div className="flex items-center gap-2">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                             event.status === 'active' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-                            event.status === 'upcoming' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
+                            event.status === 'upcoming' ? 'bg-[#FAF000]/10 text-[#FF9000] dark:bg-[#FAF000] dark:text-[#FAF000]' :
                             'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'
                           }`}>
                             {event.status}
@@ -719,7 +719,7 @@ export default function OrganizerManagerPage() {
                           {selectedTeams.length === 1 && (
                             <Link
                               href={`/organizer/dashboard/manager/team/${selectedTeams[0]}`}
-                              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                              className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                             >
                               <Eye className="h-4 w-4" />
                               View Details
@@ -740,7 +740,7 @@ export default function OrganizerManagerPage() {
                           <div key={panel.id} className="border border-neutral-200 dark:border-neutral-700 rounded-lg">
                             <div className="p-4 bg-neutral-50 dark:bg-neutral-900">
                               <div className="flex items-center gap-3">
-                                <Building className="h-5 w-5 text-blue-600" />
+                                <Building className="h-5 w-5 text-[#FF9000]" />
                                 <div>
                                   <h5 className="font-semibold text-neutral-900 dark:text-white">
                                     {panel.name}
@@ -758,7 +758,7 @@ export default function OrganizerManagerPage() {
                                   <div 
                                     className={`p-3 cursor-pointer transition-colors ${
                                       selectedTeams.includes(team.id)
-                                        ? 'bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800'
+                                        ? 'bg-[#FAF000]/5 dark:bg-[#FAF000]/20 border border-[#FAF000] dark:border-[#FF9000]'
                                         : 'bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700'
                                     }`}
                                     onClick={() => handleTeamSelection(team.id)}
@@ -769,7 +769,7 @@ export default function OrganizerManagerPage() {
                                           type="checkbox"
                                           checked={selectedTeams.includes(team.id)}
                                           onChange={() => handleTeamSelection(team.id)}
-                                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                          className="w-4 h-4 text-[#FF9000] bg-gray-100 border-gray-300 rounded focus:ring-[#FF9000]"
                                         />
                                         <div>
                                           <h6 className="font-medium text-neutral-900 dark:text-white">

@@ -279,7 +279,7 @@ const SponsorshipInquiries = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "pending": return "text-yellow-600 dark:text-yellow-400 bg-yellow-100 dark:bg-yellow-900/20";
-      case "in_progress": return "text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/20";
+      case "in_progress": return "text-[#FF9000] dark:text-[#FAF000] bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
       case "accepted": return "text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/20";
       case "declined": return "text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/20";
       default: return "text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800";
@@ -323,7 +323,7 @@ const SponsorshipInquiries = () => {
               </Link>
               <div>
                 <h1 className="text-2xl font-bold text-neutral-900 dark:text-white flex items-center gap-2">
-                  <MessageSquare className="h-6 w-6 text-blue-600" />
+                  <MessageSquare className="h-6 w-6 text-[#FF9000]" />
                   Sponsorship Inquiries
                 </h1>
                 <p className="text-neutral-600 dark:text-neutral-400 mt-1">
@@ -347,7 +347,7 @@ const SponsorshipInquiries = () => {
                   placeholder="Search inquiries..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-[#FF9000] focus:border-transparent"
                 />
               </div>
             </div>
@@ -359,11 +359,11 @@ const SponsorshipInquiries = () => {
                   key={inquiry.id}
                   onClick={() => setSelectedChat(inquiry.id)}
                   className={`p-4 border-b border-neutral-200 dark:border-neutral-700 cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors ${
-                    selectedChat === inquiry.id ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800' : ''
+                    selectedChat === inquiry.id ? 'bg-[#FAF000]/5 dark:bg-[#FAF000]/20 border-[#FAF000] dark:border-[#FF9000]' : ''
                   }`}
                 >
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                    <div className="w-10 h-10 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-full flex items-center justify-center text-white font-bold">
                       {inquiry.organizer.avatar}
                     </div>
                     <div className="flex-1 min-w-0">
@@ -404,7 +404,7 @@ const SponsorshipInquiries = () => {
                 <div className="p-4 border-b border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-full flex items-center justify-center text-white font-bold">
                         {selectedInquiry?.organizer.avatar}
                       </div>
                       <div>
@@ -428,7 +428,7 @@ const SponsorshipInquiries = () => {
                 </div>
 
                 {/* Event Details */}
-                <div className="p-4 border-b border-neutral-200 dark:border-neutral-700 bg-blue-50 dark:bg-blue-900/10">
+                <div className="p-4 border-b border-neutral-200 dark:border-neutral-700 bg-[#FAF000]/5 dark:bg-[#FAF000]/10">
                   <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">Event Details</h4>
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div className="flex items-center gap-2">
@@ -471,13 +471,13 @@ const SponsorshipInquiries = () => {
                       <div
                         className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                           message.sender === 'sponsor'
-                            ? 'bg-blue-600 text-white'
+                            ? 'bg-[#FF9000] text-white'
                             : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-white'
                         }`}
                       >
                         <p className="text-sm">{message.message}</p>
                         <p className={`text-xs mt-1 ${
-                          message.sender === 'sponsor' ? 'text-blue-100' : 'text-neutral-500 dark:text-neutral-400'
+                          message.sender === 'sponsor' ? 'text-[#FFDD00]' : 'text-neutral-500 dark:text-neutral-400'
                         }`}>
                           {new Date(message.timestamp).toLocaleTimeString()}
                         </p>
@@ -495,11 +495,11 @@ const SponsorshipInquiries = () => {
                       onChange={(e) => setNewMessage(e.target.value)}
                       onKeyPress={handleKeyPress}
                       placeholder="Type your message..."
-                      className="flex-1 px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="flex-1 px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white focus:ring-2 focus:ring-[#FF9000] focus:border-transparent"
                     />
                     <button
                       onClick={handleSendMessage}
-                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      className="px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                     >
                       <Send className="h-4 w-4" />
                     </button>

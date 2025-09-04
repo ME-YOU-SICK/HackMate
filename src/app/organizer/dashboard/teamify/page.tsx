@@ -318,8 +318,8 @@ export default function OrganizerTeamifyPage() {
 
   const getExperienceColor = (experience: string) => {
     switch (experience) {
-      case "Expert": return "text-purple-600 bg-purple-100 dark:bg-purple-900/20";
-      case "Advanced": return "text-blue-600 bg-blue-100 dark:bg-blue-900/20";
+      case "Expert": return "text-[#FFA100] bg-[#FFA100]/10 dark:bg-[#FFA100]/20";
+      case "Advanced": return "text-[#FF9000] bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
       case "Intermediate": return "text-green-600 bg-green-100 dark:bg-green-900/20";
       case "Beginner": return "text-orange-600 bg-orange-100 dark:bg-orange-900/20";
       default: return "text-gray-600 bg-gray-100 dark:bg-gray-900/20";
@@ -339,7 +339,7 @@ export default function OrganizerTeamifyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-[#FAF000]/5 dark:from-slate-900 dark:to-[#FF9000]">
       <div className="flex flex-col md:flex-row w-full h-screen overflow-hidden">
         <DashboardSidebar userRole="organizer" userName="Sarah Johnson" />
         
@@ -376,7 +376,7 @@ export default function OrganizerTeamifyPage() {
                             className={cn(
                               "w-full p-4 rounded-lg border-2 transition-all duration-200 text-left",
                               selectedEvent === event.id
-                                ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
+                                ? "border-[#FFA100] bg-[#FAF000]/5 dark:bg-[#FAF000]/20"
                                 : "border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600"
                             )}
                           >
@@ -425,7 +425,7 @@ export default function OrganizerTeamifyPage() {
                           <select
                             value={maxTeamMembers}
                             onChange={(e) => setMaxTeamMembers(Number(e.target.value))}
-                            className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#FF9000] focus:border-transparent"
                           >
                             <option value={2}>2 members</option>
                             <option value={3}>3 members</option>
@@ -444,7 +444,7 @@ export default function OrganizerTeamifyPage() {
                               onClick={() => setNewbieProtection(!newbieProtection)}
                               className={cn(
                                 "relative inline-flex h-6 w-11 items-center rounded-full transition-colors",
-                                newbieProtection ? "bg-blue-600" : "bg-slate-300 dark:bg-slate-600"
+                                newbieProtection ? "bg-[#FF9000]" : "bg-slate-300 dark:bg-slate-600"
                               )}
                             >
                               <span
@@ -471,7 +471,7 @@ export default function OrganizerTeamifyPage() {
                         <button
                           onClick={handleGenerateTeams}
                           disabled={isGenerating}
-                          className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="flex items-center gap-2 px-6 py-3 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           {isGenerating ? (
                             <>
@@ -535,7 +535,7 @@ export default function OrganizerTeamifyPage() {
                                 <div className="space-y-2">
                                   {team.members.map((member: any) => (
                                     <div key={member.id} className="flex items-center gap-3">
-                                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold">
+                                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#FAF000] to-[#FFDD00] flex items-center justify-center text-white text-xs font-bold">
                                         {member.avatar}
                                       </div>
                                       <div className="flex-1">
@@ -573,7 +573,7 @@ export default function OrganizerTeamifyPage() {
                                     {team.skills.slice(0, 6).map((skill: string) => (
                                       <span
                                         key={skill}
-                                        className="px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 text-xs rounded-full"
+                                        className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FFA100] dark:text-[#FAF000] text-xs rounded-full"
                                       >
                                         {skill}
                                       </span>

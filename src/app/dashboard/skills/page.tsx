@@ -123,7 +123,7 @@ export default function SkillsPage() {
                   <Filter className="h-4 w-4" />
                   Filter
                 </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                   <Plus className="h-4 w-4" />
                   Add Skill
                 </button>
@@ -159,7 +159,7 @@ export default function SkillsPage() {
                         </div>
                         <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
                           <div 
-                            className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300"
+                            className="bg-gradient-to-r from-[#FFA100] to-[#FFA100] h-2 rounded-full transition-all duration-300"
                             style={{ width: `${skill.level}%` }}
                           ></div>
                         </div>
@@ -173,13 +173,13 @@ export default function SkillsPage() {
                         </div>
                         <div className="flex justify-between items-center pt-2">
                           <span className={`px-2 py-1 text-xs rounded-full ${
-                            skill.status === 'expert' ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200' :
-                            skill.status === 'intermediate' ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200' :
-                            'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+                            skill.status === 'expert' ? 'bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000]' :
+                            skill.status === 'intermediate' ? 'bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000]' :
+                            'bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000]'
                           }`}>
                             {skill.status}
                           </span>
-                          <button className="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                          <button className="px-3 py-1 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm">
                             Practice
                           </button>
                         </div>
@@ -219,7 +219,7 @@ export default function SkillsPage() {
                         </div>
                         <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
                           <div 
-                            className="bg-gradient-to-r from-green-500 to-blue-600 h-2 rounded-full transition-all duration-300"
+                            className="bg-gradient-to-r from-green-500 to-[#FF9000] h-2 rounded-full transition-all duration-300"
                             style={{ width: `${path.progress}%` }}
                           ></div>
                         </div>
@@ -229,7 +229,7 @@ export default function SkillsPage() {
                           </div>
                           <div className="flex flex-wrap gap-1">
                             {path.skills.map((skill, index) => (
-                              <span key={index} className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                              <span key={index} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                                 {skill}
                               </span>
                             ))}
@@ -240,7 +240,7 @@ export default function SkillsPage() {
                           Est. time: {path.estimatedTime}
                         </div>
                         <div className="flex gap-2 pt-2">
-                          <button className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                          <button className="flex-1 px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm">
                             Continue
                           </button>
                           <button className="px-3 py-2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-600 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">

@@ -41,7 +41,7 @@ export function FeaturesSection() {
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Everything You Need for
-            <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-[#FAF000] via-[#FFDD00] to-[#FF9000] bg-clip-text text-transparent">
               Hackathon Success
             </span>
           </h2>
@@ -58,12 +58,12 @@ export function FeaturesSection() {
               className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300 hover:border-white/20 hover:-translate-y-2"
             >
               {/* Icon */}
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <span className="text-2xl">{feature.icon}</span>
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors duration-300">
+              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#FAF000] transition-colors duration-300">
                 {feature.title}
               </h3>
               <p className="text-white/70 leading-relaxed">
@@ -71,7 +71,7 @@ export function FeaturesSection() {
               </p>
 
               {/* Hover Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#FF9000]/10 to-[#FAF000]/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
             </div>
           ))}
         </div>

@@ -141,7 +141,7 @@ export default function TermsOfServicePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-600/30 rounded-full text-blue-400 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FF9000]/20 to-[#FFA100]/20 border border-[#FF9000]/30 rounded-full text-[#FAF000] text-sm font-medium mb-6">
               <Scale className="h-4 w-4" />
               <span>Terms of Service</span>
             </div>
@@ -189,7 +189,7 @@ export default function TermsOfServicePage() {
                 className="bg-white/5 border border-white/10 rounded-2xl p-8"
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white">
+                  <div className="w-10 h-10 bg-gradient-to-br from-[#FFA100] to-[#FFA100] rounded-lg flex items-center justify-center text-white">
                     {section.icon}
                   </div>
                   <h2 className="text-2xl font-bold text-white">{section.title}</h2>
@@ -240,21 +240,21 @@ export default function TermsOfServicePage() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="mt-16"
           >
-            <div className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-600/20 rounded-2xl p-8">
+            <div className="bg-gradient-to-r from-[#FF9000]/10 to-[#FFA100]/10 border border-[#FF9000]/20 rounded-2xl p-8">
               <h2 className="text-2xl font-bold text-white mb-4">Contact Information</h2>
               <p className="text-white/70 mb-6">
                 If you have any questions about these Terms of Service, please contact us:
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex items-center gap-3">
-                  <Mail className="h-5 w-5 text-blue-400" />
+                  <Mail className="h-5 w-5 text-[#FAF000]" />
                   <div>
                     <div className="text-white font-medium">Legal Inquiries</div>
                     <div className="text-white/70">legal@hackmate.com</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Calendar className="h-5 w-5 text-blue-400" />
+                  <Calendar className="h-5 w-5 text-[#FAF000]" />
                   <div>
                     <div className="text-white font-medium">Business Hours</div>
                     <div className="text-white/70">Monday - Friday, 9 AM - 6 PM EST</div>

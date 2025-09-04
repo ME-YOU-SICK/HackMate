@@ -28,7 +28,7 @@ export default function QuizzesPage() {
       category: "Interview Prep",
       difficulty: "All Levels",
       problems: "1000+",
-      color: "from-green-400 to-emerald-500"
+      color: "from-[#FAF000] to-[#FFDD00]"
     },
     {
       id: 2,
@@ -37,7 +37,7 @@ export default function QuizzesPage() {
       category: "Algorithms",
       difficulty: "All Levels",
       problems: "2000+",
-      color: "from-orange-400 to-red-500"
+      color: "from-[#FFA100] to-[#FF9000]"
     },
     {
       id: 3,
@@ -46,7 +46,7 @@ export default function QuizzesPage() {
       category: "Competitive",
       difficulty: "Advanced",
       problems: "8000+",
-      color: "from-blue-400 to-cyan-500"
+      color: "from-[#FAF000] to-[#FFDD00]"
     },
     {
       id: 4,
@@ -55,7 +55,7 @@ export default function QuizzesPage() {
       category: "Competitive",
       difficulty: "Advanced",
       problems: "2000+",
-      color: "from-purple-400 to-pink-500"
+      color: "from-[#FAF000] to-[#FFA100]"
     },
     {
       id: 5,
@@ -64,7 +64,7 @@ export default function QuizzesPage() {
       category: "Practice",
       difficulty: "All Levels",
       problems: "5000+",
-      color: "from-red-400 to-orange-500"
+      color: "from-[#FF9000] to-[#FFA100]"
     },
     {
       id: 6,
@@ -73,7 +73,7 @@ export default function QuizzesPage() {
       category: "Mathematics",
       difficulty: "Advanced",
       problems: "800+",
-      color: "from-indigo-400 to-purple-500"
+      color: "from-[#FFA100] to-[#FFDD00]"
     },
     {
       id: 7,
@@ -82,7 +82,7 @@ export default function QuizzesPage() {
       category: "Learning",
       difficulty: "All Levels",
       problems: "3000+",
-      color: "from-teal-400 to-green-500"
+      color: "from-[#FFDD00] to-[#FAF000]"
     },
     {
       id: 8,
@@ -91,7 +91,7 @@ export default function QuizzesPage() {
       category: "Competitive",
       difficulty: "All Levels",
       problems: "4000+",
-      color: "from-yellow-400 to-orange-500"
+      color: "from-[#FAF000] to-[#FFA100]"
     },
     {
       id: 9,
@@ -100,7 +100,7 @@ export default function QuizzesPage() {
       category: "Interview Prep",
       difficulty: "All Levels",
       problems: "500+",
-      color: "from-pink-400 to-rose-500"
+      color: "from-[#FFA100] to-[#FF9000]"
     }
   ];
 
@@ -168,7 +168,7 @@ export default function QuizzesPage() {
                           {platform.difficulty}
                         </div>
                         <div className="flex justify-between items-center pt-2">
-                          <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                             {platform.category}
                           </span>
                           <button className={`flex items-center gap-2 px-3 py-2 bg-gradient-to-r ${platform.color} text-white rounded-lg hover:opacity-90 transition-opacity text-sm`}>

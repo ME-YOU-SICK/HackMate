@@ -64,7 +64,7 @@ function EventDetailInner() {
                 <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">{eventData.title}</h1>
                 <p className="text-neutral-600 dark:text-neutral-400">Event details and schedule</p>
               </div>
-              <Link href="/participant/dashboard/events" className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <Link href="/participant/dashboard/events" className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Events
               </Link>

@@ -335,7 +335,7 @@ function SponsorDiscoveryContent() {
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowFilters(!showFilters)}
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                 >
                   <Filter className="h-4 w-4" />
                   Filters
@@ -344,7 +344,7 @@ function SponsorDiscoveryContent() {
                 {selectedSponsors.length > 0 && (
                   <button
                     onClick={handleSendRequests}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                   >
                     <Send className="h-4 w-4" />
                     Send Requests ({selectedSponsors.length})
@@ -363,7 +363,7 @@ function SponsorDiscoveryContent() {
                   placeholder="Search sponsors by name, contact, or interests..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                  className="w-full pl-10 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
                 />
               </div>
 
@@ -384,7 +384,7 @@ function SponsorDiscoveryContent() {
                       <select
                         value={selectedFilters.investmentRange}
                         onChange={(e) => setSelectedFilters(prev => ({ ...prev, investmentRange: e.target.value }))}
-                        className="w-full px-3 py-2 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                        className="w-full px-3 py-2 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                       >
                         <option value="">Any Range</option>
                         {investmentRanges.map(range => (
@@ -401,7 +401,7 @@ function SponsorDiscoveryContent() {
                       <select
                         value={selectedFilters.rating}
                         onChange={(e) => setSelectedFilters(prev => ({ ...prev, rating: e.target.value }))}
-                        className="w-full px-3 py-2 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                        className="w-full px-3 py-2 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                       >
                         <option value="">Any Rating</option>
                         <option value="4.5">4.5+ Stars</option>
@@ -419,7 +419,7 @@ function SponsorDiscoveryContent() {
                       <select
                         value={selectedFilters.experience}
                         onChange={(e) => setSelectedFilters(prev => ({ ...prev, experience: e.target.value }))}
-                        className="w-full px-3 py-2 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                        className="w-full px-3 py-2 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                       >
                         <option value="">Any Experience</option>
                         <option value="high">High (4+ events)</option>
@@ -438,7 +438,7 @@ function SponsorDiscoveryContent() {
                         placeholder="City, State"
                         value={selectedFilters.location}
                         onChange={(e) => setSelectedFilters(prev => ({ ...prev, location: e.target.value }))}
-                        className="w-full px-3 py-2 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                        className="w-full px-3 py-2 bg-white dark:bg-neutral-700 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
                       />
                     </div>
                   </div>
@@ -462,7 +462,7 @@ function SponsorDiscoveryContent() {
                           }}
                           className={`px-3 py-1 rounded-full text-sm transition-colors ${
                             selectedFilters.interests.includes(interest)
-                              ? 'bg-blue-600 text-white'
+                              ? 'bg-[#FF9000] text-white'
                               : 'bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-300 dark:hover:bg-neutral-600'
                           }`}
                         >
@@ -502,13 +502,13 @@ function SponsorDiscoveryContent() {
                     transition={{ duration: 0.3 }}
                     className={`border rounded-lg p-4 cursor-pointer transition-all duration-200 hover:scale-[1.02] ${
                       selectedSponsors.includes(sponsor.id)
-                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                        ? 'border-[#FFA100] bg-[#FAF000]/5 dark:bg-[#FAF000]/20'
                         : 'border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800'
                     }`}
                     onClick={() => handleSponsorSelect(sponsor.id)}
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg flex items-center justify-center">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[#FAF000] to-[#FFDD00] rounded-lg flex items-center justify-center">
                         <span className="text-white font-bold text-lg">
                           {sponsor.logo}
                         </span>
@@ -518,7 +518,7 @@ function SponsorDiscoveryContent() {
                           <h3 className="font-semibold text-neutral-900 dark:text-white">
                             {sponsor.name}
                           </h3>
-                          <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded text-xs">
+                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] rounded text-xs">
                             {sponsor.type}
                           </span>
                         </div>
@@ -564,7 +564,7 @@ function SponsorDiscoveryContent() {
                       </div>
                       <div className="flex flex-col gap-2">
                         {selectedSponsors.includes(sponsor.id) && (
-                          <CheckCircle className="h-5 w-5 text-blue-600" />
+                          <CheckCircle className="h-5 w-5 text-[#FF9000]" />
                         )}
                         <button
                           onClick={(e) => {
@@ -626,7 +626,7 @@ function SponsorDiscoveryContent() {
                   const sponsor = allSponsors.find(s => s.id === sponsorId);
                   return sponsor ? (
                     <div key={sponsorId} className="flex items-center gap-3 p-2 bg-neutral-800 rounded-lg">
-                      <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded flex items-center justify-center">
+                      <div className="w-8 h-8 bg-gradient-to-br from-[#FAF000] to-[#FFDD00] rounded flex items-center justify-center">
                         <span className="text-white font-bold text-sm">{sponsor.logo}</span>
                       </div>
                       <span className="text-white">{sponsor.name}</span>
@@ -658,7 +658,7 @@ function SponsorDiscoveryContent() {
                   onChange={(e) => setRequestMessage(e.target.value)}
                   placeholder="Write a personalized message to the sponsors..."
                   rows={6}
-                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-neutral-400 resize-none"
+                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-white placeholder-neutral-400 resize-none"
                 />
               </div>
             </div>
@@ -672,7 +672,7 @@ function SponsorDiscoveryContent() {
               </button>
               <button
                 onClick={handleSubmitRequests}
-                className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex-1 px-4 py-3 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
               >
                 Send Requests
               </button>

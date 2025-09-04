@@ -223,7 +223,7 @@ export function DashboardSidebar({ userRole, userName = "User", userAvatar }: Da
                   alt="Avatar"
                 />
               ) : (
-                <div className="h-7 w-7 flex-shrink-0 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                <div className="h-7 w-7 flex-shrink-0 rounded-full bg-gradient-to-br from-[#FAF000] to-[#FF9000] flex items-center justify-center">
                   <span className="text-white font-bold text-sm">
                     {userName.charAt(0).toUpperCase()}
                   </span>
@@ -260,7 +260,7 @@ export const Logo = ({ userRole }: { userRole?: string }) => {
       href={getBasePath()}
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
-      <div className="h-5 w-6 bg-gradient-to-br from-blue-400 to-purple-500 rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+      <div className="h-5 w-6 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -288,7 +288,7 @@ export const LogoIcon = ({ userRole }: { userRole?: string }) => {
       href={getBasePath()}
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
-      <div className="h-5 w-6 bg-gradient-to-br from-blue-400 to-purple-500 rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+      <div className="h-5 w-6 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
     </Link>
   );
 };

@@ -301,7 +301,7 @@ function CommunityContent() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-600/30 rounded-full text-blue-400 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FF9000]/20 to-[#FFA100]/20 border border-[#FF9000]/30 rounded-full text-[#FAF000] text-sm font-medium mb-6">
               <Users className="h-4 w-4" />
               <span>Community</span>
             </div>
@@ -323,7 +323,7 @@ function CommunityContent() {
                   transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
                   className="bg-white/5 border border-white/10 rounded-xl p-4 text-center"
                 >
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mx-auto mb-2 text-white">
+                  <div className="w-8 h-8 bg-gradient-to-br from-[#FFA100] to-[#FFA100] rounded-lg flex items-center justify-center mx-auto mb-2 text-white">
                     {stat.icon}
                   </div>
                   <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
@@ -381,13 +381,13 @@ function CommunityContent() {
                         placeholder="Search discussions..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#FF9000] focus:border-transparent"
                       />
                     </div>
                     <select
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#FF9000] focus:border-transparent"
                     >
                       {categories.map((category) => (
                         <option key={category.name} value={category.name} className="bg-neutral-800">
@@ -397,7 +397,7 @@ function CommunityContent() {
                     </select>
                     <button 
                       onClick={() => setShowCreatePost(true)}
-                      className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg transition-all duration-200"
+                      className="flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-[#FF9000] to-[#FFA100] hover:from-[#FFA100] hover:to-[#FFDD00] text-white rounded-lg transition-all duration-200"
                     >
                       <Plus className="h-4 w-4" />
                       New Post
@@ -412,7 +412,7 @@ function CommunityContent() {
                         onClick={() => setSelectedCategory(category.name)}
                         className={`px-3 py-1 rounded-full text-sm transition-colors ${
                           selectedCategory === category.name
-                            ? "bg-blue-600 text-white"
+                            ? "bg-[#FF9000] text-white"
                             : "bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white"
                         }`}
                       >
@@ -451,7 +451,7 @@ function CommunityContent() {
                               value={newPost.title}
                               onChange={(e) => setNewPost({...newPost, title: e.target.value})}
                               placeholder="Enter post title..."
-                              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#FF9000] focus:border-transparent"
                             />
                           </div>
                           
@@ -460,7 +460,7 @@ function CommunityContent() {
                             <select
                               value={newPost.category}
                               onChange={(e) => setNewPost({...newPost, category: e.target.value})}
-                              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-[#FF9000] focus:border-transparent"
                             >
                               <option value="General" className="bg-neutral-800">General</option>
                               <option value="Getting Started" className="bg-neutral-800">Getting Started</option>
@@ -479,7 +479,7 @@ function CommunityContent() {
                               onChange={(e) => setNewPost({...newPost, content: e.target.value})}
                               placeholder="Share your thoughts..."
                               rows={6}
-                              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#FF9000] focus:border-transparent resize-none"
                             />
                           </div>
                           
@@ -490,7 +490,7 @@ function CommunityContent() {
                               value={newPost.tags}
                               onChange={(e) => setNewPost({...newPost, tags: e.target.value})}
                               placeholder="e.g., hackathon, react, team"
-                              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#FF9000] focus:border-transparent"
                             />
                           </div>
                         </div>
@@ -498,7 +498,7 @@ function CommunityContent() {
                         <div className="flex gap-3 mt-6">
                           <button
                             onClick={handleCreatePost}
-                            className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200"
+                            className="flex-1 bg-gradient-to-r from-[#FF9000] to-[#FFA100] hover:from-[#FFA100] hover:to-[#FFDD00] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200"
                           >
                             Create Post
                           </button>
@@ -524,15 +524,15 @@ function CommunityContent() {
                         className="bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-200"
                       >
                         <div className="flex items-start gap-4">
-                          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                          <div className="w-10 h-10 bg-gradient-to-br from-[#FFA100] to-[#FFA100] rounded-full flex items-center justify-center text-white font-semibold text-sm">
                             {discussion.avatar}
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center gap-2 mb-2">
                               {discussion.isPinned && (
-                                <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                                <div className="w-2 h-2 bg-[#FAF000] rounded-full"></div>
                               )}
-                              <h3 className="text-white font-semibold text-lg hover:text-blue-400 transition-colors cursor-pointer">
+                              <h3 className="text-white font-semibold text-lg hover:text-[#FAF000] transition-colors cursor-pointer">
                                 {discussion.title}
                               </h3>
                             </div>
@@ -552,7 +552,7 @@ function CommunityContent() {
                               <span>{discussion.lastActivity}</span>
                             </div>
                             <div className="flex items-center gap-2 mb-3">
-                              <span className="px-2 py-1 bg-blue-600/20 border border-blue-600/30 rounded-full text-blue-400 text-xs">
+                              <span className="px-2 py-1 bg-[#FF9000]/20 border border-[#FF9000]/30 rounded-full text-[#FAF000] text-xs">
                                 {discussion.category}
                               </span>
                               {discussion.tags.map((tag) => (
@@ -572,7 +572,7 @@ function CommunityContent() {
                                 <div className="space-y-3 mb-4">
                                   {discussion.comments.map((comment) => (
                                     <div key={comment.id} className="flex gap-3">
-                                      <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-xs">
+                                      <div className="w-8 h-8 bg-gradient-to-br from-[#FFA100] to-[#FFA100] rounded-full flex items-center justify-center text-white font-semibold text-xs">
                                         {comment.avatar}
                                       </div>
                                       <div className="flex-1">
@@ -592,12 +592,12 @@ function CommunityContent() {
                                     value={newComment}
                                     onChange={(e) => setNewComment(e.target.value)}
                                     placeholder="Add a comment..."
-                                    className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 text-sm focus:outline-none focus:ring-2 focus:ring-[#FF9000] focus:border-transparent"
                                     onKeyPress={(e) => e.key === 'Enter' && handleAddComment(discussion.id)}
                                   />
                                   <button
                                     onClick={() => handleAddComment(discussion.id)}
-                                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm transition-colors"
+                                    className="px-4 py-2 bg-[#FF9000] hover:bg-[#FFA100] text-white rounded-lg text-sm transition-colors"
                                   >
                                     <Send className="h-4 w-4" />
                                   </button>
@@ -619,7 +619,7 @@ function CommunityContent() {
                             <button 
                               onClick={() => handleBookmarkPost(discussion.id)}
                               className={`p-2 transition-colors ${
-                                discussion.isBookmarked ? "text-blue-400" : "text-white/60 hover:text-white"
+                                discussion.isBookmarked ? "text-[#FAF000]" : "text-white/60 hover:text-white"
                               }`}
                             >
                               <Bookmark className={`h-4 w-4 ${discussion.isBookmarked ? "fill-current" : ""}`} />
@@ -672,10 +672,10 @@ function CommunityContent() {
                             </div>
                           </div>
                           <div className="flex items-center gap-3">
-                            <span className="px-3 py-1 bg-blue-600/20 border border-blue-600/30 rounded-full text-blue-400 text-sm">
+                            <span className="px-3 py-1 bg-[#FF9000]/20 border border-[#FF9000]/30 rounded-full text-[#FAF000] text-sm">
                               {event.type}
                             </span>
-                            <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">
+                            <button className="bg-gradient-to-r from-[#FF9000] to-[#FFA100] hover:from-[#FFA100] hover:to-[#FFDD00] text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">
                               Join Event
                             </button>
                           </div>
@@ -699,7 +699,7 @@ function CommunityContent() {
                     <p className="text-white/60 mb-6">We're working on a dedicated projects showcase. For now, you can share your projects in the discussions section!</p>
                     <button 
                       onClick={() => setActiveTab("discussions")}
-                      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200"
+                      className="bg-gradient-to-r from-[#FF9000] to-[#FFA100] hover:from-[#FFA100] hover:to-[#FFDD00] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200"
                     >
                       Go to Discussions
                     </button>
@@ -725,12 +725,12 @@ function CommunityContent() {
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold">
+                            <div className="w-12 h-12 bg-gradient-to-br from-[#FFA100] to-[#FFA100] rounded-full flex items-center justify-center text-white font-semibold">
                               {contributor.avatar}
                             </div>
                             <div>
                               <h3 className="text-white font-semibold text-lg">{contributor.name}</h3>
-                              <span className="px-2 py-1 bg-blue-600/20 border border-blue-600/30 rounded-full text-blue-400 text-xs">
+                              <span className="px-2 py-1 bg-[#FF9000]/20 border border-[#FF9000]/30 rounded-full text-[#FAF000] text-xs">
                                 {contributor.badge}
                               </span>
                             </div>
@@ -778,19 +778,19 @@ function CommunityContent() {
                 <h3 className="text-white font-semibold text-lg mb-4">Community Guidelines</h3>
                 <div className="space-y-3 text-white/70 text-sm">
                   <div className="flex items-start gap-2">
-                    <Heart className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                    <Heart className="h-4 w-4 text-[#FAF000] mt-0.5 flex-shrink-0" />
                     <span>Be respectful and inclusive</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Lightbulb className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                    <Lightbulb className="h-4 w-4 text-[#FAF000] mt-0.5 flex-shrink-0" />
                     <span>Share knowledge and help others</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Zap className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                    <Zap className="h-4 w-4 text-[#FAF000] mt-0.5 flex-shrink-0" />
                     <span>Stay on topic and relevant</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Globe className="h-4 w-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                    <Globe className="h-4 w-4 text-[#FAF000] mt-0.5 flex-shrink-0" />
                     <span>Build a positive community</span>
                   </div>
                 </div>

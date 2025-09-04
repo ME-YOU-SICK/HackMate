@@ -196,17 +196,17 @@ export default function SponsorMessagesPage() {
                 </p>
               </div>
               <div className="flex gap-3">
-                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                   <Search className="h-4 w-4" />
                   Search
                 </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                   <Plus className="h-4 w-4" />
                   New Chat
                 </button>
                 <Link
                   href="/sponsor/dashboard/messages/inquiries"
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                 >
                   <Mail className="h-4 w-4" />
                   Sponsorship Inquiries
@@ -231,7 +231,7 @@ export default function SponsorMessagesPage() {
                         title={conversation.name}
                         description={conversation.lastMessage}
                         className={`cursor-pointer transition-all duration-200 hover:scale-[1.02] ${
-                          conversation.id === selectedConversationId ? 'ring-2 ring-blue-500' : ''
+                          conversation.id === selectedConversationId ? 'ring-2 ring-[#FF9000]' : ''
                         }`}
                         onClick={() => setSelectedConversationId(conversation.id)}
                       >
@@ -244,7 +244,7 @@ export default function SponsorMessagesPage() {
                             </div>
                             <div className="flex items-center gap-1">
                               {conversation.online && (
-                                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                <div className="w-2 h-2 bg-[#FFA100] rounded-full"></div>
                               )}
                               <span className="text-xs text-neutral-600 dark:text-neutral-400">
                                 {conversation.role}
@@ -256,7 +256,7 @@ export default function SponsorMessagesPage() {
                               {conversation.timestamp}
                             </span>
                             {conversation.unread > 0 && (
-                              <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs">
+                              <div className="w-5 h-5 bg-[#FF9000] text-white rounded-full flex items-center justify-center text-xs">
                                 {conversation.unread}
                               </div>
                             )}
@@ -306,19 +306,19 @@ export default function SponsorMessagesPage() {
                           <div
                             className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                               message.isOwn
-                                ? 'bg-blue-600 text-white'
+                                ? 'bg-[#FF9000] text-white'
                                 : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white'
                             }`}
                           >
                             <p className="text-sm">{message.content}</p>
                             <div className="flex items-center gap-1 mt-1">
                               <span className={`text-xs ${
-                                message.isOwn ? 'text-blue-100' : 'text-neutral-500 dark:text-neutral-400'
+                                message.isOwn ? 'text-[#FFDD00]' : 'text-neutral-500 dark:text-neutral-400'
                               }`}>
                                 {message.timestamp}
                               </span>
                               {message.isOwn && (
-                                <CheckCheck className="h-3 w-3 text-blue-100" />
+                                <CheckCheck className="h-3 w-3 text-[#FFDD00]" />
                               )}
                             </div>
                           </div>
@@ -339,7 +339,7 @@ export default function SponsorMessagesPage() {
                             value={newMessage}
                             onChange={(e) => setNewMessage(e.target.value)}
                             onKeyPress={handleKeyPress}
-                            className="w-full px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                            className="w-full px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
                           />
                         </div>
                         <button className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">
@@ -347,7 +347,7 @@ export default function SponsorMessagesPage() {
                         </button>
                         <button 
                           onClick={handleSendMessage}
-                          className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                          className="p-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                         >
                           <Send className="h-4 w-4" />
                         </button>

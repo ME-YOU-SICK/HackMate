@@ -43,8 +43,8 @@ export default function RoadmapsPage() {
               className="text-center"
             >
               <div className="flex justify-center mb-6">
-                <div className="p-4 bg-blue-100 dark:bg-blue-900/20 rounded-full">
-                  <Map className="h-12 w-12 text-blue-600" />
+                <div className="p-4 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-full">
+                  <Map className="h-12 w-12 text-[#FF9000]" />
                 </div>
               </div>
               <h1 className="text-4xl font-bold text-neutral-900 dark:text-white mb-4">
@@ -78,8 +78,8 @@ export default function RoadmapsPage() {
                   {/* Features */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                     <div className="flex flex-col items-center space-y-3">
-                      <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-full">
-                        <Target className="h-6 w-6 text-blue-600" />
+                      <div className="p-3 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-full">
+                        <Target className="h-6 w-6 text-[#FF9000]" />
                       </div>
                       <h3 className="font-semibold text-neutral-900 dark:text-white">Structured Learning</h3>
                       <p className="text-sm text-neutral-600 dark:text-neutral-400 text-center">
@@ -88,8 +88,8 @@ export default function RoadmapsPage() {
                     </div>
 
                     <div className="flex flex-col items-center space-y-3">
-                      <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-full">
-                        <BookOpen className="h-6 w-6 text-blue-600" />
+                      <div className="p-3 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-full">
+                        <BookOpen className="h-6 w-6 text-[#FF9000]" />
                       </div>
                       <h3 className="font-semibold text-neutral-900 dark:text-white">Curated Resources</h3>
                       <p className="text-sm text-neutral-600 dark:text-neutral-400 text-center">
@@ -98,8 +98,8 @@ export default function RoadmapsPage() {
                     </div>
 
                     <div className="flex flex-col items-center space-y-3">
-                      <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-full">
-                        <Users className="h-6 w-6 text-blue-600" />
+                      <div className="p-3 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-full">
+                        <Users className="h-6 w-6 text-[#FF9000]" />
                       </div>
                       <h3 className="font-semibold text-neutral-900 dark:text-white">Community Driven</h3>
                       <p className="text-sm text-neutral-600 dark:text-neutral-400 text-center">
@@ -140,7 +140,7 @@ export default function RoadmapsPage() {
                       href="https://roadmap.sh"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white text-lg font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                      className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#FF9000] to-[#FF9000] text-white text-lg font-semibold rounded-xl hover:from-[#FFA100] hover:to-[#FFDD00] transition-all duration-300 transform hover:scale-105 shadow-lg"
                     >
                       <Map className="h-6 w-6" />
                       Explore Roadmaps.sh

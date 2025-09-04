@@ -230,7 +230,7 @@ export default function RecruiterCandidatesPage() {
     switch (status) {
       case "accepted": return "text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/20";
       case "declined": return "text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/20";
-      case "pending": return "text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/20";
+      case "pending": return "text-[#FF9000] dark:text-[#FAF000] bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
       default: return "text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-900/20";
     }
   };
@@ -245,7 +245,7 @@ export default function RecruiterCandidatesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-blue-50/30 to-blue-50/20 dark:from-neutral-900 dark:via-blue-900/20 dark:to-blue-900/10">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-[#FAF000]/30 to-[#FAF000]/5/20 dark:from-neutral-900 dark:via-[#FF9000]/20 dark:to-[#FF9000]/10">
       <div className="flex flex-col md:flex-row bg-white dark:bg-neutral-900 w-full h-screen border border-neutral-200 dark:border-neutral-700 overflow-hidden">
         <DashboardSidebar userRole={userRole} userName={userName} userAvatar={userAvatar} />
         
@@ -261,8 +261,8 @@ export default function RecruiterCandidatesPage() {
               className="mb-8"
             >
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                  <Users className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                  <Users className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
                 </div>
                 <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
                   Job Candidates
@@ -290,7 +290,7 @@ export default function RecruiterCandidatesPage() {
                     <select
                       value={selectedJob}
                       onChange={(e) => setSelectedJob(e.target.value)}
-                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                     >
                       <option value="all">All Job Postings</option>
                       {jobPostings.map((job) => (
@@ -313,7 +313,7 @@ export default function RecruiterCandidatesPage() {
                         placeholder="Search by name, title, or skills..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                        className="w-full pl-10 pr-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                       />
                     </div>
                   </div>
@@ -326,7 +326,7 @@ export default function RecruiterCandidatesPage() {
                     <select
                       value={statusFilter}
                       onChange={(e) => setStatusFilter(e.target.value)}
-                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                     >
                       <option value="all">All Status</option>
                       <option value="pending">Pending</option>
@@ -347,8 +347,8 @@ export default function RecruiterCandidatesPage() {
             >
               <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Users className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Users className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -363,8 +363,8 @@ export default function RecruiterCandidatesPage() {
               
               <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Clock className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -426,7 +426,7 @@ export default function RecruiterCandidatesPage() {
                   >
                     <GlowingCard
                       icon={
-                        <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        <div className="w-12 h-12 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-full flex items-center justify-center text-white font-bold text-lg">
                           {candidate.name.split(' ').map(n => n[0]).join('')}
                         </div>
                       }
@@ -461,7 +461,7 @@ export default function RecruiterCandidatesPage() {
                         {/* Rating */}
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1">
-                            <Star className="h-4 w-4 text-blue-500 fill-current" />
+                            <Star className="h-4 w-4 text-[#FFA100] fill-current" />
                             <span className="text-sm font-medium text-neutral-900 dark:text-white">
                               {candidate.rating}
                             </span>
@@ -474,12 +474,12 @@ export default function RecruiterCandidatesPage() {
                         {/* Skills */}
                         <div className="flex flex-wrap gap-2">
                           {candidate.skills.slice(0, 3).map((skill, sIdx) => (
-                            <span key={sIdx} className="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 text-xs rounded-full font-medium flex items-center gap-1">
+                            <span key={sIdx} className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full font-medium flex items-center gap-1">
                               {skill.icon} {skill.name}
                             </span>
                           ))}
                           {candidate.skills.length > 3 && (
-                            <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 text-xs rounded-full font-medium">
+                            <span className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full font-medium">
                               +{candidate.skills.length - 3} more
                             </span>
                           )}
@@ -508,7 +508,7 @@ export default function RecruiterCandidatesPage() {
                         <div className="flex gap-2 pt-2">
                           <Link 
                             href={`/recruiter/dashboard/connections/${candidate.id}`}
-                            className="flex-1 px-3 py-2 text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 border border-blue-600 dark:border-blue-400 rounded-lg text-center transition-colors"
+                            className="flex-1 px-3 py-2 text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00] border border-[#FF9000] dark:border-[#FAF000] rounded-lg text-center transition-colors"
                           >
                             <Eye className="h-4 w-4 inline mr-1" />
                             View Profile

@@ -12,7 +12,7 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">H</span>
             </div>
             <span className="text-white font-semibold text-xl">HackMate</span>
@@ -45,7 +45,7 @@ export function Navigation() {
               </button>
             </Link>
             <Link href="/signup">
-              <button className="bg-white text-black hover:bg-white/90 transition-all duration-200 px-4 py-2 rounded-lg text-sm font-medium">
+              <button className="bg-[#FAF000] text-black hover:bg-[#FFDD00] transition-all duration-200 px-4 py-2 rounded-lg text-sm font-medium">
                 Sign Up
               </button>
             </Link>
@@ -94,7 +94,7 @@ export function Navigation() {
                   </button>
                 </Link>
                 <Link href="/signup">
-                  <button className="bg-white text-black hover:bg-white/90 transition-all duration-200 px-4 py-2 rounded-lg text-sm font-medium w-full">
+                  <button className="bg-[#FAF000] text-black hover:bg-[#FFDD00] transition-all duration-200 px-4 py-2 rounded-lg text-sm font-medium w-full">
                     Sign Up
                   </button>
                 </Link>

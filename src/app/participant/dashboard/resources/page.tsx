@@ -93,7 +93,7 @@ export default function ResourcesPage() {
                 )}
                 {error && (
                   <>
-                    <AlertCircle className="h-4 w-4 text-blue-500" />
+                    <AlertCircle className="h-4 w-4 text-[#FFA100]" />
                     {error}
                   </>
                 )}
@@ -119,7 +119,7 @@ export default function ResourcesPage() {
                 placeholder="Search resources..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
               />
             </motion.div>
 
@@ -136,7 +136,7 @@ export default function ResourcesPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                     category === selectedCategory
-                      ? "bg-blue-600 text-white" 
+                      ? "bg-[#FF9000] text-white" 
                       : "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700"
                   }`}
                 >
@@ -153,7 +153,7 @@ export default function ResourcesPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="flex flex-col items-center justify-center py-12"
               >
-                <Loader2 className="h-8 w-8 animate-spin text-blue-600 mb-4" />
+                <Loader2 className="h-8 w-8 animate-spin text-[#FF9000] mb-4" />
                 <p className="text-neutral-600 dark:text-neutral-400">
                   Fetching resource metadata...
                 </p>
@@ -168,13 +168,13 @@ export default function ResourcesPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="flex flex-col items-center justify-center py-12"
               >
-                <AlertCircle className="h-8 w-8 text-blue-500 mb-4" />
+                <AlertCircle className="h-8 w-8 text-[#FFA100] mb-4" />
                 <p className="text-neutral-600 dark:text-neutral-400 mb-4">
                   {error}
                 </p>
                 <button 
                   onClick={() => window.location.reload()}
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                 >
                   <RefreshCw className="h-4 w-4" />
                   Retry
@@ -204,12 +204,12 @@ export default function ResourcesPage() {
                           {resource.domain}
                         </div>
                         <div className="flex justify-between items-center pt-2">
-                          <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                             {selectedCategory}
                           </span>
                           <button 
                             onClick={() => window.open(resource.url, '_blank')}
-                            className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                            className="flex items-center gap-2 px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm"
                           >
                             <ExternalLink className="h-4 w-4" />
                             Visit

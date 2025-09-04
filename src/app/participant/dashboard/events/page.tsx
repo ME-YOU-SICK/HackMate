@@ -407,7 +407,7 @@ export default function EventsPage() {
                           <select
                             value={selectedCategory}
                             onChange={(e) => setSelectedCategory(e.target.value)}
-                            className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                            className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                           >
                             {categories.map(category => (
                               <option key={category} value={category}>{category}</option>
@@ -421,7 +421,7 @@ export default function EventsPage() {
                           <select
                             value={selectedStatus}
                             onChange={(e) => setSelectedStatus(e.target.value)}
-                            className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                            className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                           >
                             {statuses.map(status => (
                               <option key={status} value={status}>
@@ -450,7 +450,7 @@ export default function EventsPage() {
                 placeholder="Search events by title, description, or location..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
               />
             </motion.div>
 
@@ -471,7 +471,7 @@ export default function EventsPage() {
                     setSelectedStatus("All");
                     setSearchTerm("");
                   }}
-                  className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                  className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]"
                 >
                   Clear filters
                 </button>
@@ -517,16 +517,16 @@ export default function EventsPage() {
                         {event.prize} prize pool
                       </div>
                       <div className="flex justify-between items-center pt-2">
-                        <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 text-xs rounded-full font-medium">
+                        <span className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full font-medium">
                           {event.category}
                         </span>
                         <div className="flex items-center gap-2">
-                          <Link href={`/participant/dashboard/events/${event.id}`} className="px-3 py-2 text-sm text-blue-600 hover:text-blue-700">
+                          <Link href={`/participant/dashboard/events/${event.id}`} className="px-3 py-2 text-sm text-[#FF9000] hover:text-[#FFA100]">
                             Details
                           </Link>
                           <button
                             onClick={() => handleJoin(event.id)}
-                            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                            className="px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm font-medium"
                           >
                             {joinedIds.includes(event.id) ? 'Open Event' : 'Join Event'}
                           </button>
@@ -559,7 +559,7 @@ export default function EventsPage() {
                     setSelectedStatus("All");
                     setSearchTerm("");
                   }}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                 >
                   Clear all filters
                 </button>

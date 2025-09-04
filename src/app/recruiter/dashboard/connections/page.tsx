@@ -321,7 +321,7 @@ export default function RecruiterConnectionsPage() {
                           <select
                             value={selectedSkill}
                             onChange={(e) => setSelectedSkill(e.target.value)}
-                            className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                            className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                           >
                             {skillCategories.map(skill => (
                               <option key={skill} value={skill}>{skill}</option>
@@ -348,7 +348,7 @@ export default function RecruiterConnectionsPage() {
                 placeholder="Search participants by name, title, or skills..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
               />
             </motion.div>
 
@@ -368,7 +368,7 @@ export default function RecruiterConnectionsPage() {
                     setSelectedSkill("All");
                     setSearchTerm("");
                   }}
-                  className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                  className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]"
                 >
                   Clear filters
                 </button>
@@ -399,7 +399,7 @@ export default function RecruiterConnectionsPage() {
                       {/* Avatar and Status */}
                       <div className="flex items-center gap-3">
                         <div className="relative">
-                          <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
+                          <div className="w-12 h-12 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-full flex items-center justify-center">
                             <span className="text-white font-bold text-sm">{participant.avatar}</span>
                           </div>
                           <div className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white dark:border-neutral-900 ${
@@ -434,7 +434,7 @@ export default function RecruiterConnectionsPage() {
                           {participant.skills.slice(0, 3).map((skill, skillIndex) => (
                             <span 
                               key={skillIndex}
-                              className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 text-xs rounded-full"
+                              className="inline-flex items-center gap-1 px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full"
                             >
                               {getSkillIcon(skill)}
                               {skill}
@@ -471,7 +471,7 @@ export default function RecruiterConnectionsPage() {
                         </button>
                         <button
                           onClick={() => handleMessage(participant.id)}
-                          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm"
                         >
                           <MessageCircle className="h-4 w-4" />
                           Message
@@ -503,7 +503,7 @@ export default function RecruiterConnectionsPage() {
                     setSelectedSkill("All");
                     setSearchTerm("");
                   }}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                 >
                   Clear all filters
                 </button>

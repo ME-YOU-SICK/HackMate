@@ -151,7 +151,7 @@ export default function ParticipantDashboard() {
       description: "Won 1st place with your team",
       date: "2 days ago",
       icon: <Trophy className="h-4 w-4" />,
-      color: "text-blue-600"
+      color: "text-[#FF9000]"
     },
     {
       id: 2,
@@ -160,7 +160,7 @@ export default function ParticipantDashboard() {
       description: "Added new projects to your GitHub",
       date: "3 days ago",
       icon: <Code className="h-4 w-4" />,
-      color: "text-blue-600"
+      color: "text-[#FF9000]"
     },
     {
       id: 3,
@@ -169,7 +169,7 @@ export default function ParticipantDashboard() {
       description: "Advanced TypeScript patterns",
       date: "5 days ago",
       icon: <Target className="h-4 w-4" />,
-      color: "text-blue-600"
+      color: "text-[#FF9000]"
     },
     {
       id: 4,
@@ -178,7 +178,7 @@ export default function ParticipantDashboard() {
       description: "Working on React Native project",
       date: "1 week ago",
       icon: <Users className="h-4 w-4" />,
-      color: "text-blue-600"
+      color: "text-[#FF9000]"
     }
   ];
 
@@ -254,28 +254,28 @@ export default function ParticipantDashboard() {
       description: "Find and join hackathons",
       icon: <Calendar className="h-6 w-6" />,
       href: "/participant/dashboard/events",
-      color: "bg-blue-600 hover:bg-blue-700"
+      color: "bg-[#FF9000] hover:bg-[#FFA100]"
     },
     {
       title: "Create Team",
       description: "Build your dream team",
       icon: <Users className="h-6 w-6" />,
       href: "/participant/dashboard/teamify",
-      color: "bg-blue-600 hover:bg-blue-700"
+      color: "bg-[#FF9000] hover:bg-[#FFA100]"
     },
     {
       title: "Track Skills",
       description: "Monitor your progress",
       icon: <Target className="h-6 w-6" />,
       href: "/participant/dashboard/skills",
-      color: "bg-blue-600 hover:bg-blue-700"
+      color: "bg-[#FF9000] hover:bg-[#FFA100]"
     },
     {
       title: "Practice Coding",
       description: "Improve your skills",
       icon: <Code className="h-6 w-6" />,
       href: "/participant/dashboard/quizzes",
-      color: "bg-blue-600 hover:bg-blue-700"
+      color: "bg-[#FF9000] hover:bg-[#FFA100]"
     }
   ];
 
@@ -313,7 +313,7 @@ export default function ParticipantDashboard() {
                             onClick={() => handleCategoryClick(category)}
                             className={`px-3 py-1.5 rounded-full border text-sm transition-colors ${
                               activeCategory === category
-                                ? "bg-blue-600 text-white border-blue-600"
+                                ? "bg-[#FF9000] text-white border-[#FF9000]"
                                 : "bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-700"
                             }`}
                           >
@@ -339,7 +339,7 @@ export default function ParticipantDashboard() {
                                 onClick={() => toggleSkill(skill)}
                                 className={`px-3 py-1.5 rounded-full border text-sm transition-colors ${
                                   onboardingSkills.includes(skill)
-                                    ? "bg-blue-600 text-white border-blue-600"
+                                    ? "bg-[#FF9000] text-white border-[#FF9000]"
                                     : "bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-700"
                                 }`}
                               >
@@ -358,7 +358,7 @@ export default function ParticipantDashboard() {
                           value={onboardingLinks.github}
                           onChange={(e) => setOnboardingLinks({ ...onboardingLinks, github: e.target.value })}
                           placeholder="your-handle"
-                          className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                          className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                         />
                       </div>
                       <div>
@@ -368,7 +368,7 @@ export default function ParticipantDashboard() {
                           value={onboardingLinks.linkedin}
                           onChange={(e) => setOnboardingLinks({ ...onboardingLinks, linkedin: e.target.value })}
                           placeholder="https://linkedin.com/in/username"
-                          className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                          className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                         />
                       </div>
                       <div>
@@ -378,14 +378,14 @@ export default function ParticipantDashboard() {
                           value={onboardingLinks.twitter}
                           onChange={(e) => setOnboardingLinks({ ...onboardingLinks, twitter: e.target.value })}
                           placeholder="https://twitter.com/username"
-                          className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                          className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                         />
                       </div>
                     </div>
                   </div>
                   <div className="flex justify-end gap-2 mt-6">
                     <button onClick={() => setShowOnboarding(false)} className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">Skip for now</button>
-                    <button onClick={completeOnboarding} className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Save and continue</button>
+                    <button onClick={completeOnboarding} className="px-4 py-2 rounded-lg bg-[#FF9000] text-white hover:bg-[#FFA100]">Save and continue</button>
                   </div>
                 </div>
               </div>
@@ -420,8 +420,8 @@ export default function ParticipantDashboard() {
             >
               <GlowingCard className="h-full">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Trophy className="h-5 w-5 text-blue-600" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Trophy className="h-5 w-5 text-[#FF9000]" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -436,8 +436,8 @@ export default function ParticipantDashboard() {
 
               <GlowingCard className="h-full">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Code className="h-5 w-5 text-blue-600" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Code className="h-5 w-5 text-[#FF9000]" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -452,8 +452,8 @@ export default function ParticipantDashboard() {
 
               <GlowingCard className="h-full">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Users className="h-5 w-5 text-blue-600" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Users className="h-5 w-5 text-[#FF9000]" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -468,8 +468,8 @@ export default function ParticipantDashboard() {
 
               <GlowingCard className="h-full">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Zap className="h-5 w-5 text-blue-600" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Zap className="h-5 w-5 text-[#FF9000]" />
                   </div>
                   <div>
                     <p className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -507,14 +507,14 @@ export default function ParticipantDashboard() {
                             {action.icon}
                           </div>
                           <div className="flex-1">
-                            <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors">
                               {action.title}
                             </h3>
                             <p className="text-sm text-neutral-600 dark:text-neutral-400">
                               {action.description}
                             </p>
                           </div>
-                          <ArrowRight className="h-4 w-4 text-neutral-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+                          <ArrowRight className="h-4 w-4 text-neutral-400 group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors" />
                         </div>
                       </GlowingCard>
                     </motion.div>
@@ -534,7 +534,7 @@ export default function ParticipantDashboard() {
                   <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
                     Recent Activity
                   </h2>
-                  <Link href="/participant/dashboard/profile" className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                  <Link href="/participant/dashboard/profile" className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]">
                     View all
                   </Link>
                 </div>
@@ -578,7 +578,7 @@ export default function ParticipantDashboard() {
                   <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
                     Upcoming Events
                   </h2>
-                  <Link href="/participant/dashboard/events" className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                  <Link href="/participant/dashboard/events" className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]">
                     View all
                   </Link>
                 </div>
@@ -596,7 +596,7 @@ export default function ParticipantDashboard() {
                           <h4 className="font-semibold text-neutral-900 dark:text-white">
                             {event.title}
                           </h4>
-                          <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                             {event.category}
                           </span>
                         </div>
@@ -637,7 +637,7 @@ export default function ParticipantDashboard() {
                   <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
                     Top Skills
                   </h2>
-                  <Link href="/participant/dashboard/skills" className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                  <Link href="/participant/dashboard/skills" className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]">
                     View all
                   </Link>
                 </div>
@@ -666,7 +666,7 @@ export default function ParticipantDashboard() {
                         </div>
                         <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
                           <div 
-                            className="bg-gradient-to-r from-blue-600 to-blue-800 h-2 rounded-full transition-all duration-300"
+                            className="bg-gradient-to-r from-[#FF9000] to-[#FF9000] h-2 rounded-full transition-all duration-300"
                             style={{ width: `${skill.level}%` }}
                           ></div>
                         </div>
@@ -686,7 +686,7 @@ export default function ParticipantDashboard() {
                   <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
                     GitHub Projects
                   </h2>
-                  <Link href="/participant/dashboard/profile" className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                  <Link href="/participant/dashboard/profile" className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]">
                     View all
                   </Link>
                 </div>
@@ -718,7 +718,7 @@ export default function ParticipantDashboard() {
                                 href={repo.html_url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                                className="text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]"
                               >
                                 <ExternalLink className="h-4 w-4" />
                               </a>
@@ -763,7 +763,7 @@ export default function ParticipantDashboard() {
                       </p>
                       <Link
                         href="/participant/dashboard/profile"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm"
                       >
                         <Github className="h-4 w-4" />
                         Connect GitHub

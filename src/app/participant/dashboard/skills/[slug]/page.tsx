@@ -134,7 +134,7 @@ function SkillDetailInner() {
                 <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">{title}</h1>
                 <p className="text-neutral-600 dark:text-neutral-400">Curated overview, resources, and project ideas</p>
               </div>
-              <Link href="/participant/dashboard/skills" className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <Link href="/participant/dashboard/skills" className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                 <ArrowLeft className="h-4 w-4" />
                 Back to Skills
               </Link>
@@ -158,7 +158,7 @@ function SkillDetailInner() {
                     {data.topics.map((t, i) => (
                       <div key={i} className="p-3 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900">
                         <div className="flex items-center gap-2 mb-1">
-                          <ListChecks className="h-4 w-4 text-blue-600" />
+                          <ListChecks className="h-4 w-4 text-[#FF9000]" />
                           <span className="font-medium text-neutral-900 dark:text-white text-sm">{t.title}</span>
                         </div>
                         <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">{t.content}</p>
@@ -177,7 +177,7 @@ function SkillDetailInner() {
                     {data.resources.map((r, i) => (
                       <a key={i} href={r.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
                         <div className="flex items-center gap-2 text-neutral-900 dark:text-white">
-                          <ExternalLink className="h-4 w-4 text-blue-600" /> {r.title}
+                          <ExternalLink className="h-4 w-4 text-[#FF9000]" /> {r.title}
                         </div>
                         <span className="text-xs text-neutral-500">Visit</span>
                       </a>

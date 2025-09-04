@@ -231,7 +231,7 @@ export default function OrganizerAnnouncementsPage() {
               </div>
               <button 
                 onClick={() => setShowMessageComposer(true)}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
               >
                 <Megaphone className="h-4 w-4" />
                 New Announcement
@@ -258,7 +258,7 @@ export default function OrganizerAnnouncementsPage() {
                       title={event.name}
                       description={`${event.totalParticipants} participants • ${event.totalTeams} teams`}
                       className={`cursor-pointer transition-all duration-200 hover:scale-[1.02] ${
-                        selectedEvent === event.id ? 'ring-2 ring-blue-500' : ''
+                        selectedEvent === event.id ? 'ring-2 ring-[#FF9000]' : ''
                       }`}
                       onClick={() => {
                         setSelectedEvent(event.id);
@@ -269,7 +269,7 @@ export default function OrganizerAnnouncementsPage() {
                         <div className="flex items-center gap-2">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                             event.status === 'active' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-                            event.status === 'upcoming' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
+                            event.status === 'upcoming' ? 'bg-[#FAF000]/10 text-[#FF9000] dark:bg-[#FAF000] dark:text-[#FAF000]' :
                             'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'
                           }`}>
                             {event.status}
@@ -321,7 +321,7 @@ export default function OrganizerAnnouncementsPage() {
                               setMessageType("event");
                               setShowMessageComposer(true);
                             }}
-                            className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                            className="flex items-center gap-2 px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm"
                           >
                             <Megaphone className="h-4 w-4" />
                             Message All
@@ -350,7 +350,7 @@ export default function OrganizerAnnouncementsPage() {
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-3">
                                 {selectedPanel === panel.id ? (
-                                  <ChevronDown className="h-5 w-5 text-blue-600" />
+                                  <ChevronDown className="h-5 w-5 text-[#FF9000]" />
                                 ) : (
                                   <ChevronRight className="h-5 w-5 text-neutral-400" />
                                 )}
@@ -370,7 +370,7 @@ export default function OrganizerAnnouncementsPage() {
                                   setSelectedPanel(panel.id);
                                   setShowMessageComposer(true);
                                 }}
-                                className="flex items-center gap-1 px-2 py-1 bg-blue-600 text-white rounded text-xs hover:bg-blue-700 transition-colors"
+                                className="flex items-center gap-1 px-2 py-1 bg-[#FF9000] text-white rounded text-xs hover:bg-[#FFA100] transition-colors"
                               >
                                 <MessageSquare className="h-3 w-3" />
                                 Message Panel
@@ -405,7 +405,7 @@ export default function OrganizerAnnouncementsPage() {
                                     <div className="flex items-center justify-between">
                                       <div className="flex items-center gap-3">
                                         {selectedTeam === team.id ? (
-                                          <ChevronDown className="h-4 w-4 text-blue-600" />
+                                          <ChevronDown className="h-4 w-4 text-[#FF9000]" />
                                         ) : (
                                           <ChevronRight className="h-4 w-4 text-neutral-400" />
                                         )}
@@ -425,7 +425,7 @@ export default function OrganizerAnnouncementsPage() {
                                           setSelectedTeam(team.id);
                                           setShowMessageComposer(true);
                                         }}
-                                        className="flex items-center gap-1 px-2 py-1 bg-blue-600 text-white rounded text-xs hover:bg-blue-700 transition-colors"
+                                        className="flex items-center gap-1 px-2 py-1 bg-[#FF9000] text-white rounded text-xs hover:bg-[#FFA100] transition-colors"
                                       >
                                         <MessageSquare className="h-3 w-3" />
                                         Message Team
@@ -448,7 +448,7 @@ export default function OrganizerAnnouncementsPage() {
                                           key={member.id}
                                           className={`p-3 rounded-lg cursor-pointer transition-colors ${
                                             selectedParticipant === member.name 
-                                              ? 'bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800' 
+                                              ? 'bg-[#FAF000]/5 dark:bg-[#FAF000]/20 border border-[#FAF000] dark:border-[#FF9000]' 
                                               : 'bg-neutral-50 dark:bg-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-600'
                                           }`}
                                           onClick={() => {
@@ -466,7 +466,7 @@ export default function OrganizerAnnouncementsPage() {
                                               </p>
                                               <div className="flex flex-wrap gap-1 mt-1">
                                                 {member.skills.slice(0, 3).map((skill) => (
-                                                  <span key={skill} className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded text-xs">
+                                                  <span key={skill} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] rounded text-xs">
                                                     {skill}
                                                   </span>
                                                 ))}
@@ -479,7 +479,7 @@ export default function OrganizerAnnouncementsPage() {
                                                 setSelectedParticipant(member.name);
                                                 setShowMessageComposer(true);
                                               }}
-                                              className="flex items-center gap-1 px-2 py-1 bg-blue-600 text-white rounded text-xs hover:bg-blue-700 transition-colors"
+                                              className="flex items-center gap-1 px-2 py-1 bg-[#FF9000] text-white rounded text-xs hover:bg-[#FFA100] transition-colors"
                                             >
                                               <MessageSquare className="h-3 w-3" />
                                               Message
@@ -550,8 +550,8 @@ export default function OrganizerAnnouncementsPage() {
 
             {/* Target Info */}
             {getMessageTargetInfo() && (
-              <div className="mb-6 p-4 bg-blue-900/20 border border-blue-500/30 rounded-lg">
-                <div className="flex items-center gap-2 text-blue-300">
+              <div className="mb-6 p-4 bg-[#FF9000]/20 border border-[#FFA100]/30 rounded-lg">
+                <div className="flex items-center gap-2 text-[#FFDD00]">
                   <Target className="h-4 w-4" />
                   <span className="font-medium">Sending to: {getMessageTargetInfo()?.type}</span>
                 </div>
@@ -570,7 +570,7 @@ export default function OrganizerAnnouncementsPage() {
                   value={messageTitle}
                   onChange={(e) => setMessageTitle(e.target.value)}
                   placeholder="Enter announcement title..."
-                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-neutral-400"
+                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-white placeholder-neutral-400"
                 />
               </div>
 
@@ -583,7 +583,7 @@ export default function OrganizerAnnouncementsPage() {
                   onChange={(e) => setMessageContent(e.target.value)}
                   placeholder="Enter your announcement message..."
                   rows={6}
-                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-neutral-400 resize-none"
+                  className="w-full px-4 py-3 bg-neutral-800 border border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-white placeholder-neutral-400 resize-none"
                 />
               </div>
             </div>
@@ -597,7 +597,7 @@ export default function OrganizerAnnouncementsPage() {
               </button>
               <button
                 onClick={handleSendMessage}
-                className="flex-1 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex-1 px-4 py-3 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
               >
                 Send Announcement
               </button>

@@ -39,9 +39,9 @@ export default function CookiePolicyPage() {
       name: "Analytics Cookies",
       description: "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously.",
       icon: <Database className="h-5 w-5" />,
-      color: "text-blue-400",
-      bgColor: "bg-blue-600/20",
-      borderColor: "border-blue-600/30",
+      color: "text-[#FAF000]",
+      bgColor: "bg-[#FF9000]/20",
+      borderColor: "border-[#FF9000]/30",
       examples: [
         "Page views and user behavior tracking",
         "Performance monitoring and optimization",
@@ -54,9 +54,9 @@ export default function CookiePolicyPage() {
       name: "Functional Cookies",
       description: "These cookies enable enhanced functionality and personalization, such as remembering your preferences.",
       icon: <Settings className="h-5 w-5" />,
-      color: "text-purple-400",
-      bgColor: "bg-purple-600/20",
-      borderColor: "border-purple-600/30",
+      color: "text-[#FAF000]",
+      bgColor: "bg-[#FFA100]/20",
+      borderColor: "border-[#FFA100]/30",
       examples: [
         "Language and region preferences",
         "Theme and display settings",
@@ -140,7 +140,7 @@ export default function CookiePolicyPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-600/30 rounded-full text-blue-400 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FF9000]/20 to-[#FFA100]/20 border border-[#FF9000]/30 rounded-full text-[#FAF000] text-sm font-medium mb-6">
               <Cookie className="h-4 w-4" />
               <span>Cookie Policy</span>
             </div>
@@ -264,8 +264,8 @@ export default function CookiePolicyPage() {
                         <td className="px-6 py-4">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                             cookie.type === 'Essential' ? 'bg-green-600/20 text-green-400 border border-green-600/30' :
-                            cookie.type === 'Analytics' ? 'bg-blue-600/20 text-blue-400 border border-blue-600/30' :
-                            'bg-purple-600/20 text-purple-400 border border-purple-600/30'
+                            cookie.type === 'Analytics' ? 'bg-[#FF9000]/20 text-[#FAF000] border border-[#FF9000]/30' :
+                            'bg-[#FFA100]/20 text-[#FAF000] border border-[#FFA100]/30'
                           }`}>
                             {cookie.type}
                           </span>
@@ -292,7 +292,7 @@ export default function CookiePolicyPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <Settings className="h-6 w-6 text-blue-400" />
+                  <Settings className="h-6 w-6 text-[#FAF000]" />
                   <h3 className="text-white font-semibold text-lg">Browser Settings</h3>
                 </div>
                 <p className="text-white/70 text-sm mb-4">
@@ -320,13 +320,13 @@ export default function CookiePolicyPage() {
 
               <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <Globe className="h-6 w-6 text-purple-400" />
+                  <Globe className="h-6 w-6 text-[#FAF000]" />
                   <h3 className="text-white font-semibold text-lg">Our Cookie Settings</h3>
                 </div>
                 <p className="text-white/70 text-sm mb-4">
                   You can manage your cookie preferences directly on our website:
                 </p>
-                <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                <button className="w-full bg-gradient-to-r from-[#FF9000] to-[#FFA100] hover:from-[#FFA100] hover:to-[#FFDD00] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center gap-2">
                   <Settings className="h-5 w-5" />
                   Manage Cookie Preferences
                 </button>
@@ -346,7 +346,7 @@ export default function CookiePolicyPage() {
           >
             <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
               <div className="flex items-center gap-3 mb-6">
-                <Info className="h-6 w-6 text-blue-400" />
+                <Info className="h-6 w-6 text-[#FAF000]" />
                 <h2 className="text-2xl font-bold text-white">Third-Party Cookies</h2>
               </div>
               <p className="text-white/70 leading-relaxed mb-4">
@@ -372,7 +372,7 @@ export default function CookiePolicyPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="text-center bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-600/20 rounded-2xl p-8"
+            className="text-center bg-gradient-to-r from-[#FF9000]/10 to-[#FFA100]/10 border border-[#FF9000]/20 rounded-2xl p-8"
           >
             <h2 className="text-2xl font-bold text-white mb-4">Questions About Cookies?</h2>
             <p className="text-white/70 mb-6">
@@ -380,7 +380,7 @@ export default function CookiePolicyPage() {
               please don't hesitate to contact us.
             </p>
             <div className="flex items-center justify-center gap-3">
-              <Mail className="h-5 w-5 text-blue-400" />
+              <Mail className="h-5 w-5 text-[#FAF000]" />
               <span className="text-white font-medium">privacy@hackmate.com</span>
             </div>
           </motion.div>

@@ -142,7 +142,7 @@ const SponsorProfile = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "completed": return "text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/20";
-      case "active": return "text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/20";
+      case "active": return "text-[#FF9000] dark:text-[#FAF000] bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
       default: return "text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800";
     }
   };
@@ -171,7 +171,7 @@ const SponsorProfile = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-neutral-900 dark:text-white flex items-center gap-2">
-                <User className="h-6 w-6 text-blue-600" />
+                <User className="h-6 w-6 text-[#FF9000]" />
                 Company Profile
               </h1>
               <p className="text-neutral-600 dark:text-neutral-400 mt-1">
@@ -180,7 +180,7 @@ const SponsorProfile = () => {
             </div>
             <button
               onClick={() => setShowEditModal(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
             >
               <Edit3 className="h-4 w-4" />
               Edit Profile
@@ -209,7 +209,7 @@ const SponsorProfile = () => {
                           {profileData.company.industry}
                         </p>
                       </div>
-                      <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                      <div className="w-16 h-16 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-full flex items-center justify-center text-white font-bold text-xl">
                         {profileData.company.name.charAt(0)}
                       </div>
                     </div>
@@ -239,7 +239,7 @@ const SponsorProfile = () => {
                           href={`https://${profileData.company.website}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                          className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:underline"
                         >
                           {profileData.company.website}
                         </a>
@@ -351,34 +351,34 @@ const SponsorProfile = () => {
                     </h4>
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
-                        <Linkedin className="h-4 w-4 text-blue-600" />
+                        <Linkedin className="h-4 w-4 text-[#FF9000]" />
                         <a 
                           href={profileData.social.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                          className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:underline"
                         >
                           LinkedIn Profile
                         </a>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Twitter className="h-4 w-4 text-blue-400" />
+                        <Twitter className="h-4 w-4 text-[#FAF000]" />
                         <a 
                           href={profileData.social.twitter}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                          className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:underline"
                         >
                           Twitter Profile
                         </a>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Facebook className="h-4 w-4 text-blue-600" />
+                        <Facebook className="h-4 w-4 text-[#FF9000]" />
                         <a 
                           href={profileData.social.facebook}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                          className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:underline"
                         >
                           Facebook Page
                         </a>
@@ -389,7 +389,7 @@ const SponsorProfile = () => {
                           href={profileData.social.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                          className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:underline"
                         >
                           Instagram Profile
                         </a>
@@ -411,7 +411,7 @@ const SponsorProfile = () => {
                   {profileData.sponsorship.preferredEventTypes.map((type, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 text-sm rounded-full"
+                      className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-sm rounded-full"
                     >
                       {type}
                     </span>
@@ -485,7 +485,7 @@ const SponsorProfile = () => {
                 {achievements.map((achievement, index) => (
                   <div key={index} className="p-4 bg-neutral-50 dark:bg-neutral-700 rounded-lg text-center">
                     <div className="flex justify-center mb-2">
-                      <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
+                      <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
                         {achievement.icon}
                       </div>
                     </div>
@@ -527,7 +527,7 @@ const SponsorProfile = () => {
             <div className="flex gap-3">
               <button
                 onClick={() => setShowEditModal(false)}
-                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="flex-1 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
               >
                 Save Changes
               </button>

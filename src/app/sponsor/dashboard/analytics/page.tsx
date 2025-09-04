@@ -288,7 +288,7 @@ const SponsorAnalytics = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "completed": return "text-green-600 dark:text-green-400";
-      case "active": return "text-blue-600 dark:text-blue-400";
+      case "active": return "text-[#FF9000] dark:text-[#FAF000]";
       case "upcoming": return "text-yellow-600 dark:text-yellow-400";
       default: return "text-neutral-600 dark:text-neutral-400";
     }
@@ -297,7 +297,7 @@ const SponsorAnalytics = () => {
   const getStatusBg = (status: string) => {
     switch (status) {
       case "completed": return "bg-green-100 dark:bg-green-900/20";
-      case "active": return "bg-blue-100 dark:bg-blue-900/20";
+      case "active": return "bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
       case "upcoming": return "bg-yellow-100 dark:bg-yellow-900/20";
       default: return "bg-neutral-100 dark:bg-neutral-800";
     }
@@ -313,7 +313,7 @@ const SponsorAnalytics = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-neutral-900 dark:text-white flex items-center gap-2">
-                <BarChart3 className="h-6 w-6 text-blue-600" />
+                <BarChart3 className="h-6 w-6 text-[#FF9000]" />
                 Analytics Dashboard
               </h1>
               <p className="text-neutral-600 dark:text-neutral-400 mt-1">
@@ -331,7 +331,7 @@ const SponsorAnalytics = () => {
                 <option value="1year">Last Year</option>
                 <option value="all">All Time</option>
               </select>
-              <button className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button className="p-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                 <Download className="h-4 w-4" />
               </button>
               <button 
@@ -339,7 +339,7 @@ const SponsorAnalytics = () => {
                 disabled={isRefreshing}
                 className={`p-2 rounded-lg transition-all duration-200 ${
                   isRefreshing 
-                    ? "bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 cursor-not-allowed" 
+                    ? "bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] cursor-not-allowed" 
                     : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-700"
                 }`}
               >
@@ -369,8 +369,8 @@ const SponsorAnalytics = () => {
                   {isRefreshing ? "---" : formatCurrency(investmentSummary.totalInvested)}
                 </motion.div>
                 <div className="flex items-center gap-1 mt-2">
-                  <TrendingUp className="h-4 w-4 text-blue-500" />
-                  <span className="text-sm text-blue-600 dark:text-blue-400">+12% this month</span>
+                  <TrendingUp className="h-4 w-4 text-[#FFA100]" />
+                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">+12% this month</span>
                 </div>
               </GlowingCard>
 
@@ -409,8 +409,8 @@ const SponsorAnalytics = () => {
                   {isRefreshing ? "---" : investmentSummary.activeEvents}
                 </motion.div>
                 <div className="flex items-center gap-1 mt-2">
-                  <Activity className="h-4 w-4 text-blue-500" />
-                  <span className="text-sm text-blue-600 dark:text-blue-400">{investmentSummary.completedEvents} completed</span>
+                  <Activity className="h-4 w-4 text-[#FFA100]" />
+                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">{investmentSummary.completedEvents} completed</span>
                 </div>
               </GlowingCard>
 
@@ -466,7 +466,7 @@ const SponsorAnalytics = () => {
                             transition={{ duration: 0.8, delay: index * 0.1 + 0.2 }}
                           />
                           <motion.div 
-                            className="bg-blue-500 rounded-t w-full"
+                            className="bg-[#FFA100] rounded-t w-full"
                             key={`${selectedTimeframe}-invested-${index}`}
                             initial={{ height: 0 }}
                             animate={{ height: `${(data.invested / Math.max(...monthlyData.map(d => d.invested))) * 100 * scaleFactor}px` }}
@@ -482,7 +482,7 @@ const SponsorAnalytics = () => {
                 </div>
                 <div className="flex items-center gap-4 mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded"></div>
+                    <div className="w-3 h-3 bg-[#FFA100] rounded"></div>
                     <span className="text-sm text-neutral-600 dark:text-neutral-400">Investment</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -536,7 +536,7 @@ const SponsorAnalytics = () => {
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="8"
-                        className="text-blue-500"
+                        className="text-[#FFA100]"
                         strokeLinecap="round"
                         initial={{ strokeDasharray: "0 251.2" }}
                         animate={{ strokeDasharray: `${(investmentSummary.activeEvents / (investmentSummary.completedEvents + investmentSummary.activeEvents + 4)) * 251.2} 251.2` }}
@@ -583,7 +583,7 @@ const SponsorAnalytics = () => {
                     <span className="text-sm text-neutral-600 dark:text-neutral-400">Completed ({investmentSummary.completedEvents})</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded"></div>
+                    <div className="w-3 h-3 bg-[#FFA100] rounded"></div>
                     <span className="text-sm text-neutral-600 dark:text-neutral-400">Active ({investmentSummary.activeEvents})</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -630,7 +630,7 @@ const SponsorAnalytics = () => {
                           <div className="flex items-center gap-2">
                             <div className="w-16 h-2 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
                               <div 
-                                className="h-full bg-blue-500 rounded-full transition-all duration-300"
+                                className="h-full bg-[#FFA100] rounded-full transition-all duration-300"
                                 style={{ width: `${event.progress}%` }}
                               />
                             </div>

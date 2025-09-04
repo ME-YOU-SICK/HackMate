@@ -116,13 +116,13 @@ export default function TeamifyPage() {
                 </p>
               </div>
               <div className="flex gap-3">
-                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                   <Filter className="h-4 w-4" />
                   Filter
                 </button>
                 <Link 
                   href="/participant/dashboard/teamify/create-team"
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                 >
                   <Plus className="h-4 w-4" />
                   Create Team
@@ -141,7 +141,7 @@ export default function TeamifyPage() {
               <input
                 type="text"
                 placeholder="Search teams or members..."
-                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
               />
             </motion.div>
 
@@ -178,7 +178,7 @@ export default function TeamifyPage() {
                           </div>
                           <div className="flex flex-wrap gap-1">
                             {team.skills.map((skill, index) => (
-                              <span key={index} className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                              <span key={index} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                                 {skill}
                               </span>
                             ))}
@@ -191,7 +191,7 @@ export default function TeamifyPage() {
                             </div>
                             <div className="flex flex-wrap gap-1">
                               {team.lookingFor.map((role, index) => (
-                                <span key={index} className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                                <span key={index} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                                   {role}
                                 </span>
                               ))}
@@ -199,7 +199,7 @@ export default function TeamifyPage() {
                           </div>
                         )}
                         <div className="flex gap-2 pt-2">
-                          <button className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                          <button className="flex-1 px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm">
                             Join Team
                           </button>
                         </div>
@@ -239,19 +239,19 @@ export default function TeamifyPage() {
                           </div>
                           <div className="flex flex-wrap gap-1">
                             {member.skills.map((skill, index) => (
-                              <span key={index} className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                              <span key={index} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                                 {skill}
                               </span>
                             ))}
                           </div>
                         </div>
                         <div className="flex gap-2 pt-2">
-                          <button className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                          <button className="flex-1 px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm">
                             Invite
                           </button>
                           <button
                             onClick={() => router.push(`/participant/dashboard/messages?to=${encodeURIComponent(member.name)}`)}
-                            className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                            className="px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                           >
                             <MessageCircle className="h-4 w-4" />
                           </button>

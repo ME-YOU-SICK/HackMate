@@ -266,11 +266,11 @@ export default function ParticipantMessagesPage() {
                 </p>
               </div>
               <div className="flex gap-3">
-                <button onClick={() => setShowSearch(s => !s)} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button onClick={() => setShowSearch(s => !s)} className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                   <Search className="h-4 w-4" />
                   Search
                 </button>
-                <button onClick={() => setShowNewChat(true)} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button onClick={() => setShowNewChat(true)} className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                   <Plus className="h-4 w-4" />
                   New Chat
                 </button>
@@ -293,7 +293,7 @@ export default function ParticipantMessagesPage() {
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       placeholder="Search by name or role..."
-                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
                     />
                   </div>
                 )}
@@ -305,20 +305,20 @@ export default function ParticipantMessagesPage() {
                         title={conversation.name}
                         description={conversation.lastMessage}
                         className={`cursor-pointer transition-all duration-200 hover:scale-[1.02] ${
-                          conversation.id === selectedConversationId ? 'ring-2 ring-blue-500' : ''
+                          conversation.id === selectedConversationId ? 'ring-2 ring-[#FF9000]' : ''
                         }`}
                         onClick={() => setSelectedConversationId(conversation.id)}
                       >
                         <div className="mt-4 flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+                            <div className="w-8 h-8 bg-gradient-to-br from-[#FAF000] to-[#FFDD00] rounded-full flex items-center justify-center">
                               <span className="text-white font-bold text-xs">
                                 {conversation.avatar}
                               </span>
                             </div>
                             <div className="flex items-center gap-1">
                               {conversation.online && (
-                                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                <div className="w-2 h-2 bg-[#FFA100] rounded-full"></div>
                               )}
                               <span className="text-xs text-neutral-600 dark:text-neutral-400">
                                 {conversation.role}
@@ -330,7 +330,7 @@ export default function ParticipantMessagesPage() {
                               {conversation.timestamp}
                             </span>
                             {conversation.unread > 0 && (
-                              <div className="w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs">
+                              <div className="w-5 h-5 bg-[#FF9000] text-white rounded-full flex items-center justify-center text-xs">
                                 {conversation.unread}
                               </div>
                             )}
@@ -353,7 +353,7 @@ export default function ParticipantMessagesPage() {
                   {/* Chat Header */}
                   <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#FAF000] to-[#FFDD00] rounded-full flex items-center justify-center">
                         <span className="text-white font-bold text-sm">SC</span>
                       </div>
                       <div>
@@ -380,19 +380,19 @@ export default function ParticipantMessagesPage() {
                         <div
                           className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
                             message.isOwn
-                              ? 'bg-blue-600 text-white'
+                              ? 'bg-[#FF9000] text-white'
                               : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white'
                           }`}
                         >
                           <p className="text-sm">{message.content}</p>
                           <div className="flex items-center gap-1 mt-1">
                             <span className={`text-xs ${
-                              message.isOwn ? 'text-blue-100' : 'text-neutral-500 dark:text-neutral-400'
+                              message.isOwn ? 'text-[#FFDD00]' : 'text-neutral-500 dark:text-neutral-400'
                             }`}>
                               {message.timestamp}
                             </span>
                             {message.isOwn && (
-                              <CheckCheck className="h-3 w-3 text-blue-100" />
+                              <CheckCheck className="h-3 w-3 text-[#FFDD00]" />
                             )}
                           </div>
                         </div>
@@ -413,7 +413,7 @@ export default function ParticipantMessagesPage() {
                           value={newMessage}
                           onChange={(e) => setNewMessage(e.target.value)}
                           onKeyPress={handleKeyPress}
-                          className="w-full px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                          className="w-full px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
                         />
                       </div>
                       <button className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">
@@ -421,7 +421,7 @@ export default function ParticipantMessagesPage() {
                       </button>
                       <button 
                         onClick={handleSendMessage}
-                        className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        className="p-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                       >
                         <Send className="h-4 w-4" />
                       </button>
@@ -445,7 +445,7 @@ export default function ParticipantMessagesPage() {
                         value={newChatEmail}
                         onChange={(e) => setNewChatEmail(e.target.value)}
                         placeholder="name@example.com"
-                        className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                        className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
                       />
                     </div>
                     <div>
@@ -461,13 +461,13 @@ export default function ParticipantMessagesPage() {
                             className="w-full flex items-center justify-between p-2 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-left"
                           >
                             <div className="flex items-center gap-2">
-                              <div className="w-7 h-7 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">{c.avatar}</div>
+                              <div className="w-7 h-7 bg-gradient-to-br from-[#FAF000] to-[#FFDD00] rounded-full flex items-center justify-center text-white text-xs font-bold">{c.avatar}</div>
                               <div>
                                 <div className="text-sm text-neutral-900 dark:text-white">{c.name}</div>
                                 <div className="text-xs text-neutral-500">{c.email}</div>
                               </div>
                             </div>
-                            <span className="text-xs px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300">{c.role}</span>
+                            <span className="text-xs px-2 py-0.5 rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FFA100] dark:text-[#FFDD00]">{c.role}</span>
                           </button>
                         ))}
                       </div>
@@ -475,7 +475,7 @@ export default function ParticipantMessagesPage() {
                   </div>
                   <div className="flex justify-end gap-2 mt-6">
                     <button onClick={() => setShowNewChat(false)} className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">Cancel</button>
-                    <button onClick={handleStartNewChat} className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Start Chat</button>
+                    <button onClick={handleStartNewChat} className="px-4 py-2 rounded-lg bg-[#FF9000] text-white hover:bg-[#FFA100]">Start Chat</button>
                   </div>
                 </div>
               </div>

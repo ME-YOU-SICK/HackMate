@@ -76,28 +76,28 @@ export default function OrganizerDashboard() {
       description: "Launch a new hackathon or workshop",
       icon: <Plus className="h-5 w-5" />,
       href: "/organizer/dashboard/events",
-      color: "bg-blue-500"
+      color: "bg-[#FFA100]"
     },
     {
       title: "Manage Teams",
       description: "Review and organize participant teams",
       icon: <Users className="h-5 w-5" />,
       href: "/organizer/dashboard/manager",
-      color: "bg-blue-600"
+      color: "bg-[#FF9000]"
     },
     {
       title: "Find Sponsors",
       description: "Connect with potential sponsors",
       icon: <Building className="h-5 w-5" />,
       href: "/organizer/dashboard/sponsorship/discover",
-      color: "bg-blue-700"
+      color: "bg-[#FFA100]"
     },
     {
       title: "Send Announcements",
       description: "Communicate with participants",
       icon: <Mail className="h-5 w-5" />,
       href: "/organizer/dashboard/announcements",
-      color: "bg-blue-800"
+      color: "bg-[#FF9000]"
     }
   ];
 
@@ -192,7 +192,7 @@ export default function OrganizerDashboard() {
                     <Bell className="h-4 w-4" />
                     <span className="hidden sm:inline">Notifications</span>
                     {mockNotifications.filter(n => n.unread).length > 0 && (
-                      <span className="bg-blue-500 text-white text-xs rounded-full px-2 py-1 min-w-[20px] h-5 flex items-center justify-center">
+                      <span className="bg-[#FFA100] text-white text-xs rounded-full px-2 py-1 min-w-[20px] h-5 flex items-center justify-center">
                         {mockNotifications.filter(n => n.unread).length}
                       </span>
                     )}
@@ -207,15 +207,15 @@ export default function OrganizerDashboard() {
                         {mockNotifications.map((notification) => (
                           <div 
                             key={notification.id} 
-                            className={`p-4 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700 cursor-pointer ${notification.unread ? 'bg-blue-50 dark:bg-blue-900/10' : ''}`}
+                            className={`p-4 border-b border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700 cursor-pointer ${notification.unread ? 'bg-[#FAF000]/5 dark:bg-[#FAF000]/10' : ''}`}
                           >
                             <div className="flex items-start gap-3">
-                              <div className={`p-2 rounded-lg ${notification.unread ? 'bg-blue-100 dark:bg-blue-900/20' : 'bg-neutral-100 dark:bg-neutral-700'}`}>
-                                {notification.type === 'team' && <Users className="h-4 w-4 text-blue-600 dark:text-blue-400" />}
-                                {notification.type === 'sponsor' && <Building className="h-4 w-4 text-blue-600 dark:text-blue-400" />}
-                                {notification.type === 'event' && <Calendar className="h-4 w-4 text-blue-600 dark:text-blue-400" />}
-                                {notification.type === 'message' && <Mail className="h-4 w-4 text-blue-600 dark:text-blue-400" />}
-                                {notification.type === 'milestone' && <Trophy className="h-4 w-4 text-blue-600 dark:text-blue-400" />}
+                              <div className={`p-2 rounded-lg ${notification.unread ? 'bg-[#FAF000]/10 dark:bg-[#FAF000]/20' : 'bg-neutral-100 dark:bg-neutral-700'}`}>
+                                {notification.type === 'team' && <Users className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />}
+                                {notification.type === 'sponsor' && <Building className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />}
+                                {notification.type === 'event' && <Calendar className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />}
+                                {notification.type === 'message' && <Mail className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />}
+                                {notification.type === 'milestone' && <Trophy className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />}
                               </div>
                               <div className="flex-1">
                                 <h4 className="font-medium text-neutral-900 dark:text-white text-sm">
@@ -229,7 +229,7 @@ export default function OrganizerDashboard() {
                                 </p>
                               </div>
                               {notification.unread && (
-                                <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                                <div className="w-2 h-2 bg-[#FFA100] rounded-full mt-2"></div>
                               )}
                             </div>
                           </div>
@@ -238,7 +238,7 @@ export default function OrganizerDashboard() {
                       <div className="p-4 border-t border-neutral-200 dark:border-neutral-700">
                         <Link 
                           href="/organizer/dashboard/messages" 
-                          className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                          className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]"
                         >
                           View all notifications
                         </Link>
@@ -246,7 +246,7 @@ export default function OrganizerDashboard() {
                     </div>
                   )}
                 </div>
-                <Link href="/organizer/dashboard/events" className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <Link href="/organizer/dashboard/events" className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                   <Plus className="h-4 w-4" />
                   <span className="hidden sm:inline">Create Event</span>
                 </Link>
@@ -267,8 +267,8 @@ export default function OrganizerDashboard() {
                 className="h-full"
               >
                 <div className="mt-4 flex items-center gap-2">
-                  <TrendingUp className="h-4 w-4 text-blue-500" />
-                  <span className="text-sm text-blue-600 dark:text-blue-400">+2 this month</span>
+                  <TrendingUp className="h-4 w-4 text-[#FFA100]" />
+                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">+2 this month</span>
                 </div>
               </GlowingCard>
 
@@ -279,8 +279,8 @@ export default function OrganizerDashboard() {
                 className="h-full"
               >
                 <div className="mt-4 flex items-center gap-2">
-                  <UserPlus className="h-4 w-4 text-blue-500" />
-                  <span className="text-sm text-blue-600 dark:text-blue-400">+150 this week</span>
+                  <UserPlus className="h-4 w-4 text-[#FFA100]" />
+                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">+150 this week</span>
                 </div>
               </GlowingCard>
 
@@ -291,8 +291,8 @@ export default function OrganizerDashboard() {
                 className="h-full"
               >
                 <div className="mt-4 flex items-center gap-2">
-                  <TrendingUp className="h-4 w-4 text-blue-500" />
-                  <span className="text-sm text-blue-600 dark:text-blue-400">+12% from last month</span>
+                  <TrendingUp className="h-4 w-4 text-[#FFA100]" />
+                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">+12% from last month</span>
                 </div>
               </GlowingCard>
 
@@ -303,8 +303,8 @@ export default function OrganizerDashboard() {
                 className="h-full"
               >
                 <div className="mt-4 flex items-center gap-2">
-                  <Star className="h-4 w-4 text-blue-500 fill-current" />
-                  <span className="text-sm text-blue-600 dark:text-blue-400">Excellent feedback</span>
+                  <Star className="h-4 w-4 text-[#FFA100] fill-current" />
+                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">Excellent feedback</span>
                 </div>
               </GlowingCard>
             </motion.div>
@@ -325,21 +325,21 @@ export default function OrganizerDashboard() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                      className="p-4 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer group"
+                      className="p-4 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:border-[#FFDD00] dark:hover:border-[#FF9000] transition-all cursor-pointer group"
                     >
                       <div className="flex items-center gap-3">
                         <div className={`p-2 ${action.color} rounded-lg text-white`}>
                           {action.icon}
                         </div>
                         <div className="flex-1">
-                          <h3 className="font-medium text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          <h3 className="font-medium text-neutral-900 dark:text-white group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors">
                             {action.title}
                           </h3>
                           <p className="text-sm text-neutral-600 dark:text-neutral-400">
                             {action.description}
                           </p>
                         </div>
-                        <ChevronRight className="h-4 w-4 text-neutral-400 group-hover:text-blue-500 transition-colors" />
+                        <ChevronRight className="h-4 w-4 text-neutral-400 group-hover:text-[#FFA100] transition-colors" />
                       </div>
                     </motion.div>
                   </Link>
@@ -358,7 +358,7 @@ export default function OrganizerDashboard() {
                   <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
                     Recent Events
                   </h2>
-                  <Link href="/organizer/dashboard/events" className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                  <Link href="/organizer/dashboard/events" className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]">
                     View all
                   </Link>
                 </div>
@@ -372,7 +372,7 @@ export default function OrganizerDashboard() {
                     >
                       <div className="mt-4 space-y-3">
                         <div className="flex items-center justify-between">
-                          <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                             {event.type}
                           </span>
                           <span className="text-sm text-neutral-600 dark:text-neutral-400">
@@ -385,7 +385,7 @@ export default function OrganizerDashboard() {
                         </div>
                         <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
                           <div 
-                            className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                            className="bg-[#FF9000] h-2 rounded-full transition-all duration-300"
                             style={{ width: `${event.progress}%` }}
                           ></div>
                         </div>
@@ -416,7 +416,7 @@ export default function OrganizerDashboard() {
                     <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
                       Upcoming Events
                     </h2>
-                    <Link href="/organizer/dashboard/events" className="text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                    <Link href="/organizer/dashboard/events" className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]">
                       View all
                     </Link>
                   </div>
@@ -453,8 +453,8 @@ export default function OrganizerDashboard() {
                   </h2>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3 p-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
-                      <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                        <Users className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                      <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                        <Users className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
                       </div>
                       <div className="flex-1">
                         <p className="text-sm text-neutral-900 dark:text-white">
@@ -466,8 +466,8 @@ export default function OrganizerDashboard() {
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
-                      <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                        <Building className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                      <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                        <Building className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
                       </div>
                       <div className="flex-1">
                         <p className="text-sm text-neutral-900 dark:text-white">
@@ -479,8 +479,8 @@ export default function OrganizerDashboard() {
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
-                      <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                        <Mail className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                      <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                        <Mail className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
                       </div>
                       <div className="flex-1">
                         <p className="text-sm text-neutral-900 dark:text-white">

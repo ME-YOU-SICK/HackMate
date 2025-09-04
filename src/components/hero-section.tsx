@@ -1,25 +1,31 @@
 "use client"
 
-import { ShaderAnimation } from "@/components/ui/shader-animation"
+import Silk from "@/components/ui/silk"
 import Link from "next/link"
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Shader Animation Background */}
-      <div className="absolute inset-0 z-0">
-        <ShaderAnimation />
+      {/* Silk Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Silk
+          speed={5}
+          scale={1}
+          color="#FF9000"
+          noiseIntensity={1.5}
+          rotation={0}
+        />
       </div>
       
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FF9000]/20 via-[#FFA100]/10 to-[#FAF000]/30 z-10 pointer-events-none"></div>
       
       {/* Content */}
       <div className="relative z-20 w-full px-4 sm:px-6 lg:px-8 text-center">
         <div className="max-w-4xl mx-auto">
           {/* Main Logo */}
           <div className="flex justify-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-br from-blue-400 via-purple-500 to-cyan-500 rounded-3xl flex items-center justify-center shadow-2xl shadow-blue-500/25">
+            <div className="w-20 h-20 bg-gradient-to-br from-[#FAF000] via-[#FFDD00] to-[#FF9000] rounded-3xl flex items-center justify-center shadow-2xl shadow-[#FF9000]/25">
               <span className="text-white font-bold text-4xl">H</span>
             </div>
           </div>
@@ -27,7 +33,7 @@ export function HeroSection() {
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
             The Future of
-            <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-[#FAF000] via-[#FFDD00] to-[#FF9000] bg-clip-text text-transparent">
               Hackathon Innovation
             </span>
           </h1>
@@ -40,12 +46,12 @@ export function HeroSection() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Link href="/signup?role=participant">
-              <button className="bg-white text-black hover:bg-white/90 px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+              <button className="bg-[#FAF000] text-black hover:bg-[#FFDD00] px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
                 Join as Participant
               </button>
             </Link>
             <Link href="/signup?role=organizer">
-              <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+              <button className="bg-gradient-to-r from-[#FF9000] to-[#FFA100] text-white hover:from-[#FFA100] hover:to-[#FFDD00] px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
                 Host an Event
               </button>
             </Link>
@@ -72,7 +78,7 @@ export function HeroSection() {
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <div className="animate-bounce">
-          <svg className="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 text-[#FAF000]/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>

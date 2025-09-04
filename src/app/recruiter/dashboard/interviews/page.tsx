@@ -244,7 +244,7 @@ export default function RecruiterInterviewsPage() {
       questions: 25,
       categories: ["Technical", "Behavioral", "System Design"],
       icon: <Code className="h-5 w-5" />,
-      color: "bg-blue-500",
+      color: "bg-[#FFA100]",
       content: {
         structure: [
           "Introduction & Company Overview (5 min)",
@@ -315,7 +315,7 @@ export default function RecruiterInterviewsPage() {
       questions: 30,
       categories: ["Product", "Strategy", "Behavioral"],
       icon: <Target className="h-5 w-5" />,
-      color: "bg-purple-500",
+      color: "bg-[#BABD00]",
       content: {
         structure: [
           "Introduction & Product Philosophy (10 min)",
@@ -388,7 +388,7 @@ export default function RecruiterInterviewsPage() {
       description: "Set up a new interview session",
       icon: <Calendar className="h-5 w-5" />,
       action: () => setShowScheduleModal(true),
-      color: "bg-blue-500"
+      color: "bg-[#FFA100]"
     },
     {
       title: "View Candidates",
@@ -402,7 +402,7 @@ export default function RecruiterInterviewsPage() {
       description: "Review interview performance",
       icon: <TrendingUp className="h-5 w-5" />,
       action: () => setShowAnalyticsModal(true),
-      color: "bg-purple-500"
+      color: "bg-[#BABD00]"
     },
     {
       title: "Feedback Templates",
@@ -610,7 +610,7 @@ export default function RecruiterInterviewsPage() {
                   <Users className="h-4 w-4" />
                   <span className="hidden sm:inline">View Candidates</span>
                 </Link>
-                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                   <Calendar className="h-4 w-4" />
                   <span className="hidden sm:inline">Schedule Interview</span>
                 </button>
@@ -637,21 +637,21 @@ export default function RecruiterInterviewsPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                        className="p-4 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer group"
+                        className="p-4 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:border-[#FFDD00] dark:hover:border-[#FF9000] transition-all cursor-pointer group"
                       >
                         <div className="flex items-center gap-3">
                           <div className={`p-2 ${action.color} rounded-lg text-white`}>
                             {action.icon}
                           </div>
                           <div className="flex-1">
-                            <h3 className="font-medium text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            <h3 className="font-medium text-neutral-900 dark:text-white group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors">
                               {action.title}
                             </h3>
                             <p className="text-sm text-neutral-600 dark:text-neutral-400">
                               {action.description}
                             </p>
                           </div>
-                          <ChevronRight className="h-4 w-4 text-neutral-400 group-hover:text-blue-500 transition-colors" />
+                          <ChevronRight className="h-4 w-4 text-neutral-400 group-hover:text-[#FFA100] transition-colors" />
                         </div>
                       </motion.div>
                     </ActionComponent>
@@ -673,7 +673,7 @@ export default function RecruiterInterviewsPage() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
                     activeTab === tab.id
-                      ? 'bg-white dark:bg-neutral-700 text-blue-600 dark:text-blue-400 shadow-sm'
+                      ? 'bg-white dark:bg-neutral-700 text-[#FF9000] dark:text-[#FAF000] shadow-sm'
                       : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
@@ -706,7 +706,7 @@ export default function RecruiterInterviewsPage() {
                       >
                         <div className="mt-4 space-y-3">
                           <div className="flex items-center justify-between">
-                            <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                            <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                               {resource.category}
                             </span>
                             <div className="flex items-center gap-1">
@@ -721,7 +721,7 @@ export default function RecruiterInterviewsPage() {
                             <span>{resource.downloads.toLocaleString()} downloads</span>
                           </div>
                           <div className="flex gap-2">
-                            <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                            <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm">
                               <Download className="h-4 w-4" />
                               Download
                             </button>
@@ -763,14 +763,14 @@ export default function RecruiterInterviewsPage() {
                             {template.categories.map((category, catIndex) => (
                               <span 
                                 key={catIndex}
-                                className="px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 text-xs rounded-full"
+                                className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full"
                               >
                                 {category}
                               </span>
                             ))}
                           </div>
                           <div className="flex gap-2">
-                            <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                            <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm">
                               <Play className="h-4 w-4" />
                               Use Template
                             </button>
@@ -800,7 +800,7 @@ export default function RecruiterInterviewsPage() {
                         className="h-full"
                       >
                         <div className="mt-4">
-                          <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                             {practice.category}
                           </span>
                         </div>
@@ -825,7 +825,7 @@ export default function RecruiterInterviewsPage() {
                       >
                         <div className="mt-4 flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                            <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                               {interview.type}
                             </span>
                             <span className={`px-2 py-1 text-xs rounded-full ${
@@ -840,7 +840,7 @@ export default function RecruiterInterviewsPage() {
                             <button className="px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors text-sm">
                               <MessageCircle className="h-4 w-4" />
                             </button>
-                            <button className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                            <button className="px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm">
                               <Video className="h-4 w-4" />
                             </button>
                           </div>
@@ -866,7 +866,7 @@ export default function RecruiterInterviewsPage() {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm text-neutral-700 dark:text-neutral-300 mb-1">Candidate</label>
-                <select className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white">
+                <select className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white">
                   <option>Select a candidate...</option>
                   <option>Sarah Chen - Frontend Developer</option>
                   <option>Marcus Johnson - AI/ML Engineer</option>
@@ -875,7 +875,7 @@ export default function RecruiterInterviewsPage() {
               </div>
               <div>
                 <label className="block text-sm text-neutral-700 dark:text-neutral-300 mb-1">Interview Type</label>
-                <select className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white">
+                <select className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white">
                   <option>Technical Interview</option>
                   <option>Behavioral Interview</option>
                   <option>Final Interview</option>
@@ -884,11 +884,11 @@ export default function RecruiterInterviewsPage() {
               </div>
               <div>
                 <label className="block text-sm text-neutral-700 dark:text-neutral-300 mb-1">Date & Time</label>
-                <input type="datetime-local" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" />
+                <input type="datetime-local" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" />
               </div>
               <div>
                 <label className="block text-sm text-neutral-700 dark:text-neutral-300 mb-1">Duration</label>
-                <select className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white">
+                <select className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white">
                   <option>30 minutes</option>
                   <option>45 minutes</option>
                   <option>60 minutes</option>
@@ -897,7 +897,7 @@ export default function RecruiterInterviewsPage() {
               </div>
               <div>
                 <label className="block text-sm text-neutral-700 dark:text-neutral-300 mb-1">Interview Template</label>
-                <select className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white">
+                <select className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white">
                   <option>Software Engineer Interview</option>
                   <option>Data Scientist Interview</option>
                   <option>Product Manager Interview</option>
@@ -907,7 +907,7 @@ export default function RecruiterInterviewsPage() {
             </div>
             <div className="flex justify-end gap-2 mt-6">
               <button onClick={() => setShowScheduleModal(false)} className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">Cancel</button>
-              <button className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Schedule Interview</button>
+              <button className="px-4 py-2 rounded-lg bg-[#FF9000] text-white hover:bg-[#FFA100]">Schedule Interview</button>
             </div>
           </div>
         </div>
@@ -922,17 +922,17 @@ export default function RecruiterInterviewsPage() {
               <button onClick={() => setShowAnalyticsModal(false)} className="text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-white">✕</button>
             </div>
             <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">24</div>
-                <div className="text-sm text-blue-600 dark:text-blue-400">Interviews This Month</div>
+              <div className="p-4 bg-[#FAF000]/5 dark:bg-[#FAF000]/20 rounded-lg">
+                <div className="text-2xl font-bold text-[#FF9000] dark:text-[#FAF000]">24</div>
+                <div className="text-sm text-[#FF9000] dark:text-[#FAF000]">Interviews This Month</div>
               </div>
               <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
                 <div className="text-2xl font-bold text-green-600 dark:text-green-400">68%</div>
                 <div className="text-sm text-green-600 dark:text-green-400">Success Rate</div>
               </div>
-              <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
-                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">4.2</div>
-                <div className="text-sm text-purple-600 dark:text-purple-400">Avg. Rating</div>
+              <div className="p-4 bg-[#BABD00]/10 dark:bg-[#BABD00]/20 rounded-lg">
+                <div className="text-2xl font-bold text-[#BABD00] dark:text-[#BABD00]">4.2</div>
+                <div className="text-sm text-[#BABD00] dark:text-[#BABD00]">Avg. Rating</div>
               </div>
               <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
                 <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">12</div>
@@ -945,7 +945,7 @@ export default function RecruiterInterviewsPage() {
                 <div className="p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-neutral-900 dark:text-white">Sarah Chen</span>
-                    <span className="text-sm text-blue-600 dark:text-blue-400">Hired</span>
+                    <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">Hired</span>
                   </div>
                   <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">Excellent technical skills and great cultural fit</p>
                 </div>
@@ -960,7 +960,7 @@ export default function RecruiterInterviewsPage() {
             </div>
             <div className="flex justify-end gap-2 mt-6">
               <button onClick={() => setShowAnalyticsModal(false)} className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">Close</button>
-              <button className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">View Detailed Report</button>
+              <button className="px-4 py-2 rounded-lg bg-[#FF9000] text-white hover:bg-[#FFA100]">View Detailed Report</button>
             </div>
           </div>
         </div>
@@ -978,22 +978,22 @@ export default function RecruiterInterviewsPage() {
               <div className="p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg">
                 <h4 className="font-medium text-neutral-900 dark:text-white mb-2">Technical Interview Feedback</h4>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">Structured template for technical interview evaluation</p>
-                <button className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Use Template</button>
+                <button className="px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] text-sm">Use Template</button>
               </div>
               <div className="p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg">
                 <h4 className="font-medium text-neutral-900 dark:text-white mb-2">Behavioral Interview Feedback</h4>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">Framework for evaluating behavioral responses</p>
-                <button className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Use Template</button>
+                <button className="px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] text-sm">Use Template</button>
               </div>
               <div className="p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg">
                 <h4 className="font-medium text-neutral-900 dark:text-white mb-2">Overall Candidate Assessment</h4>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">Comprehensive evaluation template</p>
-                <button className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">Use Template</button>
+                <button className="px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] text-sm">Use Template</button>
               </div>
             </div>
             <div className="flex justify-end gap-2 mt-6">
               <button onClick={() => setShowFeedbackModal(false)} className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">Close</button>
-              <button className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Create Custom Template</button>
+              <button className="px-4 py-2 rounded-lg bg-[#FF9000] text-white hover:bg-[#FFA100]">Create Custom Template</button>
             </div>
           </div>
         </div>

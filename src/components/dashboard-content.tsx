@@ -116,7 +116,7 @@ export function DashboardContent({ userRole, children }: DashboardContentProps) 
             {welcomeData.stats.map((stat, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-neutral-800 dark:to-neutral-700 p-6 rounded-xl border border-neutral-200 dark:border-neutral-600"
+                className="bg-gradient-to-br from-[#FAF000]/5 to-[#FFA100]/5 dark:from-neutral-800 dark:to-neutral-700 p-6 rounded-xl border border-neutral-200 dark:border-neutral-600"
               >
                 <div className="text-2xl font-bold text-neutral-900 dark:text-white mb-1">
                   {stat.value}
@@ -166,7 +166,7 @@ export function DashboardContent({ userRole, children }: DashboardContentProps) 
             <div className="space-y-4">
               {getRecentActivity(userRole).map((activity, index) => (
                 <div key={index} className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-[#FFA100] rounded-full"></div>
                   <span className="text-neutral-600 dark:text-neutral-400">
                     {activity}
                   </span>

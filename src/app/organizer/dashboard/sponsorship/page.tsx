@@ -187,10 +187,10 @@ export default function OrganizerSponsorshipPage() {
   };
 
   const getTypeColor = (type: string) => {
-    if (type.includes('Platinum') || type.includes('Title')) return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
+    if (type.includes('Platinum') || type.includes('Title')) return 'bg-[#FFA100]/10 text-[#FFA100] dark:bg-[#FFA100] dark:text-[#FAF000]';
     if (type.includes('Gold')) return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
     if (type.includes('Silver')) return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
-    return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+    return 'bg-[#FAF000]/10 text-[#FF9000] dark:bg-[#FAF000] dark:text-[#FAF000]';
   };
 
   return (
@@ -242,7 +242,7 @@ export default function OrganizerSponsorshipPage() {
                       title={event.name}
                       description={`${event.currentSponsors} sponsors • $${event.totalFunding.toLocaleString()} raised`}
                       className={`cursor-pointer transition-all duration-200 hover:scale-[1.02] ${
-                        selectedEvent === event.id ? 'ring-2 ring-blue-500' : ''
+                        selectedEvent === event.id ? 'ring-2 ring-[#FF9000]' : ''
                       }`}
                       onClick={() => setSelectedEvent(event.id)}
                     >
@@ -250,7 +250,7 @@ export default function OrganizerSponsorshipPage() {
                         <div className="flex items-center gap-2">
                           <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                             event.status === 'active' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-                            event.status === 'upcoming' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
+                            event.status === 'upcoming' ? 'bg-[#FAF000]/10 text-[#FF9000] dark:bg-[#FAF000] dark:text-[#FAF000]' :
                             'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'
                           }`}>
                             {event.status}
@@ -307,7 +307,7 @@ export default function OrganizerSponsorshipPage() {
                         <div className="flex gap-2">
                           <Link
                             href={`/organizer/dashboard/sponsorship/discover?eventId=${selectedEvent}`}
-                            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                            className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                           >
                             <Plus className="h-4 w-4" />
                             Get Sponsors
@@ -325,7 +325,7 @@ export default function OrganizerSponsorshipPage() {
                         </div>
                         <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
                           <div 
-                            className="bg-gradient-to-r from-blue-500 to-green-500 h-2 rounded-full transition-all duration-500"
+                            className="bg-gradient-to-r from-[#FFA100] to-green-500 h-2 rounded-full transition-all duration-500"
                             style={{ width: `${Math.min((currentEvent.totalFunding / currentEvent.budget) * 100, 100)}%` }}
                           ></div>
                         </div>
@@ -346,7 +346,7 @@ export default function OrganizerSponsorshipPage() {
                             <div key={sponsor.id} className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-800">
                               <div className="flex items-start justify-between">
                                 <div className="flex items-start gap-4">
-                                  <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg flex items-center justify-center">
+                                  <div className="w-12 h-12 bg-gradient-to-br from-[#FAF000] to-[#FFDD00] rounded-lg flex items-center justify-center">
                                     <span className="text-white font-bold text-lg">
                                       {sponsor.logo}
                                     </span>
@@ -382,7 +382,7 @@ export default function OrganizerSponsorshipPage() {
                                     </div>
                                     <div className="flex flex-wrap gap-1 mt-2">
                                       {sponsor.interests.map((interest) => (
-                                        <span key={interest} className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded text-xs">
+                                        <span key={interest} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] rounded text-xs">
                                           {interest}
                                         </span>
                                       ))}
@@ -412,7 +412,7 @@ export default function OrganizerSponsorshipPage() {
                           </p>
                           <Link
                             href={`/organizer/dashboard/sponsorship/discover?eventId=${selectedEvent}`}
-                            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                            className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                           >
                             <Plus className="h-4 w-4" />
                             Find Sponsors

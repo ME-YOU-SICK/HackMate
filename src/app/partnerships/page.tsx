@@ -134,7 +134,7 @@ export default function PartnershipsPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-600/30 rounded-full text-blue-400 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FF9000]/20 to-[#FFA100]/20 border border-[#FF9000]/30 rounded-full text-[#FAF000] text-sm font-medium mb-6">
               <Handshake className="h-4 w-4" />
               <span>Partnerships</span>
             </div>
@@ -148,7 +148,7 @@ export default function PartnershipsPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#contact"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                className="bg-gradient-to-r from-[#FF9000] to-[#FFA100] hover:from-[#FFA100] hover:to-[#FFDD00] text-white font-semibold py-4 px-8 rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center gap-2"
               >
                 <Handshake className="h-5 w-5" />
                 Start Partnership
@@ -182,7 +182,7 @@ export default function PartnershipsPage() {
                   className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-200"
                 >
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#FFA100] to-[#FFA100] rounded-xl flex items-center justify-center text-white">
                       {type.icon}
                     </div>
                     <div>
@@ -195,7 +195,7 @@ export default function PartnershipsPage() {
                     <h4 className="text-white font-medium">Key Benefits:</h4>
                     {type.benefits.map((benefit, benefitIndex) => (
                       <div key={benefitIndex} className="flex items-center gap-3 text-white/70">
-                        <CheckCircle className="h-4 w-4 text-blue-400 flex-shrink-0" />
+                        <CheckCircle className="h-4 w-4 text-[#FAF000] flex-shrink-0" />
                         <span className="text-sm">{benefit}</span>
                       </div>
                     ))}
@@ -222,15 +222,15 @@ export default function PartnershipsPage() {
                   transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
                   className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4 text-white">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#FFA100] to-[#FFA100] rounded-xl flex items-center justify-center mx-auto mb-4 text-white">
                     {story.icon}
                   </div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-600/20 border border-blue-600/30 rounded-full text-blue-400 text-xs font-medium mb-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FF9000]/20 border border-[#FF9000]/30 rounded-full text-[#FAF000] text-xs font-medium mb-4">
                     <span>{story.type}</span>
                   </div>
                   <h3 className="text-white font-semibold text-lg mb-2">{story.company}</h3>
                   <p className="text-white/60 text-sm mb-4">{story.description}</p>
-                  <div className="text-blue-400 font-semibold text-lg">{story.result}</div>
+                  <div className="text-[#FAF000] font-semibold text-lg">{story.result}</div>
                 </motion.div>
               ))}
             </div>
@@ -253,10 +253,10 @@ export default function PartnershipsPage() {
                   transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
                   className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4 text-white">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#FFA100] to-[#FFA100] rounded-xl flex items-center justify-center mx-auto mb-4 text-white">
                     {step.icon}
                   </div>
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-sm font-bold">
+                  <div className="w-8 h-8 bg-[#FF9000] rounded-full flex items-center justify-center mx-auto mb-4 text-white text-sm font-bold">
                     {step.step}
                   </div>
                   <h3 className="text-white font-semibold text-lg mb-2">{step.title}</h3>
@@ -271,7 +271,7 @@ export default function PartnershipsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-600/20 rounded-3xl p-12"
+            className="text-center bg-gradient-to-r from-[#FF9000]/10 to-[#FFA100]/10 border border-[#FF9000]/20 rounded-3xl p-12"
             id="contact"
           >
             <h2 className="text-3xl font-bold text-white mb-4">Ready to Partner?</h2>
@@ -282,7 +282,7 @@ export default function PartnershipsPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                className="bg-gradient-to-r from-[#FF9000] to-[#FFA100] hover:from-[#FFA100] hover:to-[#FFDD00] text-white font-semibold py-4 px-8 rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center gap-2"
               >
                 <MessageCircle className="h-5 w-5" />
                 Contact Partnership Team

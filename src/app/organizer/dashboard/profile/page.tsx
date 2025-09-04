@@ -81,7 +81,7 @@ export default function OrganizerProfilePage() {
                   Manage your organizer profile and showcase your achievements
                 </p>
               </div>
-              <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                 <Edit className="h-4 w-4" />
                 Edit Profile
               </button>
@@ -102,10 +102,10 @@ export default function OrganizerProfilePage() {
               >
                 <div className="mt-4 flex items-center gap-4">
                   <div className="relative">
-                    <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-[#FFA100] rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-xl">SJ</span>
                     </div>
-                    <button className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                    <button className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#FF9000] rounded-full flex items-center justify-center hover:bg-[#FFA100] transition-colors">
                       <Camera className="h-3 w-3 text-white" />
                     </button>
                   </div>
@@ -124,14 +124,14 @@ export default function OrganizerProfilePage() {
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    <button className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/30 transition-colors">
-                      <Github className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                    <button className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg hover:bg-[#FAF000] dark:hover:bg-[#FF9000]/30 transition-colors">
+                      <Github className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
                     </button>
-                    <button className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/30 transition-colors">
-                      <Linkedin className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                    <button className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg hover:bg-[#FAF000] dark:hover:bg-[#FF9000]/30 transition-colors">
+                      <Linkedin className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
                     </button>
-                    <button className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-900/30 transition-colors">
-                      <Twitter className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                    <button className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg hover:bg-[#FAF000] dark:hover:bg-[#FF9000]/30 transition-colors">
+                      <Twitter className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
                     </button>
                   </div>
                 </div>

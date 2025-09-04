@@ -195,7 +195,7 @@ export default function RecruiterPostingsPage() {
     switch (status) {
       case "active": return "text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/20";
       case "closed": return "text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/20";
-      case "draft": return "text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/20";
+      case "draft": return "text-[#FF9000] dark:text-[#FAF000] bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
       default: return "text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-900/20";
     }
   };
@@ -210,7 +210,7 @@ export default function RecruiterPostingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-blue-50/30 to-blue-50/20 dark:from-neutral-900 dark:via-blue-900/20 dark:to-blue-900/10">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-[#FAF000]/30 to-[#FAF000]/5/20 dark:from-neutral-900 dark:via-[#FF9000]/20 dark:to-[#FF9000]/10">
       <div className="flex flex-col md:flex-row bg-white dark:bg-neutral-900 w-full h-screen border border-neutral-200 dark:border-neutral-700 overflow-hidden">
         <DashboardSidebar userRole={userRole} userName={userName} userAvatar={userAvatar} />
         
@@ -227,8 +227,8 @@ export default function RecruiterPostingsPage() {
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Briefcase className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Briefcase className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
                   </div>
                   <div>
                     <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
@@ -241,7 +241,7 @@ export default function RecruiterPostingsPage() {
                 </div>
                 <button
                   onClick={() => setShowCreateModal(true)}
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                 >
                   <Plus className="h-4 w-4" />
                   Create Job Posting
@@ -270,7 +270,7 @@ export default function RecruiterPostingsPage() {
                         placeholder="Search by title, company, or location..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                        className="w-full pl-10 pr-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] focus:border-[#FFA100] text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
                       />
                     </div>
                   </div>
@@ -283,7 +283,7 @@ export default function RecruiterPostingsPage() {
                     <select
                       value={statusFilter}
                       onChange={(e) => setStatusFilter(e.target.value)}
-                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-neutral-900 dark:text-white"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] focus:border-[#FFA100] text-neutral-900 dark:text-white"
                     >
                       <option value="all">All Status</option>
                       <option value="active">Active</option>
@@ -300,7 +300,7 @@ export default function RecruiterPostingsPage() {
                     <select
                       value={typeFilter}
                       onChange={(e) => setTypeFilter(e.target.value)}
-                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-neutral-900 dark:text-white"
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] focus:border-[#FFA100] text-neutral-900 dark:text-white"
                     >
                       <option value="all">All Types</option>
                       <option value="full-time">Full-time</option>
@@ -321,8 +321,8 @@ export default function RecruiterPostingsPage() {
             >
               <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Briefcase className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Briefcase className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -353,8 +353,8 @@ export default function RecruiterPostingsPage() {
               
               <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Edit className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Edit className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -369,8 +369,8 @@ export default function RecruiterPostingsPage() {
               
               <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Users className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Users className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -400,7 +400,7 @@ export default function RecruiterPostingsPage() {
                   >
                     <GlowingCard
                       icon={
-                        <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">
+                        <div className="w-12 h-12 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-lg flex items-center justify-center text-white font-bold text-lg">
                           {posting.company.charAt(0)}
                         </div>
                       }
@@ -455,7 +455,7 @@ export default function RecruiterPostingsPage() {
                         <div className="flex gap-2 pt-2">
                           <Link 
                             href="/recruiter/dashboard/candidates"
-                            className="flex-1 px-3 py-2 text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 border border-blue-600 dark:border-blue-400 rounded-lg text-center transition-colors"
+                            className="flex-1 px-3 py-2 text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00] border border-[#FF9000] dark:border-[#FAF000] rounded-lg text-center transition-colors"
                           >
                             <Users className="h-4 w-4 inline mr-1" />
                             View Applicants
@@ -463,14 +463,14 @@ export default function RecruiterPostingsPage() {
                           
                           <button 
                             onClick={() => handleEdit(posting)}
-                            className="px-3 py-2 text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 border border-blue-600 dark:border-blue-400 rounded-lg transition-colors"
+                            className="px-3 py-2 text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00] border border-[#FF9000] dark:border-[#FAF000] rounded-lg transition-colors"
                           >
                             <Edit className="h-4 w-4" />
                           </button>
                           
                           <button 
                             onClick={() => handleToggleVisibility(posting.id)}
-                            className="px-3 py-2 text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 border border-blue-600 dark:border-blue-400 rounded-lg transition-colors"
+                            className="px-3 py-2 text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00] border border-[#FF9000] dark:border-[#FAF000] rounded-lg transition-colors"
                             title={posting.status === "active" ? "Hide posting" : "Show posting"}
                           >
                             {posting.status === "active" ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -500,7 +500,7 @@ export default function RecruiterPostingsPage() {
                   </p>
                   <button
                     onClick={() => setShowCreateModal(true)}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    className="px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                   >
                     Create Your First Job Posting
                   </button>
@@ -523,21 +523,21 @@ export default function RecruiterPostingsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Job Title</label>
-                  <input type="text" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" placeholder="e.g. Senior Frontend Developer" />
+                  <input type="text" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" placeholder="e.g. Senior Frontend Developer" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Company</label>
-                  <input type="text" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" placeholder="e.g. TechCorp" />
+                  <input type="text" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" placeholder="e.g. TechCorp" />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Location</label>
-                  <input type="text" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" placeholder="e.g. San Francisco, CA" />
+                  <input type="text" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" placeholder="e.g. San Francisco, CA" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Job Type</label>
-                  <select className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white">
+                  <select className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white">
                     <option>Full-time</option>
                     <option>Contract</option>
                     <option>Part-time</option>
@@ -547,20 +547,20 @@ export default function RecruiterPostingsPage() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Salary Range</label>
-                <input type="text" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" placeholder="e.g. $120,000 - $160,000" />
+                <input type="text" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" placeholder="e.g. $120,000 - $160,000" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Job Description</label>
-                <textarea rows={4} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" placeholder="Describe the role, responsibilities, and what makes it exciting..."></textarea>
+                <textarea rows={4} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" placeholder="Describe the role, responsibilities, and what makes it exciting..."></textarea>
               </div>
               <div>
                 <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Requirements</label>
-                <textarea rows={3} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" placeholder="List the key requirements and qualifications..."></textarea>
+                <textarea rows={3} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" placeholder="List the key requirements and qualifications..."></textarea>
               </div>
             </div>
             <div className="flex justify-end gap-2 mt-6">
               <button onClick={() => setShowCreateModal(false)} className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">Cancel</button>
-              <button className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Create Job Posting</button>
+              <button className="px-4 py-2 rounded-lg bg-[#FF9000] text-white hover:bg-[#FFA100]">Create Job Posting</button>
             </div>
           </div>
         </div>
@@ -581,7 +581,7 @@ export default function RecruiterPostingsPage() {
                   <input 
                     type="text" 
                     defaultValue={editingPosting.title}
-                    className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" 
+                    className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" 
                     placeholder="e.g. Senior Frontend Developer" 
                   />
                 </div>
@@ -590,7 +590,7 @@ export default function RecruiterPostingsPage() {
                   <input 
                     type="text" 
                     defaultValue={editingPosting.company}
-                    className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" 
+                    className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" 
                     placeholder="e.g. TechCorp" 
                   />
                 </div>
@@ -601,7 +601,7 @@ export default function RecruiterPostingsPage() {
                   <input 
                     type="text" 
                     defaultValue={editingPosting.location}
-                    className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" 
+                    className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" 
                     placeholder="e.g. San Francisco, CA" 
                   />
                 </div>
@@ -609,7 +609,7 @@ export default function RecruiterPostingsPage() {
                   <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Job Type</label>
                   <select 
                     defaultValue={editingPosting.type}
-                    className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                    className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                   >
                     <option>Full-time</option>
                     <option>Contract</option>
@@ -623,7 +623,7 @@ export default function RecruiterPostingsPage() {
                 <input 
                   type="text" 
                   defaultValue={editingPosting.salary}
-                  className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" 
+                  className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" 
                   placeholder="e.g. $120,000 - $160,000" 
                 />
               </div>
@@ -631,7 +631,7 @@ export default function RecruiterPostingsPage() {
                 <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">Status</label>
                 <select 
                   defaultValue={editingPosting.status}
-                  className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                  className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                 >
                   <option value="active">Active</option>
                   <option value="closed">Closed</option>
@@ -643,7 +643,7 @@ export default function RecruiterPostingsPage() {
                 <textarea 
                   rows={4} 
                   defaultValue={editingPosting.description}
-                  className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" 
+                  className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" 
                   placeholder="Describe the role, responsibilities, and what makes it exciting..."
                 ></textarea>
               </div>
@@ -652,7 +652,7 @@ export default function RecruiterPostingsPage() {
                 <textarea 
                   rows={3} 
                   defaultValue={editingPosting.requirements.join('\n')}
-                  className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" 
+                  className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" 
                   placeholder="List the key requirements and qualifications..."
                 ></textarea>
               </div>
@@ -665,7 +665,7 @@ export default function RecruiterPostingsPage() {
                   setShowEditModal(false);
                   setEditingPosting(null);
                 }}
-                className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+                className="px-4 py-2 rounded-lg bg-[#FF9000] text-white hover:bg-[#FFA100]"
               >
                 Save Changes
               </button>

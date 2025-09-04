@@ -80,7 +80,7 @@ export default function ProfilePage() {
                   Manage your profile and showcase your achievements
                 </p>
               </div>
-              <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                 <Edit className="h-4 w-4" />
                 Edit Profile
               </button>
@@ -101,10 +101,10 @@ export default function ProfilePage() {
               >
                 <div className="mt-4 flex items-center gap-4">
                   <div className="relative">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#FAF000] to-[#FFDD00] rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-xl">JD</span>
                     </div>
-                    <button className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                    <button className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#FF9000] rounded-full flex items-center justify-center hover:bg-[#FFA100] transition-colors">
                       <Camera className="h-3 w-3 text-white" />
                     </button>
                   </div>

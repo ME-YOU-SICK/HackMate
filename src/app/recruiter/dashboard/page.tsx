@@ -45,28 +45,28 @@ export default function RecruiterDashboardPage() {
       description: "Post a new job opportunity",
       icon: <Plus className="h-5 w-5" />,
       href: "/recruiter/dashboard/postings",
-      color: "bg-blue-500"
+      color: "bg-[#FF9000]"
     },
     {
       title: "View Candidates",
       description: "Review job applicants",
       icon: <Users className="h-5 w-5" />,
       href: "/recruiter/dashboard/candidates",
-      color: "bg-blue-600"
+      color: "bg-[#FFA100]"
     },
     {
       title: "Schedule Interview",
       description: "Set up candidate interviews",
       icon: <Calendar className="h-5 w-5" />,
       href: "/recruiter/dashboard/interviews",
-      color: "bg-blue-700"
+      color: "bg-[#FFA100]"
     },
     {
       title: "View Connections",
       description: "Manage your network",
       icon: <UserPlus className="h-5 w-5" />,
       href: "/recruiter/dashboard/connections",
-      color: "bg-blue-800"
+      color: "bg-[#FF9000]"
     }
   ];
 
@@ -82,7 +82,7 @@ export default function RecruiterDashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-blue-50/30 to-blue-50/20 dark:from-neutral-900 dark:via-blue-900/20 dark:to-blue-900/10">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-[#FAF000]/30 to-[#FAF000]/5/20 dark:from-neutral-900 dark:via-[#FF9000]/20 dark:to-[#FF9000]/10">
       <div className="flex flex-col md:flex-row bg-white dark:bg-neutral-900 w-full h-screen border border-neutral-200 dark:border-neutral-700 overflow-hidden">
         <DashboardSidebar userRole={userRole} userName={userName} userAvatar={userAvatar} />
         
@@ -109,7 +109,7 @@ export default function RecruiterDashboardPage() {
                 <div className="flex items-center gap-3">
                   <Link
                     href="/recruiter/dashboard/profile"
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                   >
                     <User className="h-4 w-4" />
                     View Profile
@@ -135,21 +135,21 @@ export default function RecruiterDashboardPage() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                      className="p-4 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:border-blue-300 dark:hover:border-blue-600 transition-all cursor-pointer group"
+                      className="p-4 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg hover:border-[#FF9000]/30 dark:hover:border-[#FF9000]/60 transition-all cursor-pointer group"
                     >
                       <div className="flex items-center gap-3">
                         <div className={`p-2 ${action.color} rounded-lg text-white`}>
                           {action.icon}
                         </div>
                         <div className="flex-1">
-                          <h3 className="font-medium text-neutral-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          <h3 className="font-medium text-neutral-900 dark:text-white group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors">
                             {action.title}
                           </h3>
                           <p className="text-sm text-neutral-600 dark:text-neutral-400">
                             {action.description}
                           </p>
                         </div>
-                        <ArrowUpRight className="h-4 w-4 text-neutral-400 group-hover:text-blue-500 transition-colors" />
+                        <ArrowUpRight className="h-4 w-4 text-neutral-400 group-hover:text-[#FF9000] transition-colors" />
                       </div>
                     </motion.div>
                   </Link>
@@ -174,13 +174,13 @@ export default function RecruiterDashboardPage() {
                       <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Candidates</p>
                       <p className="text-2xl font-bold text-neutral-900 dark:text-white">{analytics.totalCandidates.toLocaleString()}</p>
                     </div>
-                    <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                      <Users className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                      <Users className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
                     </div>
                   </div>
                   <div className="flex items-center gap-1 mt-2">
-                    <ArrowUpRight className="h-4 w-4 text-blue-500" />
-                    <span className="text-sm text-blue-600 dark:text-blue-400">+{analytics.monthlyGrowth}% this month</span>
+                    <ArrowUpRight className="h-4 w-4 text-[#FF9000]" />
+                    <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">+{analytics.monthlyGrowth}% this month</span>
                   </div>
                 </div>
 
@@ -190,12 +190,12 @@ export default function RecruiterDashboardPage() {
                       <p className="text-sm text-neutral-600 dark:text-neutral-400">Active Postings</p>
                       <p className="text-2xl font-bold text-neutral-900 dark:text-white">{analytics.activePostings}</p>
                     </div>
-                    <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                      <Briefcase className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                      <Briefcase className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
                     </div>
                   </div>
                   <div className="flex items-center gap-1 mt-2">
-                    <Link href="/recruiter/dashboard/postings" className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300">
+                    <Link href="/recruiter/dashboard/postings" className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]">
                       Manage postings →
                     </Link>
                   </div>
@@ -207,12 +207,12 @@ export default function RecruiterDashboardPage() {
                       <p className="text-sm text-neutral-600 dark:text-neutral-400">Success Rate</p>
                       <p className="text-2xl font-bold text-neutral-900 dark:text-white">{analytics.successRate}%</p>
                     </div>
-                    <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                      <Target className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                      <Target className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
                     </div>
                   </div>
                   <div className="flex items-center gap-1 mt-2">
-                    <Star className="h-4 w-4 text-blue-500 fill-current" />
+                    <Star className="h-4 w-4 text-[#FF9000] fill-current" />
                     <span className="text-sm text-neutral-600 dark:text-neutral-400">{analytics.clientSatisfaction}/5.0 rating</span>
                   </div>
                 </div>
@@ -223,13 +223,13 @@ export default function RecruiterDashboardPage() {
                       <p className="text-sm text-neutral-600 dark:text-neutral-400">Avg. Time to Hire</p>
                       <p className="text-2xl font-bold text-neutral-900 dark:text-white">{analytics.averageTimeToHire} days</p>
                     </div>
-                    <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                      <Clock className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                    <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                      <Clock className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
                     </div>
                   </div>
                   <div className="flex items-center gap-1 mt-2">
-                    <ArrowDownRight className="h-4 w-4 text-blue-500" />
-                    <span className="text-sm text-blue-600 dark:text-blue-400">-3 days vs last month</span>
+                    <ArrowDownRight className="h-4 w-4 text-[#FF9000]" />
+                    <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">-3 days vs last month</span>
                   </div>
                 </div>
               </div>
@@ -250,8 +250,8 @@ export default function RecruiterDashboardPage() {
                 >
                   <div className="space-y-4">
                     <div className="flex items-start gap-3 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-                      <div className="p-1 rounded-full bg-blue-100 dark:bg-blue-900/20">
-                        <CheckCircle className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                      <div className="p-1 rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20">
+                        <CheckCircle className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
                       </div>
                       <div className="flex-1">
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
@@ -267,8 +267,8 @@ export default function RecruiterDashboardPage() {
                     </div>
                     
                     <div className="flex items-start gap-3 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-                      <div className="p-1 rounded-full bg-blue-100 dark:bg-blue-900/20">
-                        <Calendar className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                      <div className="p-1 rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20">
+                        <Calendar className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
                       </div>
                       <div className="flex-1">
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
@@ -284,8 +284,8 @@ export default function RecruiterDashboardPage() {
                     </div>
                     
                     <div className="flex items-start gap-3 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-                      <div className="p-1 rounded-full bg-blue-100 dark:bg-blue-900/20">
-                        <UserPlus className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                      <div className="p-1 rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20">
+                        <UserPlus className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
                       </div>
                       <div className="flex-1">
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
@@ -316,7 +316,7 @@ export default function RecruiterDashboardPage() {
                 >
                   <div className="space-y-3">
                     <div className="flex items-center gap-3 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-full flex items-center justify-center text-white font-bold text-sm">
                         DK
                       </div>
                       <div className="flex-1">
@@ -331,14 +331,14 @@ export default function RecruiterDashboardPage() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <span className="px-2 py-1 text-xs rounded-full bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200">
+                        <span className="px-2 py-1 text-xs rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000]">
                           confirmed
                         </span>
                       </div>
                     </div>
                     
                     <div className="flex items-center gap-3 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-full flex items-center justify-center text-white font-bold text-sm">
                         LW
                       </div>
                       <div className="flex-1">
@@ -353,7 +353,7 @@ export default function RecruiterDashboardPage() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <span className="px-2 py-1 text-xs rounded-full bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200">
+                        <span className="px-2 py-1 text-xs rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000]">
                           pending
                         </span>
                       </div>
@@ -362,7 +362,7 @@ export default function RecruiterDashboardPage() {
                   <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
                     <Link
                       href="/recruiter/dashboard/interviews"
-                      className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                      className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
                     >
                       View all interviews →
                     </Link>
@@ -384,7 +384,7 @@ export default function RecruiterDashboardPage() {
               >
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-full flex items-center justify-center text-white font-bold">
                       SC
                     </div>
                     <div className="flex-1">
@@ -400,19 +400,19 @@ export default function RecruiterDashboardPage() {
                     </div>
                     <div className="text-right">
                       <div className="flex items-center gap-1 mb-1">
-                        <Star className="h-4 w-4 text-blue-500 fill-current" />
+                        <Star className="h-4 w-4 text-[#FF9000] fill-current" />
                         <span className="text-sm font-medium text-neutral-900 dark:text-white">
                           4.9
                         </span>
                       </div>
-                      <div className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                      <div className="text-sm font-medium text-[#FF9000] dark:text-[#FAF000]">
                         $145,000
                       </div>
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-4 p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-full flex items-center justify-center text-white font-bold">
                       MJ
                     </div>
                     <div className="flex-1">
@@ -428,12 +428,12 @@ export default function RecruiterDashboardPage() {
                     </div>
                     <div className="text-right">
                       <div className="flex items-center gap-1 mb-1">
-                        <Star className="h-4 w-4 text-blue-500 fill-current" />
+                        <Star className="h-4 w-4 text-[#FF9000] fill-current" />
                         <span className="text-sm font-medium text-neutral-900 dark:text-white">
                           4.8
                         </span>
                       </div>
-                      <div className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                      <div className="text-sm font-medium text-[#FF9000] dark:text-[#FAF000]">
                         $165,000
                       </div>
                     </div>
@@ -442,7 +442,7 @@ export default function RecruiterDashboardPage() {
                 <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
                   <Link
                     href="/recruiter/dashboard/candidates"
-                    className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                    className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
                   >
                     View all candidates →
                   </Link>

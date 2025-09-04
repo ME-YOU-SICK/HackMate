@@ -221,7 +221,7 @@ export default function CreateTeamPage() {
               <div className="flex items-center gap-3">
                 <Link
                   href="/participant/dashboard/teamify"
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Back
@@ -247,7 +247,7 @@ export default function CreateTeamPage() {
                       <select
                         value={selectedEvent}
                         onChange={(e) => setSelectedEvent(e.target.value)}
-                        className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                        className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                       >
                         <option value="">Select an event...</option>
                         {events.map((event) => (
@@ -317,7 +317,7 @@ export default function CreateTeamPage() {
                             <div className="flex items-center gap-3">
                               <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
                                 selectedRoles.includes(role) 
-                                  ? 'bg-blue-600 border-blue-600' 
+                                  ? 'bg-[#FF9000] border-[#FF9000]' 
                                   : 'border-neutral-300 dark:border-neutral-600'
                               }`}>
                                 {selectedRoles.includes(role) && (
@@ -348,7 +348,7 @@ export default function CreateTeamPage() {
                                       onClick={() => toggleSkill(role, skill)}
                                       className={`px-3 py-1 text-sm rounded-full transition-colors ${
                                         selectedSkills[role]?.includes(skill)
-                                          ? 'bg-blue-600 text-white'
+                                          ? 'bg-[#FF9000] text-white'
                                           : 'bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 text-neutral-900 dark:text-white hover:bg-neutral-50 dark:hover:bg-neutral-700'
                                       }`}
                                     >
@@ -386,7 +386,7 @@ export default function CreateTeamPage() {
                           value={projectIdea}
                           onChange={(e) => setProjectIdea(e.target.value)}
                           placeholder="Describe your project idea, goals, or vision..."
-                          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] resize-none text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
                           rows={4}
                         />
                       </div>
@@ -398,7 +398,7 @@ export default function CreateTeamPage() {
                           type="date"
                           value={projectDeadline}
                           onChange={(e) => setProjectDeadline(e.target.value)}
-                          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                          className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                         />
                       </div>
                     </div>
@@ -418,7 +418,7 @@ export default function CreateTeamPage() {
                     className={`flex items-center gap-3 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 ${
                       !selectedEvent || selectedRoles.length === 0 || isCreating
                         ? 'bg-neutral-300 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 hover:scale-105 shadow-lg'
+                        : 'bg-gradient-to-r from-[#FF9000] to-[#FFA100] text-white hover:from-[#FFA100] hover:to-[#FFDD00] hover:scale-105 shadow-lg'
                     }`}
                   >
                     {isCreating ? (
@@ -466,13 +466,13 @@ export default function CreateTeamPage() {
                             <span className="text-sm text-neutral-600 dark:text-neutral-400">
                               Match Score
                             </span>
-                            <span className="text-lg font-bold text-blue-600">
+                            <span className="text-lg font-bold text-[#FF9000]">
                               {user.matchScore}%
                             </span>
                           </div>
                           <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
                             <div className={`w-2 h-2 rounded-full ${
-                              user.connection === 'Connected' ? 'bg-blue-500' : 'bg-blue-500'
+                              user.connection === 'Connected' ? 'bg-[#FFA100]' : 'bg-[#FFA100]'
                             }`} />
                             {user.connection}
                           </div>
@@ -482,14 +482,14 @@ export default function CreateTeamPage() {
                             </div>
                             <div className="flex flex-wrap gap-1">
                               {user.skills.map((skill: string, index: number) => (
-                                <span key={index} className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded-full">
+                                <span key={index} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                                   {skill}
                                 </span>
                               ))}
                             </div>
                           </div>
                           <div className="flex gap-2 pt-2">
-                            <button className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                            <button className="flex-1 px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm">
                               Invite to Team
                             </button>
                             <button className="px-3 py-2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-600 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
@@ -509,7 +509,7 @@ export default function CreateTeamPage() {
                   >
                     Back to Form
                   </button>
-                  <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                  <button className="px-6 py-3 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                     Create Team
                   </button>
                 </div>

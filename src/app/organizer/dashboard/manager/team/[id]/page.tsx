@@ -120,7 +120,7 @@ export default function TeamDetailPage() {
     switch (status) {
       case 'active': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
       case 'eliminated': return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
-      case 'promoted': return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+      case 'promoted': return 'bg-[#FAF000]/10 text-[#FF9000] dark:bg-[#FAF000] dark:text-[#FAF000]';
       default: return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
     }
   };
@@ -165,7 +165,7 @@ export default function TeamDetailPage() {
                 <span className={`px-3 py-2 rounded-lg text-sm font-medium ${getStatusColor(team.status)}`}>
                   {team.status}
                 </span>
-                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                   <Edit className="h-4 w-4" />
                   Edit Team
                 </button>
@@ -216,7 +216,7 @@ export default function TeamDetailPage() {
                     </div>
                     <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
                       <div 
-                        className="bg-blue-500 h-2 rounded-full transition-all duration-500"
+                        className="bg-[#FFA100] h-2 rounded-full transition-all duration-500"
                         style={{ width: `${team.progress.development}%` }}
                       ></div>
                     </div>
@@ -261,7 +261,7 @@ export default function TeamDetailPage() {
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex items-center gap-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                       activeTab === tab.id
-                        ? 'border-blue-500 text-blue-600'
+                        ? 'border-[#FFA100] text-[#FF9000]'
                         : 'border-transparent text-neutral-500 hover:text-neutral-700 hover:border-neutral-300'
                     }`}
                   >
@@ -317,7 +317,7 @@ export default function TeamDetailPage() {
                                 </div>
                                 <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
                                   <div 
-                                    className="bg-blue-500 h-2 rounded-full transition-all duration-500"
+                                    className="bg-[#FFA100] h-2 rounded-full transition-all duration-500"
                                     style={{ width: `${value}%` }}
                                   ></div>
                                 </div>
@@ -346,7 +346,7 @@ export default function TeamDetailPage() {
                             href={team.submissions.githubRepo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors"
+                            className="flex items-center gap-2 text-[#FF9000] hover:text-[#FFA100] transition-colors"
                           >
                             <ExternalLink className="h-4 w-4" />
                             View Repository
@@ -364,7 +364,7 @@ export default function TeamDetailPage() {
                             href={team.submissions.presentation}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors"
+                            className="flex items-center gap-2 text-[#FF9000] hover:text-[#FFA100] transition-colors"
                           >
                             <ExternalLink className="h-4 w-4" />
                             View Presentation
@@ -382,7 +382,7 @@ export default function TeamDetailPage() {
                             href={team.submissions.demo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors"
+                            className="flex items-center gap-2 text-[#FF9000] hover:text-[#FFA100] transition-colors"
                           >
                             <ExternalLink className="h-4 w-4" />
                             View Demo
@@ -399,7 +399,7 @@ export default function TeamDetailPage() {
                           <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
                             {team.submissions.documentation}
                           </p>
-                          <button className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors">
+                          <button className="flex items-center gap-2 text-[#FF9000] hover:text-[#FFA100] transition-colors">
                             <Download className="h-4 w-4" />
                             Download Docs
                           </button>
@@ -427,7 +427,7 @@ export default function TeamDetailPage() {
                           </div>
                           <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-3">
                             <div 
-                              className="bg-blue-500 h-3 rounded-full transition-all duration-500"
+                              className="bg-[#FFA100] h-3 rounded-full transition-all duration-500"
                               style={{ width: `${value}%` }}
                             ></div>
                           </div>

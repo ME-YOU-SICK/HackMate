@@ -221,11 +221,11 @@ function calculateLearnScore(demand: number, availability: number): number {
 
 // Get learn score color and label
 function getLearnScoreInfo(score: number): { color: string; label: string; bgColor: string } {
-  if (score >= 80) return { color: "text-blue-600", label: "Excellent", bgColor: "bg-blue-100 dark:bg-blue-900/20" };
-  if (score >= 65) return { color: "text-blue-600", label: "Good", bgColor: "bg-blue-100 dark:bg-blue-900/20" };
-  if (score >= 50) return { color: "text-blue-600", label: "Fair", bgColor: "bg-blue-100 dark:bg-blue-900/20" };
-  if (score >= 35) return { color: "text-blue-600", label: "Poor", bgColor: "bg-blue-100 dark:bg-blue-900/20" };
-  return { color: "text-blue-600", label: "Very Poor", bgColor: "bg-blue-100 dark:bg-blue-900/20" };
+  if (score >= 80) return { color: "text-[#FF9000]", label: "Excellent", bgColor: "bg-[#FAF000]/10 dark:bg-[#FAF000]/20" };
+  if (score >= 65) return { color: "text-[#FF9000]", label: "Good", bgColor: "bg-[#FAF000]/10 dark:bg-[#FAF000]/20" };
+  if (score >= 50) return { color: "text-[#FF9000]", label: "Fair", bgColor: "bg-[#FAF000]/10 dark:bg-[#FAF000]/20" };
+  if (score >= 35) return { color: "text-[#FF9000]", label: "Poor", bgColor: "bg-[#FAF000]/10 dark:bg-[#FAF000]/20" };
+  return { color: "text-[#FF9000]", label: "Very Poor", bgColor: "bg-[#FAF000]/10 dark:bg-[#FAF000]/20" };
 }
 
 export default function SkillsPage() {
@@ -358,7 +358,7 @@ export default function SkillsPage() {
                   placeholder="Search skills and technologies..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                  className="w-full pl-10 pr-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
                 />
                         </div>
 
@@ -366,7 +366,7 @@ export default function SkillsPage() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                className="px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
               >
                 {categories.map((category) => (
                   <option key={category} value={category}>
@@ -380,7 +380,7 @@ export default function SkillsPage() {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value as any)}
-                  className="px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                  className="px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                 >
                   <option value="learnScore">Learn Score</option>
                   <option value="demand">Demand</option>
@@ -405,8 +405,8 @@ export default function SkillsPage() {
             >
               <GlowingCard className="h-full">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Target className="h-5 w-5 text-blue-600" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Target className="h-5 w-5 text-[#FF9000]" />
                   </div>
                   <div>
                     <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Skills</p>
@@ -417,8 +417,8 @@ export default function SkillsPage() {
 
               <GlowingCard className="h-full">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <TrendingUp className="h-5 w-5 text-blue-600" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <TrendingUp className="h-5 w-5 text-[#FF9000]" />
                   </div>
                   <div>
                     <p className="text-sm text-neutral-600 dark:text-neutral-400">High Demand</p>
@@ -431,8 +431,8 @@ export default function SkillsPage() {
 
               <GlowingCard className="h-full">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Users className="h-5 w-5 text-blue-600" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Users className="h-5 w-5 text-[#FF9000]" />
                   </div>
                   <div>
                     <p className="text-sm text-neutral-600 dark:text-neutral-400">Low Availability</p>
@@ -445,8 +445,8 @@ export default function SkillsPage() {
 
               <GlowingCard className="h-full">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                    <Star className="h-5 w-5 text-blue-600" />
+                  <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
+                    <Star className="h-5 w-5 text-[#FF9000]" />
                   </div>
                   <div>
                     <p className="text-sm text-neutral-600 dark:text-neutral-400">Excellent Learn Score</p>
@@ -515,7 +515,7 @@ export default function SkillsPage() {
                         </div>
                         <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
                           <div 
-                                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                                className="bg-[#FF9000] h-2 rounded-full transition-all duration-300"
                                 style={{ width: `${skill.demand}%` }}
                               />
                         </div>
@@ -529,7 +529,7 @@ export default function SkillsPage() {
                             </div>
                             <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
                               <div 
-                                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                                className="bg-[#FF9000] h-2 rounded-full transition-all duration-300"
                                 style={{ width: `${skill.availability}%` }}
                               />
                             </div>
@@ -540,7 +540,7 @@ export default function SkillsPage() {
                         <div className="mt-4 pt-3 border-t border-neutral-200 dark:border-neutral-700">
                           <a
                             href={`/participant/dashboard/skills/${encodeURIComponent(skill.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""))}`}
-                            className="block w-full text-center px-3 py-2 bg-blue-600 text-white text-xs font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                            className="block w-full text-center px-3 py-2 bg-[#FF9000] text-white text-xs font-medium rounded-lg hover:bg-[#FFA100] transition-colors"
                           >
                             Learn More
                           </a>

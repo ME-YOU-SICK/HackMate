@@ -141,7 +141,7 @@ export default function StatusPage() {
   const getSeverityColor = (severity: string) => {
     switch (severity) {
       case "minor":
-        return "bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400";
+        return "bg-[#FAF000]/10 text-[#FF9000] dark:bg-[#FAF000]/20 dark:text-[#FAF000]";
       case "major":
         return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400";
       case "critical":
@@ -167,7 +167,7 @@ export default function StatusPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-600/30 rounded-full text-blue-400 text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FF9000]/20 to-[#FFA100]/20 border border-[#FF9000]/30 rounded-full text-[#FAF000] text-sm font-medium mb-6">
               <Activity className="h-4 w-4" />
               <span>System Status</span>
             </div>
@@ -303,16 +303,16 @@ export default function StatusPage() {
             <h2 className="text-3xl font-bold text-white mb-8">Performance Metrics</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white/5 border border-white/10 rounded-xl p-6 text-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#FF9000] to-[#FFA100] rounded-xl flex items-center justify-center mx-auto mb-4">
                   <TrendingUp className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-white font-semibold text-lg mb-2">Average Response Time</h3>
-                <div className="text-3xl font-bold text-blue-400 mb-1">95ms</div>
+                <div className="text-3xl font-bold text-[#FAF000] mb-1">95ms</div>
                 <p className="text-white/60 text-sm">Last 24 hours</p>
               </div>
               
               <div className="bg-white/5 border border-white/10 rounded-xl p-6 text-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-[#FF9000] rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Server className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-white font-semibold text-lg mb-2">System Uptime</h3>
@@ -321,11 +321,11 @@ export default function StatusPage() {
               </div>
               
               <div className="bg-white/5 border border-white/10 rounded-xl p-6 text-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#FFA100] to-[#FFDD00] rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Users className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-white font-semibold text-lg mb-2">Active Users</h3>
-                <div className="text-3xl font-bold text-purple-400 mb-1">12.5K</div>
+                <div className="text-3xl font-bold text-[#FFA100] mb-1">12.5K</div>
                 <p className="text-white/60 text-sm">Currently online</p>
               </div>
             </div>
@@ -336,7 +336,7 @@ export default function StatusPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-600/20 rounded-3xl p-12"
+            className="text-center bg-gradient-to-r from-[#FF9000]/10 to-[#FFA100]/10 border border-[#FF9000]/20 rounded-3xl p-12"
           >
             <h2 className="text-3xl font-bold text-white mb-4">Stay Updated</h2>
             <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
@@ -346,9 +346,9 @@ export default function StatusPage() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-[#FF9000] focus:border-transparent"
               />
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center gap-2">
+              <button className="bg-gradient-to-r from-[#FF9000] to-[#FFA100] hover:from-[#FFA100] hover:to-[#FFDD00] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center gap-2">
                 <Mail className="h-5 w-5" />
                 Subscribe
               </button>

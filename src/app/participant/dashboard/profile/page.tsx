@@ -137,7 +137,7 @@ export default function ProfilePage() {
                   Manage your profile and showcase your achievements
                 </p>
               </div>
-              <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
                 <Edit className="h-4 w-4" />
                 Edit Profile
               </button>
@@ -158,10 +158,10 @@ export default function ProfilePage() {
               >
                 <div className="mt-4 flex items-center gap-4">
                   <div className="relative">
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#FAF000] to-[#FFDD00] rounded-full flex items-center justify-center">
                       <span className="text-white font-bold text-xl">JD</span>
                     </div>
-                    <button className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                    <button className="absolute -bottom-1 -right-1 w-6 h-6 bg-[#FF9000] rounded-full flex items-center justify-center hover:bg-[#FFA100] transition-colors">
                       <Camera className="h-3 w-3 text-white" />
                     </button>
                   </div>
@@ -214,7 +214,7 @@ export default function ProfilePage() {
                     type="button"
                     onClick={handleRefresh}
                     disabled={loading || !githubUsername}
-                    className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                    className="p-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors disabled:opacity-50"
                   >
                     <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
                   </button>
@@ -237,7 +237,7 @@ export default function ProfilePage() {
                             value={tempGithubUsername}
                             onChange={(e) => setTempGithubUsername(e.target.value)}
                             placeholder="Enter your GitHub username"
-                            className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                            className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                             autoFocus
                             onKeyDown={(e) => {
                               if (e.key === 'Enter') {
@@ -250,7 +250,7 @@ export default function ProfilePage() {
                             type="button"
                             onClick={handleGithubUsernameChange}
                             disabled={loading}
-                            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+                            className="px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors disabled:opacity-50"
                           >
                             {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle className="h-4 w-4" />}
                           </button>
@@ -275,7 +275,7 @@ export default function ProfilePage() {
                               setIsEditingGithub(true);
                               setTempGithubUsername(githubUsername);
                             }}
-                            className="p-1 text-blue-600 hover:text-blue-700 transition-colors"
+                            className="p-1 text-[#FF9000] hover:text-[#FFA100] transition-colors"
                           >
                             <Edit className="h-4 w-4" />
                           </button>
@@ -291,14 +291,14 @@ export default function ProfilePage() {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-4 p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg"
+                  className="mb-4 p-4 bg-[#FAF000]/5 dark:bg-[#FAF000]/20 border border-[#FAF000] dark:border-[#FF9000] rounded-lg"
                 >
-                  <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
+                  <div className="flex items-center gap-2 text-[#FF9000] dark:text-[#FAF000]">
                     <AlertCircle className="h-4 w-4" />
                     <span className="text-sm">{error}</span>
                     <button
                       onClick={clearError}
-                      className="ml-auto text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+                      className="ml-auto text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
                     >
                       ×
                     </button>
@@ -373,7 +373,7 @@ export default function ProfilePage() {
                                 href={repo.html_url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-1 px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                                className="flex items-center gap-1 px-3 py-1 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm"
                               >
                                 View
                                 <ExternalLink className="h-3 w-3" />
@@ -417,7 +417,7 @@ export default function ProfilePage() {
                           setIsEditingGithub(true);
                           setTempGithubUsername("");
                         }}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        className="px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                       >
                         Add GitHub Username
                       </button>

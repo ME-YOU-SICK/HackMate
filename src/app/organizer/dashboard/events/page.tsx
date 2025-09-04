@@ -182,7 +182,7 @@ function OrganizerEventsInner() {
             <div className="w-80 flex-shrink-0 flex flex-col">
               <div className="flex items-center justify-between mb-3">
                 <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Events</h2>
-                <button onClick={() => setShowCreate(true)} className="px-2 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                <button onClick={() => setShowCreate(true)} className="px-2 py-1.5 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100]">
                   <Plus className="h-4 w-4" />
                 </button>
               </div>
@@ -195,7 +195,7 @@ function OrganizerEventsInner() {
                     key={e.id}
                     title={e.name}
                     description={e.description || "No description"}
-                    className={cn("cursor-pointer", selectedId === e.id && "ring-2 ring-blue-500")}
+                    className={cn("cursor-pointer", selectedId === e.id && "ring-2 ring-[#FF9000]")}
                     onClick={() => setSelectedId(e.id)}
                   >
                     <div className="mt-2 text-sm text-neutral-600 dark:text-neutral-400 flex items-center gap-3">
@@ -219,11 +219,11 @@ function OrganizerEventsInner() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm text-neutral-700 dark:text-neutral-300 mb-1">Name</label>
-                        <input value={selected.name} onChange={(e) => updateSelected({ name: e.target.value })} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" />
+                        <input value={selected.name} onChange={(e) => updateSelected({ name: e.target.value })} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" />
                       </div>
                       <div>
                         <label className="block text-sm text-neutral-700 dark:text-neutral-300 mb-1">Type</label>
-                        <select value={selected.type} onChange={(e) => updateSelected({ type: e.target.value })} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white">
+                        <select value={selected.type} onChange={(e) => updateSelected({ type: e.target.value })} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white">
                           <option value="hackathon">Hackathon</option>
                           <option value="webinar">Webinar</option>
                           <option value="masterclass">Free Masterclass</option>
@@ -232,7 +232,7 @@ function OrganizerEventsInner() {
                       </div>
                       <div className="md:col-span-2">
                         <label className="block text-sm text-neutral-700 dark:text-neutral-300 mb-1">Description</label>
-                        <textarea value={selected.description} onChange={(e) => updateSelected({ description: e.target.value })} rows={4} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" />
+                        <textarea value={selected.description} onChange={(e) => updateSelected({ description: e.target.value })} rows={4} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" />
                       </div>
                       <div className="md:col-span-2">
                         <div className="flex items-center justify-between mb-1">
@@ -240,12 +240,12 @@ function OrganizerEventsInner() {
                           <button
                             type="button"
                             onClick={() => setShowAddSchedule((s) => !s)}
-                            className="px-2 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
+                            className="px-2 py-1 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] text-sm"
                           >
                             + Add day
                           </button>
                         </div>
-                        <textarea value={selected.schedule || ""} onChange={(e) => updateSelected({ schedule: e.target.value })} rows={3} placeholder="Overview or notes for schedule" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" />
+                        <textarea value={selected.schedule || ""} onChange={(e) => updateSelected({ schedule: e.target.value })} rows={3} placeholder="Overview or notes for schedule" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" />
                         {showAddSchedule && (
                           <div className="mt-3 space-y-2">
                             <div className="flex items-center gap-2">
@@ -254,15 +254,15 @@ function OrganizerEventsInner() {
                                 value={dayName}
                                 onChange={(e) => setDayName(e.target.value)}
                                 placeholder="Day name (e.g., Day 1)"
-                                className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                                className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                               />
                               <input
                                 type="date"
                                 value={dayDate}
                                 onChange={(e) => setDayDate(e.target.value)}
-                                className="px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                                className="px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                               />
-                              <button onClick={addScheduleItem} className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Add</button>
+                              <button onClick={addScheduleItem} className="px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100]">Add</button>
                             </div>
                           </div>
                         )}
@@ -271,7 +271,7 @@ function OrganizerEventsInner() {
                             <div key={idx} className="flex items-center justify-between p-2 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900">
                               <div className="text-sm text-neutral-900 dark:text-white">{it.day}</div>
                               <div className="text-sm text-neutral-600 dark:text-neutral-400">{it.date}</div>
-                              <button onClick={() => removeScheduleItem(idx)} className="text-sm text-blue-600 hover:text-blue-700">Remove</button>
+                              <button onClick={() => removeScheduleItem(idx)} className="text-sm text-[#FF9000] hover:text-[#FFA100]">Remove</button>
                             </div>
                           ))}
                         </div>
@@ -300,11 +300,11 @@ function OrganizerEventsInner() {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm text-neutral-700 dark:text-neutral-300 mb-1">Name</label>
-                <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" />
+                <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" />
               </div>
               <div>
                 <label className="block text-sm text-neutral-700 dark:text-neutral-300 mb-1">Type</label>
-                <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white">
+                <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white">
                   <option value="hackathon">Hackathon</option>
                   <option value="webinar">Webinar</option>
                   <option value="masterclass">Free Masterclass</option>
@@ -313,7 +313,7 @@ function OrganizerEventsInner() {
               </div>
               <div>
                 <label className="block text-sm text-neutral-700 dark:text-neutral-300 mb-1">Description</label>
-                <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" />
+                <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" />
               </div>
               <div>
                 <div className="flex items-center justify-between mb-1">
@@ -321,12 +321,12 @@ function OrganizerEventsInner() {
                   <button
                     type="button"
                     onClick={() => setShowCreateAddSchedule((s) => !s)}
-                    className="px-2 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
+                    className="px-2 py-1 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] text-sm"
                   >
                     + Add day
                   </button>
                 </div>
-                <textarea value={form.schedule} onChange={(e) => setForm({ ...form, schedule: e.target.value })} rows={3} placeholder="Overview or notes for schedule" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white" />
+                <textarea value={form.schedule} onChange={(e) => setForm({ ...form, schedule: e.target.value })} rows={3} placeholder="Overview or notes for schedule" className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white" />
                 {showCreateAddSchedule && (
                   <div className="mt-3 space-y-2">
                     <div className="flex items-center gap-2">
@@ -335,15 +335,15 @@ function OrganizerEventsInner() {
                         value={createDayName}
                         onChange={(e) => setCreateDayName(e.target.value)}
                         placeholder="Day name (e.g., Day 1)"
-                        className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                        className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                       />
                       <input
                         type="date"
                         value={createDayDate}
                         onChange={(e) => setCreateDayDate(e.target.value)}
-                        className="px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                        className="px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-[#FF9000] text-neutral-900 dark:text-white"
                       />
-                      <button onClick={addCreateScheduleItem} className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Add</button>
+                      <button onClick={addCreateScheduleItem} className="px-3 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100]">Add</button>
                     </div>
                   </div>
                 )}
@@ -352,7 +352,7 @@ function OrganizerEventsInner() {
                     <div key={idx} className="flex items-center justify-between p-2 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900">
                       <div className="text-sm text-neutral-900 dark:text-white">{it.day}</div>
                       <div className="text-sm text-neutral-600 dark:text-neutral-400">{it.date}</div>
-                      <button onClick={() => removeCreateScheduleItem(idx)} className="text-sm text-blue-600 hover:text-blue-700">Remove</button>
+                      <button onClick={() => removeCreateScheduleItem(idx)} className="text-sm text-[#FF9000] hover:text-[#FFA100]">Remove</button>
                     </div>
                   ))}
                 </div>
@@ -360,7 +360,7 @@ function OrganizerEventsInner() {
             </div>
             <div className="flex justify-end gap-2 mt-6">
               <button onClick={() => setShowCreate(false)} className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">Cancel</button>
-              <button onClick={createEvent} className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Create</button>
+              <button onClick={createEvent} className="px-4 py-2 rounded-lg bg-[#FF9000] text-white hover:bg-[#FFA100]">Create</button>
             </div>
           </div>
         </div>
