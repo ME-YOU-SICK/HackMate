@@ -5,6 +5,7 @@ import { GlowingCard } from "@/components/ui/glowing-card";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Link from "next/link";
 import { 
   Users, 
   Calendar,
@@ -17,7 +18,8 @@ import {
   Clock,
   Lightbulb,
   Target,
-  Sparkles
+  Sparkles,
+  ArrowLeft
 } from "lucide-react";
 
 export default function CreateTeamPage() {
@@ -215,6 +217,15 @@ export default function CreateTeamPage() {
                 <p className="text-neutral-600 dark:text-neutral-400">
                   Build your dream team for the next hackathon
                 </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/participant/dashboard/teamify"
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back
+                </Link>
               </div>
             </motion.div>
 

@@ -4,7 +4,7 @@ import { DashboardSidebar } from "@/components/dashboard-sidebar";
 import { GlowingCard } from "@/components/ui/glowing-card";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { 
   DollarSign, 
@@ -30,7 +30,7 @@ import {
   ChevronUp
 } from "lucide-react";
 
-export default function SponsorDiscoveryPage() {
+function SponsorDiscoveryContent() {
   const userRole = "organizer";
   const userName = "Sarah Johnson";
   const userAvatar = undefined;
@@ -681,5 +681,13 @@ export default function SponsorDiscoveryPage() {
         </motion.div>
       )}
     </div>
+  );
+}
+
+export default function SponsorDiscoveryPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SponsorDiscoveryContent />
+    </Suspense>
   );
 }

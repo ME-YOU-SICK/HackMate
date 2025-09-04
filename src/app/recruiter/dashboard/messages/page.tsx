@@ -349,7 +349,6 @@ export default function RecruiterMessagesPage() {
                       </div>
                     </div>
                   </div>
-                </div>
               </motion.div>
             </div>
           </div>

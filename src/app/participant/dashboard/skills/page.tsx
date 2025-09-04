@@ -538,9 +538,12 @@ export default function SkillsPage() {
 
                         {/* Action Button */}
                         <div className="mt-4 pt-3 border-t border-neutral-200 dark:border-neutral-700">
-                          <button className="w-full px-3 py-2 bg-blue-600 text-white text-xs font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                          <a
+                            href={`/participant/dashboard/skills/${encodeURIComponent(skill.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""))}`}
+                            className="block w-full text-center px-3 py-2 bg-blue-600 text-white text-xs font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                          >
                             Learn More
-                          </button>
+                          </a>
                         </div>
                       </div>
                     </GlowingCard>

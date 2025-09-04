@@ -5,6 +5,7 @@ import { GlowingCard } from "@/components/ui/glowing-card";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { 
   Users, 
   UserPlus, 
@@ -18,6 +19,7 @@ import {
 } from "lucide-react";
 
 export default function TeamifyPage() {
+  const router = useRouter();
   const userRole = "participant"; // This would come from auth context
   const userName = "John Doe";
   const userAvatar = undefined;
@@ -114,7 +116,7 @@ export default function TeamifyPage() {
                 </p>
               </div>
               <div className="flex gap-3">
-                <button className="flex items-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-600 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                   <Filter className="h-4 w-4" />
                   Filter
                 </button>
@@ -200,9 +202,6 @@ export default function TeamifyPage() {
                           <button className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
                             Join Team
                           </button>
-                          <button className="px-3 py-2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-600 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
-                            <MessageCircle className="h-4 w-4" />
-                          </button>
                         </div>
                       </div>
                     </GlowingCard>
@@ -250,7 +249,10 @@ export default function TeamifyPage() {
                           <button className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
                             Invite
                           </button>
-                          <button className="px-3 py-2 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-600 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors">
+                          <button
+                            onClick={() => router.push(`/participant/dashboard/messages?to=${encodeURIComponent(member.name)}`)}
+                            className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                          >
                             <MessageCircle className="h-4 w-4" />
                           </button>
                         </div>

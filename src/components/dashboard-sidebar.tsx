@@ -29,6 +29,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { auth } from "@/lib/auth";
 
 interface DashboardSidebarProps {
   userRole: "participant" | "organizer" | "recruiter" | "sponsor";
@@ -41,9 +42,8 @@ export function DashboardSidebar({ userRole, userName = "User", userAvatar }: Da
   const router = useRouter();
 
   const handleLogout = () => {
-    // In a real app, this would clear authentication tokens, session data, etc.
-    // For now, we'll just redirect to the homepage
-    router.push("/");
+    auth.logout();
+    router.push("/signin");
   };
 
   // Role-based navigation links

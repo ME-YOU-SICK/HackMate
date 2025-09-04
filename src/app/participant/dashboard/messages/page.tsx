@@ -27,12 +27,8 @@ export default function ParticipantMessagesPage() {
   const userRole = "participant";
   const userName = "John Doe";
   const userAvatar = undefined;
-  
-  const [selectedConversationId, setSelectedConversationId] = useState(1);
-  const [newMessage, setNewMessage] = useState("");
-  const [messages, setMessages] = useState(chatMessages);
 
-  const conversations = [
+  const initialConversations = [
     {
       id: 1,
       name: "Sarah Chen",
@@ -156,6 +152,59 @@ export default function ParticipantMessagesPage() {
     ]
   };
 
+  const [conversations, setConversations] = useState(initialConversations);
+  const [selectedConversationId, setSelectedConversationId] = useState(1);
+  const [newMessage, setNewMessage] = useState("");
+  const [messages, setMessages] = useState(chatMessages);
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showNewChat, setShowNewChat] = useState(false);
+  const [newChatEmail, setNewChatEmail] = useState("");
+  const connections = [
+    { id: 101, name: "Sarah Chen", email: "sarah@example.com", role: "participant", avatar: "SC" },
+    { id: 102, name: "TechCorp Recruiter", email: "recruiter@techcorp.com", role: "recruiter", avatar: "TC" },
+    { id: 103, name: "Hackathon Organizer", email: "organizer@hackfest.com", role: "organizer", avatar: "HO" },
+  ];
+
+  const filteredConversations = conversations.filter(c =>
+    c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    c.role.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const createConversationFrom = (name: string, role: string, avatar: string) => {
+    // If a conversation already exists with this name, focus it instead of creating a duplicate
+    const existing = conversations.find(c => c.name.toLowerCase() === name.toLowerCase());
+    if (existing) {
+      setSelectedConversationId(existing.id);
+      return;
+    }
+
+    const newId = Date.now();
+    const newConv = {
+      id: newId,
+      name,
+      role,
+      lastMessage: "",
+      timestamp: "now",
+      unread: 0,
+      online: false,
+      avatar,
+    };
+    setConversations(prev => [newConv, ...prev]);
+    setSelectedConversationId(newId);
+  };
+
+  const handleStartNewChat = () => {
+    if (newChatEmail.trim()) {
+      const name = newChatEmail.trim();
+      const avatar = name.substring(0, 2).toUpperCase();
+      createConversationFrom(name, "participant", avatar);
+      setShowNewChat(false);
+      setNewChatEmail("");
+      return;
+    }
+  };
+
   const currentChat = conversations.find(conv => conv.id === selectedConversationId) || conversations[0];
   const currentMessages = messages[selectedConversationId as keyof typeof messages] || messages[1];
 
@@ -217,11 +266,11 @@ export default function ParticipantMessagesPage() {
                 </p>
               </div>
               <div className="flex gap-3">
-                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button onClick={() => setShowSearch(s => !s)} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                   <Search className="h-4 w-4" />
                   Search
                 </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button onClick={() => setShowNewChat(true)} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                   <Plus className="h-4 w-4" />
                   New Chat
                 </button>
@@ -237,8 +286,19 @@ export default function ParticipantMessagesPage() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="w-80 flex-shrink-0 flex flex-col"
               >
+                {showSearch && (
+                  <div className="mb-3">
+                    <input
+                      type="text"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      placeholder="Search by name or role..."
+                      className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                    />
+                  </div>
+                )}
                 <div className="flex-1 overflow-y-auto scrollbar-hide space-y-3 pr-2">
-                  {conversations.map((conversation) => (
+                  {filteredConversations.map((conversation) => (
                     <div key={conversation.id} className="">
                       <GlowingCard
                         icon={<MessageCircle className="h-4 w-4" />}
@@ -370,9 +430,61 @@ export default function ParticipantMessagesPage() {
                 </div>
               </motion.div>
             </div>
+            {showNewChat && (
+              <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
+                <div className="w-full max-w-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-2xl p-6 shadow-2xl">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">Start a new chat</h3>
+                    <button onClick={() => setShowNewChat(false)} className="text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-white">✕</button>
+                  </div>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm text-neutral-600 dark:text-neutral-400 mb-1">Email address</label>
+                      <input
+                        type="email"
+                        value={newChatEmail}
+                        onChange={(e) => setNewChatEmail(e.target.value)}
+                        placeholder="name@example.com"
+                        className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-neutral-600 dark:text-neutral-400 mb-2">Or pick from your connections</label>
+                      <div className="max-h-48 overflow-y-auto space-y-2 pr-1 scrollbar-hide">
+                        {connections.map((c) => (
+                          <button
+                            key={c.id}
+                            onClick={() => {
+                              createConversationFrom(c.name, c.role, c.avatar);
+                              setShowNewChat(false);
+                            }}
+                            className="w-full flex items-center justify-between p-2 rounded-lg border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-left"
+                          >
+                            <div className="flex items-center gap-2">
+                              <div className="w-7 h-7 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">{c.avatar}</div>
+                              <div>
+                                <div className="text-sm text-neutral-900 dark:text-white">{c.name}</div>
+                                <div className="text-xs text-neutral-500">{c.email}</div>
+                              </div>
+                            </div>
+                            <span className="text-xs px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300">{c.role}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-end gap-2 mt-6">
+                    <button onClick={() => setShowNewChat(false)} className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">Cancel</button>
+                    <button onClick={handleStartNewChat} className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Start Chat</button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+/* New Chat Modal */

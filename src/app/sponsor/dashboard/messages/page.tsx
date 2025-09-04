@@ -349,7 +349,6 @@ export default function SponsorMessagesPage() {
                       </div>
                     </div>
                   </div>
-                </div>
               </motion.div>
             </div>
           </div>

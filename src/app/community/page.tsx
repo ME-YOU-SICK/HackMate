@@ -30,10 +30,10 @@ import {
   Edit,
   Trash2
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function CommunityPage() {
+function CommunityContent() {
   const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState("discussions");
   const [showCreatePost, setShowCreatePost] = useState(false);
@@ -802,5 +802,13 @@ export default function CommunityPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function CommunityPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CommunityContent />
+    </Suspense>
   );
 }

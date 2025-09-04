@@ -239,30 +239,27 @@ export default function OrganizerTeamifyPage() {
     
     // Simulate team generation process
     setTimeout(() => {
-      const availableParticipants = participants.filter(p => !p.isNewbie || !newbieProtection);
-      const shuffled = [...availableParticipants].sort(() => Math.random() - 0.5);
-      
-      const teams = [];
-      let currentTeam = [];
-      
-      for (let i = 0; i < shuffled.length; i++) {
-        currentTeam.push(shuffled[i]);
-        
-        // Check if team is balanced and complete
-        if (currentTeam.length === maxTeamMembers || 
-            (i === shuffled.length - 1 && currentTeam.length >= 2)) {
-          
-          // Ensure team has complementary roles
-          const roles = currentTeam.map(member => member.role);
-          const hasComplementaryRoles = roles.some(role => 
-            roles.some(otherRole => 
-              role !== otherRole && 
-              (roleCompatibility[role]?.includes(otherRole) || 
-               roleCompatibility[otherRole]?.includes(role))
-            )
-          );
-          
-          if (hasComplementaryRoles || currentTeam.length >= 3) {
+      let pools = { newbies: participants.filter(p => p.isNewbie), experienced: participants.filter(p => !p.isNewbie) };
+      let ordered: any[] = [];
+      if (newbieProtection) {
+        // Pair newbies with newbies, experienced with experienced
+        const shuffledNewbies = [...pools.newbies].sort(() => Math.random() - 0.5);
+        const shuffledExperienced = [...pools.experienced].sort(() => Math.random() - 0.5);
+        ordered = [...shuffledExperienced, ...shuffledNewbies];
+      } else {
+        ordered = [...participants].sort(() => Math.random() - 0.5);
+      }
+
+      const teams: any[] = [];
+      let currentTeam: any[] = [];
+
+      for (let i = 0; i < ordered.length; i++) {
+        const candidate = ordered[i];
+        // If newbieProtection, avoid mixing newbie with experienced within the same team
+        if (newbieProtection && currentTeam.length > 0) {
+          const hasNewbie = currentTeam.some(m => m.isNewbie);
+          if (hasNewbie !== candidate.isNewbie && currentTeam.length > 0) {
+            // finalize current team and start a new one for different experience pool
             teams.push({
               id: teams.length + 1,
               name: `Team ${teams.length + 1}`,
@@ -274,20 +271,22 @@ export default function OrganizerTeamifyPage() {
             currentTeam = [];
           }
         }
+
+        currentTeam.push(candidate);
+
+        if (currentTeam.length === maxTeamMembers || (i === ordered.length - 1 && currentTeam.length >= 2)) {
+          teams.push({
+            id: teams.length + 1,
+            name: `Team ${teams.length + 1}`,
+            members: [...currentTeam],
+            balance: calculateTeamBalance(currentTeam),
+            skills: [...new Set(currentTeam.flatMap(m => m.skills))],
+            experience: currentTeam.map(m => m.experience)
+          });
+          currentTeam = [];
+        }
       }
-      
-      // Handle remaining participants
-      if (currentTeam.length > 0) {
-        teams.push({
-          id: teams.length + 1,
-          name: `Team ${teams.length + 1}`,
-          members: [...currentTeam],
-          balance: calculateTeamBalance(currentTeam),
-          skills: [...new Set(currentTeam.flatMap(m => m.skills))],
-          experience: currentTeam.map(m => m.experience)
-        });
-      }
-      
+
       setGeneratedTeams(teams);
       setIsGenerating(false);
     }, 2000);
@@ -341,10 +340,10 @@ export default function OrganizerTeamifyPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-900">
-      <div className="flex">
-        <DashboardSidebar />
+      <div className="flex flex-col md:flex-row w-full h-screen overflow-hidden">
+        <DashboardSidebar userRole="organizer" userName="Sarah Johnson" />
         
-        <div className="flex-1 p-6">
+        <div className="flex-1 p-6 overflow-y-auto">
           <div className="max-w-7xl mx-auto">
             <div className="mb-8">
               <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
@@ -461,7 +460,7 @@ export default function OrganizerTeamifyPage() {
                           </div>
                           <p className="text-xs text-slate-500 dark:text-slate-500 mt-1">
                             {newbieProtection 
-                              ? "New participants will be paired with experienced members"
+                              ? "New participants will be paired with new participants; experienced with experienced"
                               : "All participants can be paired together"
                             }
                           </p>

@@ -211,9 +211,10 @@ export default function ProfilePage() {
                     </span>
                   )}
                   <button
+                    type="button"
                     onClick={handleRefresh}
                     disabled={loading || !githubUsername}
-                    className="p-2 bg-neutral-100 dark:bg-neutral-800 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors disabled:opacity-50"
+                    className="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
                   >
                     <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
                   </button>
@@ -237,9 +238,16 @@ export default function ProfilePage() {
                             onChange={(e) => setTempGithubUsername(e.target.value)}
                             placeholder="Enter your GitHub username"
                             className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
-                            onKeyPress={(e) => e.key === 'Enter' && handleGithubUsernameChange()}
+                            autoFocus
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') {
+                                e.preventDefault();
+                                handleGithubUsernameChange();
+                              }
+                            }}
                           />
                           <button
+                            type="button"
                             onClick={handleGithubUsernameChange}
                             disabled={loading}
                             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
@@ -247,6 +255,7 @@ export default function ProfilePage() {
                             {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle className="h-4 w-4" />}
                           </button>
                           <button
+                            type="button"
                             onClick={() => {
                               setIsEditingGithub(false);
                               setTempGithubUsername(githubUsername);
@@ -393,26 +402,28 @@ export default function ProfilePage() {
               )}
 
               {!githubUsername && (
-                <GlowingCard className="h-full">
-                  <div className="text-center py-8">
-                    <Github className="h-12 w-12 text-neutral-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
-                      Connect your GitHub account
-                    </h3>
-                    <p className="text-neutral-600 dark:text-neutral-400 mb-4">
-                      Add your GitHub username to showcase your top 5 repositories
-                    </p>
-                    <button
-                      onClick={() => {
-                        setIsEditingGithub(true);
-                        setTempGithubUsername("");
-                      }}
-                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                    >
-                      Add GitHub Username
-                    </button>
-                  </div>
-                </GlowingCard>
+                <div className="mb-8">
+                  <GlowingCard className="h-full pb-6">
+                    <div className="text-center py-10">
+                      <Github className="h-12 w-12 text-neutral-400 mx-auto mb-4" />
+                      <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
+                        Connect your GitHub account
+                      </h3>
+                      <p className="text-neutral-600 dark:text-neutral-400 mb-4">
+                        Add your GitHub username to showcase your top 5 repositories
+                      </p>
+                      <button
+                        onClick={() => {
+                          setIsEditingGithub(true);
+                          setTempGithubUsername("");
+                        }}
+                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      >
+                        Add GitHub Username
+                      </button>
+                    </div>
+                  </GlowingCard>
+                </div>
               )}
             </motion.div>
 

@@ -4,7 +4,9 @@ import { DashboardSidebar } from "@/components/dashboard-sidebar";
 import { GlowingCard } from "@/components/ui/glowing-card";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { 
   Calendar, 
   Clock, 
@@ -32,6 +34,7 @@ import {
 } from "lucide-react";
 
 export default function EventsPage() {
+  const router = useRouter();
   const userRole = "participant";
   const userName = "John Doe";
   const userAvatar = undefined;
@@ -294,6 +297,54 @@ export default function EventsPage() {
 
   const statuses = ["All", "upcoming", "ongoing", "completed"];
 
+  const [joinedIds, setJoinedIds] = useState<number[]>([]);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('joined_events');
+      if (raw) setJoinedIds(JSON.parse(raw));
+    } catch {}
+  }, []);
+
+  const saveJoined = (ids: number[]) => {
+    setJoinedIds(ids);
+    try { localStorage.setItem('joined_events', JSON.stringify(ids)); } catch {}
+  };
+
+  const handleJoin = (id: number) => {
+    if (joinedIds.includes(id)) {
+      router.push(`/participant/dashboard/events/${id}`);
+      return;
+    }
+    const next = [id, ...joinedIds];
+    saveJoined(next);
+    // Persist event data map for dashboard details
+    try {
+      const raw = localStorage.getItem('joined_events_data');
+      const map = raw ? JSON.parse(raw) : {};
+      const e = events.find(ev => ev.id === id);
+      if (e) {
+        map[id] = {
+          id,
+          title: e.title,
+          date: e.date,
+          location: e.location,
+          participants: e.participants,
+          prize: e.prize,
+          category: e.category,
+          schedule: [
+            { time: "Day 1", item: "Kickoff & Team Formation" },
+            { time: "Day 2", item: "Build & Mentorship" },
+            { time: "Day 3", item: "Demos & Awards" },
+          ],
+          prizes: ["Grand Prize", "Runner Up", "Best Innovation"],
+        };
+        localStorage.setItem('joined_events_data', JSON.stringify(map));
+      }
+    } catch {}
+    router.push(`/participant/dashboard/events/${id}`);
+  };
+
   const filteredEvents = events.filter(event => {
     const matchesSearch = event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          event.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -469,9 +520,17 @@ export default function EventsPage() {
                         <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 text-xs rounded-full font-medium">
                           {event.category}
                         </span>
-                        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
-                          Join Event
-                        </button>
+                        <div className="flex items-center gap-2">
+                          <Link href={`/participant/dashboard/events/${event.id}`} className="px-3 py-2 text-sm text-blue-600 hover:text-blue-700">
+                            Details
+                          </Link>
+                          <button
+                            onClick={() => handleJoin(event.id)}
+                            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                          >
+                            {joinedIds.includes(event.id) ? 'Open Event' : 'Join Event'}
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </GlowingCard>

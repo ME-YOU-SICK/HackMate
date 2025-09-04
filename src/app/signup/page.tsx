@@ -4,6 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { auth, type UserRole } from "@/lib/auth"
 import { BackgroundPaths } from "@/components/ui/background-paths"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -36,10 +37,19 @@ export default function SignupPage() {
       return
     }
 
-    // Handle signup logic here (in a real app, this would be an API call)
-    console.log("Signup data:", formData)
-    
-    // Redirect to the appropriate dashboard based on role
+    // Mock auth: save user and redirect to role dashboard
+    auth.login({
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      role: formData.role as UserRole,
+    })
+    // Trigger onboarding for participant accounts
+    if (formData.role === "participant") {
+      try {
+        localStorage.setItem("onboarding_pending", "participant");
+      } catch {}
+    }
     router.push(`/${formData.role}/dashboard`)
   }
 

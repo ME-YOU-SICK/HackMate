@@ -42,6 +42,11 @@ export default function ParticipantDashboard() {
   const userAvatar = undefined;
 
   const [githubUsername, setGithubUsername] = useState("");
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [onboardingSkills, setOnboardingSkills] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string>("Frontend");
+  const [onboardingLinks, setOnboardingLinks] = useState({ github: "", linkedin: "", twitter: "" });
   const { repos, loading: githubLoading } = useGitHub();
 
   // Load saved GitHub username
@@ -50,7 +55,81 @@ export default function ParticipantDashboard() {
     if (savedUsername) {
       setGithubUsername(savedUsername);
     }
+    // Detect pending onboarding
+    try {
+      const pending = localStorage.getItem('onboarding_pending');
+      if (pending === 'participant') {
+        setShowOnboarding(true);
+        // Prefill links if available
+        const gh = localStorage.getItem('githubUsername') || "";
+        setOnboardingLinks((prev) => ({ ...prev, github: gh }));
+      }
+    } catch {}
   }, []);
+
+  const skillCategories: Record<string, string[]> = {
+    Frontend: [
+      "React", "Next.js", "Vue.js", "Angular", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS", "Sass", "Figma", "Adobe XD"
+    ],
+    Backend: [
+      "Node.js", "Python", "Java", "C#", "Go", "Rust", "Express.js", "Django", "Spring Boot", "FastAPI", "PostgreSQL", "MongoDB", "Redis", "Docker", "AWS", "Azure"
+    ],
+    Fullstack: [
+      "React", "Next.js", "Node.js", "Python", "TypeScript", "PostgreSQL", "MongoDB", "Docker", "AWS", "Vercel", "Supabase", "Prisma", "GraphQL", "REST API"
+    ],
+    Mobile: [
+      "React Native", "Flutter", "Swift", "Kotlin", "iOS", "Android", "Expo", "Firebase", "App Store", "Google Play"
+    ],
+    DevOps: [
+      "Docker", "Kubernetes", "AWS", "Azure", "GCP", "CI/CD", "Jenkins", "GitHub Actions", "Terraform", "Ansible", "Linux", "Bash"
+    ],
+    "Data Science": [
+      "Python", "R", "SQL", "Pandas", "NumPy", "Scikit-learn", "TensorFlow", "PyTorch", "Jupyter", "Tableau", "Power BI", "Machine Learning"
+    ],
+    "UI/UX": [
+      "Figma", "Adobe XD", "Sketch", "InVision", "Principle", "User Research", "Wireframing", "Prototyping", "Design Systems", "Accessibility"
+    ],
+    Blockchain: [
+      "Solidity", "Web3.js", "Ethers.js", "Hardhat", "Truffle", "IPFS", "Ethereum", "Polygon", "Smart Contracts", "DeFi", "NFTs"
+    ],
+    "Game Development": [
+      "Unity", "Unreal Engine", "C#", "C++", "JavaScript", "Blender", "Maya", "3D Modeling"
+    ],
+    Cybersecurity: [
+      "Penetration Testing", "Ethical Hacking", "Network Security", "Cryptography", "OWASP", "Kali Linux", "Wireshark", "SIEM"
+    ],
+    "AI/ML": [
+      "Machine Learning", "Deep Learning", "Natural Language Processing", "Computer Vision", "TensorFlow", "PyTorch", "OpenAI API", "Hugging Face"
+    ],
+    "Cloud Computing": [
+      "AWS", "Azure", "GCP", "Docker", "Kubernetes", "Terraform", "Serverless", "Microservices"
+    ],
+  };
+
+  const handleCategoryClick = (category: string) => {
+    setActiveCategory(category);
+    // Track visited/selected categories optionally for styling
+    setSelectedCategories((prev) => (prev.includes(category) ? prev : [...prev, category]));
+  };
+
+  const toggleSkill = (skill: string) => {
+    setOnboardingSkills((prev) =>
+      prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill]
+    );
+  };
+
+  const completeOnboarding = () => {
+    try {
+      localStorage.setItem('participant_skills', JSON.stringify(onboardingSkills));
+      // Save links
+      if (onboardingLinks.github) localStorage.setItem('githubUsername', onboardingLinks.github);
+      localStorage.setItem('linkedin_url', onboardingLinks.linkedin || "");
+      localStorage.setItem('twitter_url', onboardingLinks.twitter || "");
+      localStorage.removeItem('onboarding_pending');
+    } catch {}
+    setShowOnboarding(false);
+    if (onboardingLinks.github) setGithubUsername(onboardingLinks.github);
+  };
 
   // Mock data for dashboard stats
   const dashboardStats = {
@@ -103,7 +182,7 @@ export default function ParticipantDashboard() {
     }
   ];
 
-  const upcomingEvents = [
+  const [upcomingEvents, setUpcomingEvents] = useState([
     {
       id: 1,
       title: "Web3 Development Challenge",
@@ -131,7 +210,35 @@ export default function ParticipantDashboard() {
       prize: "$12,000",
       category: "Cloud Computing"
     }
-  ];
+  ] as any[]);
+
+  useEffect(() => {
+    try {
+      const rawIds = localStorage.getItem('joined_events');
+      const rawMap = localStorage.getItem('joined_events_data');
+      const ids: number[] = rawIds ? JSON.parse(rawIds) : [];
+      const map = rawMap ? JSON.parse(rawMap) : {};
+      const joined = ids
+        .map((id) => map[id])
+        .filter(Boolean)
+        .map((e: any) => ({
+          id: Number(e.id),
+          title: e.title || `Event #${e.id}`,
+          date: e.date || 'TBD',
+          location: e.location || 'TBD',
+          participants: e.participants || 0,
+          prize: e.prize || '$0',
+          category: e.category || 'Event'
+        }));
+      if (joined.length) {
+        setUpcomingEvents((prev) => {
+          const existingIds = new Set(prev.map((p) => p.id));
+          const merged = [...joined.filter((j: any) => !existingIds.has(j.id)), ...prev];
+          return merged;
+        });
+      }
+    } catch {}
+  }, []);
 
   const topSkills = [
     { name: "React", level: 85, category: "Frontend" },
@@ -188,6 +295,101 @@ export default function ParticipantDashboard() {
         {/* Main Content */}
         <div className="flex flex-1">
           <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-6 flex-1 w-full h-full overflow-y-auto">
+            {showOnboarding && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+                <div className="w-full max-w-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-2xl p-6 shadow-2xl">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl font-semibold text-neutral-900 dark:text-white">Welcome! Let's set you up</h3>
+                    <button className="text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-white" onClick={() => setShowOnboarding(false)}>✕</button>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-medium text-neutral-900 dark:text-white mb-2">Add your skills</h4>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">Select categories first, then pick relevant skills.</p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {Object.keys(skillCategories).map((category) => (
+                          <button
+                            key={category}
+                            onClick={() => handleCategoryClick(category)}
+                            className={`px-3 py-1.5 rounded-full border text-sm transition-colors ${
+                              activeCategory === category
+                                ? "bg-blue-600 text-white border-blue-600"
+                                : "bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-700"
+                            }`}
+                          >
+                            {category}
+                          </button>
+                        ))}
+                      </div>
+                      {activeCategory && (
+                        <motion.div
+                          key={activeCategory}
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm font-medium text-neutral-800 dark:text-neutral-200">{activeCategory}</span>
+                            <span className="text-xs text-neutral-500">Pick relevant skills</span>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {skillCategories[activeCategory].map((skill) => (
+                              <button
+                                key={`${activeCategory}-${skill}`}
+                                onClick={() => toggleSkill(skill)}
+                                className={`px-3 py-1.5 rounded-full border text-sm transition-colors ${
+                                  onboardingSkills.includes(skill)
+                                    ? "bg-blue-600 text-white border-blue-600"
+                                    : "bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-700"
+                                }`}
+                              >
+                                {skill}
+                              </button>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div>
+                        <label className="block text-sm text-neutral-600 dark:text-neutral-400 mb-1">GitHub Username</label>
+                        <input
+                          type="text"
+                          value={onboardingLinks.github}
+                          onChange={(e) => setOnboardingLinks({ ...onboardingLinks, github: e.target.value })}
+                          placeholder="your-handle"
+                          className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm text-neutral-600 dark:text-neutral-400 mb-1">LinkedIn URL</label>
+                        <input
+                          type="url"
+                          value={onboardingLinks.linkedin}
+                          onChange={(e) => setOnboardingLinks({ ...onboardingLinks, linkedin: e.target.value })}
+                          placeholder="https://linkedin.com/in/username"
+                          className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm text-neutral-600 dark:text-neutral-400 mb-1">Twitter URL</label>
+                        <input
+                          type="url"
+                          value={onboardingLinks.twitter}
+                          onChange={(e) => setOnboardingLinks({ ...onboardingLinks, twitter: e.target.value })}
+                          placeholder="https://twitter.com/username"
+                          className="w-full px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-end gap-2 mt-6">
+                    <button onClick={() => setShowOnboarding(false)} className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">Skip for now</button>
+                    <button onClick={completeOnboarding} className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700">Save and continue</button>
+                  </div>
+                </div>
+              </div>
+            )}
             {/* Welcome Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -337,7 +539,7 @@ export default function ParticipantDashboard() {
                   </Link>
                 </div>
                 <GlowingCard className="h-full">
-                  <div className="space-y-4">
+                  <div className="space-y-4 pb-6">
                     {recentActivity.map((activity, index) => (
                       <motion.div
                         key={activity.id}
@@ -381,7 +583,7 @@ export default function ParticipantDashboard() {
                   </Link>
                 </div>
                 <GlowingCard className="h-full">
-                  <div className="space-y-4">
+                  <div className="space-y-4 pb-6">
                     {upcomingEvents.map((event, index) => (
                       <motion.div
                         key={event.id}
@@ -424,7 +626,7 @@ export default function ParticipantDashboard() {
             </div>
 
             {/* Top Skills & GitHub Projects */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
               {/* Top Skills */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -577,3 +779,5 @@ export default function ParticipantDashboard() {
     </div>
   );
 }
+
+// Onboarding Modal UI appended to main render
