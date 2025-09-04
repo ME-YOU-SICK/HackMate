@@ -153,18 +153,18 @@ export default function QuizzesPage() {
                 {codingPlatforms.map((platform) => (
                   <div key={platform.id} className="">
                     <GlowingCard
-                      icon={<Code className="h-4 w-4" />}
+                      icon={<Code className="h-4 w-4 text-[#FFA100]" />}
                       title={platform.name}
                       description={platform.description}
                       className="h-full"
                     >
                       <div className="mt-4 space-y-3">
                         <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-                          <Target className="h-4 w-4" />
+                          <Target className="h-4 w-4 text-[#FFA100]" />
                           {platform.problems} problems
                         </div>
                         <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-                          <Award className="h-4 w-4" />
+                          <Award className="h-4 w-4 text-[#FFA100]" />
                           {platform.difficulty}
                         </div>
                         <div className="flex justify-between items-center pt-2">
@@ -172,7 +172,7 @@ export default function QuizzesPage() {
                             {platform.category}
                           </span>
                           <button className={`flex items-center gap-2 px-3 py-2 bg-gradient-to-r ${platform.color} text-white rounded-lg hover:opacity-90 transition-opacity text-sm`}>
-                            <ExternalLink className="h-3 w-3" />
+                            <ExternalLink className="h-3 w-3 text-white" />
                             Visit
                           </button>
                         </div>

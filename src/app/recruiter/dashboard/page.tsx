@@ -32,7 +32,7 @@ import Link from "next/link";
 import { GlowingCard } from "@/components/ui/glowing-card";
 import { DashboardSidebar } from "@/components/dashboard-sidebar";
 
-export default function RecruiterDashboardPage() {
+function RecruiterDashboardPage() {
   const userRole = "recruiter";
   const userName = "Alex Thompson";
   const userAvatar = undefined;
@@ -43,28 +43,28 @@ export default function RecruiterDashboardPage() {
     {
       title: "Create Job Posting",
       description: "Post a new job opportunity",
-      icon: <Plus className="h-5 w-5" />,
+      icon: <Plus className="h-5 w-5 text-white" />,
       href: "/recruiter/dashboard/postings",
       color: "bg-[#FF9000]"
     },
     {
       title: "View Candidates",
       description: "Review job applicants",
-      icon: <Users className="h-5 w-5" />,
+      icon: <Users className="h-5 w-5 text-white" />,
       href: "/recruiter/dashboard/candidates",
       color: "bg-[#FFA100]"
     },
     {
       title: "Schedule Interview",
       description: "Set up candidate interviews",
-      icon: <Calendar className="h-5 w-5" />,
+      icon: <Calendar className="h-5 w-5 text-white" />,
       href: "/recruiter/dashboard/interviews",
       color: "bg-[#FFA100]"
     },
     {
       title: "View Connections",
       description: "Manage your network",
-      icon: <UserPlus className="h-5 w-5" />,
+      icon: <UserPlus className="h-5 w-5 text-white" />,
       href: "/recruiter/dashboard/connections",
       color: "bg-[#FF9000]"
     }
@@ -102,7 +102,7 @@ export default function RecruiterDashboardPage() {
                   <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
                     Welcome back, Alex! 👋
                   </h1>
-                  <p className="text-neutral-600 dark:text-neutral-400">
+                  <p className="text-[#FF9000] dark:text-[#FAF000]">
                     Here's what's happening with your recruiting activities today
                   </p>
                 </div>
@@ -111,7 +111,7 @@ export default function RecruiterDashboardPage() {
                     href="/recruiter/dashboard/profile"
                     className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                   >
-                    <User className="h-4 w-4" />
+                    <User className="h-4 w-4 text-[#FFA100]" />
                     View Profile
                   </Link>
                 </div>
@@ -145,11 +145,11 @@ export default function RecruiterDashboardPage() {
                           <h3 className="font-medium text-neutral-900 dark:text-white group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors">
                             {action.title}
                           </h3>
-                          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                          <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
                             {action.description}
                           </p>
                         </div>
-                        <ArrowUpRight className="h-4 w-4 text-neutral-400 group-hover:text-[#FF9000] transition-colors" />
+                        <ArrowUpRight className="h-4 w-4 text-[#FF9000] group-hover:text-[#FFA100] transition-colors" />
                       </div>
                     </motion.div>
                   </Link>
@@ -171,7 +171,7 @@ export default function RecruiterDashboardPage() {
                 <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Candidates</p>
+                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">Total Candidates</p>
                       <p className="text-2xl font-bold text-neutral-900 dark:text-white">{analytics.totalCandidates.toLocaleString()}</p>
                     </div>
                     <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
@@ -187,7 +187,7 @@ export default function RecruiterDashboardPage() {
                 <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Active Postings</p>
+                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">Active Postings</p>
                       <p className="text-2xl font-bold text-neutral-900 dark:text-white">{analytics.activePostings}</p>
                     </div>
                     <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
@@ -204,7 +204,7 @@ export default function RecruiterDashboardPage() {
                 <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Success Rate</p>
+                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">Success Rate</p>
                       <p className="text-2xl font-bold text-neutral-900 dark:text-white">{analytics.successRate}%</p>
                     </div>
                     <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
@@ -213,14 +213,14 @@ export default function RecruiterDashboardPage() {
                   </div>
                   <div className="flex items-center gap-1 mt-2">
                     <Star className="h-4 w-4 text-[#FF9000] fill-current" />
-                    <span className="text-sm text-neutral-600 dark:text-neutral-400">{analytics.clientSatisfaction}/5.0 rating</span>
+                    <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">{analytics.clientSatisfaction}/5.0 rating</span>
                   </div>
                 </div>
 
                 <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Avg. Time to Hire</p>
+                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">Avg. Time to Hire</p>
                       <p className="text-2xl font-bold text-neutral-900 dark:text-white">{analytics.averageTimeToHire} days</p>
                     </div>
                     <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
@@ -244,7 +244,7 @@ export default function RecruiterDashboardPage() {
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <GlowingCard
-                  icon={<Activity className="h-5 w-5" />}
+                  icon={<Activity className="h-5 w-5 text-[#FFA100]" />}
                   title="Recent Activity"
                   description="Latest updates and actions"
                 >
@@ -257,7 +257,7 @@ export default function RecruiterDashboardPage() {
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                           Successfully placed Sarah Chen
                         </h4>
-                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
                           Senior Frontend Developer at TechCorp
                         </p>
                         <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
@@ -274,7 +274,7 @@ export default function RecruiterDashboardPage() {
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                           Interview scheduled
                         </h4>
-                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
                           Marcus Johnson - ML Engineer position
                         </p>
                         <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
@@ -291,7 +291,7 @@ export default function RecruiterDashboardPage() {
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                           New application received
                         </h4>
-                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
                           Emily Rodriguez applied for Product Manager role
                         </p>
                         <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
@@ -310,7 +310,7 @@ export default function RecruiterDashboardPage() {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <GlowingCard
-                  icon={<Calendar className="h-5 w-5" />}
+                  icon={<Calendar className="h-5 w-5 text-[#FFA100]" />}
                   title="Upcoming Interviews"
                   description="Next scheduled interviews"
                 >
@@ -323,7 +323,7 @@ export default function RecruiterDashboardPage() {
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                           David Kim
                         </h4>
-                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
                           Frontend Developer at TechCorp
                         </p>
                         <p className="text-xs text-neutral-500 dark:text-neutral-500">
@@ -345,7 +345,7 @@ export default function RecruiterDashboardPage() {
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                           Lisa Wang
                         </h4>
-                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
                           UX Designer at DesignStudio
                         </p>
                         <p className="text-xs text-neutral-500 dark:text-neutral-500">
@@ -378,7 +378,7 @@ export default function RecruiterDashboardPage() {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <GlowingCard
-                icon={<Award className="h-5 w-5" />}
+                icon={<Award className="h-5 w-5 text-[#FFA100]" />}
                 title="Recent Top Placements"
                 description="Your most successful recent hires"
               >
@@ -391,7 +391,7 @@ export default function RecruiterDashboardPage() {
                       <h4 className="font-medium text-neutral-900 dark:text-white">
                         Sarah Chen
                       </h4>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
                         Senior Frontend Developer at TechCorp
                       </p>
                       <p className="text-xs text-neutral-500 dark:text-neutral-500">
@@ -419,7 +419,7 @@ export default function RecruiterDashboardPage() {
                       <h4 className="font-medium text-neutral-900 dark:text-white">
                         Marcus Johnson
                       </h4>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
                         ML Engineer at DataFlow Inc
                       </p>
                       <p className="text-xs text-neutral-500 dark:text-neutral-500">
@@ -454,4 +454,8 @@ export default function RecruiterDashboardPage() {
       </div>
     </div>
   );
+}
+
+export default function RecruiterDashboardPageWrapper() {
+  return <RecruiterDashboardPage />;
 }

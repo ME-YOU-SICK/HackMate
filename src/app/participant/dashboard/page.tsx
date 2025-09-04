@@ -36,7 +36,7 @@ import {
   Database
 } from "lucide-react";
 
-export default function ParticipantDashboard() {
+function ParticipantDashboard() {
   const userRole = "participant";
   const userName = "John Doe";
   const userAvatar = undefined;
@@ -150,7 +150,7 @@ export default function ParticipantDashboard() {
       title: "AI Innovation Hackathon 2024",
       description: "Won 1st place with your team",
       date: "2 days ago",
-      icon: <Trophy className="h-4 w-4" />,
+      icon: <Trophy className="h-4 w-4 text-[#FFA100]" />,
       color: "text-[#FF9000]"
     },
     {
@@ -159,7 +159,7 @@ export default function ParticipantDashboard() {
       title: "Updated React Portfolio",
       description: "Added new projects to your GitHub",
       date: "3 days ago",
-      icon: <Code className="h-4 w-4" />,
+      icon: <Code className="h-4 w-4 text-[#FFA100]" />,
       color: "text-[#FF9000]"
     },
     {
@@ -168,7 +168,7 @@ export default function ParticipantDashboard() {
       title: "Completed TypeScript Course",
       description: "Advanced TypeScript patterns",
       date: "5 days ago",
-      icon: <Target className="h-4 w-4" />,
+      icon: <Target className="h-4 w-4 text-[#FFA100]" />,
       color: "text-[#FF9000]"
     },
     {
@@ -177,7 +177,7 @@ export default function ParticipantDashboard() {
       title: "Joined Mobile App Team",
       description: "Working on React Native project",
       date: "1 week ago",
-      icon: <Users className="h-4 w-4" />,
+      icon: <Users className="h-4 w-4 text-[#FFA100]" />,
       color: "text-[#FF9000]"
     }
   ];
@@ -252,28 +252,28 @@ export default function ParticipantDashboard() {
     {
       title: "Join Event",
       description: "Find and join hackathons",
-      icon: <Calendar className="h-6 w-6" />,
+      icon: <Calendar className="h-6 w-6 text-white" />,
       href: "/participant/dashboard/events",
       color: "bg-[#FF9000] hover:bg-[#FFA100]"
     },
     {
       title: "Create Team",
       description: "Build your dream team",
-      icon: <Users className="h-6 w-6" />,
+      icon: <Users className="h-6 w-6 text-white" />,
       href: "/participant/dashboard/teamify",
       color: "bg-[#FF9000] hover:bg-[#FFA100]"
     },
     {
       title: "Track Skills",
       description: "Monitor your progress",
-      icon: <Target className="h-6 w-6" />,
+      icon: <Target className="h-6 w-6 text-white" />,
       href: "/participant/dashboard/skills",
       color: "bg-[#FF9000] hover:bg-[#FFA100]"
     },
     {
       title: "Practice Coding",
       description: "Improve your skills",
-      icon: <Code className="h-6 w-6" />,
+      icon: <Code className="h-6 w-6 text-white" />,
       href: "/participant/dashboard/quizzes",
       color: "bg-[#FF9000] hover:bg-[#FFA100]"
     }
@@ -300,12 +300,12 @@ export default function ParticipantDashboard() {
                 <div className="w-full max-w-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-2xl p-6 shadow-2xl">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-semibold text-neutral-900 dark:text-white">Welcome! Let's set you up</h3>
-                    <button className="text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-white" onClick={() => setShowOnboarding(false)}>✕</button>
+                    <button className="text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]" onClick={() => setShowOnboarding(false)}>✕</button>
                   </div>
                   <div className="space-y-6">
                     <div>
                       <h4 className="font-medium text-neutral-900 dark:text-white mb-2">Add your skills</h4>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">Select categories first, then pick relevant skills.</p>
+                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000] mb-2">Select categories first, then pick relevant skills.</p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {Object.keys(skillCategories).map((category) => (
                           <button
@@ -330,7 +330,7 @@ export default function ParticipantDashboard() {
                         >
                           <div className="flex items-center gap-2 mb-2">
                             <span className="text-sm font-medium text-neutral-800 dark:text-neutral-200">{activeCategory}</span>
-                            <span className="text-xs text-neutral-500">Pick relevant skills</span>
+                            <span className="text-xs text-[#FF9000]">Pick relevant skills</span>
                           </div>
                           <div className="flex flex-wrap gap-2">
                             {skillCategories[activeCategory].map((skill) => (
@@ -352,7 +352,7 @@ export default function ParticipantDashboard() {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       <div>
-                        <label className="block text-sm text-neutral-600 dark:text-neutral-400 mb-1">GitHub Username</label>
+                        <label className="block text-sm text-[#FF9000] dark:text-[#FAF000] mb-1">GitHub Username</label>
                         <input
                           type="text"
                           value={onboardingLinks.github}
@@ -362,7 +362,7 @@ export default function ParticipantDashboard() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm text-neutral-600 dark:text-neutral-400 mb-1">LinkedIn URL</label>
+                        <label className="block text-sm text-[#FF9000] dark:text-[#FAF000] mb-1">LinkedIn URL</label>
                         <input
                           type="url"
                           value={onboardingLinks.linkedin}
@@ -372,7 +372,7 @@ export default function ParticipantDashboard() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm text-neutral-600 dark:text-neutral-400 mb-1">Twitter URL</label>
+                        <label className="block text-sm text-[#FF9000] dark:text-[#FAF000] mb-1">Twitter URL</label>
                         <input
                           type="url"
                           value={onboardingLinks.twitter}
@@ -401,12 +401,12 @@ export default function ParticipantDashboard() {
                 <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
                   Welcome back, {userName}! 👋
                 </h1>
-                <p className="text-neutral-600 dark:text-neutral-400">
+                <p className="text-[#FF9000] dark:text-[#FAF000]">
                   Ready to build something amazing today?
                 </p>
               </div>
-              <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-                <Activity className="h-4 w-4" />
+              <div className="flex items-center gap-2 text-sm text-[#FF9000] dark:text-[#FAF000]">
+                <Activity className="h-4 w-4 text-[#FFA100]" />
                 <span>7 day streak</span>
               </div>
             </motion.div>
@@ -427,7 +427,7 @@ export default function ParticipantDashboard() {
                     <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                       {dashboardStats.hackathonsWon}
                     </p>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
                       Hackathons Won
                     </p>
                   </div>
@@ -443,7 +443,7 @@ export default function ParticipantDashboard() {
                     <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                       {dashboardStats.totalProjects}
                     </p>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
                       Projects Built
                     </p>
                   </div>
@@ -459,7 +459,7 @@ export default function ParticipantDashboard() {
                     <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                       {dashboardStats.teamCollaborations}
                     </p>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
                       Team Collaborations
                     </p>
                   </div>
@@ -475,7 +475,7 @@ export default function ParticipantDashboard() {
                     <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                       {dashboardStats.totalPoints}
                     </p>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
                       Total Points
                     </p>
                   </div>
@@ -510,11 +510,11 @@ export default function ParticipantDashboard() {
                             <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors">
                               {action.title}
                             </h3>
-                            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                            <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
                               {action.description}
                             </p>
                           </div>
-                          <ArrowRight className="h-4 w-4 text-neutral-400 group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors" />
+                          <ArrowRight className="h-4 w-4 text-[#FF9000] group-hover:text-[#FFA100] dark:group-hover:text-[#FFDD00] transition-colors" />
                         </div>
                       </GlowingCard>
                     </motion.div>
@@ -555,10 +555,10 @@ export default function ParticipantDashboard() {
                           <h4 className="font-medium text-neutral-900 dark:text-white">
                             {activity.title}
                           </h4>
-                          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                          <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
                             {activity.description}
                           </p>
-                          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+                          <p className="text-xs text-[#FF9000] dark:text-neutral-400 mt-1">
                             {activity.date}
                           </p>
                         </div>
@@ -600,21 +600,21 @@ export default function ParticipantDashboard() {
                             {event.category}
                           </span>
                         </div>
-                        <div className="space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
+                        <div className="space-y-1 text-sm text-[#FF9000] dark:text-[#FAF000]">
                           <div className="flex items-center gap-2">
-                            <Calendar className="h-4 w-4" />
+                            <Calendar className="h-4 w-4 text-[#FFA100]" />
                             {event.date}
                           </div>
                           <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4" />
+                            <MapPin className="h-4 w-4 text-[#FFA100]" />
                             {event.location}
                           </div>
                           <div className="flex items-center gap-2">
-                            <Users className="h-4 w-4" />
+                            <Users className="h-4 w-4 text-[#FFA100]" />
                             {event.participants} participants
                           </div>
                           <div className="flex items-center gap-2">
-                            <Trophy className="h-4 w-4" />
+                            <Trophy className="h-4 w-4 text-[#FFA100]" />
                             {event.prize} prize pool
                           </div>
                         </div>
@@ -656,11 +656,11 @@ export default function ParticipantDashboard() {
                             <span className="font-medium text-neutral-900 dark:text-white">
                               {skill.name}
                             </span>
-                            <span className="px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 text-xs rounded-full">
+                            <span className="px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                               {skill.category}
                             </span>
                           </div>
-                          <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
+                          <span className="text-sm font-medium text-[#FF9000] dark:text-[#FAF000]">
                             {skill.level}%
                           </span>
                         </div>
@@ -720,19 +720,19 @@ export default function ParticipantDashboard() {
                                 rel="noopener noreferrer"
                                 className="text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]"
                               >
-                                <ExternalLink className="h-4 w-4" />
+                                <ExternalLink className="h-4 w-4 text-[#FFA100]" />
                               </a>
                             </div>
-                            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
+                            <p className="text-sm text-[#FF9000] dark:text-[#FAF000] mb-2">
                               {repo.description || "No description available"}
                             </p>
-                            <div className="flex items-center gap-4 text-xs text-neutral-500 dark:text-neutral-400">
+                            <div className="flex items-center gap-4 text-xs text-[#FF9000] dark:text-neutral-400">
                               <div className="flex items-center gap-1">
-                                <Star className="h-3 w-3" />
+                                <Star className="h-3 w-3 text-[#FFA100]" />
                                 {repo.stargazers_count}
                               </div>
                               <div className="flex items-center gap-1">
-                                <Github className="h-3 w-3" />
+                                <Github className="h-3 w-3 text-[#FFA100]" />
                                 {repo.forks_count}
                               </div>
                               {repo.language && (
@@ -745,8 +745,8 @@ export default function ParticipantDashboard() {
                         ))
                       ) : (
                         <div className="text-center py-8">
-                          <Github className="h-12 w-12 text-neutral-400 mx-auto mb-4" />
-                          <p className="text-neutral-600 dark:text-neutral-400">
+                          <Github className="h-12 w-12 text-[#FFA100] mx-auto mb-4" />
+                          <p className="text-[#FF9000] dark:text-[#FAF000]">
                             No public repositories found
                           </p>
                         </div>
@@ -754,18 +754,18 @@ export default function ParticipantDashboard() {
                     </div>
                   ) : (
                     <div className="text-center py-8">
-                      <Github className="h-12 w-12 text-neutral-400 mx-auto mb-4" />
+                      <Github className="h-12 w-12 text-[#FFA100] mx-auto mb-4" />
                       <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">
                         Connect GitHub
                       </h3>
-                      <p className="text-neutral-600 dark:text-neutral-400 mb-4">
+                      <p className="text-[#FF9000] dark:text-[#FAF000] mb-4">
                         Add your GitHub username to showcase your projects
                       </p>
                       <Link
                         href="/participant/dashboard/profile"
                         className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm"
                       >
-                        <Github className="h-4 w-4" />
+                        <Github className="h-4 w-4 text-[#FFA100]" />
                         Connect GitHub
                       </Link>
                     </div>
@@ -781,3 +781,7 @@ export default function ParticipantDashboard() {
 }
 
 // Onboarding Modal UI appended to main render
+
+export default function ParticipantDashboardPage() {
+  return <ParticipantDashboard />;
+}

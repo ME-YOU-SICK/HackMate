@@ -183,7 +183,7 @@ function OrganizerEventsInner() {
               <div className="flex items-center justify-between mb-3">
                 <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Events</h2>
                 <button onClick={() => setShowCreate(true)} className="px-2 py-1.5 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100]">
-                  <Plus className="h-4 w-4" />
+                  <Plus className="h-4 w-4 text-[#FFA100]" />
                 </button>
               </div>
               <div className="flex-1 overflow-y-auto scrollbar-hide space-y-3 pr-2">
@@ -199,8 +199,8 @@ function OrganizerEventsInner() {
                     onClick={() => setSelectedId(e.id)}
                   >
                     <div className="mt-2 text-sm text-neutral-600 dark:text-neutral-400 flex items-center gap-3">
-                      <span className="flex items-center gap-1"><Calendar className="h-4 w-4" /> {e.date || 'TBD'}</span>
-                      <span className="flex items-center gap-1"><Users className="h-4 w-4" /> {e.participants}</span>
+                      <span className="flex items-center gap-1"><Calendar className="h-4 w-4 text-[#FFA100]" /> {e.date || 'TBD'}</span>
+                      <span className="flex items-center gap-1"><Users className="h-4 w-4 text-[#FFA100]" /> {e.participants}</span>
                     </div>
                   </GlowingCard>
                 ))}
@@ -214,7 +214,7 @@ function OrganizerEventsInner() {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">Edit Event</h2>
-                      <Edit3 className="h-4 w-4 text-neutral-400" />
+                      <Edit3 className="h-4 w-4 text-[#FFA100]" />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>

@@ -33,7 +33,7 @@ import {
   Search
 } from "lucide-react";
 
-export default function OrganizerDashboard() {
+function OrganizerDashboard() {
   const userRole = "organizer";
   const userName = "Sarah Johnson";
   const userAvatar = undefined;
@@ -74,28 +74,28 @@ export default function OrganizerDashboard() {
     {
       title: "Create Event",
       description: "Launch a new hackathon or workshop",
-      icon: <Plus className="h-5 w-5" />,
+      icon: <Plus className="h-5 w-5 text-white" />,
       href: "/organizer/dashboard/events",
       color: "bg-[#FFA100]"
     },
     {
       title: "Manage Teams",
       description: "Review and organize participant teams",
-      icon: <Users className="h-5 w-5" />,
+      icon: <Users className="h-5 w-5 text-white" />,
       href: "/organizer/dashboard/manager",
       color: "bg-[#FF9000]"
     },
     {
       title: "Find Sponsors",
       description: "Connect with potential sponsors",
-      icon: <Building className="h-5 w-5" />,
+      icon: <Building className="h-5 w-5 text-white" />,
       href: "/organizer/dashboard/sponsorship/discover",
       color: "bg-[#FFA100]"
     },
     {
       title: "Send Announcements",
       description: "Communicate with participants",
-      icon: <Mail className="h-5 w-5" />,
+      icon: <Mail className="h-5 w-5 text-white" />,
       href: "/organizer/dashboard/announcements",
       color: "bg-[#FF9000]"
     }
@@ -179,7 +179,7 @@ export default function OrganizerDashboard() {
                 <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
                   Welcome back, Sarah! 👋
                 </h1>
-                <p className="text-neutral-600 dark:text-neutral-400">
+                <p className="text-[#FF9000] dark:text-[#FAF000]">
                   Here's what's happening with your events today
                 </p>
               </div>
@@ -189,7 +189,7 @@ export default function OrganizerDashboard() {
                     onClick={() => setShowNotifications(!showNotifications)}
                     className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors text-neutral-900 dark:text-white"
                   >
-                    <Bell className="h-4 w-4" />
+                    <Bell className="h-4 w-4 text-[#FFA100]" />
                     <span className="hidden sm:inline">Notifications</span>
                     {mockNotifications.filter(n => n.unread).length > 0 && (
                       <span className="bg-[#FFA100] text-white text-xs rounded-full px-2 py-1 min-w-[20px] h-5 flex items-center justify-center">
@@ -221,10 +221,10 @@ export default function OrganizerDashboard() {
                                 <h4 className="font-medium text-neutral-900 dark:text-white text-sm">
                                   {notification.title}
                                 </h4>
-                                <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
+                                <p className="text-sm text-[#FF9000] dark:text-[#FAF000] mt-1">
                                   {notification.message}
                                 </p>
-                                <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-2">
+                                <p className="text-xs text-[#FF9000] dark:text-[#FAF000] mt-2">
                                   {notification.time}
                                 </p>
                               </div>
@@ -247,7 +247,7 @@ export default function OrganizerDashboard() {
                   )}
                 </div>
                 <Link href="/organizer/dashboard/events" className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
-                  <Plus className="h-4 w-4" />
+                  <Plus className="h-4 w-4 text-[#FFA100]" />
                   <span className="hidden sm:inline">Create Event</span>
                 </Link>
               </div>
@@ -261,7 +261,7 @@ export default function OrganizerDashboard() {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
             >
               <GlowingCard
-                icon={<Calendar className="h-5 w-5" />}
+                icon={<Calendar className="h-5 w-5 text-[#FFA100]" />}
                 title="Total Events"
                 description={`${analytics.totalEvents} organized`}
                 className="h-full"
@@ -273,7 +273,7 @@ export default function OrganizerDashboard() {
               </GlowingCard>
 
               <GlowingCard
-                icon={<Users className="h-5 w-5" />}
+                icon={<Users className="h-5 w-5 text-[#FFA100]" />}
                 title="Total Participants"
                 description={`${analytics.totalParticipants.toLocaleString()}+ reached`}
                 className="h-full"
@@ -285,7 +285,7 @@ export default function OrganizerDashboard() {
               </GlowingCard>
 
               <GlowingCard
-                icon={<DollarSign className="h-5 w-5" />}
+                icon={<DollarSign className="h-5 w-5 text-[#FFA100]" />}
                 title="Total Revenue"
                 description={`$${analytics.totalRevenue.toLocaleString()}`}
                 className="h-full"
@@ -297,7 +297,7 @@ export default function OrganizerDashboard() {
               </GlowingCard>
 
               <GlowingCard
-                icon={<Star className="h-5 w-5" />}
+                icon={<Star className="h-5 w-5 text-[#FFA100]" />}
                 title="Average Rating"
                 description={`${analytics.avgRating}/5.0`}
                 className="h-full"
@@ -335,11 +335,11 @@ export default function OrganizerDashboard() {
                           <h3 className="font-medium text-neutral-900 dark:text-white group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors">
                             {action.title}
                           </h3>
-                          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                          <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
                             {action.description}
                           </p>
                         </div>
-                        <ChevronRight className="h-4 w-4 text-neutral-400 group-hover:text-[#FFA100] transition-colors" />
+                        <ChevronRight className="h-4 w-4 text-[#FFA100] group-hover:text-[#FF9000] transition-colors" />
                       </div>
                     </motion.div>
                   </Link>
@@ -375,12 +375,12 @@ export default function OrganizerDashboard() {
                           <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
                             {event.type}
                           </span>
-                          <span className="text-sm text-neutral-600 dark:text-neutral-400">
+                          <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">
                             {event.participants} participants
                           </span>
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-                          <Calendar className="h-4 w-4" />
+                        <div className="flex items-center gap-2 text-sm text-[#FF9000] dark:text-[#FAF000]">
+                          <Calendar className="h-4 w-4 text-[#FFA100]" />
                           {event.date}
                         </div>
                         <div className="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
@@ -390,10 +390,10 @@ export default function OrganizerDashboard() {
                           ></div>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-xs text-neutral-500 dark:text-neutral-400">
+                          <span className="text-xs text-[#FF9000] dark:text-[#FAF000]">
                             Registration Progress
                           </span>
-                          <span className="text-xs text-neutral-500 dark:text-neutral-400">
+                          <span className="text-xs text-[#FF9000] dark:text-[#FAF000]">
                             {Math.round(event.progress)}%
                           </span>
                         </div>
@@ -428,7 +428,7 @@ export default function OrganizerDashboard() {
                             <h3 className="font-medium text-neutral-900 dark:text-white">
                               {event.name}
                             </h3>
-                            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                            <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
                               {event.date}
                             </p>
                           </div>
@@ -436,7 +436,7 @@ export default function OrganizerDashboard() {
                             <div className="text-sm font-medium text-neutral-900 dark:text-white">
                               {event.participants}
                             </div>
-                            <div className="text-xs text-neutral-500 dark:text-neutral-400">
+                            <div className="text-xs text-[#FF9000] dark:text-[#FAF000]">
                               participants
                             </div>
                           </div>
@@ -460,7 +460,7 @@ export default function OrganizerDashboard() {
                         <p className="text-sm text-neutral-900 dark:text-white">
                           New team formed for TechCrunch Hackathon
                         </p>
-                        <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
                           2 hours ago
                         </p>
                       </div>
@@ -473,7 +473,7 @@ export default function OrganizerDashboard() {
                         <p className="text-sm text-neutral-900 dark:text-white">
                           New sponsor joined Web3 Masterclass
                         </p>
-                        <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
                           4 hours ago
                         </p>
                       </div>
@@ -486,7 +486,7 @@ export default function OrganizerDashboard() {
                         <p className="text-sm text-neutral-900 dark:text-white">
                           Announcement sent to 150 participants
                         </p>
-                        <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
                           6 hours ago
                         </p>
                       </div>
@@ -500,4 +500,8 @@ export default function OrganizerDashboard() {
       </div>
     </div>
   );
+}
+
+export default function OrganizerDashboardPage() {
+  return <OrganizerDashboard />;
 }

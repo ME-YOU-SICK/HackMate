@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
+import { useAuth } from "@/contexts/AuthContext";
 import { 
   LayoutDashboard, 
   User, 
@@ -29,7 +30,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { auth } from "@/lib/auth";
 
 interface DashboardSidebarProps {
   userRole: "participant" | "organizer" | "recruiter" | "sponsor";
@@ -40,10 +40,10 @@ interface DashboardSidebarProps {
 export function DashboardSidebar({ userRole, userName = "User", userAvatar }: DashboardSidebarProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const { logout } = useAuth();
 
-  const handleLogout = () => {
-    auth.logout();
-    router.push("/signin");
+  const handleLogout = async () => {
+    await logout();
   };
 
   // Role-based navigation links
@@ -64,12 +64,12 @@ export function DashboardSidebar({ userRole, userName = "User", userAvatar }: Da
       {
         label: "Dashboard",
         href: basePath,
-        icon: <LayoutDashboard className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        icon: <LayoutDashboard className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
       },
       {
         label: "Profile",
         href: `${basePath}/profile`,
-        icon: <User className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        icon: <User className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
       }
     ];
 
@@ -80,32 +80,32 @@ export function DashboardSidebar({ userRole, userName = "User", userAvatar }: Da
           {
             label: "Events",
             href: `${basePath}/events`,
-            icon: <Calendar className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <Calendar className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Roadmaps",
             href: `${basePath}/roadmaps`,
-            icon: <Map className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <Map className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Skills Tracker",
             href: `${basePath}/skills`,
-            icon: <Target className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <Target className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Teamify",
             href: `${basePath}/teamify`,
-            icon: <Users className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <Users className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Extra Resources",
             href: `${basePath}/resources`,
-            icon: <BookOpen className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <BookOpen className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Quizzes",
             href: `${basePath}/quizzes`,
-            icon: <HelpCircle className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <HelpCircle className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           }
         ];
 
@@ -115,27 +115,27 @@ export function DashboardSidebar({ userRole, userName = "User", userAvatar }: Da
           {
             label: "Events",
             href: `${basePath}/events`,
-            icon: <Calendar className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <Calendar className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Teamify",
             href: `${basePath}/teamify`,
-            icon: <Users className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <Users className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Manager",
             href: `${basePath}/manager`,
-            icon: <Settings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <Settings className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Sponsorship",
             href: `${basePath}/sponsorship`,
-            icon: <DollarSign className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <DollarSign className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Announcements",
             href: `${basePath}/announcements`,
-            icon: <Megaphone className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <Megaphone className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           }
         ];
 
@@ -145,22 +145,22 @@ export function DashboardSidebar({ userRole, userName = "User", userAvatar }: Da
           {
             label: "Postings",
             href: `${basePath}/postings`,
-            icon: <Briefcase className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <Briefcase className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Candidates",
             href: `${basePath}/candidates`,
-            icon: <UserCheck className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <UserCheck className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Interview Kits",
             href: `${basePath}/interviews`,
-            icon: <MessageSquare className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <MessageSquare className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Connections",
             href: `${basePath}/connections`,
-            icon: <Users className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <Users className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           }
         ];
 
@@ -170,17 +170,17 @@ export function DashboardSidebar({ userRole, userName = "User", userAvatar }: Da
           {
             label: "Invitations",
             href: `${basePath}/invitations`,
-            icon: <FileText className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <FileText className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "Analytics",
             href: `${basePath}/analytics`,
-            icon: <BarChart3 className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <BarChart3 className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           },
           {
             label: "WhoToFund Guide",
             href: `${basePath}/whotofund`,
-            icon: <Lightbulb className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+            icon: <Lightbulb className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
           }
         ];
 
@@ -207,7 +207,7 @@ export function DashboardSidebar({ userRole, userName = "User", userAvatar }: Da
             link={{
               label: "Messages",
               href: `${getBasePath()}/messages`,
-              icon: <MessageCircle className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+              icon: <MessageCircle className="text-[#FFA100] dark:text-[#FFDD00] h-5 w-5 flex-shrink-0" />
             }}
           />
           <SidebarLink
@@ -233,7 +233,7 @@ export function DashboardSidebar({ userRole, userName = "User", userAvatar }: Da
           />
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 px-3 py-2 text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
+            className="flex items-center gap-3 px-3 py-2 text-sm text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00] hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
           >
             <LogOut className="h-5 w-5 flex-shrink-0" />
             <span>Logout</span>

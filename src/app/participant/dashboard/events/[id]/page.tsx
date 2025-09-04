@@ -65,7 +65,7 @@ function EventDetailInner() {
                 <p className="text-neutral-600 dark:text-neutral-400">Event details and schedule</p>
               </div>
               <Link href="/participant/dashboard/events" className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
-                <ArrowLeft className="h-4 w-4" />
+                <ArrowLeft className="h-4 w-4 text-[#FFA100]" />
                 Back to Events
               </Link>
             </div>
@@ -74,10 +74,10 @@ function EventDetailInner() {
               <GlowingCard className="h-full">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300"><Calendar className="h-4 w-4" /> {eventData.date}</div>
-                    <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300"><MapPin className="h-4 w-4" /> {eventData.location}</div>
-                    <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300"><Users className="h-4 w-4" /> {eventData.participants} participants</div>
-                    <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300"><Trophy className="h-4 w-4" /> {eventData.prize} prize pool</div>
+                    <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300"><Calendar className="h-4 w-4 text-[#FFA100]" /> {eventData.date}</div>
+                    <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300"><MapPin className="h-4 w-4 text-[#FFA100]" /> {eventData.location}</div>
+                    <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300"><Users className="h-4 w-4 text-[#FFA100]" /> {eventData.participants} participants</div>
+                    <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300"><Trophy className="h-4 w-4 text-[#FFA100]" /> {eventData.prize} prize pool</div>
                   </div>
                   <div>
                     <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">Prizes</h3>

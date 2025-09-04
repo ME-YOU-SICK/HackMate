@@ -223,7 +223,7 @@ export default function CreateTeamPage() {
                   href="/participant/dashboard/teamify"
                   className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                 >
-                  <ArrowLeft className="h-4 w-4" />
+                  <ArrowLeft className="h-4 w-4 text-[#FFA100]" />
                   Back
                 </Link>
               </div>
@@ -238,7 +238,7 @@ export default function CreateTeamPage() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                 >
                   <GlowingCard
-                    icon={<Calendar className="h-4 w-4" />}
+                    icon={<Calendar className="h-4 w-4 text-[#FFA100]" />}
                     title="Select Event"
                     description="Choose the hackathon or event for your team"
                     className="h-full"
@@ -267,7 +267,7 @@ export default function CreateTeamPage() {
                   transition={{ duration: 0.6, delay: 0.15 }}
                 >
                   <GlowingCard
-                    icon={<Users className="h-4 w-4" />}
+                    icon={<Users className="h-4 w-4 text-[#FFA100]" />}
                     title="Team Size"
                     description="How many members do you want in your team?"
                     className="h-full"
@@ -277,7 +277,7 @@ export default function CreateTeamPage() {
                         onClick={() => setTeamSize(Math.max(2, teamSize - 1))}
                         className="p-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors text-neutral-900 dark:text-white"
                       >
-                        <Minus className="h-4 w-4" />
+                        <Minus className="h-4 w-4 text-[#FFA100]" />
                       </button>
                       <span className="text-2xl font-bold text-neutral-900 dark:text-white min-w-[3rem] text-center">
                         {teamSize}
@@ -286,7 +286,7 @@ export default function CreateTeamPage() {
                         onClick={() => setTeamSize(Math.min(8, teamSize + 1))}
                         className="p-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors text-neutral-900 dark:text-white"
                       >
-                        <Plus className="h-4 w-4" />
+                        <Plus className="h-4 w-4 text-[#FFA100]" />
                       </button>
                     </div>
                     <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2">
@@ -302,7 +302,7 @@ export default function CreateTeamPage() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
                   <GlowingCard
-                    icon={<Target className="h-4 w-4" />}
+                    icon={<Target className="h-4 w-4 text-[#FFA100]" />}
                     title="Select Roles"
                     description="Choose the roles you need for your team"
                     className="h-full"
@@ -329,9 +329,9 @@ export default function CreateTeamPage() {
                               </span>
                             </div>
                             {expandedRoles[role] ? (
-                              <ChevronUp className="h-4 w-4 text-neutral-500" />
+                              <ChevronUp className="h-4 w-4 text-[#FFA100]" />
                             ) : (
-                              <ChevronDown className="h-4 w-4 text-neutral-500" />
+                              <ChevronDown className="h-4 w-4 text-[#FFA100]" />
                             )}
                           </button>
                           
@@ -372,7 +372,7 @@ export default function CreateTeamPage() {
                   transition={{ duration: 0.6, delay: 0.25 }}
                 >
                   <GlowingCard
-                    icon={<Lightbulb className="h-4 w-4" />}
+                    icon={<Lightbulb className="h-4 w-4 text-[#FFA100]" />}
                     title="Project Details"
                     description="Optional: Share your project idea and deadline"
                     className="h-full"
@@ -428,7 +428,7 @@ export default function CreateTeamPage() {
                       </>
                     ) : (
                       <>
-                        <Sparkles className="h-5 w-5" />
+                        <Sparkles className="h-5 w-5 text-[#FFA100]" />
                         Teamify - Find My Team
                       </>
                     )}
@@ -456,7 +456,7 @@ export default function CreateTeamPage() {
                   {matchedUsers.map((user) => (
                     <div key={user.id} className="">
                       <GlowingCard
-                        icon={<Users className="h-4 w-4" />}
+                        icon={<Users className="h-4 w-4 text-[#FFA100]" />}
                         title={user.name}
                         description={`${user.role} • ${user.experience} • ${user.rating}★`}
                         className="h-full"

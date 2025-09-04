@@ -31,7 +31,7 @@ export default function PricingPage() {
             className="mb-8"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FF9000]/20 border border-[#FF9000]/30 rounded-full text-[#FAF000] text-sm font-medium mb-6">
-              <Heart className="h-4 w-4" />
+              <Heart className="h-4 w-4 text-[#FFA100]" />
               <span>100% Free Forever</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">

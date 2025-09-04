@@ -132,7 +132,7 @@ const SponsorDashboard = () => {
       case "success": return <Award className="h-4 w-4 text-yellow-600" />;
       case "message": return <MessageSquare className="h-4 w-4 text-[#BABD00]" />;
       case "completion": return <CheckCircle className="h-4 w-4 text-green-600" />;
-      default: return <Bell className="h-4 w-4 text-neutral-600" />;
+      default: return <Bell className="h-4 w-4 text-[#FF9000]" />;
     }
   };
 
@@ -151,28 +151,28 @@ const SponsorDashboard = () => {
     {
       title: "View Invitations",
       description: "Review funding requests",
-      icon: <Mail className="h-5 w-5" />,
+      icon: <Mail className="h-5 w-5 text-white" />,
       href: "/sponsor/dashboard/invitations",
       color: "bg-[#FFA100]"
     },
     {
       title: "Analytics",
       description: "Track performance",
-      icon: <BarChart3 className="h-5 w-5" />,
+      icon: <BarChart3 className="h-5 w-5 text-white" />,
       href: "/sponsor/dashboard/analytics",
       color: "bg-[#FF9000]"
     },
     {
       title: "Profile",
       description: "Manage company info",
-      icon: <User className="h-5 w-5" />,
+      icon: <User className="h-5 w-5 text-white" />,
       href: "/sponsor/dashboard/profile",
       color: "bg-[#FFA100]"
     },
     {
       title: "Messages",
       description: "Chat with organizers",
-      icon: <MessageSquare className="h-5 w-5" />,
+      icon: <MessageSquare className="h-5 w-5 text-white" />,
       href: "/sponsor/dashboard/messages",
       color: "bg-[#FF9000]"
     }
@@ -197,10 +197,10 @@ const SponsorDashboard = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-neutral-900 dark:text-white flex items-center gap-2">
-                <LayoutDashboard className="h-6 w-6 text-[#FF9000]" />
+                <LayoutDashboard className="h-6 w-6 text-[#FFA100]" />
                 Dashboard
               </h1>
-              <p className="text-neutral-600 dark:text-neutral-400 mt-1">
+              <p className="text-[#FF9000] dark:text-neutral-400 mt-1">
                 Welcome back, {userName}
               </p>
             </div>
@@ -208,9 +208,9 @@ const SponsorDashboard = () => {
               <div className="relative" ref={notificationsRef}>
                 <button
                   onClick={() => setShowNotifications(!showNotifications)}
-                  className="p-2 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors relative"
+                  className="p-2 bg-neutral-100 dark:bg-neutral-800 text-[#FF9000] dark:text-neutral-400 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors relative"
                 >
-                  <Bell className="h-5 w-5" />
+                  <Bell className="h-5 w-5 text-[#FFA100]" />
                   {unreadCount > 0 && (
                     <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
                       {unreadCount}
@@ -245,8 +245,8 @@ const SponsorDashboard = () => {
                     </div>
                     <div className="max-h-64 overflow-y-auto">
                       {notifications.length === 0 ? (
-                        <div className="p-4 text-center text-neutral-500 dark:text-neutral-400">
-                          <Bell className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                        <div className="p-4 text-center text-[#FF9000] dark:text-[#FAF000]">
+                          <Bell className="h-8 w-8 mx-auto mb-2 opacity-50 text-[#FFA100]" />
                           <p className="text-sm">No notifications</p>
                         </div>
                       ) : (
@@ -271,10 +271,10 @@ const SponsorDashboard = () => {
                                     }`}>
                                       {notification.title}
                                     </h4>
-                                    <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1 line-clamp-2">
+                                    <p className="text-xs text-[#FF9000] dark:text-neutral-400 mt-1 line-clamp-2">
                                       {notification.message}
                                     </p>
-                                    <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
+                                    <p className="text-xs text-[#FF9000] dark:text-[#FF9000] mt-1">
                                       {notification.time}
                                     </p>
                                   </div>
@@ -286,7 +286,7 @@ const SponsorDashboard = () => {
                                       onClick={() => clearNotification(notification.id)}
                                       className="p-1 hover:bg-neutral-200 dark:hover:bg-neutral-600 rounded opacity-0 group-hover:opacity-100 transition-opacity"
                                     >
-                                      <X className="h-3 w-3 text-neutral-500" />
+                                      <X className="h-3 w-3 text-[#FF9000]" />
                                     </button>
                                   </div>
                                 </div>
@@ -328,7 +328,7 @@ const SponsorDashboard = () => {
             {/* Analytics Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <GlowingCard
-                icon={<DollarSign className="h-5 w-5" />}
+                icon={<DollarSign className="h-5 w-5 text-[#FFA100]" />}
                 title="Total Invested"
                 description="All-time sponsorship investments"
               >
@@ -342,7 +342,7 @@ const SponsorDashboard = () => {
               </GlowingCard>
 
               <GlowingCard
-                icon={<Calendar className="h-5 w-5" />}
+                icon={<Calendar className="h-5 w-5 text-[#FFA100]" />}
                 title="Active Sponsorships"
                 description="Currently sponsored events"
               >
@@ -356,7 +356,7 @@ const SponsorDashboard = () => {
               </GlowingCard>
 
               <GlowingCard
-                icon={<Target className="h-5 w-5" />}
+                icon={<Target className="h-5 w-5 text-[#FFA100]" />}
                 title="Success Rate"
                 description="Successful partnerships"
               >
@@ -370,7 +370,7 @@ const SponsorDashboard = () => {
               </GlowingCard>
 
               <GlowingCard
-                icon={<TrendingUp className="h-5 w-5" />}
+                icon={<TrendingUp className="h-5 w-5 text-[#FFA100]" />}
                 title="Average ROI"
                 description="Return on investment"
               >
@@ -386,7 +386,7 @@ const SponsorDashboard = () => {
 
             {/* Quick Actions */}
             <GlowingCard
-              icon={<Plus className="h-5 w-5" />}
+              icon={<Plus className="h-5 w-5 text-[#FFA100]" />}
               title="Quick Actions"
               description="Access your main features"
             >
@@ -405,7 +405,7 @@ const SponsorDashboard = () => {
                         <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors">
                           {action.title}
                         </h3>
-                        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                        <p className="text-sm text-[#FF9000] dark:text-neutral-400">
                           {action.description}
                         </p>
                       </div>
@@ -418,7 +418,7 @@ const SponsorDashboard = () => {
             {/* Recent Activity & Upcoming Events */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <GlowingCard
-                icon={<Clock className="h-5 w-5" />}
+                icon={<Clock className="h-5 w-5 text-[#FFA100]" />}
                 title="Recent Activity"
                 description="Latest updates and actions"
               >
@@ -431,10 +431,10 @@ const SponsorDashboard = () => {
                       <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                         Accepted TechCrunch Disrupt 2024
                       </h4>
-                      <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                      <p className="text-xs text-[#FF9000] dark:text-neutral-400">
                         Funding request accepted for $25,000
                       </p>
-                      <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
+                      <p className="text-xs text-[#FF9000] dark:text-[#FF9000] mt-1">
                         2 hours ago
                       </p>
                     </div>
@@ -448,10 +448,10 @@ const SponsorDashboard = () => {
                       <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                         New message from AI Foundation
                       </h4>
-                      <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                      <p className="text-xs text-[#FF9000] dark:text-neutral-400">
                         Discussion about AI Innovation Summit
                       </p>
-                      <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
+                      <p className="text-xs text-[#FF9000] dark:text-[#FF9000] mt-1">
                         4 hours ago
                       </p>
                     </div>
@@ -465,10 +465,10 @@ const SponsorDashboard = () => {
                       <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                         New funding request
                       </h4>
-                      <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                      <p className="text-xs text-[#FF9000] dark:text-neutral-400">
                         MIT Innovation Lab - MIT Hackathon 2024
                       </p>
-                      <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
+                      <p className="text-xs text-[#FF9000] dark:text-[#FF9000] mt-1">
                         1 day ago
                       </p>
                     </div>
@@ -485,7 +485,7 @@ const SponsorDashboard = () => {
               </GlowingCard>
 
               <GlowingCard
-                icon={<Calendar className="h-5 w-5" />}
+                icon={<Calendar className="h-5 w-5 text-[#FFA100]" />}
                 title="Upcoming Events"
                 description="Your confirmed and pending sponsorships"
               >
@@ -495,10 +495,10 @@ const SponsorDashboard = () => {
                       <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                         AI Innovation Summit
                       </h4>
-                      <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                      <p className="text-xs text-[#FF9000] dark:text-neutral-400">
                         by AI Foundation
                       </p>
-                      <p className="text-xs text-neutral-500 dark:text-neutral-500">
+                      <p className="text-xs text-[#FF9000] dark:text-[#FF9000]">
                         Aug 20, 2024
                       </p>
                     </div>
@@ -517,10 +517,10 @@ const SponsorDashboard = () => {
                       <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                         Startup Weekend Global
                       </h4>
-                      <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                      <p className="text-xs text-[#FF9000] dark:text-neutral-400">
                         by Techstars
                       </p>
-                      <p className="text-xs text-neutral-500 dark:text-neutral-500">
+                      <p className="text-xs text-[#FF9000] dark:text-[#FF9000]">
                         Jun 15, 2024
                       </p>
                     </div>
@@ -539,10 +539,10 @@ const SponsorDashboard = () => {
                       <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                         Web3 Innovation Summit
                       </h4>
-                      <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                      <p className="text-xs text-[#FF9000] dark:text-neutral-400">
                         by Blockchain Alliance
                       </p>
-                      <p className="text-xs text-neutral-500 dark:text-neutral-500">
+                      <p className="text-xs text-[#FF9000] dark:text-[#FF9000]">
                         Apr 25, 2024
                       </p>
                     </div>
@@ -569,7 +569,7 @@ const SponsorDashboard = () => {
 
             {/* Top Performing Organizers */}
             <GlowingCard
-              icon={<Award className="h-5 w-5" />}
+              icon={<Award className="h-5 w-5 text-[#FFA100]" />}
               title="Top Performing Organizers"
               description="Your most successful partnerships"
             >
@@ -583,7 +583,7 @@ const SponsorDashboard = () => {
                       <h4 className="font-semibold text-neutral-900 dark:text-white">
                         TechCrunch
                       </h4>
-                      <div className="flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
+                      <div className="flex items-center gap-4 text-sm text-[#FF9000] dark:text-neutral-400">
                         <span>3 events</span>
                         <span className="flex items-center gap-1">
                           <Star className="h-3 w-3 text-yellow-500 fill-current" />
@@ -611,7 +611,7 @@ const SponsorDashboard = () => {
                       <h4 className="font-semibold text-neutral-900 dark:text-white">
                         MIT Innovation Lab
                       </h4>
-                      <div className="flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
+                      <div className="flex items-center gap-4 text-sm text-[#FF9000] dark:text-neutral-400">
                         <span>2 events</span>
                         <span className="flex items-center gap-1">
                           <Star className="h-3 w-3 text-yellow-500 fill-current" />
@@ -639,7 +639,7 @@ const SponsorDashboard = () => {
                       <h4 className="font-semibold text-neutral-900 dark:text-white">
                         AI Foundation
                       </h4>
-                      <div className="flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
+                      <div className="flex items-center gap-4 text-sm text-[#FF9000] dark:text-neutral-400">
                         <span>2 events</span>
                         <span className="flex items-center gap-1">
                           <Star className="h-3 w-3 text-yellow-500 fill-current" />
@@ -674,4 +674,6 @@ const SponsorDashboard = () => {
   );
 };
 
-export default SponsorDashboard;
+export default function SponsorDashboardPage() {
+  return <SponsorDashboard />;
+}

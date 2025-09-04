@@ -55,7 +55,7 @@ export default function EventsPage() {
       prize: "$10,000",
       status: "upcoming",
       category: "AI/ML",
-      icon: <Brain className="h-4 w-4" />
+      icon: <Brain className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 2,
@@ -67,7 +67,7 @@ export default function EventsPage() {
       prize: "$15,000",
       status: "upcoming",
       category: "Blockchain",
-      icon: <Shield className="h-4 w-4" />
+      icon: <Shield className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 3,
@@ -79,7 +79,7 @@ export default function EventsPage() {
       prize: "$8,000",
       status: "upcoming",
       category: "Mobile",
-      icon: <Smartphone className="h-4 w-4" />
+      icon: <Smartphone className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 4,
@@ -91,7 +91,7 @@ export default function EventsPage() {
       prize: "$12,000",
       status: "upcoming",
       category: "Cloud Computing",
-      icon: <Cloud className="h-4 w-4" />
+      icon: <Cloud className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 5,
@@ -103,7 +103,7 @@ export default function EventsPage() {
       prize: "$6,000",
       status: "upcoming",
       category: "Game Development",
-      icon: <Gamepad2 className="h-4 w-4" />
+      icon: <Gamepad2 className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 6,
@@ -115,7 +115,7 @@ export default function EventsPage() {
       prize: "$7,500",
       status: "upcoming",
       category: "UI/UX",
-      icon: <Palette className="h-4 w-4" />
+      icon: <Palette className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 7,
@@ -127,7 +127,7 @@ export default function EventsPage() {
       prize: "$9,000",
       status: "upcoming",
       category: "Data Science",
-      icon: <Database className="h-4 w-4" />
+      icon: <Database className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 8,
@@ -139,7 +139,7 @@ export default function EventsPage() {
       prize: "$11,000",
       status: "upcoming",
       category: "Cybersecurity",
-      icon: <Shield className="h-4 w-4" />
+      icon: <Shield className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 9,
@@ -151,7 +151,7 @@ export default function EventsPage() {
       prize: "$8,500",
       status: "upcoming",
       category: "Web Development",
-      icon: <Code className="h-4 w-4" />
+      icon: <Code className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 10,
@@ -163,7 +163,7 @@ export default function EventsPage() {
       prize: "$5,500",
       status: "upcoming",
       category: "IoT",
-      icon: <Zap className="h-4 w-4" />
+      icon: <Zap className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 11,
@@ -175,7 +175,7 @@ export default function EventsPage() {
       prize: "$13,000",
       status: "upcoming",
       category: "FinTech",
-      icon: <Globe className="h-4 w-4" />
+      icon: <Globe className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 12,
@@ -187,7 +187,7 @@ export default function EventsPage() {
       prize: "$10,500",
       status: "upcoming",
       category: "HealthTech",
-      icon: <Heart className="h-4 w-4" />
+      icon: <Heart className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 13,
@@ -199,7 +199,7 @@ export default function EventsPage() {
       prize: "$7,000",
       status: "upcoming",
       category: "EdTech",
-      icon: <Globe className="h-4 w-4" />
+      icon: <Globe className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 14,
@@ -247,7 +247,7 @@ export default function EventsPage() {
       prize: "$8,000",
       status: "upcoming",
       category: "AR/VR",
-      icon: <Gamepad2 className="h-4 w-4" />
+      icon: <Gamepad2 className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 18,
@@ -271,7 +271,7 @@ export default function EventsPage() {
       prize: "$5,000",
       status: "upcoming",
       category: "Open Source",
-      icon: <Code className="h-4 w-4" />
+      icon: <Code className="h-4 w-4 text-[#FFA100]" />
     },
     {
       id: 20,
@@ -283,7 +283,7 @@ export default function EventsPage() {
       prize: "$11,000",
       status: "upcoming",
       category: "Green Tech",
-      icon: <Globe className="h-4 w-4" />
+      icon: <Globe className="h-4 w-4 text-[#FFA100]" />
     }
   ];
 
@@ -392,10 +392,10 @@ export default function EventsPage() {
                     onClick={() => setShowFilters(!showFilters)}
                     className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors text-neutral-900 dark:text-white"
                   >
-                    <Filter className="h-4 w-4" />
-                    Filter
+                  <Filter className="h-4 w-4" />
+                  Filter
                     <ChevronDown className={`h-4 w-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
-                  </button>
+                </button>
                   
                   {showFilters && (
                     <div className="absolute right-0 top-full mt-2 w-64 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 rounded-lg shadow-lg z-10 p-4">
@@ -529,7 +529,7 @@ export default function EventsPage() {
                             className="px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors text-sm font-medium"
                           >
                             {joinedIds.includes(event.id) ? 'Open Event' : 'Join Event'}
-                          </button>
+                        </button>
                         </div>
                       </div>
                     </div>

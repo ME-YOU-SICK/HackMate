@@ -267,11 +267,11 @@ export default function ParticipantMessagesPage() {
               </div>
               <div className="flex gap-3">
                 <button onClick={() => setShowSearch(s => !s)} className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
-                  <Search className="h-4 w-4" />
+                  <Search className="h-4 w-4 text-[#FFA100]" />
                   Search
                 </button>
                 <button onClick={() => setShowNewChat(true)} className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
-                  <Plus className="h-4 w-4" />
+                  <Plus className="h-4 w-4 text-[#FFA100]" />
                   New Chat
                 </button>
               </div>
@@ -301,7 +301,7 @@ export default function ParticipantMessagesPage() {
                   {filteredConversations.map((conversation) => (
                     <div key={conversation.id} className="">
                       <GlowingCard
-                        icon={<MessageCircle className="h-4 w-4" />}
+                        icon={<MessageCircle className="h-4 w-4 text-[#FFA100]" />}
                         title={conversation.name}
                         description={conversation.lastMessage}
                         className={`cursor-pointer transition-all duration-200 hover:scale-[1.02] ${
@@ -366,7 +366,7 @@ export default function ParticipantMessagesPage() {
                       </div>
                     </div>
                     <button className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">
-                      <MoreVertical className="h-4 w-4" />
+                      <MoreVertical className="h-4 w-4 text-[#FFA100]" />
                     </button>
                   </div>
 
@@ -404,7 +404,7 @@ export default function ParticipantMessagesPage() {
                   <div className="p-4 border-t border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900">
                     <div className="flex items-center gap-2">
                       <button className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">
-                        <Paperclip className="h-4 w-4" />
+                        <Paperclip className="h-4 w-4 text-[#FFA100]" />
                       </button>
                       <div className="flex-1 relative">
                         <input
@@ -417,13 +417,13 @@ export default function ParticipantMessagesPage() {
                         />
                       </div>
                       <button className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">
-                        <Smile className="h-4 w-4" />
+                        <Smile className="h-4 w-4 text-[#FFA100]" />
                       </button>
                       <button 
                         onClick={handleSendMessage}
                         className="p-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                       >
-                        <Send className="h-4 w-4" />
+                        <Send className="h-4 w-4 text-white" />
                       </button>
                     </div>
                   </div>

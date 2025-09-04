@@ -117,14 +117,14 @@ export default function TeamifyPage() {
               </div>
               <div className="flex gap-3">
                 <button className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors">
-                  <Filter className="h-4 w-4" />
+                  <Filter className="h-4 w-4 text-[#FFA100]" />
                   Filter
                 </button>
                 <Link 
                   href="/participant/dashboard/teamify/create-team"
                   className="flex items-center gap-2 px-4 py-2 bg-[#FF9000] text-white rounded-lg hover:bg-[#FFA100] transition-colors"
                 >
-                  <Plus className="h-4 w-4" />
+                  <Plus className="h-4 w-4 text-[#FFA100]" />
                   Create Team
                 </Link>
               </div>
@@ -158,18 +158,18 @@ export default function TeamifyPage() {
                 {teams.map((team) => (
                   <div key={team.id} className="">
                     <GlowingCard
-                      icon={<Users className="h-4 w-4" />}
+                      icon={<Users className="h-4 w-4 text-[#FFA100]" />}
                       title={team.name}
                       description={team.description}
                       className="h-full"
                     >
                       <div className="mt-4 space-y-3">
                         <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-                          <Users className="h-4 w-4" />
+                          <Users className="h-4 w-4 text-[#FFA100]" />
                           {team.members}/{team.maxMembers} members
                         </div>
                         <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-                          <Calendar className="h-4 w-4" />
+                          <Calendar className="h-4 w-4 text-[#FFA100]" />
                           {team.event}
                         </div>
                         <div className="space-y-2">

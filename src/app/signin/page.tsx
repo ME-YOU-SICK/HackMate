@@ -8,10 +8,12 @@ import { BackgroundPaths } from "@/components/ui/background-paths"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { auth, type UserRole } from "@/lib/auth"
+import { type UserRole } from "@/lib/auth"
+import { useAuth } from "@/contexts/AuthContext"
 
 export default function SigninPage() {
   const router = useRouter()
+  const { signin } = useAuth()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,10 +27,32 @@ export default function SigninPage() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    auth.login({ email: formData.email, role: formData.role })
-    router.push(`/${formData.role}/dashboard`)
+    setIsLoading(true)
+    setError("")
+
+    try {
+      // Use database authentication
+      const result = await signin({
+        email: formData.email,
+        password: formData.password,
+        role: formData.role,
+      })
+
+      if (result.success) {
+        router.push(`/${formData.role}/dashboard`)
+      } else {
+        setError(result.error || "Sign in failed. Please check your credentials.")
+      }
+    } catch (error) {
+      setError("Network error. Please check your connection and try again.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -108,11 +132,19 @@ export default function SigninPage() {
               </div>
             </div>
 
+            {/* Error Display */}
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg text-sm">
+                {error}
+              </div>
+            )}
+
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-[#FFA100] to-[#FFA100] hover:from-[#FF9000] hover:to-[#FFDD00] text-white py-3 text-lg font-semibold rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+              disabled={isLoading}
+              className="w-full bg-gradient-to-r from-[#FFA100] to-[#FFA100] hover:from-[#FF9000] hover:to-[#FFDD00] text-white py-3 text-lg font-semibold rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
-              Sign In
+              {isLoading ? "Signing In..." : "Sign In"}
             </Button>
           </form>
 

@@ -4,7 +4,8 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { auth, type UserRole } from "@/lib/auth"
+import { type UserRole } from "@/lib/auth"
+import { useAuth } from "@/contexts/AuthContext"
 import { BackgroundPaths } from "@/components/ui/background-paths"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -12,6 +13,7 @@ import { Label } from "@/components/ui/label"
 
 export default function SignupPage() {
   const router = useRouter()
+  const { signup } = useAuth()
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -28,29 +30,53 @@ export default function SignupPage() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsLoading(true)
+    setError("")
     
     // Basic validation
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!")
+      setError("Passwords do not match!")
+      setIsLoading(false)
       return
     }
 
-    // Mock auth: save user and redirect to role dashboard
-    auth.login({
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      role: formData.role as UserRole,
-    })
-    // Trigger onboarding for participant accounts
-    if (formData.role === "participant") {
-      try {
-        localStorage.setItem("onboarding_pending", "participant");
-      } catch {}
+    if (formData.password.length < 8) {
+      setError("Password must be at least 8 characters long")
+      setIsLoading(false)
+      return
     }
-    router.push(`/${formData.role}/dashboard`)
+
+    try {
+      // Use database authentication
+      const result = await signup({
+        email: formData.email,
+        password: formData.password,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        role: formData.role as UserRole,
+      })
+
+      if (result.success) {
+        // Trigger onboarding for participant accounts
+        if (formData.role === "participant") {
+          try {
+            localStorage.setItem("onboarding_pending", "participant");
+          } catch {}
+        }
+        router.push(`/${formData.role}/dashboard`)
+      } else {
+        setError(result.error || "Signup failed. Please try again.")
+      }
+    } catch (error) {
+      setError("Network error. Please check your connection and try again.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -200,12 +226,20 @@ export default function SignupPage() {
               </div>
             </div>
 
+            {/* Error Display */}
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-lg text-sm">
+                {error}
+              </div>
+            )}
+
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-[#FFA100] to-[#FFA100] hover:from-[#FF9000] hover:to-[#FFDD00] text-white py-3 text-lg font-semibold rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+              disabled={isLoading}
+              className="w-full bg-gradient-to-r from-[#FFA100] to-[#FFA100] hover:from-[#FF9000] hover:to-[#FFDD00] text-white py-3 text-lg font-semibold rounded-xl transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
-              Create Account
+              {isLoading ? "Creating Account..." : "Create Account"}
             </Button>
           </form>
 

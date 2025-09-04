@@ -57,10 +57,10 @@ function CommunityContent() {
   }, [searchParams]);
 
   const communityStats = [
-    { label: "Active Members", value: "25,000+", icon: <Users className="h-5 w-5" /> },
-    { label: "Discussions", value: "1,200+", icon: <MessageCircle className="h-5 w-5" /> },
-    { label: "Events", value: "150+", icon: <Calendar className="h-5 w-5" /> },
-    { label: "Projects", value: "3,500+", icon: <Code className="h-5 w-5" /> }
+    { label: "Active Members", value: "25,000+", icon: <Users className="h-5 w-5 text-[#FFA100]" /> },
+    { label: "Discussions", value: "1,200+", icon: <MessageCircle className="h-5 w-5 text-[#FFA100]" /> },
+    { label: "Events", value: "150+", icon: <Calendar className="h-5 w-5 text-[#FFA100]" /> },
+    { label: "Projects", value: "3,500+", icon: <Code className="h-5 w-5 text-[#FFA100]" /> }
   ];
 
   const [discussions, setDiscussions] = useState([
@@ -302,7 +302,7 @@ function CommunityContent() {
             className="text-center mb-16"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FF9000]/20 to-[#FFA100]/20 border border-[#FF9000]/30 rounded-full text-[#FAF000] text-sm font-medium mb-6">
-              <Users className="h-4 w-4" />
+              <Users className="h-4 w-4 text-[#FFA100]" />
               <span>Community</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
@@ -342,10 +342,10 @@ function CommunityContent() {
           >
             <div className="flex flex-wrap gap-2 p-1 bg-white/5 border border-white/10 rounded-xl">
               {[
-                { id: "discussions", label: "Discussions", icon: <MessageCircle className="h-4 w-4" /> },
-                { id: "events", label: "Events", icon: <Calendar className="h-4 w-4" /> },
-                { id: "projects", label: "Projects", icon: <Code className="h-4 w-4" /> },
-                { id: "leaders", label: "Leaders", icon: <Trophy className="h-4 w-4" /> }
+                { id: "discussions", label: "Discussions", icon: <MessageCircle className="h-4 w-4 text-[#FFA100]" /> },
+                { id: "events", label: "Events", icon: <Calendar className="h-4 w-4 text-[#FFA100]" /> },
+                { id: "projects", label: "Projects", icon: <Code className="h-4 w-4 text-[#FFA100]" /> },
+                { id: "leaders", label: "Leaders", icon: <Trophy className="h-4 w-4 text-[#FFA100]" /> }
               ].map((tab) => (
                 <button
                   key={tab.id}
