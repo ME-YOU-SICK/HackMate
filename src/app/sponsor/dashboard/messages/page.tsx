@@ -21,8 +21,10 @@ import {
   Users,
   Building,
   Award,
-  DollarSign
+  DollarSign,
+  Mail
 } from "lucide-react";
+import Link from "next/link";
 
 export default function SponsorMessagesPage() {
   const userRole = "sponsor";
@@ -202,10 +204,13 @@ export default function SponsorMessagesPage() {
                   <Plus className="h-4 w-4" />
                   New Chat
                 </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                  <DollarSign className="h-4 w-4" />
-                  Sponsorship Inquiry
-                </button>
+                <Link
+                  href="/sponsor/dashboard/messages/inquiries"
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  <Mail className="h-4 w-4" />
+                  Sponsorship Inquiries
+                </Link>
               </div>
             </motion.div>
 

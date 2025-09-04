@@ -179,7 +179,7 @@ export function DashboardSidebar({ userRole, userName = "User", userAvatar }: Da
           },
           {
             label: "WhoToFund Guide",
-            href: `${basePath}/guide`,
+            href: `${basePath}/whotofund`,
             icon: <Lightbulb className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
           }
         ];
