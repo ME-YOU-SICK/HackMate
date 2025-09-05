@@ -6,9 +6,6 @@
   NODE_VERSION = "18"
   NEXT_TELEMETRY_DISABLED = "1"
 
-# For Next.js on Netlify, we need to handle API routes differently
-# Since we're using Next.js API routes, we need to ensure they work properly
-
 [[headers]]
   for = "/*"
   [headers.values]
