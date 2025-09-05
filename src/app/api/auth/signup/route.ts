@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { mockUserStorage } from '@/lib/mock-users';
 
 // Signup validation schema
 const signupSchema = z.object({
@@ -28,25 +29,33 @@ export async function POST(request: NextRequest) {
     // Validate input data
     const validatedData = signupSchema.parse(body);
 
-    // Generate new user ID
-    const userId = Date.now().toString();
-    
-    // Create user object
-    const user = {
-      id: userId,
+    // Check if email already exists
+    const existingUser = mockUserStorage.findByEmail(validatedData.email);
+    if (existingUser) {
+      return NextResponse.json(
+        { error: 'Email already exists' },
+        { status: 409 }
+      );
+    }
+
+    // Create new user
+    const user = mockUserStorage.create({
       email: validatedData.email,
+      password: validatedData.password,
       firstName: validatedData.firstName,
       lastName: validatedData.lastName,
       role: validatedData.role,
-    };
+    });
 
     // Generate token
-    const token = generateToken(userId);
+    const token = generateToken(user.id);
 
-    // Return user data and token
+    // Return user data and token (without password)
+    const { password, ...userWithoutPassword } = user;
+    
     return NextResponse.json({
       success: true,
-      user,
+      user: userWithoutPassword,
       token,
       message: 'Account created successfully'
     }, { status: 201 });

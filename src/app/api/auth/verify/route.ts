@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { mockUserStorage } from '@/lib/mock-users';
 
 // Verify token API endpoint
 export async function GET(request: NextRequest) {
@@ -26,39 +27,8 @@ export async function GET(request: NextRequest) {
         );
       }
 
-      // For demo purposes, return a mock user based on userId
-      const mockUsers = {
-        '1': {
-          id: '1',
-          email: 'participant@demo.com',
-          firstName: 'John',
-          lastName: 'Doe',
-          role: 'participant',
-        },
-        '2': {
-          id: '2',
-          email: 'organizer@demo.com',
-          firstName: 'Jane',
-          lastName: 'Smith',
-          role: 'organizer',
-        },
-        '3': {
-          id: '3',
-          email: 'recruiter@demo.com',
-          firstName: 'Mike',
-          lastName: 'Johnson',
-          role: 'recruiter',
-        },
-        '4': {
-          id: '4',
-          email: 'sponsor@demo.com',
-          firstName: 'Sarah',
-          lastName: 'Wilson',
-          role: 'sponsor',
-        },
-      };
-
-      const user = mockUsers[payload.userId as keyof typeof mockUsers];
+      // Find user by ID
+      const user = mockUserStorage.findById(payload.userId);
       
       if (!user) {
         return NextResponse.json(
@@ -67,9 +37,12 @@ export async function GET(request: NextRequest) {
         );
       }
 
+      // Return user data (without password)
+      const { password, ...userWithoutPassword } = user;
+
       return NextResponse.json({
         success: true,
-        user,
+        user: userWithoutPassword,
         message: 'Token is valid'
       });
     } catch (decodeError) {

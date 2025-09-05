@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { mockUserStorage } from '@/lib/mock-users';
 
 // Signin validation schema
 const signinSchema = z.object({
@@ -7,42 +8,6 @@ const signinSchema = z.object({
   password: z.string().min(1, 'Password is required'),
   role: z.enum(['participant', 'organizer', 'recruiter', 'sponsor']),
 });
-
-// Mock users for authentication
-const mockUsers = [
-  {
-    id: '1',
-    email: 'participant@demo.com',
-    password: 'password123',
-    firstName: 'John',
-    lastName: 'Doe',
-    role: 'participant' as const,
-  },
-  {
-    id: '2',
-    email: 'organizer@demo.com',
-    password: 'password123',
-    firstName: 'Jane',
-    lastName: 'Smith',
-    role: 'organizer' as const,
-  },
-  {
-    id: '3',
-    email: 'recruiter@demo.com',
-    password: 'password123',
-    firstName: 'Mike',
-    lastName: 'Johnson',
-    role: 'recruiter' as const,
-  },
-  {
-    id: '4',
-    email: 'sponsor@demo.com',
-    password: 'password123',
-    firstName: 'Sarah',
-    lastName: 'Wilson',
-    role: 'sponsor' as const,
-  },
-];
 
 // Simple JWT-like token generation (for demo purposes)
 function generateToken(userId: string): string {
@@ -62,10 +27,8 @@ export async function POST(request: NextRequest) {
     // Validate input data
     const validatedData = signinSchema.parse(body);
 
-    // Find user in mock data
-    const user = mockUsers.find(
-      u => u.email === validatedData.email && u.password === validatedData.password
-    );
+    // Find user in mock storage
+    const user = mockUserStorage.findByCredentials(validatedData.email, validatedData.password);
 
     if (!user) {
       return NextResponse.json(
