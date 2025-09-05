@@ -2,12 +2,13 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/20 backdrop-blur-md border-b border-neutral-200 dark:border-white/10">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -15,32 +16,33 @@ export function Navigation() {
             <div className="w-8 h-8 bg-gradient-to-br from-[#FAF000] to-[#FF9000] rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">H</span>
             </div>
-            <span className="text-white font-semibold text-xl">HackMate</span>
+            <span className="text-black dark:text-white font-semibold text-xl">HackMate</span>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/#features" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+            <Link href="/#features" className="text-neutral-600 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors text-sm font-medium">
               Features
             </Link>
-            <Link href="/community?tab=events" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+            <Link href="/community?tab=events" className="text-neutral-600 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors text-sm font-medium">
               Events
             </Link>
-            <Link href="/pricing" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+            <Link href="/pricing" className="text-neutral-600 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors text-sm font-medium">
               Pricing
             </Link>
-            <Link href="/partnerships" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+            <Link href="/partnerships" className="text-neutral-600 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors text-sm font-medium">
               Partnerships
             </Link>
-            <Link href="/contact" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+            <Link href="/contact" className="text-neutral-600 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors text-sm font-medium">
               Contact
             </Link>
           </div>
 
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             <Link href="/signin">
-              <button className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+              <button className="text-neutral-600 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors text-sm font-medium">
                 Sign In
               </button>
             </Link>
@@ -55,7 +57,7 @@ export function Navigation() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white hover:text-white/80 transition-colors"
+              className="text-black dark:text-white hover:text-neutral-600 dark:hover:text-white/80 transition-colors"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMenuOpen ? (
@@ -70,26 +72,27 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-white/10 py-4">
+          <div className="md:hidden border-t border-neutral-200 dark:border-white/10 py-4">
             <div className="flex flex-col space-y-4">
-              <Link href="/#features" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+              <Link href="/#features" className="text-neutral-600 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors text-sm font-medium">
                 Features
               </Link>
-              <Link href="/community?tab=events" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+              <Link href="/community?tab=events" className="text-neutral-600 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors text-sm font-medium">
                 Events
               </Link>
-              <Link href="/pricing" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+              <Link href="/pricing" className="text-neutral-600 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors text-sm font-medium">
                 Pricing
               </Link>
-              <Link href="/partnerships" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+              <Link href="/partnerships" className="text-neutral-600 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors text-sm font-medium">
                 Partnerships
               </Link>
-              <Link href="/contact" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+              <Link href="/contact" className="text-neutral-600 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors text-sm font-medium">
                 Contact
               </Link>
-              <div className="flex flex-col space-y-2 pt-4 border-t border-white/10">
+              <div className="flex flex-col space-y-2 pt-4 border-t border-neutral-200 dark:border-white/10">
+                <ThemeToggle />
                 <Link href="/signin">
-                  <button className="text-white/80 hover:text-white transition-colors text-sm font-medium w-full text-left">
+                  <button className="text-neutral-600 dark:text-white/80 hover:text-black dark:hover:text-white transition-colors text-sm font-medium w-full text-left">
                     Sign In
                   </button>
                 </Link>
