@@ -466,7 +466,7 @@ export default function OrganizerAnnouncementsPage() {
                                               </p>
                                               <div className="flex flex-wrap gap-1 mt-1">
                                                 {member.skills.slice(0, 3).map((skill) => (
-                                                  <span key={skill} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] rounded text-xs">
+                                                  <span key={skill} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-neutral-600 dark:text-neutral-400 rounded text-xs">
                                                     {skill}
                                                   </span>
                                                 ))}

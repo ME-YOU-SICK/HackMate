@@ -368,7 +368,7 @@ export default function RecruiterConnectionsPage() {
                     setSelectedSkill("All");
                     setSearchTerm("");
                   }}
-                  className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]"
+                  className="text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
                 >
                   Clear filters
                 </button>
@@ -434,7 +434,7 @@ export default function RecruiterConnectionsPage() {
                           {participant.skills.slice(0, 3).map((skill, skillIndex) => (
                             <span 
                               key={skillIndex}
-                              className="inline-flex items-center gap-1 px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full"
+                              className="inline-flex items-center gap-1 px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-xs rounded-full"
                             >
                               {getSkillIcon(skill)}
                               {skill}

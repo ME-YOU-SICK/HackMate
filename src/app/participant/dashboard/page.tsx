@@ -55,10 +55,13 @@ function ParticipantDashboard() {
     if (savedUsername) {
       setGithubUsername(savedUsername);
     }
-    // Detect pending onboarding
+    // Detect pending onboarding - only show if this is a fresh signup
     try {
       const pending = localStorage.getItem('onboarding_pending');
-      if (pending === 'participant') {
+      const onboardingCompleted = localStorage.getItem('onboarding_completed');
+      
+      // Only show onboarding if it's pending AND not already completed
+      if (pending === 'participant' && onboardingCompleted !== 'true') {
         setShowOnboarding(true);
         // Prefill links if available
         const gh = localStorage.getItem('githubUsername') || "";
@@ -125,10 +128,21 @@ function ParticipantDashboard() {
       if (onboardingLinks.github) localStorage.setItem('githubUsername', onboardingLinks.github);
       localStorage.setItem('linkedin_url', onboardingLinks.linkedin || "");
       localStorage.setItem('twitter_url', onboardingLinks.twitter || "");
+      // Mark onboarding as completed and remove pending flag
+      localStorage.setItem('onboarding_completed', 'true');
       localStorage.removeItem('onboarding_pending');
     } catch {}
     setShowOnboarding(false);
     if (onboardingLinks.github) setGithubUsername(onboardingLinks.github);
+  };
+
+  const skipOnboarding = () => {
+    try {
+      // Mark onboarding as completed even when skipped
+      localStorage.setItem('onboarding_completed', 'true');
+      localStorage.removeItem('onboarding_pending');
+    } catch {}
+    setShowOnboarding(false);
   };
 
   // Mock data for dashboard stats
@@ -300,12 +314,12 @@ function ParticipantDashboard() {
                 <div className="w-full max-w-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-2xl p-6 shadow-2xl">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-semibold text-neutral-900 dark:text-white">Welcome! Let's set you up</h3>
-                    <button className="text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]" onClick={() => setShowOnboarding(false)}>✕</button>
+                    <button className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200" onClick={skipOnboarding}>✕</button>
                   </div>
                   <div className="space-y-6">
                     <div>
                       <h4 className="font-medium text-neutral-900 dark:text-white mb-2">Add your skills</h4>
-                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000] mb-2">Select categories first, then pick relevant skills.</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">Select categories first, then pick relevant skills.</p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {Object.keys(skillCategories).map((category) => (
                           <button
@@ -352,7 +366,7 @@ function ParticipantDashboard() {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                       <div>
-                        <label className="block text-sm text-[#FF9000] dark:text-[#FAF000] mb-1">GitHub Username</label>
+                        <label className="block text-sm text-neutral-600 dark:text-neutral-400 mb-1">GitHub Username</label>
                         <input
                           type="text"
                           value={onboardingLinks.github}
@@ -362,7 +376,7 @@ function ParticipantDashboard() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm text-[#FF9000] dark:text-[#FAF000] mb-1">LinkedIn URL</label>
+                        <label className="block text-sm text-neutral-600 dark:text-neutral-400 mb-1">LinkedIn URL</label>
                         <input
                           type="url"
                           value={onboardingLinks.linkedin}
@@ -372,7 +386,7 @@ function ParticipantDashboard() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm text-[#FF9000] dark:text-[#FAF000] mb-1">Twitter URL</label>
+                        <label className="block text-sm text-neutral-600 dark:text-neutral-400 mb-1">Twitter URL</label>
                         <input
                           type="url"
                           value={onboardingLinks.twitter}
@@ -384,7 +398,7 @@ function ParticipantDashboard() {
                     </div>
                   </div>
                   <div className="flex justify-end gap-2 mt-6">
-                    <button onClick={() => setShowOnboarding(false)} className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">Skip for now</button>
+                    <button onClick={skipOnboarding} className="px-4 py-2 rounded-lg border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800">Skip for now</button>
                     <button onClick={completeOnboarding} className="px-4 py-2 rounded-lg bg-[#FF9000] text-white hover:bg-[#FFA100]">Save and continue</button>
                   </div>
                 </div>
@@ -401,11 +415,11 @@ function ParticipantDashboard() {
                 <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
                   Welcome back, {userName}! 👋
                 </h1>
-                <p className="text-[#FF9000] dark:text-[#FAF000]">
+                <p className="text-neutral-600 dark:text-neutral-400">
                   Ready to build something amazing today?
                 </p>
               </div>
-              <div className="flex items-center gap-2 text-sm text-[#FF9000] dark:text-[#FAF000]">
+              <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
                 <Activity className="h-4 w-4 text-[#FFA100]" />
                 <span>7 day streak</span>
               </div>
@@ -427,7 +441,7 @@ function ParticipantDashboard() {
                     <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                       {dashboardStats.hackathonsWon}
                     </p>
-                    <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
                       Hackathons Won
                     </p>
                   </div>
@@ -443,7 +457,7 @@ function ParticipantDashboard() {
                     <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                       {dashboardStats.totalProjects}
                     </p>
-                    <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
                       Projects Built
                     </p>
                   </div>
@@ -459,7 +473,7 @@ function ParticipantDashboard() {
                     <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                       {dashboardStats.teamCollaborations}
                     </p>
-                    <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
                       Team Collaborations
                     </p>
                   </div>
@@ -475,7 +489,7 @@ function ParticipantDashboard() {
                     <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                       {dashboardStats.totalPoints}
                     </p>
-                    <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
                       Total Points
                     </p>
                   </div>
@@ -510,7 +524,7 @@ function ParticipantDashboard() {
                             <h3 className="font-semibold text-neutral-900 dark:text-white group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors">
                               {action.title}
                             </h3>
-                            <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400">
                               {action.description}
                             </p>
                           </div>
@@ -534,7 +548,7 @@ function ParticipantDashboard() {
                   <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
                     Recent Activity
                   </h2>
-                  <Link href="/participant/dashboard/profile" className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]">
+                  <Link href="/participant/dashboard/profile" className="text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
                     View all
                   </Link>
                 </div>
@@ -555,10 +569,10 @@ function ParticipantDashboard() {
                           <h4 className="font-medium text-neutral-900 dark:text-white">
                             {activity.title}
                           </h4>
-                          <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
+                          <p className="text-sm text-neutral-600 dark:text-neutral-400">
                             {activity.description}
                           </p>
-                          <p className="text-xs text-[#FF9000] dark:text-neutral-400 mt-1">
+                          <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
                             {activity.date}
                           </p>
                         </div>
@@ -578,7 +592,7 @@ function ParticipantDashboard() {
                   <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
                     Upcoming Events
                   </h2>
-                  <Link href="/participant/dashboard/events" className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]">
+                  <Link href="/participant/dashboard/events" className="text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
                     View all
                   </Link>
                 </div>
@@ -596,11 +610,11 @@ function ParticipantDashboard() {
                           <h4 className="font-semibold text-neutral-900 dark:text-white">
                             {event.title}
                           </h4>
-                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
+                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-xs rounded-full">
                             {event.category}
                           </span>
                         </div>
-                        <div className="space-y-1 text-sm text-[#FF9000] dark:text-[#FAF000]">
+                        <div className="space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
                           <div className="flex items-center gap-2">
                             <Calendar className="h-4 w-4 text-[#FFA100]" />
                             {event.date}
@@ -637,7 +651,7 @@ function ParticipantDashboard() {
                   <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
                     Top Skills
                   </h2>
-                  <Link href="/participant/dashboard/skills" className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]">
+                  <Link href="/participant/dashboard/skills" className="text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
                     View all
                   </Link>
                 </div>
@@ -656,11 +670,11 @@ function ParticipantDashboard() {
                             <span className="font-medium text-neutral-900 dark:text-white">
                               {skill.name}
                             </span>
-                            <span className="px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
+                            <span className="px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 text-xs rounded-full">
                               {skill.category}
                             </span>
                           </div>
-                          <span className="text-sm font-medium text-[#FF9000] dark:text-[#FAF000]">
+                          <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
                             {skill.level}%
                           </span>
                         </div>
@@ -686,7 +700,7 @@ function ParticipantDashboard() {
                   <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
                     GitHub Projects
                   </h2>
-                  <Link href="/participant/dashboard/profile" className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]">
+                  <Link href="/participant/dashboard/profile" className="text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
                     View all
                   </Link>
                 </div>
@@ -718,12 +732,12 @@ function ParticipantDashboard() {
                                 href={repo.html_url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]"
+                                className="text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
                               >
                                 <ExternalLink className="h-4 w-4 text-[#FFA100]" />
                               </a>
                             </div>
-                            <p className="text-sm text-[#FF9000] dark:text-[#FAF000] mb-2">
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
                               {repo.description || "No description available"}
                             </p>
                             <div className="flex items-center gap-4 text-xs text-[#FF9000] dark:text-neutral-400">
@@ -746,7 +760,7 @@ function ParticipantDashboard() {
                       ) : (
                         <div className="text-center py-8">
                           <Github className="h-12 w-12 text-[#FFA100] mx-auto mb-4" />
-                          <p className="text-[#FF9000] dark:text-[#FAF000]">
+                          <p className="text-neutral-600 dark:text-neutral-400">
                             No public repositories found
                           </p>
                         </div>
@@ -758,7 +772,7 @@ function ParticipantDashboard() {
                       <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">
                         Connect GitHub
                       </h3>
-                      <p className="text-[#FF9000] dark:text-[#FAF000] mb-4">
+                      <p className="text-neutral-600 dark:text-neutral-400 mb-4">
                         Add your GitHub username to showcase your projects
                       </p>
                       <Link

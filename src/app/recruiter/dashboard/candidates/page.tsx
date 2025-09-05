@@ -230,7 +230,7 @@ export default function RecruiterCandidatesPage() {
     switch (status) {
       case "accepted": return "text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/20";
       case "declined": return "text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/20";
-      case "pending": return "text-[#FF9000] dark:text-[#FAF000] bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
+      case "pending": return "text-neutral-600 dark:text-neutral-400 bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
       default: return "text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-900/20";
     }
   };
@@ -262,7 +262,7 @@ export default function RecruiterCandidatesPage() {
             >
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                  <Users className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
+                  <Users className="h-6 w-6 text-neutral-600 dark:text-neutral-400" />
                 </div>
                 <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
                   Job Candidates
@@ -348,7 +348,7 @@ export default function RecruiterCandidatesPage() {
               <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                    <Users className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
+                    <Users className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -364,7 +364,7 @@ export default function RecruiterCandidatesPage() {
               <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                    <Clock className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
+                    <Clock className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -474,12 +474,12 @@ export default function RecruiterCandidatesPage() {
                         {/* Skills */}
                         <div className="flex flex-wrap gap-2">
                           {candidate.skills.slice(0, 3).map((skill, sIdx) => (
-                            <span key={sIdx} className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full font-medium flex items-center gap-1">
+                            <span key={sIdx} className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-xs rounded-full font-medium flex items-center gap-1">
                               {skill.icon} {skill.name}
                             </span>
                           ))}
                           {candidate.skills.length > 3 && (
-                            <span className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full font-medium">
+                            <span className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-xs rounded-full font-medium">
                               +{candidate.skills.length - 3} more
                             </span>
                           )}
@@ -508,7 +508,7 @@ export default function RecruiterCandidatesPage() {
                         <div className="flex gap-2 pt-2">
                           <Link 
                             href={`/recruiter/dashboard/connections/${candidate.id}`}
-                            className="flex-1 px-3 py-2 text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00] border border-[#FF9000] dark:border-[#FAF000] rounded-lg text-center transition-colors"
+                            className="flex-1 px-3 py-2 text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 border border-[#FF9000] dark:border-[#FAF000] rounded-lg text-center transition-colors"
                           >
                             <Eye className="h-4 w-4 inline mr-1" />
                             View Profile

@@ -288,7 +288,7 @@ const SponsorAnalytics = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "completed": return "text-green-600 dark:text-green-400";
-      case "active": return "text-[#FF9000] dark:text-[#FAF000]";
+      case "active": return "text-neutral-600 dark:text-neutral-400";
       case "upcoming": return "text-yellow-600 dark:text-yellow-400";
       default: return "text-neutral-600 dark:text-neutral-400";
     }
@@ -339,7 +339,7 @@ const SponsorAnalytics = () => {
                 disabled={isRefreshing}
                 className={`p-2 rounded-lg transition-all duration-200 ${
                   isRefreshing 
-                    ? "bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] cursor-not-allowed" 
+                    ? "bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 cursor-not-allowed" 
                     : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-700"
                 }`}
               >
@@ -370,7 +370,7 @@ const SponsorAnalytics = () => {
                 </motion.div>
                 <div className="flex items-center gap-1 mt-2">
                   <TrendingUp className="h-4 w-4 text-[#FFA100]" />
-                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">+12% this month</span>
+                  <span className="text-sm text-neutral-600 dark:text-neutral-400">+12% this month</span>
                 </div>
               </GlowingCard>
 
@@ -410,7 +410,7 @@ const SponsorAnalytics = () => {
                 </motion.div>
                 <div className="flex items-center gap-1 mt-2">
                   <Activity className="h-4 w-4 text-[#FFA100]" />
-                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">{investmentSummary.completedEvents} completed</span>
+                  <span className="text-sm text-neutral-600 dark:text-neutral-400">{investmentSummary.completedEvents} completed</span>
                 </div>
               </GlowingCard>
 

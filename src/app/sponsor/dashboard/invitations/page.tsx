@@ -593,7 +593,7 @@ ${sponsorInfo.name}
                       {request.funding.benefits.map((benefit, index) => (
                         <span
                           key={index}
-                          className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full"
+                          className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-xs rounded-full"
                         >
                           {benefit}
                         </span>

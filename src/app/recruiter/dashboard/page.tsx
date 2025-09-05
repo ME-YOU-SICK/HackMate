@@ -102,7 +102,7 @@ function RecruiterDashboardPage() {
                   <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
                     Welcome back, Alex! 👋
                   </h1>
-                  <p className="text-[#FF9000] dark:text-[#FAF000]">
+                  <p className="text-neutral-600 dark:text-neutral-400">
                     Here's what's happening with your recruiting activities today
                   </p>
                 </div>
@@ -145,7 +145,7 @@ function RecruiterDashboardPage() {
                           <h3 className="font-medium text-neutral-900 dark:text-white group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors">
                             {action.title}
                           </h3>
-                          <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
+                          <p className="text-sm text-neutral-600 dark:text-neutral-400">
                             {action.description}
                           </p>
                         </div>
@@ -171,31 +171,31 @@ function RecruiterDashboardPage() {
                 <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">Total Candidates</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Candidates</p>
                       <p className="text-2xl font-bold text-neutral-900 dark:text-white">{analytics.totalCandidates.toLocaleString()}</p>
                     </div>
                     <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                      <Users className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
+                      <Users className="h-6 w-6 text-neutral-600 dark:text-neutral-400" />
                     </div>
                   </div>
                   <div className="flex items-center gap-1 mt-2">
                     <ArrowUpRight className="h-4 w-4 text-[#FF9000]" />
-                    <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">+{analytics.monthlyGrowth}% this month</span>
+                    <span className="text-sm text-neutral-600 dark:text-neutral-400">+{analytics.monthlyGrowth}% this month</span>
                   </div>
                 </div>
 
                 <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">Active Postings</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Active Postings</p>
                       <p className="text-2xl font-bold text-neutral-900 dark:text-white">{analytics.activePostings}</p>
                     </div>
                     <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                      <Briefcase className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
+                      <Briefcase className="h-6 w-6 text-neutral-600 dark:text-neutral-400" />
                     </div>
                   </div>
                   <div className="flex items-center gap-1 mt-2">
-                    <Link href="/recruiter/dashboard/postings" className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]">
+                    <Link href="/recruiter/dashboard/postings" className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#FFA100] dark:hover:text-[#FFDD00]">
                       Manage postings →
                     </Link>
                   </div>
@@ -204,32 +204,32 @@ function RecruiterDashboardPage() {
                 <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">Success Rate</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Success Rate</p>
                       <p className="text-2xl font-bold text-neutral-900 dark:text-white">{analytics.successRate}%</p>
                     </div>
                     <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                      <Target className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
+                      <Target className="h-6 w-6 text-neutral-600 dark:text-neutral-400" />
                     </div>
                   </div>
                   <div className="flex items-center gap-1 mt-2">
                     <Star className="h-4 w-4 text-[#FF9000] fill-current" />
-                    <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">{analytics.clientSatisfaction}/5.0 rating</span>
+                    <span className="text-sm text-neutral-600 dark:text-neutral-400">{analytics.clientSatisfaction}/5.0 rating</span>
                   </div>
                 </div>
 
                 <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">Avg. Time to Hire</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Avg. Time to Hire</p>
                       <p className="text-2xl font-bold text-neutral-900 dark:text-white">{analytics.averageTimeToHire} days</p>
                     </div>
                     <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                      <Clock className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
+                      <Clock className="h-6 w-6 text-neutral-600 dark:text-neutral-400" />
                     </div>
                   </div>
                   <div className="flex items-center gap-1 mt-2">
                     <ArrowDownRight className="h-4 w-4 text-[#FF9000]" />
-                    <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">-3 days vs last month</span>
+                    <span className="text-sm text-neutral-600 dark:text-neutral-400">-3 days vs last month</span>
                   </div>
                 </div>
               </div>
@@ -251,13 +251,13 @@ function RecruiterDashboardPage() {
                   <div className="space-y-4">
                     <div className="flex items-start gap-3 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
                       <div className="p-1 rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20">
-                        <CheckCircle className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
+                        <CheckCircle className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                       </div>
                       <div className="flex-1">
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                           Successfully placed Sarah Chen
                         </h4>
-                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
                           Senior Frontend Developer at TechCorp
                         </p>
                         <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
@@ -268,13 +268,13 @@ function RecruiterDashboardPage() {
                     
                     <div className="flex items-start gap-3 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
                       <div className="p-1 rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20">
-                        <Calendar className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
+                        <Calendar className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                       </div>
                       <div className="flex-1">
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                           Interview scheduled
                         </h4>
-                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
                           Marcus Johnson - ML Engineer position
                         </p>
                         <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
@@ -285,13 +285,13 @@ function RecruiterDashboardPage() {
                     
                     <div className="flex items-start gap-3 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
                       <div className="p-1 rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20">
-                        <UserPlus className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
+                        <UserPlus className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                       </div>
                       <div className="flex-1">
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                           New application received
                         </h4>
-                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
                           Emily Rodriguez applied for Product Manager role
                         </p>
                         <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
@@ -323,7 +323,7 @@ function RecruiterDashboardPage() {
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                           David Kim
                         </h4>
-                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
                           Frontend Developer at TechCorp
                         </p>
                         <p className="text-xs text-neutral-500 dark:text-neutral-500">
@@ -331,7 +331,7 @@ function RecruiterDashboardPage() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <span className="px-2 py-1 text-xs rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000]">
+                        <span className="px-2 py-1 text-xs rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400">
                           confirmed
                         </span>
                       </div>
@@ -345,7 +345,7 @@ function RecruiterDashboardPage() {
                         <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
                           Lisa Wang
                         </h4>
-                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
                           UX Designer at DesignStudio
                         </p>
                         <p className="text-xs text-neutral-500 dark:text-neutral-500">
@@ -353,7 +353,7 @@ function RecruiterDashboardPage() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <span className="px-2 py-1 text-xs rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000]">
+                        <span className="px-2 py-1 text-xs rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400">
                           pending
                         </span>
                       </div>
@@ -362,7 +362,7 @@ function RecruiterDashboardPage() {
                   <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
                     <Link
                       href="/recruiter/dashboard/interviews"
-                      className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
+                      className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
                     >
                       View all interviews →
                     </Link>
@@ -391,7 +391,7 @@ function RecruiterDashboardPage() {
                       <h4 className="font-medium text-neutral-900 dark:text-white">
                         Sarah Chen
                       </h4>
-                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">
                         Senior Frontend Developer at TechCorp
                       </p>
                       <p className="text-xs text-neutral-500 dark:text-neutral-500">
@@ -405,7 +405,7 @@ function RecruiterDashboardPage() {
                           4.9
                         </span>
                       </div>
-                      <div className="text-sm font-medium text-[#FF9000] dark:text-[#FAF000]">
+                      <div className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
                         $145,000
                       </div>
                     </div>
@@ -419,7 +419,7 @@ function RecruiterDashboardPage() {
                       <h4 className="font-medium text-neutral-900 dark:text-white">
                         Marcus Johnson
                       </h4>
-                      <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">
                         ML Engineer at DataFlow Inc
                       </p>
                       <p className="text-xs text-neutral-500 dark:text-neutral-500">
@@ -433,7 +433,7 @@ function RecruiterDashboardPage() {
                           4.8
                         </span>
                       </div>
-                      <div className="text-sm font-medium text-[#FF9000] dark:text-[#FAF000]">
+                      <div className="text-sm font-medium text-neutral-600 dark:text-neutral-400">
                         $165,000
                       </div>
                     </div>
@@ -442,7 +442,7 @@ function RecruiterDashboardPage() {
                 <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
                   <Link
                     href="/recruiter/dashboard/candidates"
-                    className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
+                    className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
                   >
                     View all candidates →
                   </Link>

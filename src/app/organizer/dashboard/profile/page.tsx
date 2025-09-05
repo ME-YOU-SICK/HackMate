@@ -125,13 +125,13 @@ export default function OrganizerProfilePage() {
                   </div>
                   <div className="flex gap-2">
                     <button className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg hover:bg-[#FAF000] dark:hover:bg-[#FF9000]/30 transition-colors">
-                      <Github className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
+                      <Github className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                     </button>
                     <button className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg hover:bg-[#FAF000] dark:hover:bg-[#FF9000]/30 transition-colors">
-                      <Linkedin className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
+                      <Linkedin className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                     </button>
                     <button className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg hover:bg-[#FAF000] dark:hover:bg-[#FF9000]/30 transition-colors">
-                      <Twitter className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
+                      <Twitter className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                     </button>
                   </div>
                 </div>

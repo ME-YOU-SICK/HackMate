@@ -160,7 +160,7 @@ export default function RecruiterProfilePage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                    <User className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
+                    <User className="h-6 w-6 text-neutral-600 dark:text-neutral-400" />
                   </div>
                   <div>
                     <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
@@ -252,9 +252,9 @@ export default function RecruiterProfilePage() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 p-3 bg-[#FAF000]/5 dark:bg-[#FAF000]/20 rounded-lg hover:bg-[#FAF000]/10 dark:hover:bg-[#FF9000]/30 transition-colors group"
                       >
-                        <Linkedin className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
-                        <span className="text-sm font-medium text-[#FF9000] dark:text-[#FAF000]">LinkedIn</span>
-                        <ExternalLink className="h-3 w-3 text-[#FF9000] dark:text-[#FAF000] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <Linkedin className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
+                        <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">LinkedIn</span>
+                        <ExternalLink className="h-3 w-3 text-neutral-600 dark:text-neutral-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                       </a>
                       
                       <a
@@ -263,9 +263,9 @@ export default function RecruiterProfilePage() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 p-3 bg-[#FAF000]/5 dark:bg-[#FAF000]/20 rounded-lg hover:bg-[#FAF000]/10 dark:hover:bg-[#FF9000]/30 transition-colors group"
                       >
-                        <Briefcase className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
-                        <span className="text-sm font-medium text-[#FF9000] dark:text-[#FAF000]">Indeed</span>
-                        <ExternalLink className="h-3 w-3 text-[#FF9000] dark:text-[#FAF000] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <Briefcase className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
+                        <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Indeed</span>
+                        <ExternalLink className="h-3 w-3 text-neutral-600 dark:text-neutral-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                       </a>
                       
                       <a
@@ -274,9 +274,9 @@ export default function RecruiterProfilePage() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 p-3 bg-[#FAF000]/5 dark:bg-[#FAF000]/20 rounded-lg hover:bg-[#FAF000]/10 dark:hover:bg-[#FF9000]/30 transition-colors group"
                       >
-                        <Building className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
-                        <span className="text-sm font-medium text-[#FF9000] dark:text-[#FAF000]">Glassdoor</span>
-                        <ExternalLink className="h-3 w-3 text-[#FF9000] dark:text-[#FAF000] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <Building className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
+                        <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Glassdoor</span>
+                        <ExternalLink className="h-3 w-3 text-neutral-600 dark:text-neutral-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                       </a>
                       
                       <a
@@ -285,9 +285,9 @@ export default function RecruiterProfilePage() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 p-3 bg-[#FAF000]/5 dark:bg-[#FAF000]/20 rounded-lg hover:bg-[#FAF000]/10 dark:hover:bg-[#FF9000]/30 transition-colors group"
                       >
-                        <Target className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
-                        <span className="text-sm font-medium text-[#FF9000] dark:text-[#FAF000]">AngelList</span>
-                        <ExternalLink className="h-3 w-3 text-[#FF9000] dark:text-[#FAF000] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <Target className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
+                        <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">AngelList</span>
+                        <ExternalLink className="h-3 w-3 text-neutral-600 dark:text-neutral-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                       </a>
                       
                       <a
@@ -296,9 +296,9 @@ export default function RecruiterProfilePage() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 p-3 bg-[#FAF000]/5 dark:bg-[#FAF000]/20 rounded-lg hover:bg-[#FAF000]/10 dark:hover:bg-[#FF9000]/30 transition-colors group"
                       >
-                        <TrendingUp className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
-                        <span className="text-sm font-medium text-[#FF9000] dark:text-[#FAF000]">Wellfound</span>
-                        <ExternalLink className="h-3 w-3 text-[#FF9000] dark:text-[#FAF000] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <TrendingUp className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
+                        <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Wellfound</span>
+                        <ExternalLink className="h-3 w-3 text-neutral-600 dark:text-neutral-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                       </a>
                       
                       <a
@@ -307,9 +307,9 @@ export default function RecruiterProfilePage() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 p-3 bg-[#FAF000]/5 dark:bg-[#FAF000]/20 rounded-lg hover:bg-[#FAF000]/10 dark:hover:bg-[#FF9000]/30 transition-colors group"
                       >
-                        <Globe className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
-                        <span className="text-sm font-medium text-[#FF9000] dark:text-[#FAF000]">Personal Website</span>
-                        <ExternalLink className="h-3 w-3 text-[#FF9000] dark:text-[#FAF000] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <Globe className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
+                        <span className="text-sm font-medium text-neutral-600 dark:text-neutral-400">Personal Website</span>
+                        <ExternalLink className="h-3 w-3 text-neutral-600 dark:text-neutral-400 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                       </a>
                     </div>
                   </GlowingCard>
@@ -326,7 +326,7 @@ export default function RecruiterProfilePage() {
                   className="grid grid-cols-2 md:grid-cols-5 gap-4"
                 >
                   <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-[#FF9000] dark:text-[#FAF000]">
+                    <div className="text-2xl font-bold text-neutral-600 dark:text-neutral-400">
                       {recruiterProfile.stats.totalPlacements}
                     </div>
                     <div className="text-sm text-neutral-600 dark:text-neutral-400">
@@ -335,7 +335,7 @@ export default function RecruiterProfilePage() {
                   </div>
                   
                   <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-[#FF9000] dark:text-[#FAF000]">
+                    <div className="text-2xl font-bold text-neutral-600 dark:text-neutral-400">
                       {recruiterProfile.stats.activeClients}
                     </div>
                     <div className="text-sm text-neutral-600 dark:text-neutral-400">
@@ -344,7 +344,7 @@ export default function RecruiterProfilePage() {
                   </div>
                   
                   <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-[#FF9000] dark:text-[#FAF000]">
+                    <div className="text-2xl font-bold text-neutral-600 dark:text-neutral-400">
                       {recruiterProfile.stats.successRate}%
                     </div>
                     <div className="text-sm text-neutral-600 dark:text-neutral-400">
@@ -353,7 +353,7 @@ export default function RecruiterProfilePage() {
                   </div>
                   
                   <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-[#FF9000] dark:text-[#FAF000]">
+                    <div className="text-2xl font-bold text-neutral-600 dark:text-neutral-400">
                       {recruiterProfile.stats.averageTimeToHire}
                     </div>
                     <div className="text-sm text-neutral-600 dark:text-neutral-400">
@@ -362,7 +362,7 @@ export default function RecruiterProfilePage() {
                   </div>
                   
                   <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-[#FF9000] dark:text-[#FAF000]">
+                    <div className="text-2xl font-bold text-neutral-600 dark:text-neutral-400">
                       {recruiterProfile.stats.candidatePool}
                     </div>
                     <div className="text-sm text-neutral-600 dark:text-neutral-400">
@@ -386,7 +386,7 @@ export default function RecruiterProfilePage() {
                       {recruiterProfile.specialties.map((specialty, index) => (
                         <span
                           key={index}
-                          className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-sm rounded-full font-medium"
+                          className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-sm rounded-full font-medium"
                         >
                           {specialty}
                         </span>
@@ -409,7 +409,7 @@ export default function RecruiterProfilePage() {
                     <div className="space-y-4">
                       {recruiterProfile.achievements.map((achievement, index) => (
                         <div key={index} className="flex items-start gap-3 p-3 bg-[#FAF000]/5 dark:bg-[#FAF000]/20 rounded-lg">
-                          <Award className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000] mt-0.5 flex-shrink-0" />
+                          <Award className="h-5 w-5 text-neutral-600 dark:text-neutral-400 mt-0.5 flex-shrink-0" />
                           <div className="flex-1">
                             <h4 className="font-medium text-[#FF9000] dark:text-[#FFDD00]">
                               {achievement.title}
@@ -417,7 +417,7 @@ export default function RecruiterProfilePage() {
                             <p className="text-sm text-[#FFA100] dark:text-[#FFDD00]">
                               {achievement.description}
                             </p>
-                            <span className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                            <span className="text-xs text-neutral-600 dark:text-neutral-400">
                               {achievement.year}
                             </span>
                           </div>
@@ -448,7 +448,7 @@ export default function RecruiterProfilePage() {
                             <p className="text-sm text-[#FFA100] dark:text-[#FFDD00]">
                               {placement.role} at {placement.company}
                             </p>
-                            <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                            <p className="text-xs text-neutral-600 dark:text-neutral-400">
                               Placed on {placement.placedDate}
                             </p>
                           </div>
@@ -481,7 +481,7 @@ export default function RecruiterProfilePage() {
                         <div className="space-y-2">
                           {recruiterProfile.education.map((edu, index) => (
                             <div key={index} className="flex items-center gap-3 p-2 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-                              <GraduationCap className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
+                              <GraduationCap className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                               <div className="flex-1">
                                 <div className="font-medium text-neutral-900 dark:text-white text-sm">
                                   {edu.degree}

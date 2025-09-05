@@ -168,7 +168,7 @@ export default function QuizzesPage() {
                           {platform.difficulty}
                         </div>
                         <div className="flex justify-between items-center pt-2">
-                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
+                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-neutral-600 dark:text-neutral-400 text-xs rounded-full">
                             {platform.category}
                           </span>
                           <button className={`flex items-center gap-2 px-3 py-2 bg-gradient-to-r ${platform.color} text-white rounded-lg hover:opacity-90 transition-opacity text-sm`}>

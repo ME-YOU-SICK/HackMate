@@ -1,72 +1,83 @@
-// Database-driven authentication system
-
-export type UserRole = "participant" | "organizer" | "recruiter" | "sponsor";
-
+// Simple localStorage-based authentication (no database)
 export interface User {
   id: string;
+  email: string;
   firstName: string;
   lastName: string;
-  email: string;
-  role: UserRole;
-  isVerified: boolean;
-  isActive: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  role: 'participant' | 'organizer' | 'recruiter' | 'sponsor';
 }
 
-export interface AuthResponse {
+interface AuthResponse {
   success: boolean;
   user?: User;
   token?: string;
-  message?: string;
   error?: string;
 }
 
-const STORAGE_KEY = "hackmate_auth_token";
-const USER_KEY = "hackmate_auth_user";
+// Mock users for demo purposes
+const mockUsers = [
+  {
+    id: '1',
+    email: 'participant@demo.com',
+    password: 'password123',
+    firstName: 'John',
+    lastName: 'Doe',
+    role: 'participant' as const,
+  },
+  {
+    id: '2',
+    email: 'organizer@demo.com',
+    password: 'password123',
+    firstName: 'Jane',
+    lastName: 'Smith',
+    role: 'organizer' as const,
+  },
+  {
+    id: '3',
+    email: 'recruiter@demo.com',
+    password: 'password123',
+    firstName: 'Mike',
+    lastName: 'Johnson',
+    role: 'recruiter' as const,
+  },
+  {
+    id: '4',
+    email: 'sponsor@demo.com',
+    password: 'password123',
+    firstName: 'Sarah',
+    lastName: 'Wilson',
+    role: 'sponsor' as const,
+  },
+];
+
+// Simple JWT-like token generation
+function generateToken(userId: string): string {
+  const payload = {
+    userId,
+    iat: Date.now(),
+    exp: Date.now() + (24 * 60 * 60 * 1000), // 24 hours
+  };
+  return Buffer.from(JSON.stringify(payload)).toString('base64');
+}
+
+// Verify token
+function verifyToken(token: string): { userId: string; valid: boolean } {
+  try {
+    const payload = JSON.parse(Buffer.from(token, 'base64').toString());
+    
+    if (payload.exp && Date.now() > payload.exp) {
+      return { userId: '', valid: false };
+    }
+    
+    return { userId: payload.userId, valid: true };
+  } catch {
+    return { userId: '', valid: false };
+  }
+}
 
 export const auth = {
-  // Sign up a new user
-  async signup(userData: {
-    email: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    role: UserRole;
-  }): Promise<AuthResponse> {
-    try {
-      const response = await fetch('/api/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-
-      const result = await response.json();
-      
-      if (result.success) {
-        // Store user data locally for immediate access
-        try {
-          localStorage.setItem(USER_KEY, JSON.stringify(result.user));
-        } catch {}
-      }
-      
-      return result;
-    } catch (error) {
-      return {
-        success: false,
-        error: 'Network error. Please try again.',
-      };
-    }
-  },
-
-  // Sign in an existing user
-  async signin(credentials: {
-    email: string;
-    password: string;
-    role: UserRole;
-  }): Promise<AuthResponse> {
+  // Sign in with email, password, and role
+  async signin(credentials: { email: string; password: string; role: string }): Promise<AuthResponse> {
     try {
       const response = await fetch('/api/auth/signin', {
         method: 'POST',
@@ -76,68 +87,105 @@ export const auth = {
         body: JSON.stringify(credentials),
       });
 
-      const result = await response.json();
-      
-      if (result.success && result.token) {
-        // Store token and user data
-        try {
-          localStorage.setItem(STORAGE_KEY, result.token);
-          localStorage.setItem(USER_KEY, JSON.stringify(result.user));
-        } catch {}
+      const data = await response.json();
+
+      if (data.success && data.user && data.token) {
+        // Store in localStorage
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
+        return { success: true, user: data.user, token: data.token };
+      } else {
+        return { success: false, error: data.error || 'Sign in failed' };
       }
-      
-      return result;
     } catch (error) {
-      return {
-        success: false,
-        error: 'Network error. Please try again.',
-      };
+      console.error('Signin error:', error);
+      return { success: false, error: 'Network error. Please try again.' };
     }
   },
 
-  // Sign out the current user
+  // Sign up new user
+  async signup(userData: { email: string; password: string; firstName: string; lastName: string; role: string }): Promise<AuthResponse> {
+    try {
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+
+      if (data.success && data.user && data.token) {
+        // Store in localStorage
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
+        return { success: true, user: data.user, token: data.token };
+      } else {
+        return { success: false, error: data.error || 'Sign up failed' };
+      }
+    } catch (error) {
+      console.error('Signup error:', error);
+      return { success: false, error: 'Network error. Please try again.' };
+    }
+  },
+
+  // Logout user
   async logout(): Promise<void> {
     try {
-      const token = localStorage.getItem(STORAGE_KEY);
+      const token = this.getToken();
       if (token) {
         await fetch('/api/auth/logout', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
           },
         });
       }
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error('Logout API error:', error);
     } finally {
-      // Clear local storage regardless of API call success
-      try {
-        localStorage.removeItem(STORAGE_KEY);
-        localStorage.removeItem(USER_KEY);
-      } catch {}
+      // Always clear localStorage
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
     }
   },
 
-  // Get current user from local storage
+  // Get current user from localStorage
   getUser(): User | null {
+    if (typeof window === 'undefined') return null;
+    
     try {
-      const raw = localStorage.getItem(USER_KEY);
-      return raw ? (JSON.parse(raw) as User) : null;
-    } catch {
+      const userStr = localStorage.getItem('user');
+      if (!userStr) return null;
+      
+      const user = JSON.parse(userStr);
+      const token = this.getToken();
+      
+      if (!token) return null;
+      
+      // Verify token is still valid
+      const { valid } = verifyToken(token);
+      if (!valid) {
+        this.logout();
+        return null;
+      }
+      
+      return user;
+    } catch (error) {
+      console.error('Get user error:', error);
       return null;
     }
   },
 
-  // Get current token
+  // Get token from localStorage
   getToken(): string | null {
-    try {
-      return localStorage.getItem(STORAGE_KEY);
-    } catch {
-      return null;
-    }
+    if (typeof window === 'undefined') return null;
+    return localStorage.getItem('token');
   },
 
-  // Verify current session with server
+  // Verify session with server
   async verifySession(): Promise<User | null> {
     try {
       const token = this.getToken();
@@ -150,35 +198,26 @@ export const auth = {
         },
       });
 
-      const result = await response.json();
-      
-      if (result.success && result.user) {
-        // Update stored user data
-        try {
-          localStorage.setItem(USER_KEY, JSON.stringify(result.user));
-        } catch {}
-        return result.user;
+      const data = await response.json();
+
+      if (data.success && data.user) {
+        // Update localStorage with fresh user data
+        localStorage.setItem('user', JSON.stringify(data.user));
+        return data.user;
       } else {
-        // Token is invalid, clear storage
+        // Session is invalid, clear localStorage
         this.logout();
         return null;
       }
     } catch (error) {
-      console.error('Session verification error:', error);
+      console.error('Verify session error:', error);
+      this.logout();
       return null;
     }
   },
 
   // Check if user is authenticated
   isAuthenticated(): boolean {
-    return !!this.getToken() && !!this.getUser();
-  },
-
-  // Legacy method for backward compatibility
-  login(user: User) {
-    // This is now handled by signin method
-    console.warn('auth.login() is deprecated. Use auth.signin() instead.');
+    return !!this.getUser();
   },
 };
-
-

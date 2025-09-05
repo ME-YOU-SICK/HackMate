@@ -179,7 +179,7 @@ function OrganizerDashboard() {
                 <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
                   Welcome back, Sarah! 👋
                 </h1>
-                <p className="text-[#FF9000] dark:text-[#FAF000]">
+                <p className="text-neutral-600 dark:text-neutral-400">
                   Here's what's happening with your events today
                 </p>
               </div>
@@ -211,20 +211,20 @@ function OrganizerDashboard() {
                           >
                             <div className="flex items-start gap-3">
                               <div className={`p-2 rounded-lg ${notification.unread ? 'bg-[#FAF000]/10 dark:bg-[#FAF000]/20' : 'bg-neutral-100 dark:bg-neutral-700'}`}>
-                                {notification.type === 'team' && <Users className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />}
-                                {notification.type === 'sponsor' && <Building className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />}
-                                {notification.type === 'event' && <Calendar className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />}
-                                {notification.type === 'message' && <Mail className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />}
-                                {notification.type === 'milestone' && <Trophy className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />}
+                                {notification.type === 'team' && <Users className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />}
+                                {notification.type === 'sponsor' && <Building className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />}
+                                {notification.type === 'event' && <Calendar className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />}
+                                {notification.type === 'message' && <Mail className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />}
+                                {notification.type === 'milestone' && <Trophy className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />}
                               </div>
                               <div className="flex-1">
                                 <h4 className="font-medium text-neutral-900 dark:text-white text-sm">
                                   {notification.title}
                                 </h4>
-                                <p className="text-sm text-[#FF9000] dark:text-[#FAF000] mt-1">
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
                                   {notification.message}
                                 </p>
-                                <p className="text-xs text-[#FF9000] dark:text-[#FAF000] mt-2">
+                                <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-2">
                                   {notification.time}
                                 </p>
                               </div>
@@ -238,7 +238,7 @@ function OrganizerDashboard() {
                       <div className="p-4 border-t border-neutral-200 dark:border-neutral-700">
                         <Link 
                           href="/organizer/dashboard/messages" 
-                          className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]"
+                          className="text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
                         >
                           View all notifications
                         </Link>
@@ -268,7 +268,7 @@ function OrganizerDashboard() {
               >
                 <div className="mt-4 flex items-center gap-2">
                   <TrendingUp className="h-4 w-4 text-[#FFA100]" />
-                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">+2 this month</span>
+                  <span className="text-sm text-neutral-600 dark:text-neutral-400">+2 this month</span>
                 </div>
               </GlowingCard>
 
@@ -280,7 +280,7 @@ function OrganizerDashboard() {
               >
                 <div className="mt-4 flex items-center gap-2">
                   <UserPlus className="h-4 w-4 text-[#FFA100]" />
-                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">+150 this week</span>
+                  <span className="text-sm text-neutral-600 dark:text-neutral-400">+150 this week</span>
                 </div>
               </GlowingCard>
 
@@ -292,7 +292,7 @@ function OrganizerDashboard() {
               >
                 <div className="mt-4 flex items-center gap-2">
                   <TrendingUp className="h-4 w-4 text-[#FFA100]" />
-                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">+12% from last month</span>
+                  <span className="text-sm text-neutral-600 dark:text-neutral-400">+12% from last month</span>
                 </div>
               </GlowingCard>
 
@@ -304,7 +304,7 @@ function OrganizerDashboard() {
               >
                 <div className="mt-4 flex items-center gap-2">
                   <Star className="h-4 w-4 text-[#FFA100] fill-current" />
-                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">Excellent feedback</span>
+                  <span className="text-sm text-neutral-600 dark:text-neutral-400">Excellent feedback</span>
                 </div>
               </GlowingCard>
             </motion.div>
@@ -335,7 +335,7 @@ function OrganizerDashboard() {
                           <h3 className="font-medium text-neutral-900 dark:text-white group-hover:text-[#FF9000] dark:group-hover:text-[#FAF000] transition-colors">
                             {action.title}
                           </h3>
-                          <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
+                          <p className="text-sm text-neutral-600 dark:text-neutral-400">
                             {action.description}
                           </p>
                         </div>
@@ -358,7 +358,7 @@ function OrganizerDashboard() {
                   <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
                     Recent Events
                   </h2>
-                  <Link href="/organizer/dashboard/events" className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]">
+                  <Link href="/organizer/dashboard/events" className="text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
                     View all
                   </Link>
                 </div>
@@ -372,14 +372,14 @@ function OrganizerDashboard() {
                     >
                       <div className="mt-4 space-y-3">
                         <div className="flex items-center justify-between">
-                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
+                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-xs rounded-full">
                             {event.type}
                           </span>
-                          <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">
+                          <span className="text-sm text-neutral-600 dark:text-neutral-400">
                             {event.participants} participants
                           </span>
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-[#FF9000] dark:text-[#FAF000]">
+                        <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
                           <Calendar className="h-4 w-4 text-[#FFA100]" />
                           {event.date}
                         </div>
@@ -390,10 +390,10 @@ function OrganizerDashboard() {
                           ></div>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                          <span className="text-xs text-neutral-600 dark:text-neutral-400">
                             Registration Progress
                           </span>
-                          <span className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                          <span className="text-xs text-neutral-600 dark:text-neutral-400">
                             {Math.round(event.progress)}%
                           </span>
                         </div>
@@ -416,7 +416,7 @@ function OrganizerDashboard() {
                     <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">
                       Upcoming Events
                     </h2>
-                    <Link href="/organizer/dashboard/events" className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]">
+                    <Link href="/organizer/dashboard/events" className="text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200">
                       View all
                     </Link>
                   </div>
@@ -428,7 +428,7 @@ function OrganizerDashboard() {
                             <h3 className="font-medium text-neutral-900 dark:text-white">
                               {event.name}
                             </h3>
-                            <p className="text-sm text-[#FF9000] dark:text-[#FAF000]">
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400">
                               {event.date}
                             </p>
                           </div>
@@ -436,7 +436,7 @@ function OrganizerDashboard() {
                             <div className="text-sm font-medium text-neutral-900 dark:text-white">
                               {event.participants}
                             </div>
-                            <div className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                            <div className="text-xs text-neutral-600 dark:text-neutral-400">
                               participants
                             </div>
                           </div>
@@ -454,39 +454,39 @@ function OrganizerDashboard() {
                   <div className="space-y-3">
                     <div className="flex items-center gap-3 p-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
                       <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                        <Users className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
+                        <Users className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                       </div>
                       <div className="flex-1">
                         <p className="text-sm text-neutral-900 dark:text-white">
                           New team formed for TechCrunch Hackathon
                         </p>
-                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
                           2 hours ago
                         </p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
                       <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                        <Building className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
+                        <Building className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                       </div>
                       <div className="flex-1">
                         <p className="text-sm text-neutral-900 dark:text-white">
                           New sponsor joined Web3 Masterclass
                         </p>
-                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
                           4 hours ago
                         </p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 p-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg">
                       <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                        <Mail className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
+                        <Mail className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                       </div>
                       <div className="flex-1">
                         <p className="text-sm text-neutral-900 dark:text-white">
                           Announcement sent to 150 participants
                         </p>
-                        <p className="text-xs text-[#FF9000] dark:text-[#FAF000]">
+                        <p className="text-xs text-neutral-600 dark:text-neutral-400">
                           6 hours ago
                         </p>
                       </div>

@@ -382,7 +382,7 @@ export default function OrganizerSponsorshipPage() {
                                     </div>
                                     <div className="flex flex-wrap gap-1 mt-2">
                                       {sponsor.interests.map((interest) => (
-                                        <span key={interest} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] rounded text-xs">
+                                        <span key={interest} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-neutral-600 dark:text-neutral-400 rounded text-xs">
                                           {interest}
                                         </span>
                                       ))}

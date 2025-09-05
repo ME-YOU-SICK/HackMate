@@ -227,7 +227,7 @@ const SponsorDashboard = () => {
                           {unreadCount > 0 && (
                             <button
                               onClick={markAllAsRead}
-                              className="text-xs text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
+                              className="text-xs text-neutral-600 dark:text-neutral-400 hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
                             >
                               Mark all read
                             </button>
@@ -245,7 +245,7 @@ const SponsorDashboard = () => {
                     </div>
                     <div className="max-h-64 overflow-y-auto">
                       {notifications.length === 0 ? (
-                        <div className="p-4 text-center text-[#FF9000] dark:text-[#FAF000]">
+                        <div className="p-4 text-center text-neutral-600 dark:text-neutral-400">
                           <Bell className="h-8 w-8 mx-auto mb-2 opacity-50 text-[#FFA100]" />
                           <p className="text-sm">No notifications</p>
                         </div>
@@ -293,7 +293,7 @@ const SponsorDashboard = () => {
                                 {notification.unread && (
                                   <button
                                     onClick={() => markAsRead(notification.id)}
-                                    className="mt-2 text-xs text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
+                                    className="mt-2 text-xs text-neutral-600 dark:text-neutral-400 hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
                                   >
                                     Mark as read
                                   </button>
@@ -308,7 +308,7 @@ const SponsorDashboard = () => {
                       <div className="p-3 border-t border-neutral-200 dark:border-neutral-700">
                         <Link
                           href="/sponsor/dashboard/invitations"
-                          className="block w-full text-center text-sm text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00] py-2"
+                          className="block w-full text-center text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#FFA100] dark:hover:text-[#FFDD00] py-2"
                           onClick={() => setShowNotifications(false)}
                         >
                           View all notifications →
@@ -337,7 +337,7 @@ const SponsorDashboard = () => {
                 </div>
                 <div className="flex items-center gap-1 mt-2">
                   <TrendingUp className="h-4 w-4 text-[#FFA100]" />
-                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">+{analytics.monthlyGrowth}% this month</span>
+                  <span className="text-sm text-neutral-600 dark:text-neutral-400">+{analytics.monthlyGrowth}% this month</span>
                 </div>
               </GlowingCard>
 
@@ -351,7 +351,7 @@ const SponsorDashboard = () => {
                 </div>
                 <div className="flex items-center gap-1 mt-2">
                   <Clock className="h-4 w-4 text-[#FFA100]" />
-                  <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">{analytics.completedEvents} completed</span>
+                  <span className="text-sm text-neutral-600 dark:text-neutral-400">{analytics.completedEvents} completed</span>
                 </div>
               </GlowingCard>
 
@@ -442,7 +442,7 @@ const SponsorDashboard = () => {
                   
                   <div className="flex items-start gap-3 p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
                     <div className="p-1 rounded-full bg-[#FAF000]/10 dark:bg-[#FAF000]/20">
-                      <MessageSquare className="h-4 w-4 text-[#FF9000] dark:text-[#FAF000]" />
+                      <MessageSquare className="h-4 w-4 text-neutral-600 dark:text-neutral-400" />
                     </div>
                     <div className="flex-1">
                       <h4 className="text-sm font-medium text-neutral-900 dark:text-white">
@@ -477,7 +477,7 @@ const SponsorDashboard = () => {
                 <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
                   <Link
                     href="/sponsor/dashboard/invitations"
-                    className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
+                    className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
                   >
                     View all invitations →
                   </Link>
@@ -559,7 +559,7 @@ const SponsorDashboard = () => {
                 <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
                   <Link
                     href="/sponsor/dashboard/analytics"
-                    className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
+                    className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
                   >
                     View analytics →
                   </Link>
@@ -661,7 +661,7 @@ const SponsorDashboard = () => {
               <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
                 <Link
                   href="/sponsor/dashboard/profile"
-                  className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
+                  className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
                 >
                   Manage partnerships →
                 </Link>

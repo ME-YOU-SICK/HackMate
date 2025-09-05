@@ -673,7 +673,7 @@ export default function RecruiterInterviewsPage() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-md transition-colors ${
                     activeTab === tab.id
-                      ? 'bg-white dark:bg-neutral-700 text-[#FF9000] dark:text-[#FAF000] shadow-sm'
+                      ? 'bg-white dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 shadow-sm'
                       : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
@@ -706,7 +706,7 @@ export default function RecruiterInterviewsPage() {
                       >
                         <div className="mt-4 space-y-3">
                           <div className="flex items-center justify-between">
-                            <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
+                            <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-xs rounded-full">
                               {resource.category}
                             </span>
                             <div className="flex items-center gap-1">
@@ -763,7 +763,7 @@ export default function RecruiterInterviewsPage() {
                             {template.categories.map((category, catIndex) => (
                               <span 
                                 key={catIndex}
-                                className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full"
+                                className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-xs rounded-full"
                               >
                                 {category}
                               </span>
@@ -800,7 +800,7 @@ export default function RecruiterInterviewsPage() {
                         className="h-full"
                       >
                         <div className="mt-4">
-                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
+                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-xs rounded-full">
                             {practice.category}
                           </span>
                         </div>
@@ -825,7 +825,7 @@ export default function RecruiterInterviewsPage() {
                       >
                         <div className="mt-4 flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
+                            <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-xs rounded-full">
                               {interview.type}
                             </span>
                             <span className={`px-2 py-1 text-xs rounded-full ${
@@ -923,8 +923,8 @@ export default function RecruiterInterviewsPage() {
             </div>
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="p-4 bg-[#FAF000]/5 dark:bg-[#FAF000]/20 rounded-lg">
-                <div className="text-2xl font-bold text-[#FF9000] dark:text-[#FAF000]">24</div>
-                <div className="text-sm text-[#FF9000] dark:text-[#FAF000]">Interviews This Month</div>
+                <div className="text-2xl font-bold text-neutral-600 dark:text-neutral-400">24</div>
+                <div className="text-sm text-neutral-600 dark:text-neutral-400">Interviews This Month</div>
               </div>
               <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
                 <div className="text-2xl font-bold text-green-600 dark:text-green-400">68%</div>
@@ -945,7 +945,7 @@ export default function RecruiterInterviewsPage() {
                 <div className="p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium text-neutral-900 dark:text-white">Sarah Chen</span>
-                    <span className="text-sm text-[#FF9000] dark:text-[#FAF000]">Hired</span>
+                    <span className="text-sm text-neutral-600 dark:text-neutral-400">Hired</span>
                   </div>
                   <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">Excellent technical skills and great cultural fit</p>
                 </div>

@@ -1,9 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifySession } from '@/lib/db-auth';
-import { demoVerifyToken } from '@/lib/demo-auth';
-
-// Check if we're in a serverless environment
-const isServerless = process.env.NETLIFY || process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME;
 
 // Verify token API endpoint
 export async function GET(request: NextRequest) {
@@ -19,62 +14,69 @@ export async function GET(request: NextRequest) {
 
     const token = authHeader.substring(7); // Remove 'Bearer ' prefix
     
-    // Use demo authentication in serverless environments
-    if (isServerless) {
-      const result = await demoVerifyToken(token);
+    try {
+      // Decode the simple token
+      const payload = JSON.parse(Buffer.from(token, 'base64').toString());
       
-      if (!result.success) {
+      // Check if token is expired
+      if (payload.exp && Date.now() > payload.exp) {
         return NextResponse.json(
-          { error: result.error },
+          { error: 'Token expired' },
           { status: 401 }
         );
       }
 
-      return NextResponse.json({
-        success: true,
-        user: result.user,
-        message: result.message
-      });
-    }
+      // For demo purposes, return a mock user based on userId
+      const mockUsers = {
+        '1': {
+          id: '1',
+          email: 'participant@demo.com',
+          firstName: 'John',
+          lastName: 'Doe',
+          role: 'participant',
+        },
+        '2': {
+          id: '2',
+          email: 'organizer@demo.com',
+          firstName: 'Jane',
+          lastName: 'Smith',
+          role: 'organizer',
+        },
+        '3': {
+          id: '3',
+          email: 'recruiter@demo.com',
+          firstName: 'Mike',
+          lastName: 'Johnson',
+          role: 'recruiter',
+        },
+        '4': {
+          id: '4',
+          email: 'sponsor@demo.com',
+          firstName: 'Sarah',
+          lastName: 'Wilson',
+          role: 'sponsor',
+        },
+      };
 
-    // Use database authentication in local development
-    try {
-      // Verify session
-      const user = await verifySession(token);
+      const user = mockUsers[payload.userId as keyof typeof mockUsers];
       
       if (!user) {
         return NextResponse.json(
-          { error: 'Invalid or expired token' },
+          { error: 'Invalid token' },
           { status: 401 }
         );
       }
 
-      // Return user data (without password hash)
-      const { passwordHash, ...userWithoutPassword } = user;
-      
       return NextResponse.json({
         success: true,
-        user: userWithoutPassword,
+        user,
         message: 'Token is valid'
       });
-    } catch (dbError) {
-      console.error('Database error, falling back to demo auth:', dbError);
-      
-      // Fallback to demo authentication if database fails
-      const result = await demoVerifyToken(token);
-      
-      if (!result.success) {
-        return NextResponse.json(
-          { error: result.error },
-          { status: 401 }
-        );
-      }
-
-      return NextResponse.json({
-        success: true,
-        user: result.user,
-        message: result.message
-      });
+    } catch (decodeError) {
+      return NextResponse.json(
+        { error: 'Invalid token format' },
+        { status: 401 }
+      );
     }
 
   } catch (error) {

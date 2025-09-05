@@ -293,12 +293,12 @@ export default function ProfilePage() {
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-4 p-4 bg-[#FAF000]/5 dark:bg-[#FAF000]/20 border border-[#FAF000] dark:border-[#FF9000] rounded-lg"
                 >
-                  <div className="flex items-center gap-2 text-[#FF9000] dark:text-[#FAF000]">
+                  <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
                     <AlertCircle className="h-4 w-4" />
                     <span className="text-sm">{error}</span>
                     <button
                       onClick={clearError}
-                      className="ml-auto text-[#FF9000] dark:text-[#FAF000] hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
+                      className="ml-auto text-neutral-600 dark:text-neutral-400 hover:text-[#FFA100] dark:hover:text-[#FFDD00]"
                     >
                       ×
                     </button>

@@ -172,7 +172,7 @@ export default function TeamifyPage() {
                           </div>
                           <div className="flex flex-wrap gap-1">
                             {team.skills.map((skill, index) => (
-                              <span key={index} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
+                              <span key={index} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-neutral-600 dark:text-neutral-400 text-xs rounded-full">
                                 {skill}
                               </span>
                             ))}
@@ -185,7 +185,7 @@ export default function TeamifyPage() {
                             </div>
                             <div className="flex flex-wrap gap-1">
                               {team.lookingFor.map((role, index) => (
-                                <span key={index} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
+                                <span key={index} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-neutral-600 dark:text-neutral-400 text-xs rounded-full">
                                   {role}
                                 </span>
                               ))}
@@ -236,7 +236,7 @@ export default function TeamifyPage() {
                           </div>
                           <div className="flex flex-wrap gap-1">
                             {member.skills.map((skill, index) => (
-                              <span key={index} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full">
+                              <span key={index} className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-neutral-600 dark:text-neutral-400 text-xs rounded-full">
                                 {skill}
                               </span>
                             ))}

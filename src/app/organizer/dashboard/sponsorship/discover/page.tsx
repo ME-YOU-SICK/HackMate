@@ -518,7 +518,7 @@ function SponsorDiscoveryContent() {
                           <h3 className="font-semibold text-neutral-900 dark:text-white">
                             {sponsor.name}
                           </h3>
-                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-[#FF9000] dark:text-[#FAF000] rounded text-xs">
+                          <span className="px-2 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000] text-neutral-600 dark:text-neutral-400 rounded text-xs">
                             {sponsor.type}
                           </span>
                         </div>

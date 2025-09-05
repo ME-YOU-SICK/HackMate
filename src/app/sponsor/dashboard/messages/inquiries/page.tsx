@@ -279,7 +279,7 @@ const SponsorshipInquiries = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "pending": return "text-yellow-600 dark:text-yellow-400 bg-yellow-100 dark:bg-yellow-900/20";
-      case "in_progress": return "text-[#FF9000] dark:text-[#FAF000] bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
+      case "in_progress": return "text-neutral-600 dark:text-neutral-400 bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
       case "accepted": return "text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/20";
       case "declined": return "text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/20";
       default: return "text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800";

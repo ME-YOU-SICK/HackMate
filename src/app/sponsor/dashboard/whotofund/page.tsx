@@ -191,7 +191,7 @@ const WhoToFundGuide = () => {
       sponsorType: "Consultancies / Corporates",
       suitableOrganizers: "Corporate, Accelerator, Government",
       roiPotential: "Medium–High",
-      roiColor: "text-[#FF9000] dark:text-[#FAF000]",
+      roiColor: "text-neutral-600 dark:text-neutral-400",
       description: "innovation + partnerships"
     },
     {
@@ -305,13 +305,13 @@ const WhoToFundGuide = () => {
                   <div className="bg-[#FAF000]/5 dark:bg-[#FAF000]/10 border border-[#FAF000] dark:border-[#FF9000] rounded-lg p-6">
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                        <Lightbulb className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
+                        <Lightbulb className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-[#FF9000] dark:text-[#FFDD00] mb-2">
                           Key Insight
                         </h3>
-                        <p className="text-[#FF9000] dark:text-[#FAF000] text-sm">
+                        <p className="text-neutral-600 dark:text-neutral-400 text-sm">
                           Think of hackathons not as one-off events, but as ecosystem-building opportunities. 
                           Choose wisely, and the ROI will extend far beyond the weekend.
                         </p>
@@ -442,7 +442,7 @@ const WhoToFundGuide = () => {
                         <div key={index} className="p-4 bg-neutral-50 dark:bg-neutral-700 rounded-lg">
                           <div className="flex items-start gap-3">
                             <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                              <div className="text-[#FF9000] dark:text-[#FAF000]">
+                              <div className="text-neutral-600 dark:text-neutral-400">
                                 {criteria.icon}
                               </div>
                             </div>
@@ -535,13 +535,13 @@ const WhoToFundGuide = () => {
                   <div className="bg-[#FAF000]/5 dark:bg-[#FAF000]/10 border border-[#FAF000] dark:border-[#FF9000] rounded-lg p-6">
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                        <Star className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
+                        <Star className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-[#FF9000] dark:text-[#FFDD00] mb-2">
                           Ready to Find Your Perfect Match?
                         </h3>
-                        <p className="text-[#FF9000] dark:text-[#FAF000] text-sm mb-4">
+                        <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-4">
                           Use this guide to identify the right hackathon organizers for your sponsorship goals.
                         </p>
                         <Link

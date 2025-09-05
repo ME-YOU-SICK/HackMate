@@ -471,7 +471,7 @@ export default function EventsPage() {
                     setSelectedStatus("All");
                     setSearchTerm("");
                   }}
-                  className="text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00]"
+                  className="text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
                 >
                   Clear filters
                 </button>
@@ -517,7 +517,7 @@ export default function EventsPage() {
                         {event.prize} prize pool
                       </div>
                       <div className="flex justify-between items-center pt-2">
-                        <span className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-xs rounded-full font-medium">
+                        <span className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-xs rounded-full font-medium">
                           {event.category}
                         </span>
                         <div className="flex items-center gap-2">

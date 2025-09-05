@@ -142,7 +142,7 @@ const SponsorProfile = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "completed": return "text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/20";
-      case "active": return "text-[#FF9000] dark:text-[#FAF000] bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
+      case "active": return "text-neutral-600 dark:text-neutral-400 bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
       default: return "text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800";
     }
   };
@@ -239,7 +239,7 @@ const SponsorProfile = () => {
                           href={`https://${profileData.company.website}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:underline"
+                          className="text-sm text-neutral-600 dark:text-neutral-400 hover:underline"
                         >
                           {profileData.company.website}
                         </a>
@@ -356,7 +356,7 @@ const SponsorProfile = () => {
                           href={profileData.social.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:underline"
+                          className="text-sm text-neutral-600 dark:text-neutral-400 hover:underline"
                         >
                           LinkedIn Profile
                         </a>
@@ -367,7 +367,7 @@ const SponsorProfile = () => {
                           href={profileData.social.twitter}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:underline"
+                          className="text-sm text-neutral-600 dark:text-neutral-400 hover:underline"
                         >
                           Twitter Profile
                         </a>
@@ -378,7 +378,7 @@ const SponsorProfile = () => {
                           href={profileData.social.facebook}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:underline"
+                          className="text-sm text-neutral-600 dark:text-neutral-400 hover:underline"
                         >
                           Facebook Page
                         </a>
@@ -389,7 +389,7 @@ const SponsorProfile = () => {
                           href={profileData.social.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-[#FF9000] dark:text-[#FAF000] hover:underline"
+                          className="text-sm text-neutral-600 dark:text-neutral-400 hover:underline"
                         >
                           Instagram Profile
                         </a>
@@ -411,7 +411,7 @@ const SponsorProfile = () => {
                   {profileData.sponsorship.preferredEventTypes.map((type, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-[#FF9000] dark:text-[#FAF000] text-sm rounded-full"
+                      className="px-3 py-1 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 text-neutral-600 dark:text-neutral-400 text-sm rounded-full"
                     >
                       {type}
                     </span>

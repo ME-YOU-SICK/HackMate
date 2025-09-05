@@ -195,7 +195,7 @@ export default function RecruiterPostingsPage() {
     switch (status) {
       case "active": return "text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/20";
       case "closed": return "text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/20";
-      case "draft": return "text-[#FF9000] dark:text-[#FAF000] bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
+      case "draft": return "text-neutral-600 dark:text-neutral-400 bg-[#FAF000]/10 dark:bg-[#FAF000]/20";
       default: return "text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-900/20";
     }
   };
@@ -228,7 +228,7 @@ export default function RecruiterPostingsPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                    <Briefcase className="h-6 w-6 text-[#FF9000] dark:text-[#FAF000]" />
+                    <Briefcase className="h-6 w-6 text-neutral-600 dark:text-neutral-400" />
                   </div>
                   <div>
                     <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">
@@ -322,7 +322,7 @@ export default function RecruiterPostingsPage() {
               <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                    <Briefcase className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
+                    <Briefcase className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -354,7 +354,7 @@ export default function RecruiterPostingsPage() {
               <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                    <Edit className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
+                    <Edit className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -370,7 +370,7 @@ export default function RecruiterPostingsPage() {
               <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-[#FAF000]/10 dark:bg-[#FAF000]/20 rounded-lg">
-                    <Users className="h-5 w-5 text-[#FF9000] dark:text-[#FAF000]" />
+                    <Users className="h-5 w-5 text-neutral-600 dark:text-neutral-400" />
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-neutral-900 dark:text-white">
@@ -455,7 +455,7 @@ export default function RecruiterPostingsPage() {
                         <div className="flex gap-2 pt-2">
                           <Link 
                             href="/recruiter/dashboard/candidates"
-                            className="flex-1 px-3 py-2 text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00] border border-[#FF9000] dark:border-[#FAF000] rounded-lg text-center transition-colors"
+                            className="flex-1 px-3 py-2 text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 border border-[#FF9000] dark:border-[#FAF000] rounded-lg text-center transition-colors"
                           >
                             <Users className="h-4 w-4 inline mr-1" />
                             View Applicants
@@ -463,14 +463,14 @@ export default function RecruiterPostingsPage() {
                           
                           <button 
                             onClick={() => handleEdit(posting)}
-                            className="px-3 py-2 text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00] border border-[#FF9000] dark:border-[#FAF000] rounded-lg transition-colors"
+                            className="px-3 py-2 text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 border border-[#FF9000] dark:border-[#FAF000] rounded-lg transition-colors"
                           >
                             <Edit className="h-4 w-4" />
                           </button>
                           
                           <button 
                             onClick={() => handleToggleVisibility(posting.id)}
-                            className="px-3 py-2 text-sm text-[#FF9000] hover:text-[#FFA100] dark:text-[#FAF000] dark:hover:text-[#FFDD00] border border-[#FF9000] dark:border-[#FAF000] rounded-lg transition-colors"
+                            className="px-3 py-2 text-sm text-neutral-600 hover:text-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200 border border-[#FF9000] dark:border-[#FAF000] rounded-lg transition-colors"
                             title={posting.status === "active" ? "Hide posting" : "Show posting"}
                           >
                             {posting.status === "active" ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
